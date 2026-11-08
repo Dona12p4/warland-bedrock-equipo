@@ -1,0 +1,122 @@
+{
+  "format_version": "1.16.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "warland:claw_machine",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "warland:claw_x": {
+          "type": "float",
+          "range": [
+            -12.0,
+            12.0
+          ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "warland:claw_z": {
+          "type": "float",
+          "range": [
+            -12.0,
+            12.0
+          ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "warland:lever_x": {
+          "type": "float",
+          "range": [
+            -1.0,
+            1.0
+          ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "warland:lever_z": {
+          "type": "float",
+          "range": [
+            -1.0,
+            1.0
+          ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "warland:state": {
+          "type": "int",
+          "range": [
+            0,
+            5
+          ],
+          "default": 0,
+          "client_sync": true
+        }
+      },
+      "animations": {
+        "claw_controller": "controller.animation.warland.claw_machine"
+      },
+      "scripts": {
+        "animate": [
+          "claw_controller"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.claw_machine"
+      ],
+      "textures": {
+        "default": "textures/entity/claw_machine"
+      },
+      "geometry": {
+        "default": "geometry.claw_machine"
+      },
+      "shadow_radius": 0.0
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "inanimate",
+          "claw_machine",
+          "furniture"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 2.0,
+        "height": 4.0
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": true
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1.0
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": false
+          }
+        ]
+      },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "interact_text": "action.interact.play_claw_machine",
+            "on_interact": {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "player"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

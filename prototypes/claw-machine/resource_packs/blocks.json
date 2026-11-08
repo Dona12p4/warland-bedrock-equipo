@@ -1,0 +1,21 @@
+{
+  "format_version": [1, 1, 0],
+  "warland:peluche_conejo": {
+    "sound": "cloth"
+  },
+  "warland:peluche_gato": {
+    "sound": "cloth"
+  },
+  "warland:peluche_perro": {
+    "sound": "cloth"
+  },
+  "warland:peluche_hamster": {
+    "sound": "cloth"
+  },
+  "warland:peluche_caballo": {
+    "sound": "cloth"
+  },
+  "warland:peluche_rata": {
+    "sound": "cloth"
+  }
+}

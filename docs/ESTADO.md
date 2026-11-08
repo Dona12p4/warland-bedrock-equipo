@@ -22,3 +22,8 @@ Validacion de entrega: clon nuevo descargado de GitHub, 1119 hashes identicos a 
 Atlas publico generado: https://dona12p4.github.io/warland-bedrock-equipo/. Incluye categorias y acceso individual a TODOS los archivos de packs, modelos 3D, clips numericos, texturas y audio. Datos regenerados al capturar/sincronizar/comprobar/publicar; GitHub Pages publica main automaticamente. El historial conserva estados antiguos, no sustituye los archivos actuales. Los prototipos no instalados no forman parte de la base oficial.
 
 Validacion del atlas: 22 pruebas de catalogo y colaboracion en Windows; navegador de desarrollo con las 19 secciones, 14 modelos principales, metadatos de los 16 eventos de sonido y disposicion a 390 px sin desbordamiento. Revisadas capturas reales de portada y ficha 3D. No es una nueva prueba del cliente Minecraft ni de la logica del juego.
+
+
+## Prototipo separado de la base instalada
+
+Se migró a `prototypes/claw-machine/` un prototipo de máquina de peluches con su contexto en `docs/claw-machine/`. No está instalado, registrado en `pack-order/` ni incluido en el catálogo; por tanto, la base de 25 packs descrita arriba permanece intacta. Requiere adaptación a la API estable del equipo y pruebas en laboratorio antes de proponer su integración.

@@ -1,0 +1,23 @@
+{
+  "format_version": "1.20.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "warland:peluche_perro",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "warland_peluche_perro"
+      },
+      "minecraft:display_name": {
+        "value": "Peluche de Perro"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:block_placer": {
+        "block": "warland:peluche_perro"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:peluche_gato",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/peluches/peluche_gato"
+      },
+      "geometry": {
+        "default": "geometry.peluche_gato"
+      },
+      "animations": {
+        "idle": "animation.peluche.idle"
+      },
+      "scripts": {
+        "animate": [
+          "idle"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.peluche"
+      ]
+    }
+  }
+}

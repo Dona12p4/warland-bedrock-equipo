@@ -1,0 +1,23 @@
+{
+  "format_version": "1.20.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "warland:peluche_hamster",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "warland_peluche_hamster"
+      },
+      "minecraft:display_name": {
+        "value": "Peluche de H\u00e1mster"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:block_placer": {
+        "block": "warland:peluche_hamster"
+      }
+    }
+  }
+}

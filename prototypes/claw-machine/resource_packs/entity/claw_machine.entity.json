@@ -1,0 +1,37 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:claw_machine",
+      "materials": {
+        "default": "entity_alphablend",
+        "opaque": "entity_alphatest",
+        "glass": "entity_alphablend"
+      },
+      "textures": {
+        "default": "textures/entity/claw_machine"
+      },
+      "geometry": {
+        "default": "geometry.claw_machine"
+      },
+      "animations": {
+        "move_x_z": "animation.claw_machine.move_x_z",
+        "claw_drop": "animation.claw_machine.drop",
+        "claw_grab": "animation.claw_machine.grab",
+        "lever_move": "animation.claw_machine.lever_move",
+        "win_drop": "animation.claw_machine.win_drop",
+        "claw_return": "animation.claw_machine.return",
+        "lever_press": "animation.claw_machine.lever_press",
+        "claw_controller": "controller.animation.warland.claw_machine"
+      },
+      "scripts": {
+        "animate": [
+          "claw_controller"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.claw_machine"
+      ]
+    }
+  }
+}

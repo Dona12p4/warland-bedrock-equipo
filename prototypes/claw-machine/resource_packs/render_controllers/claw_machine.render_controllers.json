@@ -1,0 +1,27 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.claw_machine": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        },
+        {
+          "machine_claw": "Material.opaque",
+          "claw_jaw_north": "Material.opaque",
+          "claw_jaw_east": "Material.opaque",
+          "claw_jaw_south": "Material.opaque",
+          "claw_jaw_west": "Material.opaque",
+          "claw_rails": "Material.opaque"
+        },
+        {
+          "glass_panels": "Material.glass"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ]
+    }
+  }
+}

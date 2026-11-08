@@ -1,0 +1,27 @@
+{
+  "resource_pack_name": "warland3",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "peluche_conejo": {
+      "textures": "textures/entity/peluches/peluche_conejo"
+    },
+    "peluche_gato": {
+      "textures": "textures/entity/peluches/peluche_gato"
+    },
+    "peluche_perro": {
+      "textures": "textures/entity/peluches/peluche_perro"
+    },
+    "peluche_hamster": {
+      "textures": "textures/entity/peluches/peluche_hamster"
+    },
+    "peluche_caballo": {
+      "textures": "textures/entity/peluches/peluche_caballo"
+    },
+    "peluche_rata": {
+      "textures": "textures/entity/peluches/peluche_rata"
+    },
+    "claw_machine": {
+      "textures": "textures/entity/claw_machine"
+    }
+  }
+}

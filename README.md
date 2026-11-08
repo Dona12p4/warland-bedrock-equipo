@@ -50,3 +50,7 @@ No hay un observador que copie partidas abiertas ni commits sin publicar. Una mo
 Solo RP recibe identificadores propios dentro del laboratorio para separar la cache visual del mundo oficial. Los UUID BP y sus datos persistentes se conservan. No se registran packs en Shared ni se modifican instalaciones existentes. Las versiones y experimentos de la base se conservan.
 
 Documentacion oficial: [proyectos locales de Codex](https://learn.chatgpt.com/docs/projects), [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [servidor Bedrock y loopback](https://learn.microsoft.com/en-us/minecraft/creator/documents/bedrockserver/getting-started?view=minecraft-bedrock-stable).
+
+## Prototipo de máquina de peluches
+
+El contexto, fuentes Blockbench y packs experimentales de la máquina están en [`docs/claw-machine/README.md`](docs/claw-machine/README.md) y `prototypes/claw-machine/`. El prototipo no pertenece a la base instalada ni al catálogo oficial.

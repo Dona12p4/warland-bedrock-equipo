@@ -1,0 +1,253 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.claw_machine.move_x_z": {
+			"loop": true,
+			"bones": {
+				"machine_claw": {
+					"position": {
+						"0.0": [
+							"query.property('warland:claw_x')",
+							"0",
+							"query.property('warland:claw_z')"
+						]
+					}
+				}
+			}
+		},
+		"animation.claw_machine.drop": {
+			"animation_length": 1.5,
+			"bones": {
+				"machine_claw": {
+					"position": {
+						"0.0": [
+							"query.property('warland:claw_x')",
+							"0",
+							"query.property('warland:claw_z')"
+						],
+						"0.75": [
+							"query.property('warland:claw_x')",
+							"-18",
+							"query.property('warland:claw_z')"
+						],
+						"1.5": [
+							"query.property('warland:claw_x')",
+							"-18",
+							"query.property('warland:claw_z')"
+						]
+					}
+				}
+			}
+		},
+		"animation.claw_machine.grab": {
+			"animation_length": 0.5,
+			"bones": {
+				"machine_claw": {
+					"position": {
+						"0.0": [
+							"query.property('warland:claw_x')",
+							"-18",
+							"query.property('warland:claw_z')"
+						],
+						"0.25": [
+							"query.property('warland:claw_x')",
+							"-18",
+							"query.property('warland:claw_z')"
+						],
+						"0.5": [
+							"query.property('warland:claw_x')",
+							"-18",
+							"query.property('warland:claw_z')"
+						]
+					}
+				},
+				"claw_jaw_north": {
+					"rotation": {
+						"0.0": [
+							"-24",
+							"0",
+							"0"
+						],
+						"0.25": [
+							"0",
+							"0",
+							"0"
+						],
+						"0.5": [
+							"-24",
+							"0",
+							"0"
+						]
+					}
+				},
+				"claw_jaw_south": {
+					"rotation": {
+						"0.0": [
+							"24",
+							"0",
+							"0"
+						],
+						"0.25": [
+							"0",
+							"0",
+							"0"
+						],
+						"0.5": [
+							"24",
+							"0",
+							"0"
+						]
+					}
+				},
+				"claw_jaw_east": {
+					"rotation": {
+						"0.0": [
+							"0",
+							"0",
+							"-24"
+						],
+						"0.25": [
+							"0",
+							"0",
+							"0"
+						],
+						"0.5": [
+							"0",
+							"0",
+							"-24"
+						]
+					}
+				},
+				"claw_jaw_west": {
+					"rotation": {
+						"0.0": [
+							"0",
+							"0",
+							"24"
+						],
+						"0.25": [
+							"0",
+							"0",
+							"0"
+						],
+						"0.5": [
+							"0",
+							"0",
+							"24"
+						]
+					}
+				}
+			}
+		},
+		"animation.claw_machine.lever_move": {
+			"loop": true,
+			"bones": {
+				"joystick_mid": {
+					"rotation": {
+						"0.0": [
+							"query.property('warland:lever_z') * -12",
+							"0",
+							"query.property('warland:lever_x') * -12"
+						]
+					}
+				},
+				"joystick_top": {
+					"rotation": {
+						"0.0": [
+							"query.property('warland:lever_z') * -12",
+							"0",
+							"query.property('warland:lever_x') * -12"
+						]
+					}
+				}
+			}
+		},
+		"animation.claw_machine.win_drop": {
+			"animation_length": 1.5,
+			"bones": {
+				"machine_claw": {
+					"position": {
+						"0.0": [
+							"query.property('warland:claw_x')",
+							"-18",
+							"query.property('warland:claw_z')"
+						],
+						"0.4167": [
+							"query.property('warland:claw_x')",
+							"0",
+							"query.property('warland:claw_z')"
+						],
+						"1.0833": [
+							"-11",
+							"0",
+							"-8"
+						],
+						"1.5": [
+							"-11",
+							"0",
+							"-8"
+						]
+					}
+				}
+			}
+		},
+		"animation.claw_machine.return": {
+			"animation_length": 0.8,
+			"bones": {
+				"machine_claw": {
+					"position": {
+						"0.0": [
+							"query.property('warland:claw_x')",
+							"-18",
+							"query.property('warland:claw_z')"
+						],
+						"0.4167": [
+							"query.property('warland:claw_x')",
+							"-8.526315789",
+							"query.property('warland:claw_z')"
+						],
+						"0.7917": [
+							"query.property('warland:claw_x')",
+							"0",
+							"query.property('warland:claw_z')"
+						]
+					}
+				}
+			}
+		},
+		"animation.claw_machine.lever_press": {
+			"animation_length": 0.36,
+			"bones": {
+				"drop_button": {
+					"position": {
+						"0.0": [
+							"0",
+							"0",
+							"0"
+						],
+						"0.05": [
+							"0",
+							"0.25",
+							"0"
+						],
+						"0.0833": [
+							"0",
+							"-0.5",
+							"0"
+						],
+						"0.2167": [
+							"0",
+							"-0.5",
+							"0"
+						],
+						"0.3583": [
+							"0",
+							"0",
+							"0"
+						]
+					}
+				}
+			}
+		}
+	}
+}

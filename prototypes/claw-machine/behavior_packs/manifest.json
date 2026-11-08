@@ -1,0 +1,56 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Funnies Machines BP",
+    "description": "Funnies Machines - M\u00e1quina de Peluches para Minecraft PE",
+    "uuid": "b1277015-d8ce-4665-87c9-98d7be96573c",
+    "version": [
+        1,
+        0,
+        9
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      80
+    ]
+  },
+  "modules": [
+    {
+      "description": "Behavior Pack Data",
+      "type": "data",
+      "uuid": "60e4b79c-ab69-4158-952a-d71031095b8a",
+      "version": [
+        1,
+        0,
+        9
+      ]
+    },
+    {
+      "description": "Scripting Logic",
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/index.js",
+      "uuid": "d6ee02aa-b074-4ab9-8f47-839627ca67b5",
+      "version": [
+        1,
+        0,
+        9
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "f9c65e4e-5c49-4d1e-a5e9-f63e20c9b5e2",
+      "version": [
+        1,
+        0,
+        9
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.18.0"
+    }
+  ]
+}

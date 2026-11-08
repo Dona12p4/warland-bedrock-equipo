@@ -1,0 +1,27 @@
+entity.warland:claw_machine.name=Claw Machine
+item.warland:claw_machine.name=Claw Machine
+action.interact.play_claw_machine=Play
+
+entity.warland:peluche_conejo.name=Rabbit Plushie
+item.warland:peluche_conejo.name=Rabbit Plushie
+tile.warland:peluche_conejo.name=Rabbit Plushie
+
+entity.warland:peluche_gato.name=Cat Plushie
+item.warland:peluche_gato.name=Cat Plushie
+tile.warland:peluche_gato.name=Cat Plushie
+
+entity.warland:peluche_perro.name=Dog Plushie
+item.warland:peluche_perro.name=Dog Plushie
+tile.warland:peluche_perro.name=Dog Plushie
+
+entity.warland:peluche_hamster.name=Hamster Plushie
+item.warland:peluche_hamster.name=Hamster Plushie
+tile.warland:peluche_hamster.name=Hamster Plushie
+
+entity.warland:peluche_caballo.name=Horse Plushie
+item.warland:peluche_caballo.name=Horse Plushie
+tile.warland:peluche_caballo.name=Horse Plushie
+
+entity.warland:peluche_rata.name=Rat Plushie
+item.warland:peluche_rata.name=Rat Plushie
+tile.warland:peluche_rata.name=Rat Plushie

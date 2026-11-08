@@ -1,0 +1,27 @@
+{
+  "resource_pack_name": "warland3",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "warland_claw_machine": {
+      "textures": "textures/items/claw_machine"
+    },
+    "warland_peluche_conejo": {
+      "textures": "textures/items/peluche_conejo"
+    },
+    "warland_peluche_gato": {
+      "textures": "textures/items/peluche_gato"
+    },
+    "warland_peluche_perro": {
+      "textures": "textures/items/peluche_perro"
+    },
+    "warland_peluche_hamster": {
+      "textures": "textures/items/peluche_hamster"
+    },
+    "warland_peluche_caballo": {
+      "textures": "textures/items/peluche_caballo"
+    },
+    "warland_peluche_rata": {
+      "textures": "textures/items/peluche_rata"
+    }
+  }
+}
