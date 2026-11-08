@@ -2,6 +2,8 @@
 
 Leer `README.md`, `docs/ESTADO.md` y `baseline.json` antes de editar. Este repositorio contiene la base de paquetes REALMENTE instalados; el antiguo proyecto 0.4.2 no reproduce esta version y no debe desplegarse encima.
 
+El colaborador trabaja en Linux instalado directamente, con Codex CLI desde la terminal; dispone de arranque dual Windows para pruebas visuales Bedrock. Usar `python3` y los lanzadores `.sh` en Linux. Iniciar `codex` desde la raiz del clon o `bash ABRIR-CODEX.sh`; no necesita pegar los chats del propietario. No ejecutar .cmd, PowerShell ni bedrock_server.exe bajo Linux.
+
 ## Al empezar cada chat o retomar una tarea
 
 1. Ejecutar `python tools/team.py sync`. Requiere Internet; el repositorio es publico por orden del propietario. Si hay cambios sin guardar en Git, conservarlos, revisarlos y hacer un commit en la rama de trabajo antes de sincronizar; NO reset, clean, stash automatico ni descartar cambios. Un conflicto debe resolverse conservando ambas funcionalidades.
@@ -11,8 +13,10 @@ Leer `README.md`, `docs/ESTADO.md` y `baseline.json` antes de editar. Este repos
 
 ## Edicion y compatibilidad
 
-- SOLO Minecraft Bedrock Windows y servidor BDS. No Java Edition, Forge, Paper, Spigot ni Geyser. Combate tipo Java significa mecanicas implementadas EN Bedrock.
-- Logica de packs: JavaScript y JSON. Utilidades: Python 3.11+ estandar, Git, GitHub CLI. Se puede usar TypeScript compilado a JS sin cambiar el contrato de los packs.
+- SOLO Minecraft Bedrock: cliente Windows y servidor BDS nativo Windows/Ubuntu. No Java Edition, Forge, Paper, Spigot ni Geyser. Combate tipo Java significa mecanicas implementadas EN Bedrock.
+- Logica de packs: JavaScript y JSON. Utilidades: Python 3.10+ estandar, Git, GitHub CLI. Se puede usar TypeScript compilado a JS sin cambiar el contrato de los packs.
+- En Linux, BDS fijado 1.26.60.6 de Minecraft oficial, SHA256 propio, x86_64; soporte oficial Ubuntu 22.04 LTS o posterior. No instalar Wine ni traducir el ejecutable Windows. En otra distribucion se puede editar/validar el codigo, pero no declarar validada su ejecucion nativa.
+- Arranque dual: conservar clones y laboratorios .local separados en Linux y Windows. Publicar commits desde la rama y sincronizar antes de probar al cambiar de sistema. No montar particiones ni copiar credenciales o DB entre sistemas como sustituto de la sincronizacion. El BDS de Linux no permanece ejecutandose al arrancar Windows.
 - Consultar `config/toolchain.json` y manifests; verificar versiones reales cliente/BDS/Script API. No actualizar versiones ni activar experimentos automaticamente. Excepcion Beta APIs existente de Base conservada, NO extenderla a otros packs.
 - Los archivos de `packs/` son la fuente editable vigente. Mantener UUID de BP, orden/dependencias de packs y propiedades persistentes. Los nuevos packs necesitan UUID propios. Registrar decisiones en `docs/DECISIONES.md` y pruebas en la propuesta.
 - Preservar Warcoins, equipos, protecciones, salud, seguros, HUD, combate, mapas, inventarios y temporizadores. Las misiones pagan automaticamente una sola vez, hasta 6 diarios ademas de 1 moneda/30 min. No iniciar temporada ni inventar decisiones pendientes.

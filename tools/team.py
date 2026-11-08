@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import platform
 from pathlib import Path, PurePosixPath
 import re
 import shutil
@@ -40,9 +41,9 @@ def hashes(folder):
     folder = Path(folder)
     return {p.relative_to(folder).as_posix(): sha(p) for p in sorted(folder.rglob('*')) if p.is_file()}
 
-def run(args, cwd=ROOT, capture=True):
+def run(args, cwd=ROOT, capture=True, env=None):
     result = subprocess.run([str(a) for a in args], cwd=cwd, text=True,
-                            encoding='utf-8', errors='replace', capture_output=capture)
+                            encoding='utf-8', errors='replace', capture_output=capture, env=env)
     if result.returncode:
         raise RuntimeError((result.stderr or result.stdout or str(args)).strip())
     return result.stdout.strip() if capture else ''
@@ -92,13 +93,15 @@ def extract(archive, target):
         z.extractall(target)
 
 def processes():
+    if sys.platform.startswith('linux'):
+        return run(['ps', '-eo', 'comm=']).lower()
     if os.name != 'nt':
-        return ''
+        raise RuntimeError('No se puede comprobar procesos de Minecraft en este sistema.')
     return run(['tasklist', '/FO', 'CSV', '/NH']).lower()
 
 def closed(client=False):
     state = processes()
-    if 'bedrock_server.exe' in state or (client and 'minecraft.windows.exe' in state):
+    if 'bedrock_server' in state or (client and 'minecraft.windows.exe' in state):
         raise RuntimeError('Guardar/cerrar Minecraft y detener BDS con stop antes de copiar. No se forzara el cierre.')
 
 def archive_tree(source, dest):
@@ -232,33 +235,70 @@ def refresh_catalog(root=ROOT):
     spec.loader.exec_module(module)
     return module.generate(root)
 
+def server_platform():
+    if platform.machine().lower() not in ('amd64', 'x86_64'):
+        raise RuntimeError('BDS requiere un equipo x86_64; no se ejecutara el binario en ARM.')
+    if sys.platform == 'win32': return 'windows'
+    if sys.platform.startswith('linux'): return 'linux'
+    raise RuntimeError('BDS de este proyecto solo admite Windows o Linux x86_64.')
+
+def server_distribution(root=ROOT):
+    conf = cfg(root)
+    host = server_platform()
+    if host == 'windows':
+        return {'platform':host, 'url':conf['serverUrl'], 'sha256':conf['serverSha256'], 'executable':'bedrock_server.exe'}
+    dist = conf.get('serverPlatforms', {}).get(host)
+    if not dist or not dist.get('sha256'):
+        raise RuntimeError('Falta una distribucion verificada de BDS para ' + host)
+    return {**dist, 'platform':host}
+
+def server_launch(root=ROOT):
+    dist = server_distribution(root)
+    server = root / '.local/server'
+    executable = server / dist['executable']
+    if not executable.is_file(): raise RuntimeError('Ejecutar setup-server para preparar BDS de este sistema.')
+    env = os.environ.copy()
+    if dist['platform'] == 'linux':
+        env['LD_LIBRARY_PATH'] = str(server.resolve()) + (os.pathsep + env['LD_LIBRARY_PATH'] if env.get('LD_LIBRARY_PATH') else '')
+    return [str(executable.resolve())], server, env
+
 def setup_server(archive=None, root=ROOT):
     conf = cfg(root)
+    dist = server_distribution(root)
     local = root / '.local'
     local.mkdir(exist_ok=True)
     dest = local / 'server'
-    if (dest / 'bedrock_server.exe').exists():
-        if read(local / 'server-version.json')['version'] != conf['serverVersion']:
+    executable = dest / dist['executable']
+    other = dest / ('bedrock_server.exe' if dist['platform']=='linux' else 'bedrock_server')
+    if other.exists():
+        raise RuntimeError('Este laboratorio contiene BDS de otro sistema. Usar un clon independiente; no mezclar .local entre Windows y Linux.')
+    if executable.exists():
+        if not (local / 'server-version.json').is_file():
+            raise RuntimeError('BDS existente sin registro verificado; no se reemplaza automaticamente.')
+        installed = read(local / 'server-version.json')
+        if installed['version'] != conf['serverVersion'] or installed.get('platform','windows') != dist['platform'] or installed.get('sha256') != dist['sha256']:
             raise RuntimeError('Version BDS distinta; no se actualiza automaticamente')
         return
     if archive is None:
-        archive = local / ('bedrock-' + conf['serverVersion'] + '.zip')
+        archive = local / ('bedrock-' + dist['platform'] + '-' + conf['serverVersion'] + '.zip')
         if not archive.exists():
             print('Descargando BDS oficial fijado: ' + conf['serverVersion'], flush=True)
             partial = archive.with_suffix('.partial')
             if os.name == 'nt':
                 run(['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', root / 'tools/download.ps1',
-                     '-Url', conf['serverUrl'], '-Destination', partial])
+                     '-Url', dist['url'], '-Destination', partial])
             else:
-                urllib.request.urlretrieve(conf['serverUrl'], partial)
-            if sha(partial) != conf['serverSha256']:
+                urllib.request.urlretrieve(dist['url'], partial)
+            if sha(partial) != dist['sha256']:
                 raise RuntimeError('Descarga incompleta o diferente; no se ejecutara')
             partial.replace(archive)
-    if sha(archive) != conf['serverSha256']:
+    if sha(archive) != dist['sha256']:
         raise RuntimeError('SHA256 del servidor incorrecto')
     closed()
     extract(archive, dest)
-    write(local / 'server-version.json', {'version': conf['serverVersion'], 'sha256': sha(archive)})
+    if not executable.is_file(): raise RuntimeError('El paquete BDS no contiene el ejecutable esperado.')
+    if dist['platform']=='linux': executable.chmod(0o755)
+    write(local / 'server-version.json', {'version': conf['serverVersion'], 'sha256': sha(archive), 'platform':dist['platform']})
 
 def isolated_packs(source, dest, namespace):
     """Isolate RESOURCE identities only. BP dynamic-property namespaces stay intact."""
@@ -509,21 +549,23 @@ def proposal(root=ROOT):
 
 def smoke(seconds, root=ROOT):
     closed()
-    server = root / '.local/server'
+    command, server, env = server_launch(root)
     if not (root / '.local/lab.json').exists():
         raise RuntimeError('Preparar laboratorio primero')
-    proc = subprocess.Popen([str(server / 'bedrock_server.exe')], cwd=server, stdin=subprocess.PIPE,
-                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding='utf-8', errors='replace')
-    time.sleep(min(45, seconds))
-    try:
-        output, _ = proc.communicate('stop\n', timeout=45)
-    except subprocess.TimeoutExpired:
-        raise RuntimeError('BDS no confirmo cierre; no copiar nada ni forzarlo. Revisar proceso activo.')
     log = root / '.local/smoke.log'
-    log.write_text(output, encoding='utf-8')
+    # Writing directly to a file prevents a verbose server from filling a PIPE.
+    with log.open('w', encoding='utf-8') as stream:
+        proc = subprocess.Popen(command, cwd=server, env=env, stdin=subprocess.PIPE,
+                                stdout=stream, stderr=subprocess.STDOUT, text=True, encoding='utf-8', errors='replace')
+        try:
+            time.sleep(max(0, min(45, seconds)))
+            proc.communicate('stop\n', timeout=45)
+        except subprocess.TimeoutExpired:
+            raise RuntimeError('BDS no confirmo cierre; no copiar nada ni forzarlo. Revisar proceso activo.')
+    output = log.read_text(encoding='utf-8', errors='replace')
     errors = [line for line in output.splitlines() if re.search(r'\[(?:Scripting|Json|Animation|Texture|Geometry|Item|Blocks)\]\[error\]|\bSyntaxError\b|\bReferenceError\b', line, re.I)]
     result = {'started': 'Server started.' in output, 'quitCorrectly': 'Quit correctly' in output,
-              'errors': errors, 'exitCode': proc.returncode, 'clientVisualTest': False}
+              'errors': errors, 'exitCode': proc.returncode, 'clientVisualTest': False, 'platform':server_platform()}
     result['passed'] = result['started'] and result['quitCorrectly'] and not errors and proc.returncode == 0
     write(root / '.local/smoke.json', result)
     print(json.dumps(result, ensure_ascii=False))
@@ -534,7 +576,8 @@ def install_hooks(root=ROOT):
     folder = root / '.local/hooks'
     folder.mkdir(parents=True, exist_ok=True)
     hook = folder / 'pre-push'
-    hook.write_text('#!/bin/sh\nif [ "$WARLAND_OWNER_PUSH" != "1" ]; then\n  branch=$(git branch --show-current)\n  if [ "$branch" = "main" ]; then echo "Usa una propuesta; main requiere revision del propietario."; exit 1; fi\nfi\npython tools/team.py pre-push || exit 1\n', encoding='utf-8')
+    hook.write_text('#!/bin/sh\nif [ "$WARLAND_OWNER_PUSH" != "1" ]; then\n  branch=$(git branch --show-current)\n  if [ "$branch" = "main" ]; then echo "Usa una propuesta; main requiere revision del propietario."; exit 1; fi\nfi\nif command -v python3 >/dev/null 2>&1; then python3 tools/team.py pre-push; else python tools/team.py pre-push; fi\n', encoding='utf-8', newline='\n')
+    hook.chmod(0o755)
     git('config', 'core.hooksPath', str(folder), root=root)
 
 def main():
@@ -553,6 +596,8 @@ def main():
     elif args.command == 'catalog':
         refresh_catalog()
         import webbrowser
+        print('Atlas local: ' + (ROOT / 'catalogo/index.html').as_uri())
+        print('Atlas publicado: https://dona12p4.github.io/warland-bedrock-equipo/')
         webbrowser.open((ROOT / 'catalogo/index.html').as_uri())
     elif args.command == 'begin': begin(args.task)
     elif args.command == 'check': check()
@@ -574,7 +619,8 @@ def main():
         if not git('status', '--porcelain'): sync()
         prepare_lab()
         print('Abrir Minecraft Bedrock > Servidores > 127.0.0.1:19152. Escribir stop aqui para guardar y cerrar.', flush=True)
-        run([ROOT / '.local/server/bedrock_server.exe'], ROOT / '.local/server', capture=False)
+        command, server, env = server_launch()
+        run(command, server, capture=False, env=env)
 
 if __name__ == '__main__':
     try:

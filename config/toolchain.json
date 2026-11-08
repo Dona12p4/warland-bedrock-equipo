@@ -6,6 +6,14 @@
   "serverVersion": "1.26.60.6",
   "serverUrl": "https://www.minecraft.net/bedrockdedicatedserver/bin-win/bedrock-server-1.26.60.6.zip",
   "serverSha256": "21620db4f80d0fe206f21cb08f52f4e5f14252ce865ec49ccfbe0d9f93ce88b0",
+  "serverPlatforms": {
+    "linux": {
+      "url": "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.26.60.6.zip",
+      "sha256": "cbbd5414fa6a310353ed1fc76a0ba691c3fd1ea852fd04bb76764ee4c1afdb98",
+      "executable": "bedrock_server",
+      "supportedSystem": "Ubuntu 22.04 LTS o posterior, x86_64"
+    }
+  },
   "stableScriptApi": "2.10.0",
   "baseBetaException": "2.12.0-beta",
   "port": 19152,

@@ -3,17 +3,25 @@ WARLAND - EQUIPO
 1. Proyecto publico: https://github.com/Dona12p4/warland-bedrock-equipo
    Para enviar cambios, TheDarkness6859 acepta la invitacion de colaboracion:
    https://github.com/Dona12p4/warland-bedrock-equipo/invitations
-2. Descomprime este ZIP en Documentos y abre PREPARAR-EQUIPO.cmd.
+2. Linux: descomprime este ZIP, abre una terminal en su carpeta y ejecuta:
+   bash PREPARAR-EQUIPO.sh
+   Windows: abre PREPARAR-EQUIPO.cmd.
 3. Inicia sesion GitHub con tu cuenta cuando lo pida y escribe tu gamertag.
-4. Abre la carpeta WARLAND-Equipo que indique el instalador en Codex.
+4. Linux: entra en la carpeta WARLAND-Equipo indicada y ejecuta:
+   bash ABRIR-CODEX.sh
+   Windows: abre esa carpeta como proyecto en Codex.
    A partir de ahi pide tu cambio normalmente: las instrucciones ya estan incluidas.
 
-Minecraft debe ser Bedrock para Windows. ChatGPT/Codex y Minecraft deben estar
-instalados y con tu sesion iniciada. El script prepara las otras herramientas,
-codigo, paquetes, mundo de pruebas y servidor local, sin copiar contrasenas.
+Seguimos en Minecraft BEDROCK. En Linux se programa con Codex CLI y se prueba
+BDS nativo (Ubuntu 22.04+ x86_64). Para jugar/revisar visualmente, usa Minecraft
+Bedrock en tu Windows del arranque dual con un clon y laboratorio separados.
+El script prepara herramientas, codigo, contexto y servidor; no copia sesiones
+ni monta particiones. Codex debe estar instalado y autenticado por tu cuenta.
 
 Para jugar las pruebas: ACTUALIZAR-Y-PROBAR.cmd y servidor 127.0.0.1:19152.
+En Linux: bash ACTUALIZAR-Y-PROBAR.sh. Prueba sin jugador: python3 tools/team.py smoke.
 Para ver todo lo agregado: ABRIR-CATALOGO.cmd.
+En Linux: bash ABRIR-CATALOGO.sh.
 Atlas publico: https://dona12p4.github.io/warland-bedrock-equipo/
 El atlas se actualiza al publicar cambios oficiales en main. El codigo, los
 recursos y las Releases del mundo son publicos por decision del propietario.
