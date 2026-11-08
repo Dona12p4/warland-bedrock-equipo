@@ -1,0 +1,36 @@
+{
+  "title": "WARLAND 3",
+  "subtitle": "Atlas del mundo oficial",
+  "entities": {
+    "warland:shadow_boss_prototype": {"name":"Sombra","summary":"La mirada inicia la caza. Alterna garras y estocada; su captura rara puede trasladar al jugador al Umbral fuera de esa dimensión."},
+    "warland:thermal_creeper_prototype": {"name":"Creeper térmico","summary":"Rastrea movimiento y fuentes de calor. Grita, persigue, succiona a su alrededor y detona; los supervivientes reciben ceguera y efectos sonoros."},
+    "warland:palpador_prototype": {"name":"El Palpador","summary":"Percibe movimiento durante sus tanteos. Persigue con rapidez y encadena ataques; los filamentos reaccionan durante la búsqueda."},
+    "warland:rastreador_prototype": {"name":"El Rastreador","summary":"Un insecto de antenas sensibles y partes bioluminiscentes. Escucha, busca, muerde, barre y embiste."},
+    "warland:apagavelas_prototype": {"name":"El Apagavelas","summary":"Espectro translúcido con huesos luminosos. Sus ataques y contramedidas incluyen orbes, espada espectral y Peto del Osario."},
+    "warland:garganta_abierta_prototype": {"name":"Garganta Abierta","summary":"Ecolocalización con branquias, carrera, embestida y alarma. Su grito puede alertar a otras criaturas; el creeper térmico está excluido."},
+    "warland:coloso_pasivo": {"name":"Coloso pasivo","summary":"La variante instalada del Coloso. Permanece pasiva; no confundirla con los estudios y películas de modelos que todavía no están en el mundo."},
+    "warland:cajero": {"name":"El Cajero","summary":"Personaje del banco de WARLAND, conectado con los Warcoins físicos y la cuenta del jugador."}
+  },
+  "systems": [
+    {"name":"Warcoins y banco","summary":"Saldo individual, monedas físicas, cajero y registro económico. Pago por tiempo y recompensas de misiones son sistemas separados.","patterns":["*warcoin*","*cajero*","*econom*"]},
+    {"name":"Equipos y terrenos","summary":"Equipos compartidos, invitaciones, disolución, selección de parcelas y protección. El combate contra amenazas se integra con los permisos de la zona.","patterns":["*team-*","*territor*","*security*","*mob-hit-guard*"]},
+    {"name":"Misiones y temporada","summary":"Misiones con recompensa automática, progresión y herramientas de beta. Que el código exista no significa que la temporada esté iniciada.","patterns":["*warland3*","*mission*","*beta-policy*","*beta-feedback*"]},
+    {"name":"Corazones, muerte y seguro","summary":"Salud persistente, seguro individual y animación global de corazón. Incluye el período de espectador y la vuelta al punto de reaparición.","patterns":["*heart-*","*health*","*insurance*","*warland_heart*"]},
+    {"name":"Combate con recarga","summary":"Combate tipo Java implementado en Bedrock: los golpes anticipados hacen menos daño. Incluye indicador visual, sin afirmar paridad completa con Java.","patterns":["*java-combat*","*combat*"]},
+    {"name":"HUD y menús","summary":"Warcoins y Keep, menús de inventario y formularios. También la pantalla de carga y las interfaces compartidas.","patterns":["*/ui/*","*personal-hud*","*inventory-menu*","*polish-items*"]},
+    {"name":"El Umbral","summary":"Cavernas oscuras sobre la dimensión del End: generación, relieve, vegetación y sustitución de contenido vanilla.","patterns":["*terrain*","*void-config*","*/dimensions/*","*end-*","*relief*"]},
+    {"name":"Visión y barrido","summary":"Pociones, niebla, claridad y ecolocalizador. La onda revela progresivamente el terreno hacia donde mira el jugador.","patterns":["*vision*","*spectral*","*fog*","*claridad*","*echo*"]},
+    {"name":"Portal y brújula","summary":"Grieta de regreso, señal, búsqueda de salida distante y estados de orientación de la brújula. Las distancias exactas se consultan en la configuración instalada.","patterns":["*rift*","*brujula*","*compass*"]},
+    {"name":"Construcción temporal","summary":"Bloques de materiales propios del Umbral permanecen. Los ajenos se permiten temporalmente; incluye expiración y reglas del agua.","patterns":["*building*"]},
+    {"name":"Población y represalia","summary":"Aparición y distribución de criaturas, hábitats y reacción a golpes. El Coloso conserva su excepción pasiva.","patterns":["*habitat*","*retaliation*","*/spawn_rules/*","*notice*"]},
+    {"name":"Lobby, regalos y cronología","summary":"Lobby instalado, protecciones y escenarios de la cronología. Configuración de regalos y activación se comprueba en el mundo, sin presumir eventos iniciados.","patterns":["*lobby*","*sanctuary*","*spawn-polish*"]},
+    {"name":"Auditoría y estadísticas","summary":"Registro de actividad, economía y seguridad. Los indicios de sospechosos se separan de los responsables confirmados.","patterns":["*security*","*core.js","*runtime.js","*records*"]}
+  ],
+  "habitats": {
+    "roots":"Raíces, madera oscura, hongos y refugios del Rastreador.",
+    "ash":"Ceniza, respiraderos y pequeños focos de lava y fuego para el creeper térmico.",
+    "silent":"Sculk, sensores, chilladores y entorno del Palpador; relacionado con el peligro del Warden.",
+    "watch":"Bosque oscuro y árboles altos dominados por Sombra.",
+    "sepulcher":"Ruinas, sepulcros y niebla asociados con El Apagavelas."
+  }
+}

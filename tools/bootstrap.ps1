@@ -20,7 +20,7 @@ Need-Tool 'python' 'Python.Python.3.14'
 if ($LASTEXITCODE -ne 0) { throw 'Python no esta disponible o su version no sirve.' }
 & gh auth status *> $null
 if ($LASTEXITCODE -ne 0) {
-    Write-Host 'Inicia sesion con tu propia cuenta GitHub, que debe tener acceso al repositorio privado.'
+    Write-Host 'Inicia sesion con tu propia cuenta GitHub para colaborar. El repositorio y el atlas son publicos.'
     & gh auth login --hostname github.com --git-protocol https --web
     if ($LASTEXITCODE -ne 0) { throw 'Falta completar el inicio de sesion.' }
 }
@@ -65,5 +65,6 @@ Write-Host ''
 Write-Host 'LISTO. Abre esta carpeta como proyecto local en Codex/ChatGPT.' -ForegroundColor Green
 Write-Host (Get-Location).Path
 Write-Host 'Para jugar la prueba: ACTUALIZAR-Y-PROBAR.cmd y Minecraft Bedrock, 127.0.0.1 puerto 19152.'
+Write-Host 'Para explorar todo el contenido: ABRIR-CATALOGO.cmd o https://dona12p4.github.io/warland-bedrock-equipo/'
 Write-Host 'Para detener BDS: escribe stop y espera Quit correctly. No se abren puertos del router.'
 Write-Host 'Los permisos de Windows y de Minecraft los acepta la persona si aparecen.'

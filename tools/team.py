@@ -135,6 +135,7 @@ def sync(root=ROOT):
         raise RuntimeError('Cambios locales pendientes. Revisar y guardar en tu rama antes de sync; no se descartan.')
     fetch(root)
     git('merge', '--no-edit', 'origin/' + cfg(root)['mainBranch'], root=root)
+    refresh_catalog(root)
     print('Actualizado; se conservan los commits propios. ' + git('rev-parse', '--short', 'HEAD', root=root))
 
 def begin(task, root=ROOT):
@@ -205,6 +206,9 @@ def check(root=ROOT):
         if any(p in ('.local', 'db', 'node_modules', 'backups') for p in parts) or Path(name).suffix.lower() in ('.exe', '.dll', '.mcworld', '.zip') or Path(name).name in ('auth.json', '.env'):
             raise RuntimeError('Archivo privado/binario no permitido en Git: ' + name)
     result = {'passed': True, 'packs': len(manifests), 'files': files}
+    catalog_report = refresh_catalog(root)
+    if catalog_report:
+        result['catalogFiles'] = catalog_report['coverage']['indexed']
     print(json.dumps(result))
     return result
 
@@ -217,6 +221,16 @@ def baseline(root=ROOT):
                               'version': m['header']['version'], 'dependencies': m.get('dependencies', [])})
     write(root / 'baseline.json', {'schema': 1, 'capturedUtc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
           'packs': inventory, 'sha256': hashes(root / 'packs'), 'note': 'Base instalada capturada. Comparar cambios con Git; no regenerar sobre trabajo ajeno.'})
+    refresh_catalog(root)
+
+def refresh_catalog(root=ROOT):
+    if not (root / 'catalogo/editorial.json').exists():
+        return None
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('warland_catalog', root / 'tools/catalog.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.generate(root)
 
 def setup_server(archive=None, root=ROOT):
     conf = cfg(root)
@@ -431,14 +445,16 @@ def publish_world(folder, root=ROOT):
     if pointer['codeCommit'] != git('rev-parse', 'HEAD', root=root):
         raise RuntimeError('El codigo cambio desde la captura; crear otro snapshot')
     repo = read_json_command(['gh', 'repo', 'view', cfg(root)['repository'], '--json', 'isPrivate'])
-    if not repo['isPrivate']:
-        raise RuntimeError('No se publican mundos en repositorios publicos')
+    visibility = 'private' if repo['isPrivate'] else 'public'
+    if visibility != cfg(root).get('approvedVisibility', 'private'):
+        raise RuntimeError('La visibilidad del repositorio no coincide con la autorizada; revisar antes de publicar mundos.')
     notes = folder / 'NOTAS.txt'
     notes.write_text(pointer['label'] + '\n' + pointer['note'] + '\nSHA256: ' + pointer['sha256'], encoding='utf-8')
     run(['gh', 'release', 'create', pointer['tag'], folder / pointer['asset'], folder / 'release.json',
          '--repo', cfg(root)['repository'], '--target', pointer['codeCommit'], '--title', pointer['label'], '--notes-file', notes])
     write(root / 'world-release.json', pointer)
-    print('Release privada publicada. Revisar y commitear world-release.json para anunciarla al equipo.')
+    refresh_catalog(root)
+    print('Release publicada con visibilidad ' + visibility + '. Revisar y commitear world-release.json para anunciarla al equipo.')
 
 def capture_installed(source, root=ROOT):
     source = Path(source).resolve()
@@ -524,7 +540,7 @@ def install_hooks(root=ROOT):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     sub = p.add_subparsers(dest='command', required=True)
-    for command in ('sync', 'check', 'baseline', 'prepare-lab', 'play', 'proposal', 'hooks', 'pre-push', 'status'):
+    for command in ('sync', 'check', 'baseline', 'prepare-lab', 'play', 'proposal', 'hooks', 'pre-push', 'status', 'catalog'):
         sub.add_parser(command)
     sub.add_parser('begin').add_argument('task')
     s = sub.add_parser('setup-server'); s.add_argument('--archive')
@@ -534,6 +550,10 @@ def main():
     s = sub.add_parser('smoke'); s.add_argument('--seconds', type=int, default=20)
     args = p.parse_args()
     if args.command == 'sync': sync()
+    elif args.command == 'catalog':
+        refresh_catalog()
+        import webbrowser
+        webbrowser.open((ROOT / 'catalogo/index.html').as_uri())
     elif args.command == 'begin': begin(args.task)
     elif args.command == 'check': check()
     elif args.command == 'baseline': baseline()
