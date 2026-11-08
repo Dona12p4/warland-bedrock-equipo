@@ -6,7 +6,28 @@ Repositorio publico por orden del propietario: https://github.com/Dona12p4/warla
 
 **Atlas completo:** https://dona12p4.github.io/warland-bedrock-equipo/ — criaturas 3D, clips, objetos, bloques, biomas, sonidos, recetas, comandos, sistemas y todos los archivos de los paquetes. En el PC, abrir **ABRIR-CATALOGO.cmd** para sincronizar y verlo sin servidor local.
 
-## Primer uso del companero
+## Primer uso del companero: Linux y Codex en terminal
+
+El companero trabaja en Linux instalado directamente y tiene arranque dual Windows. Desde la terminal donde ya usa Codex:
+
+```bash
+git clone https://github.com/Dona12p4/warland-bedrock-equipo.git WARLAND-Equipo
+cd WARLAND-Equipo
+bash PREPARAR-EQUIPO.sh
+bash ABRIR-CODEX.sh
+```
+
+Si ya existe el clon, entrar en el y ejecutar los dos ultimos comandos; no clonarlo encima. El preparador instala herramientas faltantes con apt cuando esta disponible, solicita su propia autenticacion GitHub, descarga la base, registra las comprobaciones y prepara BDS Linux en Ubuntu 22.04+ x86_64. Python minimo 3.10. En otra distribucion prepara codigo/contexto y deja indicada la prueba nativa pendiente. Tambien se puede elegir `bash PREPARAR-EQUIPO.sh --solo-codigo`.
+
+`ABRIR-CODEX.sh` inicia su Codex instalado con la carpeta correcta, sin cambiar modelo, autenticacion ni permisos. AGENTS.md aporta las reglas de trabajo y dirige a las decisiones/estado compartidos. Puede pedir directamente una tarea; no necesita copiar las conversaciones del propietario.
+
+- `bash ACTUALIZAR-Y-PROBAR.sh`: sincronizar y arrancar el BDS Linux local; cerrar con `stop`.
+- `python3 tools/team.py smoke --seconds 15`: comprobar arranque/carga/cierre sin jugador.
+- `bash ABRIR-CATALOGO.sh`: sincronizar y ver modelos, clips y recursos en su navegador.
+
+Para la revision visual en Minecraft Bedrock de Windows, arrancar su Windows y usar otro clon con el preparador `.cmd`. Los cambios de codigo viajan por Git; las carpetas `.local`, los binarios y el progreso de cada laboratorio se mantienen separados. El servidor Linux no sigue funcionando durante el arranque de Windows. El kit no monta particiones ni abre puertos de red.
+
+## Preparacion en Windows
 
 1. Tener Minecraft **Bedrock para Windows** y la aplicacion ChatGPT/Codex instalada; iniciar sesion con la cuenta que usara el. Aceptar la invitacion con su cuenta GitHub para enviar cambios al proyecto; no hace falta para leer el atlas o descargar el mundo.
 2. Descargar el kit inicial entregado por el propietario, descomprimirlo y abrir **PREPARAR-EQUIPO.cmd**. Instala Git, GitHub CLI y Python si faltan; pide autenticar GitHub y su gamertag una vez. Descarga el proyecto y el BDS fijado desde Minecraft, verifica los archivos y prepara la copia local del mundo.
@@ -49,4 +70,4 @@ No hay un observador que copie partidas abiertas ni commits sin publicar. Una mo
 
 Solo RP recibe identificadores propios dentro del laboratorio para separar la cache visual del mundo oficial. Los UUID BP y sus datos persistentes se conservan. No se registran packs en Shared ni se modifican instalaciones existentes. Las versiones y experimentos de la base se conservan.
 
-Documentacion oficial: [proyectos locales de Codex](https://learn.chatgpt.com/docs/projects), [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [servidor Bedrock y loopback](https://learn.microsoft.com/en-us/minecraft/creator/documents/bedrockserver/getting-started?view=minecraft-bedrock-stable).
+Documentacion oficial: [Codex CLI y carpeta de trabajo](https://learn.chatgpt.com/docs/cli/reference), [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [BDS para Ubuntu y Windows](https://www.minecraft.net/en-us/download/server/bedrock), [inicio del servidor Bedrock](https://learn.microsoft.com/en-us/minecraft/creator/documents/bedrockserver/getting-started?view=minecraft-bedrock-stable).
