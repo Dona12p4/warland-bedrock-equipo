@@ -59,7 +59,7 @@ class PlatformTests(unittest.TestCase):
     def test_hooks_use_python3_and_are_executable(self):
         with patch.object(t,'git'):t.install_hooks(self.root)
         p=self.root/'.local/hooks/pre-push';s=p.read_text()
-        self.assertIn('command -v python3',s);self.assertNotIn('\r',s)
+        self.assertIn('python3 tools/team.py pre-push',s);self.assertIn('MINGW*',s);self.assertNotIn('\r',s)
         if os.name!='nt':self.assertTrue(p.stat().st_mode&0o111)
     def test_arm_is_not_silently_treated_as_x86(self):
         with patch.object(t.platform,'machine',return_value='aarch64'):

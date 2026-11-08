@@ -288,7 +288,14 @@ def setup_server(archive=None, root=ROOT):
                 run(['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', root / 'tools/download.ps1',
                      '-Url', dist['url'], '-Destination', partial])
             else:
-                urllib.request.urlretrieve(dist['url'], partial)
+                request = urllib.request.Request(dist['url'], headers={'User-Agent':'Mozilla/5.0 WARLAND-TeamSetup/1.0'})
+                with urllib.request.urlopen(request, timeout=45) as response, partial.open('wb') as stream:
+                    downloaded = 0
+                    while block := response.read(1024 * 1024):
+                        stream.write(block)
+                        downloaded += len(block)
+                        if downloaded % (16 * 1024 * 1024) == 0:
+                            print('BDS descargado: ' + str(downloaded // (1024 * 1024)) + ' MB', flush=True)
             if sha(partial) != dist['sha256']:
                 raise RuntimeError('Descarga incompleta o diferente; no se ejecutara')
             partial.replace(archive)
@@ -576,7 +583,7 @@ def install_hooks(root=ROOT):
     folder = root / '.local/hooks'
     folder.mkdir(parents=True, exist_ok=True)
     hook = folder / 'pre-push'
-    hook.write_text('#!/bin/sh\nif [ "$WARLAND_OWNER_PUSH" != "1" ]; then\n  branch=$(git branch --show-current)\n  if [ "$branch" = "main" ]; then echo "Usa una propuesta; main requiere revision del propietario."; exit 1; fi\nfi\nif command -v python3 >/dev/null 2>&1; then python3 tools/team.py pre-push; else python tools/team.py pre-push; fi\n', encoding='utf-8', newline='\n')
+    hook.write_text('#!/bin/sh\nif [ "$WARLAND_OWNER_PUSH" != "1" ]; then\n  branch=$(git branch --show-current)\n  if [ "$branch" = "main" ]; then echo "Usa una propuesta; main requiere revision del propietario."; exit 1; fi\nfi\ncase "$(uname -s)" in\n  MINGW*|MSYS*|CYGWIN*) python tools/team.py pre-push ;;\n  *) python3 tools/team.py pre-push ;;\nesac\n', encoding='utf-8', newline='\n')
     hook.chmod(0o755)
     git('config', 'core.hooksPath', str(folder), root=root)
 

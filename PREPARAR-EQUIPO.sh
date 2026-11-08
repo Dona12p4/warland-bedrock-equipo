@@ -61,6 +61,15 @@ Path('.local/user.json').write_text(json.dumps({'gamertag':sys.argv[1].strip(),'
 PY
   fi
   python3 tools/team.py setup-server
+  # Minimal Ubuntu installs may lack the curl library required by native BDS.
+  if ldd .local/server/bedrock_server | grep -q 'libcurl.so.4 => not found'; then
+    curl_package=libcurl4
+    if [[ ${VERSION_ID%%.*} -ge 24 ]]; then curl_package=libcurl4t64; fi
+    sudo apt-get update
+    sudo apt-get install -y "$curl_package"
+  fi
+  missing_libraries="$(ldd .local/server/bedrock_server | grep 'not found' || true)"
+  [[ -z $missing_libraries ]] || { printf 'Faltan bibliotecas del sistema para BDS:\n%s\n' "$missing_libraries"; exit 1; }
   python3 tools/team.py prepare-lab
   python3 tools/team.py smoke --seconds 15
 else
