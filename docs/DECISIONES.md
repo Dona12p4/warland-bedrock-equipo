@@ -10,3 +10,5 @@
 - Despues de instalar una incorporacion oficial autorizada, capturar/publicar sus packs y actualizar las descripciones afectadas; el catalogo queda como parte de la entrega. No copiar mundos abiertos ni confundir una captura publicada con observacion en vivo.
 
 - 2026-11-08: conservar la máquina de peluches como prototipo separado en `prototypes/claw-machine/`, con historia y flujo de modelado en `docs/claw-machine/`. La migración no altera los 25 packs instalados ni autoriza instalación oficial. La adaptación de Script API, pruebas Bedrock y eventual integración requieren una propuesta posterior.
+
+- 2026-11-08, aclaracion: el colaborador usa Linux instalado directamente y Codex desde terminal; tiene arranque dual Windows. Preparadores .sh, BDS Linux x86_64 fijado en 1.26.60.6 con SHA256 propio y mismas API/paquetes. Codex se inicia en la raiz del clon para leer el contexto. Clones/laboratorios independientes por sistema; Windows se conserva para pruebas visuales del cliente Bedrock.

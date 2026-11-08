@@ -10,6 +10,8 @@ La referencia historica tiene estados antiguos contradictorios: las decisiones p
 
 Cliente observado: 1.26.63.1. BDS existente fijado: 1.26.60.6. API estable 2.10.0; Base conserva excepcion 2.12.0-beta ya existente. No se activaron nuevos experimentos.
 
+Preparacion Linux: el colaborador usa Linux nativo y Codex CLI, con arranque dual Windows disponible. Lanzadores .sh y ejecutable BDS Linux separados del .exe de Windows; misma version 1.26.60.6, mundo y packs. Descarga oficial Linux SHA256 cbbd5414fa6a310353ed1fc76a0ba691c3fd1ea852fd04bb76764ee4c1afdb98. La revision grafica en el computador del colaborador sigue pendiente; el laboratorio automatizado no la sustituye.
+
 Snapshot vigente: `world-20261108-164424`, capturado del mundo oficial del cliente despues de que el propietario guardara y cerrara Minecraft. ZIP verificado completo, ahora publico por orden posterior del propietario; no se modifico la partida original. Consultar world-release.json para hash y commit exactos. La copia offline usada en el primer arranque de prueba no es la entrega del mapa actual.
 
 GitHub: repositorio PUBLICO Dona12p4/warland-bedrock-equipo por orden posterior del 08/11/2026. Escritura invitada a TheDarkness6859; lectura y descargas sin invitacion. Main ahora tiene proteccion remota: check obligatorio, una revision y CODEOWNERS. El propietario conserva omision administrativa. No se cambio de plan. Ningun comando del kit instala sobre oficial.
