@@ -164,13 +164,39 @@ def build(root=ROOT):
     for sys in editor['systems']:
         sources=[f['path'] for f in files if any(fnmatch.fnmatch(f['path'].lower(),pat.lower()) for pat in sys['patterns'])]
         entry('systems',sys['name'],sys['name'],sources[0] if sources else 'docs/ESTADO.md',summary=sys['summary'],sources=sources)
+    # Human explanations complement the exact inventory; they are not a live world state.
+    guide_file=root/'catalogo/guias.json'
+    guides=read(guide_file) if guide_file.exists() else {'systems':[], 'entities':{}}
+    for guide in guides.get('systems',[]):
+        target=next((e for e in entries if e['category']=='systems' and e['name']==guide.get('match')),None)
+        if target is None:
+            sources=[f['path'] for f in files if any(fnmatch.fnmatch(f['path'].lower(),pat.lower()) for pat in guide.get('patterns',[]))]
+            target=entry('systems',guide['id'],guide['name'],sources[0] if sources else 'docs/ESTADO.md',sources=sources)
+        target.update({k:v for k,v in guide.items() if k not in ('match','patterns')})
+        target.setdefault('status','Incluido en los paquetes; estado de partida por comprobar')
+    for target in entries:
+        if target['category']=='mobs':
+            target.update(guides.get('entities',{}).get(target['id'],{}))
+    # Read the seven prepared lobby stages from the installed policy, not a second calendar.
+    policy=root/'packs/behavior_packs/WARLAND_Lobby_BP/scripts/lobby-timeline-policy.js'
+    if policy.exists():
+        text=policy.read_text(encoding='utf-8-sig')
+        titles=re.search(r'export const STAGE_TITLES\s*=\s*\[([^\]]*)\]',text)
+        prepared=re.search(r'preparedThrough\s*:\s*(\d+)',text)
+        total=re.search(r'\bdays\s*:\s*(\d+)',text)
+        if not (titles and prepared and total): raise ValueError('Revisar el lector de cronologia: cambio el formato de la politica instalada.')
+        names=re.findall(r"'([^']*)'",titles[1])
+        for day,name in enumerate(names,1):
+            entry('timeline',f'lobby-day-{day}',f'Día {day} · {name}',rel(policy,root),topics=['calendar','lobby'],status='Etapa visual preparada',summary='Estado del lobby. Avance manual por administradores; no inicia ni cambia el reloj de la temporada.',facts={'Semana':(day-1)//7+1,'Día':day},sections=[{'title':'Cómo se activa','items':['Desde la Línea del tiempo administrativa, avanzando a un día posterior. El cambio se guarda por etapas y no ofrece retroceso.','Esta ficha describe el lobby preparado, no una misión, bendición o evento diario confirmado.']}])
+        if int(prepared[1])<int(total[1]):
+            entry('timeline','lobby-pending',f'Días {int(prepared[1])+1}–{total[1]} · Por diseñar',rel(policy,root),topics=['calendar','lobby'],status='Pendiente · bloqueado',summary='Estos estados visuales del lobby todavía no están preparados. No confundir las fases de temporada del código con escenarios diarios terminados.')
     # Textures and sprites are individually accessible; unknown file formats are never omitted.
     for p in paths:
         if p.suffix.lower() in ('.png','.tga','.jpg','.jpeg'):
             e=entry('textures',rel(p,root),label(p.stem),rel(p,root),summary='Textura del paquete actual.',image=image(p))
     counts=dict(collections.Counter(e['category'] for e in entries))
     public_config=read(root/'config/toolchain.json');pointer=read(root/'world-release.json')
-    fingerprint=hashlib.sha256(json.dumps({'files':files,'editorial':editor,'world':pointer,'config':public_config},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+    fingerprint=hashlib.sha256(json.dumps({'files':files,'editorial':editor,'guides':guides,'world':pointer,'config':public_config},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
     data={'schema':1,'title':editor['title'],'subtitle':editor['subtitle'],'fingerprint':fingerprint,'files':files,'entries':entries,'packs':groups,'models':models,'images':images,'counts':counts,'world':pointer,'toolchain':public_config,'snapshot':read(root/'baseline.json').get('capturedUtc'),'coverage':{'indexed':len(files),'total':len(paths),'missing':[]}}
     return data
 
