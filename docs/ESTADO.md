@@ -12,6 +12,8 @@ Cliente observado: 1.26.63.1. BDS existente fijado: 1.26.60.6. API estable 2.10.
 
 Preparacion Linux: el colaborador usa Linux nativo y Codex CLI, con arranque dual Windows disponible. Lanzadores .sh y ejecutable BDS Linux separados del .exe de Windows; misma version 1.26.60.6, mundo y packs. Descarga oficial Linux SHA256 cbbd5414fa6a310353ed1fc76a0ba691c3fd1ea852fd04bb76764ee4c1afdb98. La revision grafica en el computador del colaborador sigue pendiente; el laboratorio automatizado no la sustituye.
 
+Actualizacion de entrega, 08/11/2026: TheDarkness6859 ya tiene permiso write (invitacion aceptada). PR 3 integro el soporte Linux, validado con 31 pruebas y BDS nativo Ubuntu 22.04 en GitHub Actions, cierre Quit correctly y cero errores detectados. Guia para otra cuenta en docs/INICIO-OTRA-CUENTA.md. La conexion del plugin GitHub en ChatGPT y las sesiones/herramientas del PC Linux se verifican por separado; no afirmar que se transfieren al cambiar de cuenta.
+
 Snapshot vigente: `world-20261108-164424`, capturado del mundo oficial del cliente despues de que el propietario guardara y cerrara Minecraft. ZIP verificado completo, ahora publico por orden posterior del propietario; no se modifico la partida original. Consultar world-release.json para hash y commit exactos. La copia offline usada en el primer arranque de prueba no es la entrega del mapa actual.
 
 GitHub: repositorio PUBLICO Dona12p4/warland-bedrock-equipo por orden posterior del 08/11/2026. Escritura invitada a TheDarkness6859; lectura y descargas sin invitacion. Main ahora tiene proteccion remota: check obligatorio, una revision y CODEOWNERS. El propietario conserva omision administrativa. No se cambio de plan. Ningun comando del kit instala sobre oficial.
@@ -25,6 +27,7 @@ Atlas publico generado: https://dona12p4.github.io/warland-bedrock-equipo/. Incl
 
 Validacion del atlas: 22 pruebas de catalogo y colaboracion en Windows; navegador de desarrollo con las 19 secciones, 14 modelos principales, metadatos de los 16 eventos de sonido y disposicion a 390 px sin desbordamiento. Revisadas capturas reales de portada y ficha 3D. No es una nueva prueba del cliente Minecraft ni de la logica del juego.
 
+Atlas de mecanicas, 08/11/2026: acceso directo a Combate tipo Java, Creepers, Lobby, Dias y semanas y Seguridad. Las 15 fichas de sistemas tienen explicaciones, limites y referencias; siete creepers cuentan con ficha/modelo. La cronologia se lee de la politica instalada: siete estados manuales del lobby y dias 8–30 pendientes. Las misiones instaladas siguen siendo tiempo/hostiles/chunks; no confundirlas con la propuesta posterior de objetivos diarios mas dificiles. Los regalos del lobby siguen sin catalogo de recompensas. Ningun pack ni partida se modifica al ampliar este HTML.
 
 ## Prototipo separado de la base instalada
 

@@ -1,6 +1,7 @@
 """Publish only the current catalog and its source assets, never local worlds."""
 from pathlib import Path
 import json
+import hashlib
 import shutil
 import tempfile
 from catalog import generate
@@ -22,6 +23,13 @@ def build_site(root):
         (stage/'catalogo/models').mkdir(parents=True)
         for name in ('index.html','style.css','app.js','viewer.js','THREE-LICENSE.txt','data.js','coverage.json'):
             shutil.copy2(root/'catalogo'/name, stage/'catalogo'/name)
+        # Every published HTML points to its matching data and UI revision.
+        page=stage/'catalogo/index.html'
+        html=page.read_text(encoding='utf-8')
+        for asset in ('style.css','data.js','viewer.js','app.js'):
+            stamp=hashlib.sha256((stage/'catalogo'/asset).read_bytes()).hexdigest()[:16]
+            html=html.replace('"'+asset+'"','"'+asset+'?v='+stamp+'"')
+        page.write_text(html,encoding='utf-8')
         # Ignore obsolete model blobs left by previous local generations.
         for model in data['models'].values():
             shutil.copy2(root/'catalogo'/model['asset'], stage/'catalogo'/model['asset'])

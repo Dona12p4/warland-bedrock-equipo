@@ -45,6 +45,35 @@ class CatalogTests(unittest.TestCase):
                 self.assertTrue(entry['sources'], entry['name'])
                 for path in entry['sources']: self.assertTrue((ROOT/path).is_file())
 
+    def test_gameplay_guides_are_complete_and_discoverable(self):
+        systems=[e for e in self.actual['entries'] if e['category']=='systems']
+        for e in systems:
+            self.assertTrue(e.get('sections'), e['name'])
+            self.assertTrue(e.get('status'), e['name'])
+        for topic in ('combat','creepers','lobby','calendar','security'):
+            self.assertTrue(any(topic in e.get('topics',[]) for e in systems),topic)
+        creepers=[e for e in self.actual['entries'] if e['category']=='mobs' and 'creepers' in e.get('topics',[])]
+        self.assertEqual(len(creepers),7)
+        self.assertTrue(all(not e['auxiliary'] and e.get('model') for e in creepers))
+        timeline=[e for e in self.actual['entries'] if e['category']=='timeline']
+        self.assertEqual([e['facts']['Día'] for e in timeline if 'facts' in e],list(range(1,8)))
+        self.assertEqual(timeline[-1]['status'],'Pendiente · bloqueado')
+
+    def test_guide_changes_invalidate_catalog_cache(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            write(root/'catalogo/editorial.json',{'title':'Prueba','subtitle':'Prueba','systems':[], 'habitats':{}})
+            write(root/'config/toolchain.json',{})
+            write(root/'world-release.json',{})
+            write(root/'baseline.json',{})
+            (root/'packs').mkdir()
+            guide={'systems':[], 'entities':{}}
+            write(root/'catalogo/guias.json',guide)
+            before=catalog.build(root)['fingerprint']
+            guide['entities']['warland:new']={'summary':'Una explicación corregida'}
+            write(root/'catalogo/guias.json',guide)
+            self.assertNotEqual(before,catalog.build(root)['fingerprint'])
+
     def test_generation_is_deterministic_and_does_not_modify_packs(self):
         first = catalog.generate(ROOT)
         data = (ROOT/'catalogo/data.js').read_bytes()
