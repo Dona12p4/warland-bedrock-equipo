@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "warland_cajero",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "warland_warcoins_fisicos": {
+      "textures": "textures/items/warcoins"
+    },
+    "warland_cajero_control": {
+      "textures": "textures/ui/warland_cajero/empty"
+    }
+  }
+}

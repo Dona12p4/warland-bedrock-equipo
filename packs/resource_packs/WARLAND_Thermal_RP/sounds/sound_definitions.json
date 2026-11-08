@@ -1,0 +1,55 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "warland.thermal.ringing": {
+      "category": "player",
+      "sounds": [
+        {
+          "name": "sounds/thermal/ringing",
+          "stream": false,
+          "volume": 1
+        }
+      ]
+    },
+    "warland.thermal.whispers": {
+      "category": "player",
+      "sounds": [
+        {
+          "name": "sounds/thermal/whispers",
+          "stream": false,
+          "volume": 1
+        }
+      ]
+    },
+    "warland.thermal.scream": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/thermal/scream",
+          "stream": false,
+          "volume": 1
+        }
+      ]
+    },
+    "warland.thermal.suction": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/thermal/suction",
+          "stream": false,
+          "volume": 1
+        }
+      ]
+    },
+    "warland.thermal.explosion": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/thermal/explosion",
+          "stream": false,
+          "volume": 1
+        }
+      ]
+    }
+  }
+}

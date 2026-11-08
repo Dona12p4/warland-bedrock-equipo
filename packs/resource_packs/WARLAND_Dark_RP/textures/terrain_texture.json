@@ -1,0 +1,104 @@
+{
+  "resource_pack_name": "warland_umbral",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "warland_umbral_stone": {
+      "textures": "textures/blocks/umbral_stone"
+    },
+    "warland_umbral_tile": {
+      "textures": "textures/blocks/umbral_tile"
+    },
+    "warland_umbral_wall": {
+      "textures": "textures/blocks/umbral_wall"
+    },
+    "warland_umbral_pillar": {
+      "textures": "textures/blocks/umbral_pillar"
+    },
+    "warland_umbral_brick": {
+      "textures": "textures/blocks/umbral_brick"
+    },
+    "warland_umbral_log": {
+      "textures": "textures/blocks/umbral_log"
+    },
+    "warland_umbral_leaves": {
+      "textures": "textures/blocks/umbral_leaves"
+    },
+    "warland_umbral_moss": {
+      "textures": "textures/blocks/umbral_moss"
+    },
+    "warland_umbral_soil": {
+      "textures": "textures/blocks/umbral_soil"
+    },
+    "warland_umbral_fern": {
+      "textures": "textures/blocks/umbral_fern"
+    },
+    "warland_umbral_fungus": {
+      "textures": "textures/blocks/umbral_fungus"
+    },
+    "warland_umbral_hanging": {
+      "textures": "textures/blocks/umbral_hanging"
+    },
+    "warland_umbral_rootwood": {
+      "textures": "textures/blocks/umbral_rootwood"
+    },
+    "warland_umbral_root_soil": {
+      "textures": "textures/blocks/umbral_root_soil"
+    },
+    "warland_umbral_shelf": {
+      "textures": "textures/blocks/umbral_shelf"
+    },
+    "warland_umbral_ivory_fungus": {
+      "textures": "textures/blocks/umbral_ivory_fungus"
+    },
+    "warland_umbral_dry_fern": {
+      "textures": "textures/blocks/umbral_dry_fern"
+    },
+    "warland_umbral_blackwood": {
+      "textures": "textures/blocks/umbral_blackwood"
+    },
+    "warland_umbral_black_leaves": {
+      "textures": "textures/blocks/umbral_black_leaves"
+    },
+    "warland_umbral_black_soil": {
+      "textures": "textures/blocks/umbral_black_soil"
+    },
+    "warland_umbral_ash_ground": {
+      "textures": "textures/blocks/umbral_ash_ground"
+    },
+    "warland_umbral_cinder": {
+      "textures": "textures/blocks/umbral_cinder"
+    },
+    "warland_umbral_vent": {
+      "textures": "textures/blocks/umbral_vent"
+    },
+    "warland_umbral_pale_scrub": {
+      "textures": "textures/blocks/umbral_pale_scrub"
+    },
+    "warland_umbral_slate": {
+      "textures": "textures/blocks/umbral_slate"
+    },
+    "warland_umbral_ruin": {
+      "textures": "textures/blocks/umbral_ruin"
+    },
+    "warland_umbral_ruin_cracked": {
+      "textures": "textures/blocks/umbral_ruin_cracked"
+    },
+    "warland_umbral_log_top": {
+      "textures": "textures/blocks/umbral_log_top"
+    },
+    "warland_fungus_cap": {
+      "textures": "textures/blocks/umbral_fungus_cap"
+    },
+    "warland_fungus_gills": {
+      "textures": "textures/blocks/umbral_fungus_gills"
+    },
+    "warland_fungus_stem": {
+      "textures": "textures/blocks/umbral_fungus_stem"
+    },
+    "warland_fungus_rim": {
+      "textures": "textures/blocks/umbral_fungus_rim"
+    }
+  }
+}

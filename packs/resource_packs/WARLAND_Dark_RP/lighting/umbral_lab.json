@@ -1,0 +1,35 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:lighting_settings": {
+    "description": {
+      "identifier": "warland:lab_black"
+    },
+    "directional_lights": {
+      "orbital": {
+        "sun": {
+          "illuminance": 0,
+          "color": "#FFFFFF"
+        },
+        "moon": {
+          "illuminance": 0,
+          "color": "#FFFFFF"
+        },
+        "orbital_offset_degrees": 0
+      },
+      "flash": {
+        "illuminance": 0.04,
+        "color": "#219C9F"
+      }
+    },
+    "ambient": {
+      "illuminance": 0,
+      "color": "#FFFFFF"
+    },
+    "sky": {
+      "intensity": 0.1
+    },
+    "emissive": {
+      "desaturation": 0
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export const musicConfig={"version":[0,9,1],"track":"warland.umbral.void_ambient","volume":0.5,"fade":2,"loop":true,"durationSeconds":1221.4625,"category":"ambient","pollTicks":40,"sampleRate":32000,"channels":2,"vorbisQuality":2,"encodingGain":0.8,"fadeInSeconds":1,"fadeOutSeconds":2};

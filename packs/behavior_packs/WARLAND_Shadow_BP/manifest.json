@@ -1,0 +1,54 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Â· Sombra Â· Prototipo data [Movil - copia]",
+    "description": "Sombra: captura rara no letal y viaje al Umbral.",
+    "uuid": "67ea1b13-1e3b-5d87-886f-667efa2e946c",
+    "version": [
+      0,
+      7,
+      6
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "d4dc90df-8273-5081-a445-ec49c3734675",
+      "version": [
+        0,
+        7,
+        6
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "4e948c39-e3e4-54dc-8810-85149d652046",
+      "version": [
+        0,
+        7,
+        6
+      ],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "aa352b5d-a0c7-574d-a7f2-825604b3383b",
+      "version": [
+        0,
+        7,
+        5
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    }
+  ]
+}

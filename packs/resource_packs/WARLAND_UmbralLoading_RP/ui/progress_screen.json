@@ -1,0 +1,133 @@
+{
+  "namespace": "progress",
+  "warland_umbral_background": {
+    "type": "image",
+    "texture": "textures/ui/warland/umbral-minecraft-v2",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "keep_ratio": false,
+    "tiled": false,
+    "layer": 1,
+    "alpha": 1
+  },
+  "warland_umbral_content": {
+    "type": "panel",
+    "layer": 3,
+    "controls": [
+      {
+        "mobile_data_icon@progress.mobile_data_icon": {}
+      },
+      {
+        "realm_name": {
+          "type": "label",
+          "text": "EL UMBRAL",
+          "localize": false,
+          "color": [
+            0.91,
+            0.89,
+            0.82
+          ],
+          "shadow": true,
+          "font_size": "normal",
+          "font_scale_factor": 2,
+          "size": [
+            "90%",
+            24
+          ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [
+            0,
+            24
+          ]
+        }
+      },
+      {
+        "world_modal_progress_panel@progress.world_modal_progress_panel": {
+          "$modal_button_panel_type": "progress.modal_button_panel"
+        }
+      },
+      {
+        "popup_dialog_factory@progress.popup_dialog_factory": {}
+      }
+    ],
+    "size": [
+      "100%",
+      "100%"
+    ]
+  },
+  "warland3_initial_background": {
+    "type": "image",
+    "texture": "textures/ui/warland/warland3-origin-minecraft-v2",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "keep_ratio": false,
+    "tiled": false,
+    "layer": 1,
+    "alpha": 1
+  },
+  "warland3_initial_content": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 3,
+    "controls": [
+      {
+        "mobile_data_icon@progress.mobile_data_icon": {}
+      },
+      {
+        "world_modal_progress_panel@progress.world_modal_progress_panel": {
+          "$modal_button_panel_type": "progress.modal_button_panel",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -6
+          ]
+        }
+      },
+      {
+        "popup_dialog_factory@progress.popup_dialog_factory": {}
+      }
+    ]
+  },
+  "world_loading_progress_screen@progress_screen": {
+    "$screen_content": "progress.warland3_initial_content",
+    "$screen_bg_content": "progress.warland3_initial_background",
+    "$background_animations": []
+  },
+  "experience_world_loading_progress_screen@progress.world_loading_progress_screen": {
+    "$screen_bg_content": "progress.warland3_initial_background",
+    "$screen_content": "progress.warland3_initial_content",
+    "$background_animations": []
+  },
+  "overworld_loading_progress_screen@world_loading_progress_screen": {
+    "$screen_bg_content": "progress.warland3_initial_background",
+    "$screen_content": "progress.warland3_initial_content",
+    "$background_animations": []
+  },
+  "theend_loading_progress_screen@world_loading_progress_screen": {
+    "$screen_bg_content": "progress.warland_umbral_background",
+    "$screen_content": "progress.warland_umbral_content",
+    "$background_animations": []
+  },
+  "nether_loading_progress_screen@world_loading_progress_screen": {
+    "$screen_bg_content": "progress.nether_loading_background",
+    "$screen_content": "progress.world_convert_modal_progress_screen_content"
+  },
+  "world_convert_modal_progress_screen@progress.progress_screen": {
+    "$screen_content": "progress.warland3_initial_content",
+    "$screen_bg_content": "progress.warland3_initial_background",
+    "$background_animations": []
+  }
+}

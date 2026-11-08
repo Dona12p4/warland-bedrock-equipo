@@ -1,0 +1,2610 @@
+{
+  "namespace": "hud",
+  "root_panel": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "warland_heart_death": {
+              "type": "panel",
+              "size": [
+                "100%",
+                "100%"
+              ],
+              "layer": 150,
+              "bindings": [
+                {
+                  "binding_name": "#hud_title_text_string"
+                },
+                {
+                  "binding_type": "view",
+                  "source_property_name": "(not ((#hud_title_text_string - 'WL_HEART|F') = #hud_title_text_string))",
+                  "target_property_name": "#visible"
+                }
+              ],
+              "controls": [
+                {
+                  "heart_0": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/00",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F00|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_1": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/01",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F01|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_2": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/02",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F02|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_3": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/03",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F03|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_4": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/04",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F04|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_5": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/05",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F05|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_6": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/06",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F06|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_7": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/07",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F07|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_8": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/08",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F08|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_9": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/09",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F09|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_10": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/10",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F10|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_11": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/11",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F11|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_12": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/12",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F12|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_13": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/13",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F13|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_14": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/14",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F14|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_15": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/15",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F15|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_16": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/16",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F16|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_17": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/17",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F17|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_18": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/18",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F18|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_19": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/19",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F19|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_20": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/20",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F20|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_21": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/21",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F21|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_22": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/22",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F22|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_23": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/23",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F23|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_24": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/24",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F24|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_25": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/25",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F25|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_26": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/26",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F26|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_27": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/27",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F27|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_28": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/28",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F28|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_29": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/29",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F29|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_30": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/30",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F30|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_31": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/31",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F31|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_32": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/32",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F32|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_33": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/33",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F33|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_34": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/34",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F34|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_35": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/35",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F35|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_36": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/36",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F36|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_37": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/37",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F37|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_38": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/38",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F38|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_39": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/39",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F39|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_40": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/40",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F40|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_41": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/41",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F41|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_42": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/42",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F42|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_43": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/43",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F43|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_44": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/44",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F44|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_45": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/45",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F45|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_46": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/46",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F46|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_47": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/47",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F47|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_48": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/48",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F48|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_49": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/49",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F49|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_50": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/50",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F50|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_51": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/51",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F51|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_52": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/52",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F52|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_53": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/53",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F53|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_54": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/54",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F54|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_55": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/55",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F55|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_56": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/56",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F56|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_57": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/57",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F57|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_58": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/58",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F58|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "heart_59": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_heart/59",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 150,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_HEART|F59|')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "caption": {
+                    "type": "label",
+                    "text": "#text",
+                    "localize": false,
+                    "shadow": true,
+                    "font_size": "normal",
+                    "color": [
+                      1,
+                      0.94,
+                      0.84
+                    ],
+                    "text_alignment": "center",
+                    "size": [
+                      "90%",
+                      "default"
+                    ],
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "offset": [
+                      0,
+                      "26%"
+                    ],
+                    "layer": 151,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_subtitle_text_string",
+                        "binding_name_override": "#text",
+                        "binding_type": "global"
+                      }
+                    ],
+                    "font_scale_factor": 0.7
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "warland_personal_data": {
+              "type": "panel",
+              "size": [
+                0,
+                0
+              ],
+              "bindings": [
+                {
+                  "binding_name": "#hud_title_text_string"
+                },
+                {
+                  "binding_name": "#hud_title_text_string",
+                  "binding_name_override": "#wl_saved",
+                  "binding_condition": "visibility_changed"
+                },
+                {
+                  "binding_type": "view",
+                  "source_property_name": "(not (#hud_title_text_string = #wl_saved) and not ((#hud_title_text_string - 'WL_HUD|') = #hud_title_text_string))",
+                  "target_property_name": "#visible"
+                }
+              ]
+            }
+          },
+          {
+            "warland_personal_hud": {
+              "type": "panel",
+              "size": [
+                "100%cm",
+                15
+              ],
+              "anchor_from": "top_right",
+              "anchor_to": "top_right",
+              "offset": [
+                -6,
+                6
+              ],
+              "layer": 40,
+              "controls": [
+                {
+                  "fill": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      "100%sm - 4px",
+                      15
+                    ],
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "offset": [
+                      0,
+                      0
+                    ],
+                    "color": [
+                      0.035,
+                      0.04,
+                      0.05
+                    ],
+                    "alpha": 0.76,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "fill_mid": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      "100%sm - 2px",
+                      13
+                    ],
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "offset": [
+                      0,
+                      0
+                    ],
+                    "color": [
+                      0.035,
+                      0.04,
+                      0.05
+                    ],
+                    "alpha": 0.76,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "fill_core": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      "100%sm",
+                      11
+                    ],
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "offset": [
+                      0,
+                      0
+                    ],
+                    "color": [
+                      0.035,
+                      0.04,
+                      0.05
+                    ],
+                    "alpha": 0.76,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "top": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      "100%sm - 4px",
+                      1
+                    ],
+                    "anchor_from": "top_middle",
+                    "anchor_to": "top_middle",
+                    "offset": [
+                      0,
+                      0
+                    ],
+                    "color": [
+                      0.67,
+                      0.69,
+                      0.72
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "bottom": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      "100%sm - 4px",
+                      1
+                    ],
+                    "anchor_from": "bottom_middle",
+                    "anchor_to": "bottom_middle",
+                    "offset": [
+                      0,
+                      0
+                    ],
+                    "color": [
+                      0.34,
+                      0.36,
+                      0.4
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "left": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      1,
+                      11
+                    ],
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "offset": [
+                      0,
+                      0
+                    ],
+                    "color": [
+                      0.55,
+                      0.57,
+                      0.6
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "right": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      1,
+                      11
+                    ],
+                    "anchor_from": "right_middle",
+                    "anchor_to": "right_middle",
+                    "offset": [
+                      0,
+                      0
+                    ],
+                    "color": [
+                      0.42,
+                      0.44,
+                      0.48
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "corner_top_left": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      1,
+                      1
+                    ],
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "offset": [
+                      1,
+                      1
+                    ],
+                    "color": [
+                      0.57,
+                      0.59,
+                      0.62
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "corner_top_right": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      1,
+                      1
+                    ],
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "offset": [
+                      -1,
+                      1
+                    ],
+                    "color": [
+                      0.57,
+                      0.59,
+                      0.62
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "corner_bottom_left": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      1,
+                      1
+                    ],
+                    "anchor_from": "bottom_left",
+                    "anchor_to": "bottom_left",
+                    "offset": [
+                      1,
+                      -1
+                    ],
+                    "color": [
+                      0.57,
+                      0.59,
+                      0.62
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "corner_bottom_right": {
+                    "type": "image",
+                    "texture": "textures/ui/warland_personal/pixel",
+                    "size": [
+                      1,
+                      1
+                    ],
+                    "anchor_from": "bottom_right",
+                    "anchor_to": "bottom_right",
+                    "offset": [
+                      -1,
+                      -1
+                    ],
+                    "color": [
+                      0.57,
+                      0.59,
+                      0.62
+                    ],
+                    "alpha": 1,
+                    "layer": 41,
+                    "bilinear": false,
+                    "keep_ratio": false
+                  }
+                },
+                {
+                  "row": {
+                    "type": "stack_panel",
+                    "orientation": "horizontal",
+                    "size": [
+                      "100%c",
+                      15
+                    ],
+                    "controls": [
+                      {
+                        "keep": {
+                          "type": "panel",
+                          "size": [
+                            "100%cm",
+                            15
+                          ],
+                          "controls": [
+                            {
+                              "row": {
+                                "type": "stack_panel",
+                                "orientation": "horizontal",
+                                "size": [
+                                  "100%c",
+                                  9
+                                ],
+                                "controls": [
+                                  {
+                                    "pad_l": {
+                                      "type": "panel",
+                                      "size": [
+                                        5,
+                                        1
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "icon": {
+                                      "type": "image",
+                                      "texture": "textures/ui/warland_personal/keep",
+                                      "size": [
+                                        9,
+                                        9
+                                      ],
+                                      "bilinear": false,
+                                      "layer": 43
+                                    }
+                                  },
+                                  {
+                                    "gap": {
+                                      "type": "panel",
+                                      "size": [
+                                        2,
+                                        1
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "count": {
+                                      "type": "label",
+                                      "text": "1",
+                                      "localize": false,
+                                      "shadow": true,
+                                      "font_size": "normal",
+                                      "font_scale_factor": 0.8,
+                                      "color": [
+                                        0.95,
+                                        0.96,
+                                        0.98
+                                      ],
+                                      "layer": 43
+                                    }
+                                  },
+                                  {
+                                    "pad_r": {
+                                      "type": "panel",
+                                      "size": [
+                                        5,
+                                        1
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "anchor_from": "left_middle",
+                                "anchor_to": "left_middle"
+                              }
+                            }
+                          ],
+                          "bindings": [
+                            {
+                              "binding_type": "view",
+                              "source_control_name": "warland_personal_data",
+                              "source_property_name": "(not ((#wl_saved - 'WL_HUD|K1|') = #wl_saved))",
+                              "target_property_name": "#visible"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "divider": {
+                          "type": "panel",
+                          "size": [
+                            1,
+                            15
+                          ],
+                          "bindings": [
+                            {
+                              "binding_type": "view",
+                              "source_control_name": "warland_personal_data",
+                              "source_property_name": "(not ((#wl_saved - 'WL_HUD|K1|') = #wl_saved))",
+                              "target_property_name": "#visible"
+                            }
+                          ],
+                          "controls": [
+                            {
+                              "line": {
+                                "type": "image",
+                                "texture": "textures/ui/warland_personal/pixel",
+                                "size": [
+                                  1,
+                                  9
+                                ],
+                                "anchor_from": "center",
+                                "anchor_to": "center",
+                                "offset": [
+                                  0,
+                                  0
+                                ],
+                                "color": [
+                                  0.32,
+                                  0.34,
+                                  0.38
+                                ],
+                                "alpha": 1,
+                                "layer": 41,
+                                "bilinear": false,
+                                "keep_ratio": false
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "warcoins": {
+                          "type": "panel",
+                          "size": [
+                            "100%cm",
+                            15
+                          ],
+                          "controls": [
+                            {
+                              "row": {
+                                "type": "stack_panel",
+                                "orientation": "horizontal",
+                                "size": [
+                                  "100%c",
+                                  9
+                                ],
+                                "controls": [
+                                  {
+                                    "pad_l": {
+                                      "type": "panel",
+                                      "size": [
+                                        5,
+                                        1
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "balance": {
+                                      "type": "label",
+                                      "text": "#text",
+                                      "localize": false,
+                                      "shadow": true,
+                                      "font_size": "normal",
+                                      "font_scale_factor": 0.8,
+                                      "color": [
+                                        0.95,
+                                        0.96,
+                                        0.98
+                                      ],
+                                      "layer": 43,
+                                      "bindings": [
+                                        {
+                                          "binding_type": "view",
+                                          "source_control_name": "warland_personal_data",
+                                          "source_property_name": "('§f' + ((#wl_saved - 'WL_HUD|K0|') - 'WL_HUD|K1|'))",
+                                          "target_property_name": "#text"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "gap": {
+                                      "type": "panel",
+                                      "size": [
+                                        3,
+                                        1
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "icon": {
+                                      "type": "image",
+                                      "texture": "textures/ui/warland_personal/coin",
+                                      "size": [
+                                        9,
+                                        9
+                                      ],
+                                      "bilinear": false,
+                                      "layer": 43
+                                    }
+                                  },
+                                  {
+                                    "pad_r": {
+                                      "type": "panel",
+                                      "size": [
+                                        5,
+                                        1
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "anchor_from": "left_middle",
+                                "anchor_to": "left_middle"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "warland_attack_charge": {
+              "type": "panel",
+              "size": [
+                16,
+                4
+              ],
+              "offset": [
+                0,
+                12
+              ],
+              "layer": 50,
+              "bindings": [
+                {
+                  "binding_name": "#hud_title_text_string"
+                },
+                {
+                  "binding_type": "view",
+                  "source_property_name": "(not ((#hud_title_text_string - 'WL_ATK|') = #hud_title_text_string) and not (#hud_title_text_string = 'WL_ATK|OFF'))",
+                  "target_property_name": "#visible"
+                }
+              ],
+              "controls": [
+                {
+                  "empty": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 50,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_empty",
+                    "alpha": 0.7
+                  }
+                },
+                {
+                  "charge_0": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 1.0,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|0')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_5": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.95,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|5')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_10": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.9,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|10')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_15": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.85,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|15')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_20": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.8,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|20')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_25": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.75,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|25')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_30": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.7,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|30')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_35": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.65,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|35')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_40": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.6,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|40')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_45": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.55,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|45')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_50": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.5,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|50')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_55": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.44999999999999996,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|55')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_60": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.4,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|60')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_65": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.35,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|65')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_70": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.30000000000000004,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|70')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_75": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.25,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|75')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_80": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.19999999999999996,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|80')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_85": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.15000000000000002,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|85')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_90": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.09999999999999998,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|90')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_95": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.050000000000000044,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|95')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "charge_100": {
+                    "type": "image",
+                    "size": [
+                      "100%",
+                      "100%"
+                    ],
+                    "layer": 51,
+                    "bilinear": false,
+                    "texture": "textures/ui/warland_combat/sword_full",
+                    "clip_direction": "left",
+                    "clip_pixelperfect": true,
+                    "clip_ratio": 0.0,
+                    "bindings": [
+                      {
+                        "binding_name": "#hud_title_text_string"
+                      },
+                      {
+                        "binding_type": "view",
+                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|100')",
+                        "target_property_name": "#visible"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "hud_title_text": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "offset": [
+      0,
+      -19
+    ],
+    "layer": 1,
+    "alpha": "@hud.anim_title_text_alpha_in",
+    "propagate_alpha": true,
+    "controls": [
+      {
+        "title_frame": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%cm"
+          ],
+          "controls": [
+            {
+              "title_background": {
+                "type": "image",
+                "size": [
+                  "100%sm + 30px",
+                  "100%sm + 6px"
+                ],
+                "texture": "textures/ui/hud_tip_text_background",
+                "alpha": "@hud.anim_title_background_alpha_in"
+              }
+            },
+            {
+              "title": {
+                "type": "label",
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "color": "$title_command_text_color",
+                "enable_profanity_filter": true,
+                "text": "#text",
+                "layer": 31,
+                "localize": false,
+                "font_size": "extra_large",
+                "variables": [
+                  {
+                    "requires": "(not $title_shadow)",
+                    "$show_shadow": false
+                  },
+                  {
+                    "requires": "$title_shadow",
+                    "$show_shadow": true
+                  }
+                ],
+                "shadow": "$show_shadow",
+                "text_alignment": "center",
+                "offset": [
+                  0,
+                  6
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#hud_title_text_string",
+                    "binding_name_override": "#text",
+                    "binding_type": "global"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "subtitle_frame": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%cm"
+          ],
+          "controls": [
+            {
+              "subtitle_background": {
+                "type": "image",
+                "size": [
+                  "100%sm + 20px",
+                  "100%sm + 5px"
+                ],
+                "offset": [
+                  0,
+                  16
+                ],
+                "texture": "textures/ui/hud_tip_text_background",
+                "variables": [
+                  {
+                    "requires": "$subtitle_initially_visible",
+                    "$subtitle_bg": "@hud.anim_title_background_alpha_in"
+                  },
+                  {
+                    "requires": "(not $subtitle_initially_visible)",
+                    "$subtitle_bg": "@hud.anim_subtitle_background_alpha_in"
+                  }
+                ],
+                "alpha": "$subtitle_bg"
+              }
+            },
+            {
+              "subtitle": {
+                "type": "label",
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "color": "$title_command_text_color",
+                "enable_profanity_filter": true,
+                "text": "#text",
+                "layer": 31,
+                "localize": false,
+                "font_size": "large",
+                "variables": [
+                  {
+                    "requires": "$subtitle_initially_visible",
+                    "$anim_type": 1.0
+                  },
+                  {
+                    "requires": "(not $subtitle_initially_visible)",
+                    "$anim_type": "@hud.anim_subtitle_text_alpha_in"
+                  },
+                  {
+                    "requires": "(not $title_shadow)",
+                    "$show_shadow": false
+                  },
+                  {
+                    "requires": "$title_shadow",
+                    "$show_shadow": true
+                  }
+                ],
+                "shadow": "$show_shadow",
+                "alpha": "$anim_type",
+                "text_alignment": "center",
+                "offset": [
+                  1,
+                  19
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#hud_subtitle_text_string",
+                    "binding_name_override": "#text",
+                    "binding_type": "global"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#hud_title_text_string"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((((#hud_title_text_string - 'WL_HEART|') = #hud_title_text_string) and ((#hud_title_text_string - 'WL_HUD|') = #hud_title_text_string)) and ((#hud_title_text_string - 'WL_ATK|') = #hud_title_text_string))",
+        "target_property_name": "#visible"
+      }
+    ]
+  }
+}

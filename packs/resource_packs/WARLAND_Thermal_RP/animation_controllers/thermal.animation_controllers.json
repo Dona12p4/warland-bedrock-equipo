@@ -1,0 +1,139 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.thermal.motion": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "animations": [
+            "idle"
+          ],
+          "blend_transition": 0.25,
+          "transitions": [
+            {
+              "scream": "query.property('warland:phase') == 1"
+            },
+            {
+              "suction": "query.property('warland:phase') == 3"
+            },
+            {
+              "burst": "query.property('warland:phase') == 4"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:gait') == 2"
+            },
+            {
+              "walk": "query.modified_move_speed > 0.01"
+            }
+          ]
+        },
+        "walk": {
+          "animations": [
+            "walk"
+          ],
+          "blend_transition": 0.25,
+          "transitions": [
+            {
+              "scream": "query.property('warland:phase') == 1"
+            },
+            {
+              "suction": "query.property('warland:phase') == 3"
+            },
+            {
+              "burst": "query.property('warland:phase') == 4"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01)"
+            },
+            {
+              "run": "query.property('warland:gait') == 2"
+            }
+          ]
+        },
+        "run": {
+          "animations": [
+            "run"
+          ],
+          "blend_transition": 0.25,
+          "transitions": [
+            {
+              "scream": "query.property('warland:phase') == 1"
+            },
+            {
+              "suction": "query.property('warland:phase') == 3"
+            },
+            {
+              "burst": "query.property('warland:phase') == 4"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01)"
+            },
+            {
+              "walk": "!(query.property('warland:gait') == 2)"
+            }
+          ]
+        },
+        "scream": {
+          "animations": [
+            "scream"
+          ],
+          "blend_transition": 0.1,
+          "transitions": [
+            {
+              "suction": "query.property('warland:phase') == 3"
+            },
+            {
+              "burst": "query.property('warland:phase') == 4"
+            },
+            {
+              "run": "query.property('warland:phase') == 2"
+            },
+            {
+              "idle": "query.property('warland:phase') == 0 || query.property('warland:phase') == 5"
+            }
+          ]
+        },
+        "suction": {
+          "animations": [
+            "suction"
+          ],
+          "blend_transition": 0.1,
+          "transitions": [
+            {
+              "scream": "query.property('warland:phase') == 1"
+            },
+            {
+              "burst": "query.property('warland:phase') == 4"
+            },
+            {
+              "run": "query.property('warland:phase') == 2"
+            },
+            {
+              "idle": "query.property('warland:phase') == 0 || query.property('warland:phase') == 5"
+            }
+          ]
+        },
+        "burst": {
+          "animations": [
+            "burst"
+          ],
+          "blend_transition": 0.1,
+          "transitions": [
+            {
+              "scream": "query.property('warland:phase') == 1"
+            },
+            {
+              "suction": "query.property('warland:phase') == 3"
+            },
+            {
+              "run": "query.property('warland:phase') == 2"
+            },
+            {
+              "idle": "query.property('warland:phase') == 0 || query.property('warland:phase') == 5"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

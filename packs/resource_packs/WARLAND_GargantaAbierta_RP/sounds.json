@@ -1,0 +1,15 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "warland:garganta_abierta_prototype": {
+        "events": {
+          "step": {
+            "sound": "step.gravel",
+            "volume": 0.8,
+            "pitch": 0.65
+          }
+        }
+      }
+    }
+  }
+}

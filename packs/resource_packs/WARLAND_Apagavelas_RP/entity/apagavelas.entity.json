@@ -1,0 +1,47 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:apagavelas_prototype",
+      "materials": {
+        "solid": "entity_alphatest",
+        "cloth": "entity_alphablend",
+        "white_glow": "entity_emissive_alpha_one_sided"
+      },
+      "textures": {
+        "default": "textures/entity/apagavelas",
+        "surface": "textures/entity/apagavelas_surface",
+        "white_glow": "textures/entity/apagavelas_white"
+      },
+      "geometry": {
+        "default": "geometry.warland.apagavelas",
+        "surface": "geometry.warland.apagavelas.surface",
+        "white_glow": "geometry.warland.apagavelas.white"
+      },
+      "animations": {
+        "hover": "animation.warland.apagavelas.hover",
+        "glide": "animation.warland.apagavelas.glide",
+        "drift": "animation.warland.apagavelas.drift",
+        "look": "animation.warland.apagavelas.look",
+        "search": "animation.warland.apagavelas.search",
+        "cast": "animation.warland.apagavelas.cast",
+        "burst": "animation.warland.apagavelas.burst",
+        "fan": "animation.warland.apagavelas.fan",
+        "motion": "controller.animation.warland.apagavelas.motion"
+      },
+      "scripts": {
+        "animate": [
+          "motion"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.apagavelas",
+        "controller.render.warland.apagavelas.white"
+      ],
+      "spawn_egg": {
+        "base_color": "#43464a",
+        "overlay_color": "#d6d1bb"
+      }
+    }
+  }
+}

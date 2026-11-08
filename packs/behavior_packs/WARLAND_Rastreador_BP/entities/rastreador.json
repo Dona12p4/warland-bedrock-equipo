@@ -1,0 +1,487 @@
+{
+  "format_version": "1.26.60",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "warland:rastreador_prototype",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "warland:aggressive": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        },
+        "warland:visual_action": {
+          "type": "int",
+          "default": 0,
+          "client_sync": true,
+          "range": [
+            0,
+            3
+          ]
+        },
+        "warland:gesture": {
+          "type": "int",
+          "range": [
+            0,
+            4
+          ],
+          "default": 0,
+          "client_sync": true
+        },
+        "warland:hurt": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        },
+        "warland:alerting": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        }
+      },
+      "animations": {
+        "combat": "controller.animation.warland.rastreador.combat"
+      },
+      "scripts": {
+        "animate": [
+          "combat"
+        ]
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "warland_rastreador",
+          "monster",
+          "mob"
+        ]
+      },
+      "minecraft:health": {
+        "value": 72,
+        "max": 72
+      },
+      "minecraft:collision_box": {
+        "width": 1.2,
+        "height": 1.2
+      },
+      "minecraft:physics": {},
+      "minecraft:movement.basic": {},
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:jump.static": {},
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:attack": {
+        "damage": 4
+      },
+      "minecraft:follow_range": {
+        "value": 40,
+        "max": 40
+      },
+      "minecraft:persistent": {},
+      "minecraft:nameable": {},
+      "minecraft:on_target_acquired": {
+        "event": "warland:chase",
+        "target": "self"
+      },
+      "minecraft:on_target_escape": {
+        "event": "warland:calm",
+        "target": "self"
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 0,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "player"
+            },
+            "max_dist": 64,
+            "must_see": false,
+            "reevaluate_description": false
+          }
+        ]
+      },
+      "minecraft:on_hurt_by_player": {
+        "event": "warland:chase",
+        "target": "self"
+      }
+    },
+    "component_groups": {
+      "warland:search": {
+        "minecraft:movement": {
+          "value": 0.14
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 1,
+          "must_see": false,
+          "must_reach": true,
+          "reselect_targets": false,
+          "scan_interval": 10,
+          "target_sneak_visibility_multiplier": 1,
+          "entity_types": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "value": "wl_rastreador_loud"
+                  }
+                ]
+              },
+              "max_dist": 14
+            },
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "value": "wl_rastreador_soft"
+                  }
+                ]
+              },
+              "max_dist": 5
+            }
+          ]
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 6,
+          "speed_multiplier": 1,
+          "interval": 140
+        }
+      },
+      "warland:hunt": {
+        "minecraft:movement": {
+          "value": 0.38
+        }
+      },
+      "warland:attack_0": {
+        "minecraft:behavior.delayed_attack": {
+          "priority": 1,
+          "track_target": true,
+          "speed_multiplier": 1,
+          "attack_duration": 0.85,
+          "hit_delay_pct": 0.4,
+          "reach_multiplier": 2.2,
+          "require_complete_path": false,
+          "min_path_time": 0.1,
+          "max_path_time": 0.2,
+          "random_stop_interval": 0,
+          "on_kill": {
+            "event": "warland:calm",
+            "target": "self"
+          }
+        }
+      },
+      "warland:attack_1": {
+        "minecraft:behavior.delayed_attack": {
+          "priority": 1,
+          "track_target": true,
+          "speed_multiplier": 1,
+          "attack_duration": 1.1,
+          "hit_delay_pct": 0.3818181818181818,
+          "reach_multiplier": 2.2,
+          "require_complete_path": false,
+          "min_path_time": 0.1,
+          "max_path_time": 0.2,
+          "random_stop_interval": 0,
+          "on_kill": {
+            "event": "warland:calm",
+            "target": "self"
+          }
+        }
+      },
+      "warland:attack_2": {
+        "minecraft:behavior.delayed_attack": {
+          "priority": 1,
+          "track_target": true,
+          "speed_multiplier": 1,
+          "attack_duration": 1.2,
+          "hit_delay_pct": 0.38333333333333336,
+          "reach_multiplier": 2.2,
+          "require_complete_path": false,
+          "min_path_time": 0.1,
+          "max_path_time": 0.2,
+          "random_stop_interval": 0,
+          "on_kill": {
+            "event": "warland:calm",
+            "target": "self"
+          }
+        }
+      },
+      "warland:gesturing": {
+        "minecraft:movement": {
+          "value": 0
+        }
+      },
+      "warland:garganta_notice": {
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 0,
+          "must_see": false,
+          "must_reach": false,
+          "reselect_targets": true,
+          "scan_interval": 10,
+          "entity_types": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "value": "wl_garganta_prey"
+                  }
+                ]
+              },
+              "max_dist": 64
+            }
+          ]
+        },
+        "minecraft:follow_range": {
+          "value": 64,
+          "max": 64
+        }
+      },
+      "warland:beta_toughness": {
+        "minecraft:health": {
+          "value": 72,
+          "max": 72
+        }
+      },
+      "warland:retaliation": {
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 0,
+          "entity_types": [
+            {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "player"
+              },
+              "max_dist": 64,
+              "must_see": false,
+              "reevaluate_description": false
+            }
+          ]
+        },
+        "minecraft:on_hurt_by_player": {
+          "event": "warland:chase",
+          "target": "self"
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "warland:search"
+          ]
+        }
+      },
+      "warland:chase": {
+        "remove": {
+          "component_groups": [
+            "warland:search",
+            "warland:gesturing",
+            "warland:garganta_notice"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:hunt"
+          ]
+        },
+        "set_property": {
+          "warland:aggressive": true,
+          "warland:gesture": 0
+        }
+      },
+      "warland:calm": {
+        "remove": {
+          "component_groups": [
+            "warland:hunt",
+            "warland:attack_0",
+            "warland:attack_1",
+            "warland:attack_2",
+            "warland:gesturing",
+            "warland:garganta_notice"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:search"
+          ]
+        },
+        "set_property": {
+          "warland:aggressive": false,
+          "warland:visual_action": 0,
+          "warland:gesture": 0
+        }
+      },
+      "warland:recover": {
+        "remove": {
+          "component_groups": [
+            "warland:attack_0",
+            "warland:attack_1",
+            "warland:attack_2"
+          ]
+        },
+        "set_property": {
+          "warland:visual_action": 0
+        }
+      },
+      "warland:prepare_0": {
+        "remove": {
+          "component_groups": [
+            "warland:attack_0",
+            "warland:attack_1",
+            "warland:attack_2"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:attack_0"
+          ]
+        }
+      },
+      "warland:strike_0": {
+        "set_property": {
+          "warland:visual_action": 1
+        }
+      },
+      "warland:prepare_1": {
+        "remove": {
+          "component_groups": [
+            "warland:attack_0",
+            "warland:attack_1",
+            "warland:attack_2"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:attack_1"
+          ]
+        }
+      },
+      "warland:strike_1": {
+        "set_property": {
+          "warland:visual_action": 2
+        }
+      },
+      "warland:prepare_2": {
+        "remove": {
+          "component_groups": [
+            "warland:attack_0",
+            "warland:attack_1",
+            "warland:attack_2"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:attack_2"
+          ]
+        }
+      },
+      "warland:strike_2": {
+        "set_property": {
+          "warland:visual_action": 3
+        }
+      },
+      "warland:gesture_0": {
+        "remove": {
+          "component_groups": [
+            "warland:gesturing"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:search"
+          ]
+        },
+        "set_property": {
+          "warland:gesture": 0
+        }
+      },
+      "warland:gesture_1": {
+        "add": {
+          "component_groups": [
+            "warland:gesturing"
+          ]
+        },
+        "set_property": {
+          "warland:gesture": 1
+        }
+      },
+      "warland:gesture_2": {
+        "add": {
+          "component_groups": [
+            "warland:gesturing"
+          ]
+        },
+        "set_property": {
+          "warland:gesture": 2
+        }
+      },
+      "warland:gesture_3": {
+        "add": {
+          "component_groups": [
+            "warland:gesturing"
+          ]
+        },
+        "set_property": {
+          "warland:gesture": 3
+        }
+      },
+      "warland:garganta_alert": {
+        "add": {
+          "component_groups": [
+            "warland:garganta_notice"
+          ]
+        }
+      },
+      "warland:garganta_quiet": {
+        "remove": {
+          "component_groups": [
+            "warland:garganta_notice"
+          ]
+        }
+      },
+      "warland:beta_toughness": {
+        "add": {
+          "component_groups": [
+            "warland:beta_toughness"
+          ]
+        }
+      },
+      "warland:enable_retaliation": {
+        "add": {
+          "component_groups": [
+            "warland:retaliation"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,428 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.rastreador.motion": {
+      "initial_state": "idle",
+      "states": {
+        "hurt": {
+          "animations": [
+            "hurt"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "attack_bite": "!(query.property('warland:hurt')) && (query.property('warland:visual_action') == 1)"
+            },
+            {
+              "attack_sweep": "!(query.property('warland:hurt')) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:hurt')) && (query.property('warland:visual_action') == 3)"
+            },
+            {
+              "alert": "!(query.property('warland:hurt')) && (query.property('warland:alerting'))"
+            },
+            {
+              "listen": "!(query.property('warland:hurt')) && (query.property('warland:gesture') == 1 && !query.property('warland:aggressive'))"
+            },
+            {
+              "body_shake": "!(query.property('warland:hurt')) && (query.property('warland:gesture') == 2 && !query.property('warland:aggressive'))"
+            },
+            {
+              "groom": "!(query.property('warland:hurt')) && (query.property('warland:gesture') == 3 && !query.property('warland:aggressive'))"
+            },
+            {
+              "run": "!(query.property('warland:hurt')) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:hurt')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:hurt')) && (1.0)"
+            }
+          ]
+        },
+        "attack_bite": {
+          "animations": [
+            "attack_bite"
+          ],
+          "blend_transition": 0.07,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_sweep": "!(query.property('warland:visual_action') == 1) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:visual_action') == 1) && (query.property('warland:visual_action') == 3)"
+            },
+            {
+              "alert": "!(query.property('warland:visual_action') == 1) && (query.property('warland:alerting'))"
+            },
+            {
+              "listen": "!(query.property('warland:visual_action') == 1) && (query.property('warland:gesture') == 1 && !query.property('warland:aggressive'))"
+            },
+            {
+              "body_shake": "!(query.property('warland:visual_action') == 1) && (query.property('warland:gesture') == 2 && !query.property('warland:aggressive'))"
+            },
+            {
+              "groom": "!(query.property('warland:visual_action') == 1) && (query.property('warland:gesture') == 3 && !query.property('warland:aggressive'))"
+            },
+            {
+              "run": "!(query.property('warland:visual_action') == 1) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:visual_action') == 1) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:visual_action') == 1) && (1.0)"
+            }
+          ]
+        },
+        "attack_sweep": {
+          "animations": [
+            "attack_sweep"
+          ],
+          "blend_transition": 0.07,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:visual_action') == 2) && (query.property('warland:visual_action') == 3)"
+            },
+            {
+              "alert": "!(query.property('warland:visual_action') == 2) && (query.property('warland:alerting'))"
+            },
+            {
+              "listen": "!(query.property('warland:visual_action') == 2) && (query.property('warland:gesture') == 1 && !query.property('warland:aggressive'))"
+            },
+            {
+              "body_shake": "!(query.property('warland:visual_action') == 2) && (query.property('warland:gesture') == 2 && !query.property('warland:aggressive'))"
+            },
+            {
+              "groom": "!(query.property('warland:visual_action') == 2) && (query.property('warland:gesture') == 3 && !query.property('warland:aggressive'))"
+            },
+            {
+              "run": "!(query.property('warland:visual_action') == 2) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:visual_action') == 2) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:visual_action') == 2) && (1.0)"
+            }
+          ]
+        },
+        "attack_lunge": {
+          "animations": [
+            "attack_lunge"
+          ],
+          "blend_transition": 0.07,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "alert": "!(query.property('warland:visual_action') == 3) && (query.property('warland:alerting'))"
+            },
+            {
+              "listen": "!(query.property('warland:visual_action') == 3) && (query.property('warland:gesture') == 1 && !query.property('warland:aggressive'))"
+            },
+            {
+              "body_shake": "!(query.property('warland:visual_action') == 3) && (query.property('warland:gesture') == 2 && !query.property('warland:aggressive'))"
+            },
+            {
+              "groom": "!(query.property('warland:visual_action') == 3) && (query.property('warland:gesture') == 3 && !query.property('warland:aggressive'))"
+            },
+            {
+              "run": "!(query.property('warland:visual_action') == 3) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:visual_action') == 3) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:visual_action') == 3) && (1.0)"
+            }
+          ]
+        },
+        "alert": {
+          "animations": [
+            "alert"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "listen": "!(query.property('warland:alerting')) && (query.property('warland:gesture') == 1 && !query.property('warland:aggressive'))"
+            },
+            {
+              "body_shake": "!(query.property('warland:alerting')) && (query.property('warland:gesture') == 2 && !query.property('warland:aggressive'))"
+            },
+            {
+              "groom": "!(query.property('warland:alerting')) && (query.property('warland:gesture') == 3 && !query.property('warland:aggressive'))"
+            },
+            {
+              "run": "!(query.property('warland:alerting')) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:alerting')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:alerting')) && (1.0)"
+            }
+          ]
+        },
+        "listen": {
+          "animations": [
+            "listen"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "alert": "query.property('warland:alerting')"
+            },
+            {
+              "body_shake": "!(query.property('warland:gesture') == 1 && !query.property('warland:aggressive')) && (query.property('warland:gesture') == 2 && !query.property('warland:aggressive'))"
+            },
+            {
+              "groom": "!(query.property('warland:gesture') == 1 && !query.property('warland:aggressive')) && (query.property('warland:gesture') == 3 && !query.property('warland:aggressive'))"
+            },
+            {
+              "run": "!(query.property('warland:gesture') == 1 && !query.property('warland:aggressive')) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:gesture') == 1 && !query.property('warland:aggressive')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:gesture') == 1 && !query.property('warland:aggressive')) && (1.0)"
+            }
+          ]
+        },
+        "body_shake": {
+          "animations": [
+            "body_shake"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "alert": "query.property('warland:alerting')"
+            },
+            {
+              "listen": "query.property('warland:gesture') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "groom": "!(query.property('warland:gesture') == 2 && !query.property('warland:aggressive')) && (query.property('warland:gesture') == 3 && !query.property('warland:aggressive'))"
+            },
+            {
+              "run": "!(query.property('warland:gesture') == 2 && !query.property('warland:aggressive')) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:gesture') == 2 && !query.property('warland:aggressive')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:gesture') == 2 && !query.property('warland:aggressive')) && (1.0)"
+            }
+          ]
+        },
+        "groom": {
+          "animations": [
+            "groom"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "alert": "query.property('warland:alerting')"
+            },
+            {
+              "listen": "query.property('warland:gesture') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "body_shake": "query.property('warland:gesture') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "run": "!(query.property('warland:gesture') == 3 && !query.property('warland:aggressive')) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:gesture') == 3 && !query.property('warland:aggressive')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:gesture') == 3 && !query.property('warland:aggressive')) && (1.0)"
+            }
+          ]
+        },
+        "run": {
+          "animations": [
+            "run"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "alert": "query.property('warland:alerting')"
+            },
+            {
+              "listen": "query.property('warland:gesture') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "body_shake": "query.property('warland:gesture') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "groom": "query.property('warland:gesture') == 3 && !query.property('warland:aggressive')"
+            },
+            {
+              "walk": "!(query.modified_move_speed > 0.01 && query.property('warland:aggressive')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01 && query.property('warland:aggressive')) && (1.0)"
+            }
+          ]
+        },
+        "walk": {
+          "animations": [
+            "walk"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "alert": "query.property('warland:alerting')"
+            },
+            {
+              "listen": "query.property('warland:gesture') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "body_shake": "query.property('warland:gesture') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "groom": "query.property('warland:gesture') == 3 && !query.property('warland:aggressive')"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:aggressive')"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01) && (1.0)"
+            }
+          ]
+        },
+        "idle": {
+          "animations": [
+            "idle"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_sweep": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "alert": "query.property('warland:alerting')"
+            },
+            {
+              "listen": "query.property('warland:gesture') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "body_shake": "query.property('warland:gesture') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "groom": "query.property('warland:gesture') == 3 && !query.property('warland:aggressive')"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:aggressive')"
+            },
+            {
+              "walk": "query.modified_move_speed > 0.01"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "format_version": "1.26.60",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "warland:apagavelas_prototype",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "warland:moving": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        },
+        "warland:casting": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        },
+        "warland:searching": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        },
+        "warland:attack_style": {
+          "type": "int",
+          "range": [
+            0,
+            2
+          ],
+          "default": 0,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "warland_apagavelas",
+          "monster",
+          "mob"
+        ]
+      },
+      "minecraft:health": {
+        "value": 28,
+        "max": 28
+      },
+      "minecraft:collision_box": {
+        "width": 0,
+        "height": 0
+      },
+      "minecraft:custom_hit_test": {
+        "hitboxes": []
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false,
+        "push_towards_closest_space": false
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:persistent": {},
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "on_damage": {
+              "filters": {
+                "test": "has_tag",
+                "subject": "self",
+                "operator": "!=",
+                "value": "wl_apagavelas_damage_open"
+              }
+            },
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/empty.json"
+      }
+    }
+  }
+}

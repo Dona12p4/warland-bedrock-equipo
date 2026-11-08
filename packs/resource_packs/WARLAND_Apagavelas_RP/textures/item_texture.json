@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "WARLAND_Apagavelas",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "espada_espectral_prueba": {
+      "textures": "textures/items/espada_espectral_prueba"
+    },
+    "peto_del_osario": {
+      "textures": "textures/items/peto_del_osario"
+    }
+  }
+}

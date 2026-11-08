@@ -1,0 +1,32 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · Creeper térmico · Modelo [Movil - copia]",
+    "description": "Prototipo térmico: grito, succión, explosión negra. Sin aparición natural. Percepción revisada; prototipo separado.",
+    "uuid": "81697e36-5081-5443-b33d-e54580de0880",
+    "version": [
+      0,
+      7,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "226b0d12-3972-50f5-9ca2-75b557ca2ad5",
+      "version": [
+        0,
+        7,
+        1
+      ]
+    }
+  ],
+  "capabilities": [
+    "pbr"
+  ]
+}

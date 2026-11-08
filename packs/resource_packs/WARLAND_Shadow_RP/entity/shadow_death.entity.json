@@ -1,0 +1,29 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:shadow_death_visual",
+      "materials": {
+        "default": "entity_alphatest",
+        "eyes": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/shadow_boss_bedrock"
+      },
+      "geometry": {
+        "default": "geometry.warland.shadow_boss_prototype"
+      },
+      "animations": {
+        "death": "animation.warland.shadow_boss.death"
+      },
+      "scripts": {
+        "animate": [
+          "death"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.shadow_boss"
+      ]
+    }
+  }
+}

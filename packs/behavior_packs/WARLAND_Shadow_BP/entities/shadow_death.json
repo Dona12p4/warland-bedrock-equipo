@@ -1,0 +1,67 @@
+{
+  "format_version": "1.26.60",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "warland:shadow_death_visual",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "warland:remove_visual": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "warland_death_visual"
+        ]
+      },
+      "minecraft:health": {
+        "value": 1,
+        "max": 1
+      },
+      "minecraft:collision_box": {
+        "width": 0,
+        "height": 0
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1
+      },
+      "minecraft:persistent": {},
+      "minecraft:timer": {
+        "looping": false,
+        "time": {
+          "min": 6.85,
+          "max": 6.85
+        },
+        "time_down_event": {
+          "event": "warland:remove_visual",
+          "target": "self"
+        }
+      }
+    },
+    "events": {
+      "warland:remove_visual": {
+        "add": {
+          "component_groups": [
+            "warland:remove_visual"
+          ]
+        }
+      }
+    }
+  }
+}

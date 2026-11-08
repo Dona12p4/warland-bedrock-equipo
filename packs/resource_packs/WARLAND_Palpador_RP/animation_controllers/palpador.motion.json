@@ -1,0 +1,253 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.palpador.motion": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "animations": [
+            "idle"
+          ],
+          "blend_transition": 0.1,
+          "transitions": [
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "feel": "query.property('warland:feel_action') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_ground": "query.property('warland:feel_action') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_wall": "query.property('warland:feel_action') == 3 && !query.property('warland:aggressive')"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:aggressive')"
+            },
+            {
+              "walk": "query.modified_move_speed > 0.01"
+            }
+          ]
+        },
+        "walk": {
+          "animations": [
+            "walk"
+          ],
+          "blend_transition": 0.1,
+          "transitions": [
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "feel": "query.property('warland:feel_action') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_ground": "query.property('warland:feel_action') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_wall": "query.property('warland:feel_action') == 3 && !query.property('warland:aggressive')"
+            },
+            {
+              "run": "query.property('warland:aggressive')"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01)"
+            }
+          ]
+        },
+        "run": {
+          "animations": [
+            "run"
+          ],
+          "blend_transition": 0.08,
+          "transitions": [
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "feel": "query.property('warland:feel_action') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_ground": "query.property('warland:feel_action') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_wall": "query.property('warland:feel_action') == 3 && !query.property('warland:aggressive')"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01)"
+            },
+            {
+              "walk": "!query.property('warland:aggressive')"
+            }
+          ]
+        },
+        "attack_left": {
+          "animations": [
+            "attack_left"
+          ],
+          "blend_transition": 0.045,
+          "transitions": [
+            {
+              "run": "query.property('warland:visual_action') == 0 && query.property('warland:aggressive')"
+            },
+            {
+              "idle": "query.property('warland:visual_action') == 0"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            }
+          ]
+        },
+        "attack_right": {
+          "animations": [
+            "attack_right"
+          ],
+          "blend_transition": 0.045,
+          "transitions": [
+            {
+              "run": "query.property('warland:visual_action') == 0 && query.property('warland:aggressive')"
+            },
+            {
+              "idle": "query.property('warland:visual_action') == 0"
+            },
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            }
+          ]
+        },
+        "attack_grab": {
+          "animations": [
+            "attack_grab"
+          ],
+          "blend_transition": 0.045,
+          "transitions": [
+            {
+              "run": "query.property('warland:visual_action') == 0 && query.property('warland:aggressive')"
+            },
+            {
+              "idle": "query.property('warland:visual_action') == 0"
+            },
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            }
+          ]
+        },
+        "feel": {
+          "animations": [
+            "feel"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "run": "query.property('warland:aggressive')"
+            },
+            {
+              "idle": "query.property('warland:feel_action') == 0"
+            },
+            {
+              "feel_ground": "query.property('warland:feel_action') == 2 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_wall": "query.property('warland:feel_action') == 3 && !query.property('warland:aggressive')"
+            }
+          ]
+        },
+        "feel_ground": {
+          "animations": [
+            "feel_ground"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "run": "query.property('warland:aggressive')"
+            },
+            {
+              "idle": "query.property('warland:feel_action') == 0"
+            },
+            {
+              "feel": "query.property('warland:feel_action') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_wall": "query.property('warland:feel_action') == 3 && !query.property('warland:aggressive')"
+            }
+          ]
+        },
+        "feel_wall": {
+          "animations": [
+            "feel_wall"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "attack_left": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_right": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_grab": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "run": "query.property('warland:aggressive')"
+            },
+            {
+              "idle": "query.property('warland:feel_action') == 0"
+            },
+            {
+              "feel": "query.property('warland:feel_action') == 1 && !query.property('warland:aggressive')"
+            },
+            {
+              "feel_ground": "query.property('warland:feel_action') == 2 && !query.property('warland:aggressive')"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

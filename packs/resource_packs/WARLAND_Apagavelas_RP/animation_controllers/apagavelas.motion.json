@@ -1,0 +1,109 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.apagavelas.motion": {
+      "initial_state": "hover",
+      "states": {
+        "hover": {
+          "animations": [
+            "hover"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "cast": "query.property('warland:casting') && query.property('warland:attack_style') == 0"
+            },
+            {
+              "burst": "query.property('warland:casting') && query.property('warland:attack_style') == 1"
+            },
+            {
+              "fan": "query.property('warland:casting') && query.property('warland:attack_style') == 2"
+            },
+            {
+              "search": "query.property('warland:searching')"
+            },
+            {
+              "glide": "query.property('warland:moving')"
+            }
+          ]
+        },
+        "glide": {
+          "animations": [
+            "glide"
+          ],
+          "blend_transition": 0.15,
+          "transitions": [
+            {
+              "cast": "query.property('warland:casting') && query.property('warland:attack_style') == 0"
+            },
+            {
+              "burst": "query.property('warland:casting') && query.property('warland:attack_style') == 1"
+            },
+            {
+              "fan": "query.property('warland:casting') && query.property('warland:attack_style') == 2"
+            },
+            {
+              "search": "query.property('warland:searching')"
+            },
+            {
+              "hover": "!query.property('warland:moving')"
+            }
+          ]
+        },
+        "search": {
+          "animations": [
+            "search"
+          ],
+          "blend_transition": 0,
+          "transitions": [
+            {
+              "cast": "query.property('warland:casting') && query.property('warland:attack_style') == 0"
+            },
+            {
+              "burst": "query.property('warland:casting') && query.property('warland:attack_style') == 1"
+            },
+            {
+              "fan": "query.property('warland:casting') && query.property('warland:attack_style') == 2"
+            },
+            {
+              "hover": "!query.property('warland:searching')"
+            }
+          ]
+        },
+        "cast": {
+          "animations": [
+            "cast"
+          ],
+          "blend_transition": 0.08,
+          "transitions": [
+            {
+              "hover": "!query.property('warland:casting')"
+            }
+          ]
+        },
+        "burst": {
+          "animations": [
+            "burst"
+          ],
+          "blend_transition": 0.08,
+          "transitions": [
+            {
+              "hover": "!query.property('warland:casting')"
+            }
+          ]
+        },
+        "fan": {
+          "animations": [
+            "fan"
+          ],
+          "blend_transition": 0.08,
+          "transitions": [
+            {
+              "hover": "!query.property('warland:casting')"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

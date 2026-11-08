@@ -1,0 +1,58 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Â· El Umbral [Movil - copia]",
+    "description": "Escenario oscuro de pruebas en un sector aislado del End. Sin experimentos.",
+    "uuid": "66cc7fb4-ca40-5133-bea2-9d83b4b014de",
+    "version": [
+      0,
+      15,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "584e08da-fe1d-54ef-b7c1-87efc2a54bc2",
+      "version": [
+        0,
+        15,
+        1
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "df174577-810f-5121-85cc-ce8a567dc029",
+      "version": [
+        0,
+        15,
+        1
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "aca6c85b-6676-5c21-9435-726043f0ae08",
+      "version": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    }
+  ]
+}

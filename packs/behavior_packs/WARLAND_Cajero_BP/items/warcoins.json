@@ -1,0 +1,30 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "warland:warcoins_fisicos"
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Warcoins físicos"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "warland_warcoins_fisicos"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": false,
+      "minecraft:food": {
+        "nutrition": 0,
+        "saturation_modifier": 0,
+        "can_always_eat": true
+      },
+      "minecraft:use_modifiers": {
+        "use_duration": 86400,
+        "movement_modifier": 1
+      },
+      "minecraft:interact_button": "Convertir monedas"
+    }
+  }
+}

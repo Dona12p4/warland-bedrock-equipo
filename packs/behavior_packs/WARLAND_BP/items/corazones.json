@@ -1,0 +1,32 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "warland:corazones"
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Corazones"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "apple_golden"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": false,
+      "minecraft:allow_off_hand": false,
+      "minecraft:food": {
+        "nutrition": 0,
+        "saturation_modifier": 0,
+        "can_always_eat": true
+      },
+      "minecraft:use_modifiers": {
+        "use_duration": 1.6,
+        "movement_modifier": 1
+      },
+      "minecraft:use_animation": "eat",
+      "minecraft:interact_button": "Abrir menú"
+    }
+  }
+}

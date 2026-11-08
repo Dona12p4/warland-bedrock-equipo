@@ -1,0 +1,15 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "warland:rastreador_prototype": {
+        "events": {
+          "step": {
+            "sound": "step.gravel",
+            "volume": 0.7,
+            "pitch": 1.2
+          }
+        }
+      }
+    }
+  }
+}

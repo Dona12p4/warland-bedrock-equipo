@@ -1,0 +1,219 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.shadow_boss.combat": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "ready_0": "query.property('warland:aggressive')"
+            }
+          ]
+        },
+        "ready_0": {
+          "on_entry": [
+            "@s warland:prepare_attack"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "strike_0": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "strike_0": {
+          "on_entry": [
+            "@s warland:attack"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "recover_0": "!query.is_delayed_attacking || query.state_time >= 1.75"
+            }
+          ]
+        },
+        "recover_0": {
+          "on_entry": [
+            "@s warland:combat_pause"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "ready_1": "query.state_time >= 0.35"
+            }
+          ]
+        },
+        "ready_1": {
+          "on_entry": [
+            "@s warland:prepare_attack_left"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "strike_1": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "strike_1": {
+          "on_entry": [
+            "@s warland:attack_left"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "recover_1": "!query.is_delayed_attacking || query.state_time >= 1.75"
+            }
+          ]
+        },
+        "recover_1": {
+          "on_entry": [
+            "@s warland:combat_pause"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "ready_2": "query.state_time >= 0.35"
+            }
+          ]
+        },
+        "ready_2": {
+          "on_entry": [
+            "@s warland:prepare_attack_double"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "strike_2": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "strike_2": {
+          "on_entry": [
+            "@s warland:attack_double"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "recover_2": "!query.is_delayed_attacking || query.state_time >= 2.4499999999999997"
+            }
+          ]
+        },
+        "recover_2": {
+          "on_entry": [
+            "@s warland:combat_pause"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "ready_3": "query.state_time >= 0.35"
+            }
+          ]
+        },
+        "ready_3": {
+          "on_entry": [
+            "@s warland:prepare_attack_thrust"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "strike_3": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "strike_3": {
+          "on_entry": [
+            "@s warland:attack_thrust"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "recover_3": "!query.is_delayed_attacking || query.state_time >= 1.5499999999999998"
+            }
+          ]
+        },
+        "recover_3": {
+          "on_entry": [
+            "@s warland:combat_pause"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "ready_0": "query.state_time >= 0.35"
+            }
+          ]
+        },
+        "devour": {
+          "transitions": [
+            {
+              "idle": "!query.property('warland:devouring')"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

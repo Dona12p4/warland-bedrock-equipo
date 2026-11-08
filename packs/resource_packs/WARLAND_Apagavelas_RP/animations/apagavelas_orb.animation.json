@@ -1,0 +1,1 @@
+{"format_version":"1.8.0","animations":{"animation.warland.apagavelas_orb.spin":{"loop":true,"bones":{"orb":{"rotation":["query.life_time*130","query.life_time*180","query.life_time*65"]}}}}}

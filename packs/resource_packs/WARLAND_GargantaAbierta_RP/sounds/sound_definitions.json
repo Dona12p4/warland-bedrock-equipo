@@ -1,0 +1,83 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "warland.garganta.echo_01": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/garganta/echo_01",
+          "volume": 1,
+          "stream": false,
+          "is3D": true
+        }
+      ],
+      "min_distance": 16,
+      "max_distance": 96
+    },
+    "warland.garganta.echo_02": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/garganta/echo_02",
+          "volume": 1,
+          "stream": false,
+          "is3D": true
+        }
+      ],
+      "min_distance": 16,
+      "max_distance": 96
+    },
+    "warland.garganta.echo_03": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/garganta/echo_03",
+          "volume": 1,
+          "stream": false,
+          "is3D": true
+        }
+      ],
+      "min_distance": 16,
+      "max_distance": 96
+    },
+    "warland.garganta.echo": {
+      "category": "hostile",
+      "sounds": [
+        {
+          "name": "sounds/garganta/echo_01",
+          "volume": 1,
+          "stream": false,
+          "is3D": true
+        },
+        {
+          "name": "sounds/garganta/echo_02",
+          "volume": 1,
+          "stream": false,
+          "is3D": true
+        },
+        {
+          "name": "sounds/garganta/echo_03",
+          "volume": 1,
+          "stream": false,
+          "is3D": true
+        }
+      ],
+      "min_distance": 16,
+      "max_distance": 96
+    },
+    "warland.garganta.alarm": {
+      "category": "hostile",
+      "min_distance": 24,
+      "max_distance": 112,
+      "sounds": [
+        {
+          "name": "sounds/garganta/alarm",
+          "volume": 1,
+          "pitch": 1,
+          "stream": false,
+          "is3D": true
+        }
+      ]
+    }
+  }
+}

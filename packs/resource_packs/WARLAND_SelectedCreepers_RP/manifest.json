@@ -1,0 +1,36 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · Creepers seleccionados",
+    "description": "Seis criaturas de Not Enough Creepers, adaptadas a WARLAND. Euforia / Drecxi.",
+    "uuid": "733e5774-5114-5bfd-a498-f05a071beb3b",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "17e0c56f-7fd1-50e1-9f97-f5a9ea770d98",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "dependencies": [],
+  "metadata": {
+    "authors": [
+      "Euforia",
+      "Drecxi"
+    ]
+  }
+}

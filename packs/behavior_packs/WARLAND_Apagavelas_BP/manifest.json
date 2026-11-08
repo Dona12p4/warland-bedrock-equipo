@@ -1,0 +1,54 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Â· El Apagavelas [Movil - copia]",
+    "description": "Prototipo: intangibilidad, orbes de oscuridad y espada especial de prueba.",
+    "uuid": "60d54869-9ebf-5932-97e4-11d0dbde9b57",
+    "version": [
+      0,
+      4,
+      5
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "000d87e7-5691-51d3-bcf0-4030513ea359",
+      "version": [
+        0,
+        4,
+        5
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "b666aa1a-7fc5-5567-8a0b-882fd848c4b4",
+      "version": [
+        0,
+        4,
+        5
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "c61afb5b-3db9-5b6f-99c0-3220a0e06edc",
+      "version": [
+        0,
+        4,
+        1
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    }
+  ]
+}

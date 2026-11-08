@@ -1,0 +1,40 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:rastreador_remains",
+      "materials": {
+        "default": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/rastreador_bedrock"
+      },
+      "geometry": {
+        "default": "geometry.warland.rastreador"
+      },
+      "animations": {
+        "idle": "animation.warland.rastreador.idle",
+        "listen": "animation.warland.rastreador.listen",
+        "walk": "animation.warland.rastreador.walk",
+        "run": "animation.warland.rastreador.run",
+        "body_shake": "animation.warland.rastreador.body_shake",
+        "groom": "animation.warland.rastreador.groom",
+        "alert": "animation.warland.rastreador.alert",
+        "attack_bite": "animation.warland.rastreador.attack_bite",
+        "attack_sweep": "animation.warland.rastreador.attack_sweep",
+        "attack_lunge": "animation.warland.rastreador.attack_lunge",
+        "hurt": "animation.warland.rastreador.hurt",
+        "death": "animation.warland.rastreador.death",
+        "motion": "controller.animation.warland.rastreador.motion"
+      },
+      "scripts": {
+        "animate": [
+          "death"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.rastreador"
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "warland:thermal_creeper_prototype": {
+        "events": {
+          "step": {
+            "sound": "step.gravel",
+            "volume": 0.6,
+            "pitch": 0.8
+          }
+        }
+      }
+    }
+  }
+}

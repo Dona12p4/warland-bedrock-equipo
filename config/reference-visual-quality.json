@@ -1,0 +1,81 @@
+{
+  "id": "warland-visual-v1",
+  "edition": "bedrock",
+  "style": "detailed_pixel_art",
+  "reference": "WARLAND_ThermalCreeper membrane texture detail",
+  "variants": {
+    "warland-visual-voxel32-v1": {
+      "reference": "Neutral stone colossus turnaround; uniform 32 texels per block",
+      "texelsPerGeometryUnit": 2,
+      "texelsPerBlock": 32,
+      "minimumFacePixels": 1,
+      "atlasSize": 1024
+    },
+    "warland-visual-vanilla-preview-v1": {
+      "reference": "Comparison only: Minecraft-style 16 texels per block, original rig preserved",
+      "texelsPerGeometryUnit": 1,
+      "texelsPerBlock": 16,
+      "minimumFacePixels": 1,
+      "atlasSize": 256
+    },
+    "warland-visual-classic-v1": {
+      "reference": "Original creeper body; eyes reduced to the same density at user request",
+      "texelsPerGeometryUnit": 4,
+      "texelsPerBlock": 64,
+      "atlasSize": 512
+    }
+  },
+  "modelProfiles": {
+    "WARLAND_Palpador": "warland-visual-classic-v1",
+    "WARLAND_ThermalCreeper": "warland-visual-classic-v1",
+    "WARLAND3_ShadowBoss": "warland-visual-v1",
+    "WARLAND_ThermalCreeper_16px": "warland-visual-vanilla-preview-v1",
+    "WARLAND_Palpador_16px": "warland-visual-vanilla-preview-v1",
+    "WARLAND_SombraZancudo": "warland-visual-vanilla-preview-v1",
+    "WARLAND_Rastreador": "warland-visual-vanilla-preview-v1",
+    "WARLAND_Apagavelas": "warland-visual-vanilla-preview-v1",
+    "WARLAND_PetoOsario": "warland-visual-vanilla-preview-v1",
+    "WARLAND_GargantaAbierta": "warland-visual-vanilla-preview-v1",
+    "WARLAND_GuardianUmbral": "warland-visual-classic-v1",
+    "WARLAND_ColosoBoceto": "warland-visual-voxel32-v1",
+    "WARLAND_SelectedCreepers": "warland-visual-vanilla-preview-v1",
+    "WARLAND_Cajero": "warland-visual-vanilla-preview-v1",
+    "WARLAND_CetroOscuro": "warland-visual-vanilla-preview-v1"
+  },
+  "texture": {
+    "texelsPerGeometryUnit": 12,
+    "geometryUnitsPerBlock": 16,
+    "texelsPerBlock": 192,
+    "minimumFacePixels": 2,
+    "atlasSize": 1024,
+    "maximumAtlasSize": 2048,
+    "filter": "nearest",
+    "colorSpace": "srgb",
+    "generateMipmapsInPreview": false,
+    "upscalingCountsAsAddedDetail": false,
+    "solidColorSwatchesMayBeShared": true
+  },
+  "preview": {
+    "toneMapping": "ACESFilmicToneMapping",
+    "exposure": 1.1,
+    "maximumDevicePixelRatio": 2
+  },
+  "preserve": {
+    "shadowBody": "pure_black",
+    "shadowZancudoPreviewBody": "reference_requested_dark_mottled_pixels",
+    "shadowEyes": "emissive_white_with_black_pupils",
+    "approvedSilhouettesAndAnimations": true
+  },
+  "validation": {
+    "views": [
+      "front",
+      "side",
+      "back",
+      "face"
+    ],
+    "inspectAtSameWorldScale": true,
+    "preserveDensityWhenRepackingAtlas": true,
+    "reviewMobilePreview": true,
+    "nativeBedrockReviewBeforeDeployment": true
+  }
+}

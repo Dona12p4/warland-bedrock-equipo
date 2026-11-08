@@ -1,0 +1,26 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "warland.coloso.passive.step": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/warland/coloso/step_01",
+          "volume": 0.65
+        },
+        {
+          "name": "sounds/warland/coloso/step_02",
+          "volume": 0.65
+        },
+        {
+          "name": "sounds/warland/coloso/step_03",
+          "volume": 0.65
+        },
+        {
+          "name": "sounds/warland/coloso/step_04",
+          "volume": 0.65
+        }
+      ]
+    }
+  }
+}

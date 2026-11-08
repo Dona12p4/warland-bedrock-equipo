@@ -1,0 +1,1 @@
+{"format_version":"1.8.0","animations":{"animation.warland.devour_orb.scale":{"loop":true,"bones":{"root":{"scale":"query.property('warland:orb_scale') / 100.0"}}}}}

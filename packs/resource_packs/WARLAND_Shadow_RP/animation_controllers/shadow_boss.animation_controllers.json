@@ -1,0 +1,130 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.shadow_boss.motion": {
+      "initial_state": "locomotion",
+      "states": {
+        "locomotion": {
+          "animations": [
+            {
+              "idle": "query.modified_move_speed <= 0.01"
+            },
+            {
+              "walk": "query.modified_move_speed > 0.01 && !query.property('warland:aggressive')"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:aggressive')"
+            }
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "attack": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_left": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "attack_double": "query.property('warland:visual_action') == 3"
+            },
+            {
+              "attack_thrust": "query.property('warland:visual_action') == 4"
+            }
+          ],
+          "blend_transition": 0.24
+        },
+        "recovery": {
+          "animations": [
+            {
+              "idle": "query.modified_move_speed <= 0.01"
+            },
+            {
+              "walk": "query.modified_move_speed > 0.01 && !query.property('warland:aggressive')"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:aggressive')"
+            }
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "locomotion": "query.property('warland:visual_action') == 0"
+            }
+          ],
+          "blend_transition": 0.24
+        },
+        "attack": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "recovery": "query.all_animations_finished"
+            }
+          ],
+          "blend_transition": 0.24
+        },
+        "attack_left": {
+          "animations": [
+            "attack_left"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "recovery": "query.all_animations_finished"
+            }
+          ],
+          "blend_transition": 0.24
+        },
+        "attack_double": {
+          "animations": [
+            "attack_double"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "recovery": "query.all_animations_finished"
+            }
+          ],
+          "blend_transition": 0.24
+        },
+        "attack_thrust": {
+          "animations": [
+            "attack_thrust"
+          ],
+          "transitions": [
+            {
+              "devour": "query.property('warland:devouring')"
+            },
+            {
+              "recovery": "query.all_animations_finished"
+            }
+          ],
+          "blend_transition": 0.24
+        },
+        "devour": {
+          "animations": [
+            "devour"
+          ],
+          "blend_transition": 0.1,
+          "transitions": [
+            {
+              "locomotion": "!query.property('warland:devouring')"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

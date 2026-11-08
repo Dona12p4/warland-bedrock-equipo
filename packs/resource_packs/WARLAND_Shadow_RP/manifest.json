@@ -1,0 +1,32 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Â· Sombra Â· Prototipo resources [Movil - copia]",
+    "description": "Sombra: captura rara no letal y viaje al Umbral.",
+    "uuid": "aa352b5d-a0c7-574d-a7f2-825604b3383b",
+    "version": [
+      0,
+      7,
+      5
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "a162fc8a-9ae6-5b30-ab45-da97ff59f595",
+      "version": [
+        0,
+        7,
+        5
+      ]
+    }
+  ],
+  "capabilities": [
+    "pbr"
+  ]
+}

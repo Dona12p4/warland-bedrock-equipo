@@ -1,0 +1,43 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.warland.garganta_abierta": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "gill_sensor_*": "!(variable.garganta_detected && variable.garganta_echo > 0.015)"
+        }
+      ]
+    },
+    "controller.render.warland.garganta_abierta.gills": {
+      "geometry": "Geometry.gills",
+      "materials": [
+        {
+          "*": "Material.gills"
+        }
+      ],
+      "textures": [
+        "Texture.gills"
+      ],
+      "part_visibility": [
+        {
+          "*": "variable.garganta_detected && variable.garganta_echo > 0.015"
+        }
+      ],
+      "color": {
+        "r": "variable.garganta_echo",
+        "g": "variable.garganta_echo",
+        "b": "variable.garganta_echo",
+        "a": 1
+      }
+    }
+  }
+}

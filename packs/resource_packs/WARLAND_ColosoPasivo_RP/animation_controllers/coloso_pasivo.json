@@ -1,0 +1,78 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.coloso_passive": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "animations": [
+            "idle"
+          ],
+          "blend_transition": 0.25,
+          "transitions": [
+            {
+              "run": "query.ground_speed > 1.3"
+            },
+            {
+              "walk": "query.ground_speed > 0.03"
+            },
+            {
+              "listen": "query.property('warland:listening')"
+            }
+          ]
+        },
+        "listen": {
+          "animations": [
+            "listen"
+          ],
+          "blend_transition": 0.45,
+          "transitions": [
+            {
+              "run": "query.ground_speed > 1.3"
+            },
+            {
+              "walk": "query.ground_speed > 0.03"
+            },
+            {
+              "idle": "!query.property('warland:listening')"
+            }
+          ]
+        },
+        "walk": {
+          "animations": [
+            "walk"
+          ],
+          "blend_transition": 0.25,
+          "transitions": [
+            {
+              "run": "query.ground_speed > 1.3"
+            },
+            {
+              "listen": "query.property('warland:listening') && query.ground_speed <= 0.03"
+            },
+            {
+              "idle": "!query.property('warland:listening') && query.ground_speed <= 0.03"
+            }
+          ]
+        },
+        "run": {
+          "animations": [
+            "run"
+          ],
+          "blend_transition": 0.25,
+          "transitions": [
+            {
+              "listen": "query.property('warland:listening') && query.ground_speed <= 0.03"
+            },
+            {
+              "idle": "!query.property('warland:listening') && query.ground_speed <= 0.03"
+            },
+            {
+              "walk": "query.ground_speed < 1.15"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

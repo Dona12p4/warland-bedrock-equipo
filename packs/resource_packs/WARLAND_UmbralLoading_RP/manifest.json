@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND 3 · Pantallas de carga [Movil - copia]",
+    "description": "Arte inicial WARLAND 3 y pantalla propia de El Umbral; progreso nativo.",
+    "uuid": "49c95361-c69e-4128-9616-ae4ff398bb85",
+    "version": [
+      1,
+      1,
+      18
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "ddbe9255-4cd4-4b10-ad09-a6f582c99e59",
+      "version": [
+        1,
+        1,
+        18
+      ]
+    }
+  ]
+}

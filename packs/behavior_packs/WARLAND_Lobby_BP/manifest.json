@@ -1,0 +1,58 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND - La Cuna - Llegada",
+    "description": "Spawn inicial y presencia divina. Bedrock estable.",
+    "uuid": "d61524c8-d0b5-4055-bd0c-a9e8eb35aa70",
+    "version": [
+      1,
+      1,
+      2
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "f781ae4d-86de-4fc4-8d20-404f2616dc90",
+      "version": [
+        1,
+        1,
+        2
+      ],
+      "entry": "scripts/main.js"
+    },
+    {
+      "type": "data",
+      "uuid": "48782a45-45f6-44d5-a315-a82d28f7f128",
+      "version": [
+        1,
+        1,
+        2
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    },
+    {
+      "uuid": "d7af1768-053f-4b95-977d-37d31f42b61c",
+      "version": [
+        1,
+        1,
+        0
+      ]
+    }
+  ]
+}

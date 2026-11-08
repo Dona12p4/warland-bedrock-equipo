@@ -1,0 +1,24 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:cajero",
+      "materials": {
+        "default": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/cajero"
+      },
+      "geometry": {
+        "default": "geometry.warland.cajero"
+      },
+      "render_controllers": [
+        "controller.render.warland.cajero"
+      ],
+      "spawn_egg": {
+        "base_color": "#96999D",
+        "overlay_color": "#3C941F"
+      }
+    }
+  }
+}

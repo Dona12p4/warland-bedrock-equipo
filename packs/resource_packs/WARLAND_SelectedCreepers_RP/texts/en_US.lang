@@ -1,0 +1,12 @@
+entity.warland:ender_creeper.name=Creeper Ender
+item.spawn_egg.entity.warland:ender_creeper.name=Invocar Creeper Ender
+entity.warland:ghost_creeper.name=Creeper Fantasma
+item.spawn_egg.entity.warland:ghost_creeper.name=Invocar Creeper Fantasma
+entity.warland:magma_creeper.name=Creeper Magma
+item.spawn_egg.entity.warland:magma_creeper.name=Invocar Creeper Magma
+entity.warland:mummy_creeper.name=Creeper Momia
+item.spawn_egg.entity.warland:mummy_creeper.name=Invocar Creeper Momia
+entity.warland:sculk_creeper.name=Creeper Sculk
+item.spawn_egg.entity.warland:sculk_creeper.name=Invocar Creeper Sculk
+entity.warland:skeleton_creeper.name=Creeper Esqueleto
+item.spawn_egg.entity.warland:skeleton_creeper.name=Invocar Creeper Esqueleto

@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · Límites de terreno [Movil - copia]",
+    "description": "Contornos privados para elegir y consultar parcelas.",
+    "uuid": "d4f96eb2-fd6c-4bec-b51c-f4366f369266",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "dae0abc2-3721-4be9-85dc-1a7b3c69155f",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}

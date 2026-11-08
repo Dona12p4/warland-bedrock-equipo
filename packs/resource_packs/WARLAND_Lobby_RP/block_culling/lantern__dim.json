@@ -1,0 +1,1 @@
+{"format_version":"1.20.60","minecraft:block_culling_rules":{"description":{"identifier":"warland:cuna_lantern__dim"},"rules":[{"geometry_part":{"bone":"block","cube":1,"face":"down"},"direction":"down"}]}}

@@ -1,0 +1,16 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "warland.umbral.void_ambient": {
+      "category": "ambient",
+      "sounds": [
+        {
+          "name": "sounds/umbral/void_ambient",
+          "stream": true,
+          "is3D": false,
+          "volume": 1.0
+        }
+      ]
+    }
+  }
+}

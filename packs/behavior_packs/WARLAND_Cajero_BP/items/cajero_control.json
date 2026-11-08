@@ -1,0 +1,22 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "warland:cajero_control"
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": ""
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "warland_cajero_control"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:durability": {
+        "max_durability": 30001
+      }
+    }
+  }
+}

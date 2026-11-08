@@ -1,0 +1,1070 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.warland.garganta_abierta.gills",
+        "texture_width": 16,
+        "texture_height": 16,
+        "visible_bounds_width": 6.5,
+        "visible_bounds_height": 4.2,
+        "visible_bounds_offset": [
+          0,
+          1.8,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "root",
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "cubes": []
+        },
+        {
+          "name": "body",
+          "pivot": [
+            0,
+            19,
+            1
+          ],
+          "cubes": [],
+          "parent": "root"
+        },
+        {
+          "name": "chest",
+          "pivot": [
+            0,
+            24,
+            -5
+          ],
+          "cubes": [],
+          "parent": "body"
+        },
+        {
+          "name": "rump",
+          "pivot": [
+            0,
+            19,
+            11
+          ],
+          "cubes": [],
+          "parent": "body"
+        },
+        {
+          "name": "tail",
+          "pivot": [
+            0,
+            13.7,
+            19
+          ],
+          "cubes": [],
+          "parent": "rump"
+        },
+        {
+          "name": "tail_tip",
+          "pivot": [
+            0,
+            14.5,
+            25
+          ],
+          "cubes": [],
+          "parent": "tail"
+        },
+        {
+          "name": "neck",
+          "pivot": [
+            0,
+            26,
+            -9
+          ],
+          "cubes": [],
+          "parent": "body"
+        },
+        {
+          "name": "skull",
+          "pivot": [
+            0,
+            36,
+            -13
+          ],
+          "cubes": [],
+          "parent": "neck",
+          "rotation": [
+            10,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "jaw",
+          "pivot": [
+            0,
+            10.8,
+            -13
+          ],
+          "cubes": [],
+          "parent": "neck",
+          "rotation": [
+            -12,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "gullet",
+          "pivot": [
+            0,
+            14.8,
+            -16
+          ],
+          "cubes": [],
+          "parent": "neck"
+        },
+        {
+          "name": "mantle",
+          "pivot": [
+            0,
+            14.5,
+            -9
+          ],
+          "cubes": [],
+          "parent": "neck"
+        },
+        {
+          "name": "fold_0",
+          "pivot": [
+            -4.8,
+            14.8,
+            -16.9
+          ],
+          "cubes": [],
+          "parent": "gullet"
+        },
+        {
+          "name": "fold_1",
+          "pivot": [
+            -2.4,
+            14.8,
+            -16.9
+          ],
+          "cubes": [],
+          "parent": "gullet"
+        },
+        {
+          "name": "fold_2",
+          "pivot": [
+            0,
+            14.8,
+            -16.9
+          ],
+          "cubes": [],
+          "parent": "gullet"
+        },
+        {
+          "name": "fold_3",
+          "pivot": [
+            2.4,
+            14.8,
+            -16.9
+          ],
+          "cubes": [],
+          "parent": "gullet"
+        },
+        {
+          "name": "fold_4",
+          "pivot": [
+            4.8,
+            14.8,
+            -16.9
+          ],
+          "cubes": [],
+          "parent": "gullet"
+        },
+        {
+          "name": "gill_sensor_left_0",
+          "pivot": [
+            -10.31,
+            21.35,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -10.355,
+                20.8,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_left_0",
+          "pivot": [
+            -10.4,
+            22.05,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_sensor_left_1",
+          "pivot": [
+            -10.31,
+            24.25,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -10.355,
+                23.7,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_left_1",
+          "pivot": [
+            -10.4,
+            24.95,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_sensor_left_2",
+          "pivot": [
+            -10.31,
+            27.150000000000002,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -10.355,
+                26.6,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_left_2",
+          "pivot": [
+            -10.4,
+            27.85,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_sensor_left_3",
+          "pivot": [
+            -10.31,
+            30.05,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -10.355,
+                29.5,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_left_3",
+          "pivot": [
+            -10.4,
+            30.75,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_sensor_right_0",
+          "pivot": [
+            10.31,
+            21.35,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                10.265,
+                20.8,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_right_0",
+          "pivot": [
+            10.4,
+            22.05,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_sensor_right_1",
+          "pivot": [
+            10.31,
+            24.25,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                10.265,
+                23.7,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_right_1",
+          "pivot": [
+            10.4,
+            24.95,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_sensor_right_2",
+          "pivot": [
+            10.31,
+            27.150000000000002,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                10.265,
+                26.6,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_right_2",
+          "pivot": [
+            10.4,
+            27.85,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_sensor_right_3",
+          "pivot": [
+            10.31,
+            30.05,
+            -14.6
+          ],
+          "cubes": [
+            {
+              "origin": [
+                10.265,
+                29.5,
+                -16.4
+              ],
+              "size": [
+                0.09,
+                1.1,
+                3.6
+              ],
+              "uv": {
+                "north": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "south": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "east": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "west": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "up": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                },
+                "down": {
+                  "uv": [
+                    0,
+                    0
+                  ],
+                  "uv_size": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "parent": "mantle"
+        },
+        {
+          "name": "gill_right_3",
+          "pivot": [
+            10.4,
+            30.75,
+            -14.6
+          ],
+          "cubes": [],
+          "parent": "mantle"
+        },
+        {
+          "name": "left_front_upper",
+          "pivot": [
+            -12.5,
+            24,
+            -1
+          ],
+          "cubes": [],
+          "parent": "root"
+        },
+        {
+          "name": "left_front_lower",
+          "pivot": [
+            -16,
+            13.5,
+            -9.5
+          ],
+          "cubes": [],
+          "parent": "left_front_upper"
+        },
+        {
+          "name": "left_front_foot",
+          "pivot": [
+            -19.5,
+            2.6,
+            -10.5
+          ],
+          "cubes": [],
+          "parent": "left_front_lower"
+        },
+        {
+          "name": "left_back_upper",
+          "pivot": [
+            -8.5,
+            17,
+            12
+          ],
+          "cubes": [],
+          "parent": "root"
+        },
+        {
+          "name": "left_back_lower",
+          "pivot": [
+            -12,
+            11,
+            19.5
+          ],
+          "cubes": [],
+          "parent": "left_back_upper"
+        },
+        {
+          "name": "left_back_foot",
+          "pivot": [
+            -14.7,
+            2.6,
+            19.5
+          ],
+          "cubes": [],
+          "parent": "left_back_lower"
+        },
+        {
+          "name": "right_front_upper",
+          "pivot": [
+            12.5,
+            24,
+            -1
+          ],
+          "cubes": [],
+          "parent": "root"
+        },
+        {
+          "name": "right_front_lower",
+          "pivot": [
+            16,
+            13.5,
+            -9.5
+          ],
+          "cubes": [],
+          "parent": "right_front_upper"
+        },
+        {
+          "name": "right_front_foot",
+          "pivot": [
+            19.5,
+            2.6,
+            -10.5
+          ],
+          "cubes": [],
+          "parent": "right_front_lower"
+        },
+        {
+          "name": "right_back_upper",
+          "pivot": [
+            8.5,
+            17,
+            12
+          ],
+          "cubes": [],
+          "parent": "root"
+        },
+        {
+          "name": "right_back_lower",
+          "pivot": [
+            12,
+            11,
+            19.5
+          ],
+          "cubes": [],
+          "parent": "right_back_upper"
+        },
+        {
+          "name": "right_back_foot",
+          "pivot": [
+            14.7,
+            2.6,
+            19.5
+          ],
+          "cubes": [],
+          "parent": "right_back_lower"
+        }
+      ]
+    }
+  ]
+}

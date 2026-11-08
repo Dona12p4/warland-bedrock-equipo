@@ -1,0 +1,54 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Â· Garganta Abierta",
+    "description": "Ecolocalizacion, alarma, mordida y embestida Â· x16",
+    "uuid": "f6fec55d-89eb-404f-8973-f30919e7eace",
+    "version": [
+      0,
+      7,
+      3
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "f3966cbd-0636-4ceb-92bf-d1fcbb06a698",
+      "version": [
+        0,
+        7,
+        3
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "0bfb8f07-0a01-4385-853e-a0e6dc2b242f",
+      "version": [
+        0,
+        7,
+        3
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "042552e2-b532-4c8b-a06e-88b6652f40c4",
+      "version": [
+        0,
+        7,
+        2
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    }
+  ]
+}

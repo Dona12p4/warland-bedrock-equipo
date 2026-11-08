@@ -1,0 +1,15 @@
+.local/
+__pycache__/
+*.pyc
+node_modules/
+.env
+.env.*
+auth.json
+*.mcworld
+*.mcaddon
+*.zip
+*.exe
+*.dll
+*.log
+db/
+backups/

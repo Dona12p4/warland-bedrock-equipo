@@ -1,0 +1,54 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · El Rastreador [Movil - copia]",
+    "description": "Prototipo auditivo con tres ataques, gestos y muerte.",
+    "uuid": "81f88d58-2d89-5ca0-b044-be5c0674958c",
+    "version": [
+      0,
+      3,
+      2
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "714c5663-c40c-5df9-80b3-13d7b0fd623c",
+      "version": [
+        0,
+        3,
+        2
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "07568fe3-f3b2-55e5-9471-7ed385fea497",
+      "version": [
+        0,
+        3,
+        2
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "6c5e3deb-d8f5-5797-b76d-31b9027ebf83",
+      "version": [
+        0,
+        3,
+        1
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    }
+  ]
+}

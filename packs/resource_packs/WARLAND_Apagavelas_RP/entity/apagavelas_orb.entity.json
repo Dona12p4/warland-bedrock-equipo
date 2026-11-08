@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:apagavelas_orb",
+      "materials": {
+        "default": "entity_alphablend"
+      },
+      "textures": {
+        "default": "textures/entity/apagavelas_orb"
+      },
+      "geometry": {
+        "default": "geometry.warland.apagavelas_orb"
+      },
+      "render_controllers": [
+        "controller.render.warland.apagavelas_orb"
+      ]
+    }
+  }
+}

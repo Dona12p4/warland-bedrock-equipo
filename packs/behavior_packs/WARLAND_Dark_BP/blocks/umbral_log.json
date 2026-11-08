@@ -1,0 +1,46 @@
+{
+  "format_version": "1.26.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "warland:umbral_log",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "Tronco de raíz umbría",
+      "minecraft:geometry": {
+        "identifier": "minecraft:geometry.full_block"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "warland_umbral_log",
+          "render_method": "opaque",
+          "face_dimming": true,
+          "ambient_occlusion": 1
+        },
+        "up": {
+          "texture": "warland_umbral_log_top",
+          "render_method": "opaque",
+          "face_dimming": true,
+          "ambient_occlusion": 1
+        },
+        "down": {
+          "texture": "warland_umbral_log_top",
+          "render_method": "opaque",
+          "face_dimming": true,
+          "ambient_occlusion": 1
+        }
+      },
+      "minecraft:light_dampening": 15,
+      "minecraft:light_emission": 0,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1.5
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3
+      },
+      "minecraft:collision_box": true
+    }
+  }
+}

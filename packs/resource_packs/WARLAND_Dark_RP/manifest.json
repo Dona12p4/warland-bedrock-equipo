@@ -1,0 +1,32 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · El Umbral · Atmósfera [Movil - copia]",
+    "description": "Niebla negra por jugador. Texturas nativas x16.",
+    "uuid": "aca6c85b-6676-5c21-9435-726043f0ae08",
+    "version": [
+      0,
+      15,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "95f22d44-2e15-55e7-9887-91b85aad2f3e",
+      "version": [
+        0,
+        15,
+        0
+      ]
+    }
+  ],
+  "capabilities": [
+    "pbr"
+  ]
+}

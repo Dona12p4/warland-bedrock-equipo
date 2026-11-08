@@ -1,0 +1,173 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.palpador.senses": {
+      "initial_state": "rest_0",
+      "states": {
+        "hunting": {
+          "transitions": [
+            {
+              "rest_0": "!query.property('warland:aggressive')"
+            }
+          ]
+        },
+        "rest_0": {
+          "on_entry": [
+            "@s warland:feel_end"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "feel_0": "query.state_time >= 3.5"
+            }
+          ]
+        },
+        "feel_0": {
+          "on_entry": [
+            "@s warland:feel_0"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "pulse_0": "query.state_time >= 1.1"
+            }
+          ]
+        },
+        "pulse_0": {
+          "on_entry": [
+            "@s warland:pulse_0"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "finish_0": "query.state_time >= 1.4"
+            }
+          ]
+        },
+        "finish_0": {
+          "on_entry": [
+            "@s warland:pulse_end"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "rest_1": "query.state_time >= 1.7000000000000002"
+            }
+          ]
+        },
+        "rest_1": {
+          "on_entry": [
+            "@s warland:feel_end"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "feel_1": "query.state_time >= 3.5"
+            }
+          ]
+        },
+        "feel_1": {
+          "on_entry": [
+            "@s warland:feel_1"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "pulse_1": "query.state_time >= 1.1"
+            }
+          ]
+        },
+        "pulse_1": {
+          "on_entry": [
+            "@s warland:pulse_1"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "finish_1": "query.state_time >= 1.4"
+            }
+          ]
+        },
+        "finish_1": {
+          "on_entry": [
+            "@s warland:pulse_end"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "rest_2": "query.state_time >= 2.3"
+            }
+          ]
+        },
+        "rest_2": {
+          "on_entry": [
+            "@s warland:feel_end"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "feel_2": "query.state_time >= 3.5"
+            }
+          ]
+        },
+        "feel_2": {
+          "on_entry": [
+            "@s warland:feel_2"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "pulse_2": "query.state_time >= 1.1"
+            }
+          ]
+        },
+        "pulse_2": {
+          "on_entry": [
+            "@s warland:pulse_2"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "finish_2": "query.state_time >= 1.4"
+            }
+          ]
+        },
+        "finish_2": {
+          "on_entry": [
+            "@s warland:pulse_end"
+          ],
+          "transitions": [
+            {
+              "hunting": "query.property('warland:aggressive')"
+            },
+            {
+              "rest_0": "query.state_time >= 2.0999999999999996"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

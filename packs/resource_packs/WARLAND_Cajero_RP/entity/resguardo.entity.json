@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:cajero_resguardo",
+      "materials": {
+        "default": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/cajero"
+      },
+      "geometry": {
+        "default": "geometry.warland.cajero_resguardo"
+      },
+      "render_controllers": [
+        "controller.render.warland.cajero"
+      ]
+    }
+  }
+}

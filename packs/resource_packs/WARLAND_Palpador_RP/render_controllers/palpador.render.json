@@ -1,0 +1,46 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.warland.palpador": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "left_filaments": "!(query.property('warland:feel_action') > 0)"
+        },
+        {
+          "right_filaments": "!(query.property('warland:feel_action') > 0)"
+        }
+      ]
+    },
+    "controller.render.warland.palpador.filaments": {
+      "geometry": "Geometry.filaments",
+      "materials": [
+        {
+          "*": "Material.filaments"
+        }
+      ],
+      "textures": [
+        "Texture.filaments"
+      ],
+      "part_visibility": [
+        {
+          "*": "query.property('warland:feel_action') > 0"
+        }
+      ],
+      "color": {
+        "r": 0.6,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:texture_set": {
+    "color": "umbral_log_top",
+    "metalness_emissive_roughness": "umbral_log_top_mer"
+  }
+}

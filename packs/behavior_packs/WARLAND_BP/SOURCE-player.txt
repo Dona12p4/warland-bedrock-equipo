@@ -1,0 +1,5 @@
+Base del jugador: Mojang/bedrock-samples, tag v1.26.60.5.
+https://github.com/Mojang/bedrock-samples/blob/v1.26.60.5/behavior_pack/entities/player.json
+Se conservan los componentes y eventos vanilla; WARLAND añade grupos/eventos de salud de 1 a 20 HP.
+Licencia de la base: LICENSE-Mojang.txt. Compatible validado con BDS 1.26.60.6 y cliente Bedrock 1.26.60.5.
+No usar con otro complemento que sustituya entities/player.json sin combinar y volver a validar.

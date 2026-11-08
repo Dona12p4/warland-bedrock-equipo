@@ -1,0 +1,7 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:texture_set": {
+    "color": "garganta_gills",
+    "metalness_emissive_roughness": "garganta_gills_mer"
+  }
+}

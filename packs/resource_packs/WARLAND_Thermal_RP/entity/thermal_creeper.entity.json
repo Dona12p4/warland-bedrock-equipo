@@ -1,0 +1,52 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:thermal_creeper_prototype",
+      "materials": {
+        "default": "entity_alphatest",
+        "veins": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/thermal_creeper",
+        "veins": "textures/entity/thermal_creeper_emissive"
+      },
+      "geometry": {
+        "default": "geometry.warland.thermal_creeper",
+        "veins": "geometry.warland.thermal_creeper.veins"
+      },
+      "animations": {
+        "idle": "animation.warland.thermal_creeper.idle",
+        "walk": "animation.warland.thermal_creeper.walk",
+        "run": "animation.warland.thermal_creeper.run",
+        "closed": "animation.warland.thermal_creeper.closed_pose",
+        "motion": "controller.animation.warland.thermal.motion",
+        "scream": "animation.warland.thermal_creeper.scream",
+        "suction": "animation.warland.thermal_creeper.suction",
+        "burst": "animation.warland.thermal_creeper.burst",
+        "watch": "animation.warland.thermal_creeper.watch"
+      },
+      "scripts": {
+        "animate": [
+          "motion",
+          {
+            "closed": "query.property('warland:phase') == 0 || query.property('warland:phase') == 2 || query.property('warland:phase') == 5"
+          },
+          {
+            "watch": "query.property('warland:phase') > 0 && query.property('warland:phase') != 4"
+          }
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.thermal",
+        {
+          "controller.render.warland.thermal_veins": "query.property('warland:thermal_signal') > 0"
+        }
+      ],
+      "spawn_egg": {
+        "base_color": "#161615",
+        "overlay_color": "#a83123"
+      }
+    }
+  }
+}

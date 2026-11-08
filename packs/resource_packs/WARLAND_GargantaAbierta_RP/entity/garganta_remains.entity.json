@@ -1,0 +1,58 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:garganta_remains",
+      "materials": {
+        "default": "entity_alphatest",
+        "gills": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/garganta_abierta",
+        "gills": "textures/entity/garganta_gills"
+      },
+      "geometry": {
+        "default": "geometry.warland.garganta_abierta",
+        "gills": "geometry.warland.garganta_abierta.gills"
+      },
+      "animations": {
+        "idle": "animation.warland.garganta_abierta.idle",
+        "walk": "animation.warland.garganta_abierta.walk",
+        "run": "animation.warland.garganta_abierta.run",
+        "search": "animation.warland.garganta_abierta.search",
+        "listen_echo": "animation.warland.garganta_abierta.listen_echo",
+        "listen_echo_2": "animation.warland.garganta_abierta.listen_echo_2",
+        "listen_echo_3": "animation.warland.garganta_abierta.listen_echo_3",
+        "shake": "animation.warland.garganta_abierta.shake",
+        "mouth_open": "animation.warland.garganta_abierta.mouth_open",
+        "mouth_close": "animation.warland.garganta_abierta.mouth_close",
+        "alarm": "animation.warland.garganta_abierta.alarm",
+        "attack_bite": "animation.warland.garganta_abierta.attack_bite",
+        "attack_lunge": "animation.warland.garganta_abierta.attack_lunge",
+        "hurt": "animation.warland.garganta_abierta.hurt",
+        "death": "animation.warland.garganta_abierta.death",
+        "motion": "controller.animation.warland.garganta.motion"
+      },
+      "scripts": {
+        "initialize": [
+          "variable.garganta_echo = 0;",
+          "variable.garganta_detected = 0;"
+        ],
+        "animate": [
+          "death"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.garganta_abierta",
+        "controller.render.warland.garganta_abierta.gills"
+      ],
+      "sound_effects": {
+        "echo": "warland.garganta.echo",
+        "echo_01": "warland.garganta.echo_01",
+        "echo_02": "warland.garganta.echo_02",
+        "echo_03": "warland.garganta.echo_03",
+        "alarm": "warland.garganta.alarm"
+      }
+    }
+  }
+}

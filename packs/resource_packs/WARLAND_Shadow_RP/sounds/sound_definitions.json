@@ -1,0 +1,38 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "warland.shadow.gaze": {
+      "category": "hostile",
+      "min_distance": 16,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/warland/shadow_gaze",
+          "stream": false
+        }
+      ]
+    },
+    "warland.shadow.death": {
+      "category": "hostile",
+      "min_distance": 8,
+      "max_distance": 64,
+      "sounds": [
+        {
+          "name": "sounds/warland/shadow_gaze",
+          "stream": false
+        }
+      ]
+    },
+    "warland.shadow.devour": {
+      "category": "hostile",
+      "min_distance": 2,
+      "max_distance": 48,
+      "sounds": [
+        {
+          "name": "sounds/warland/shadow_devour",
+          "stream": false
+        }
+      ]
+    }
+  }
+}

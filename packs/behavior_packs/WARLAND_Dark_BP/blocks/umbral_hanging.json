@@ -1,0 +1,46 @@
+{
+  "format_version": "1.26.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "warland:umbral_hanging",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "Barbas de penumbra",
+      "minecraft:geometry": {
+        "identifier": "geometry.warland.umbral_plant"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "warland_umbral_hanging",
+          "render_method": "alpha_test",
+          "face_dimming": true,
+          "ambient_occlusion": 0
+        }
+      },
+      "minecraft:light_dampening": 0,
+      "minecraft:light_emission": 0,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.2
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 1
+      },
+      "minecraft:collision_box": false,
+      "minecraft:selection_box": {
+        "origin": [
+          -6,
+          0,
+          -6
+        ],
+        "size": [
+          12,
+          14,
+          12
+        ]
+      }
+    }
+  }
+}

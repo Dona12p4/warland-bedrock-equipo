@@ -1,0 +1,39 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · Cajero y Warcoins físicos",
+    "description": "Cajero A. Consignación 4x4 y retiro numérico.",
+    "uuid": "c102e76d-5c64-57b7-9ae8-f5bb9ddc8346",
+    "version": [
+      1,
+      2,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a1270157-d4bf-5688-99cd-f5d0bb6dd92d",
+      "version": [
+        1,
+        2,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "2927aa4f-7728-5489-bbd2-87b77707b67a",
+      "version": [
+        1,
+        2,
+        0
+      ]
+    }
+  ]
+}

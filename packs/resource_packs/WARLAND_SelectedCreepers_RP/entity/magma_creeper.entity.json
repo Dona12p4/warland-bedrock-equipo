@@ -1,0 +1,56 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:magma_creeper",
+      "min_engine_version": "1.12.0",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "allay",
+        "charged": "charged_creeper"
+      },
+      "textures": {
+        "default": "textures/entity/nec/magma_creeper",
+        "glow": "textures/entity/nec/magma_creeper_glow",
+        "charged": "textures/entity/creeper/creeper_armor"
+      },
+      "geometry": {
+        "default": "geometry.eu.nec.magma_creeper",
+        "charged": "geometry.eu.nec.charged.magma_creeper"
+      },
+      "spawn_egg": {
+        "base_color": "#1C1717",
+        "overlay_color": "#F18F2C"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.wobble = Math.sin(query.swell_amount * 5730) * query.swell_amount * 0.01 + 1.0;",
+          "variable.swelling_scale1 = (Math.pow(Math.clamp(query.swell_amount, 0.0, 1.0), 4.0) * 0.4 + 1.0) * variable.wobble;",
+          "variable.swelling_scale2 = (Math.pow(Math.clamp(query.swell_amount, 0.0, 1.0), 4.0) * 0.1 + 1.0) / variable.wobble;",
+          "variable.leg_rot = Math.cos(query.modified_distance_moved * 38.17326) * 80.22 * query.modified_move_speed;",
+          "variable.flash = Math.mod(Math.Round(query.swell_amount * 10.0), 2.0);"
+        ],
+        "animate": [
+          "creeper_head_controller",
+          "creeper_legs_controller",
+          "creeper_swelling_controller"
+        ]
+      },
+      "animations": {
+        "creeper_head": "animation.common.look_at_target",
+        "creeper_legs": "animation.eu.nec.generic_creeper.legs",
+        "creeper_swelling": "animation.eu.nec.generic_creeper.swelling",
+        "creeper_head_controller": "controller.animation.eu.nec.generic_creeper.head",
+        "creeper_legs_controller": "controller.animation.eu.nec.generic_creeper.legs",
+        "creeper_swelling_controller": "controller.animation.eu.nec.generic_creeper.swelling"
+      },
+      "render_controllers": [
+        "controller.render.eu.glow_texture",
+        "controller.render.creeper",
+        {
+          "controller.render.creeper_armor": "query.is_powered"
+        }
+      ]
+    }
+  }
+}

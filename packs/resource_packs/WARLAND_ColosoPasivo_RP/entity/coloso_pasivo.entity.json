@@ -1,0 +1,39 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:coloso_pasivo",
+      "materials": {
+        "default": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/coloso_pasivo"
+      },
+      "geometry": {
+        "default": "geometry.warland.coloso_boceto"
+      },
+      "animations": {
+        "idle": "animation.warland.coloso_boceto.idle",
+        "listen": "animation.warland.coloso_boceto.listen",
+        "walk": "animation.warland.coloso_boceto.walk",
+        "run": "animation.warland.coloso_boceto.run",
+        "passive": "controller.animation.warland.coloso_passive"
+      },
+      "sound_effects": {
+        "step": "warland.coloso.passive.step"
+      },
+      "scripts": {
+        "animate": [
+          "passive"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.coloso_passive"
+      ],
+      "spawn_egg": {
+        "base_color": "#272825",
+        "overlay_color": "#b8c8c9"
+      }
+    }
+  }
+}

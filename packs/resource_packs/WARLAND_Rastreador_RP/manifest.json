@@ -1,0 +1,32 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · El Rastreador · Modelo [Movil - copia]",
+    "description": "El Rastreador: x16, antenas y bioluminiscencia",
+    "uuid": "6c5e3deb-d8f5-5797-b76d-31b9027ebf83",
+    "version": [
+      0,
+      3,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "f7b19c72-71a2-540b-8bca-a282bcba1b0b",
+      "version": [
+        0,
+        3,
+        1
+      ]
+    }
+  ],
+  "capabilities": [
+    "pbr"
+  ]
+}

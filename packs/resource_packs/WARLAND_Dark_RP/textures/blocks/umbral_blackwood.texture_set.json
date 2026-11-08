@@ -1,0 +1,7 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:texture_set": {
+    "color": "umbral_blackwood",
+    "metalness_emissive_roughness": "umbral_blackwood_mer"
+  }
+}

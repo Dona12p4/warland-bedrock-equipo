@@ -1,0 +1,111 @@
+{
+  "resource_pack_name": "warland_umbral",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "warland_vision_umbral": {
+      "textures": "textures/items/vision_umbral"
+    },
+    "warland_brujula_umbral_prueba": {
+      "textures": "textures/items/brujula_umbral_prueba"
+    },
+    "warland_brujula_umbral_prueba_00": {
+      "textures": "textures/items/brujula_umbral_prueba_00"
+    },
+    "warland_brujula_umbral_prueba_01": {
+      "textures": "textures/items/brujula_umbral_prueba_01"
+    },
+    "warland_brujula_umbral_prueba_02": {
+      "textures": "textures/items/brujula_umbral_prueba_02"
+    },
+    "warland_brujula_umbral_prueba_03": {
+      "textures": "textures/items/brujula_umbral_prueba_03"
+    },
+    "warland_brujula_umbral_prueba_04": {
+      "textures": "textures/items/brujula_umbral_prueba_04"
+    },
+    "warland_brujula_umbral_prueba_05": {
+      "textures": "textures/items/brujula_umbral_prueba_05"
+    },
+    "warland_brujula_umbral_prueba_06": {
+      "textures": "textures/items/brujula_umbral_prueba_06"
+    },
+    "warland_brujula_umbral_prueba_07": {
+      "textures": "textures/items/brujula_umbral_prueba_07"
+    },
+    "warland_brujula_umbral_prueba_08": {
+      "textures": "textures/items/brujula_umbral_prueba_08"
+    },
+    "warland_brujula_umbral_prueba_09": {
+      "textures": "textures/items/brujula_umbral_prueba_09"
+    },
+    "warland_brujula_umbral_prueba_10": {
+      "textures": "textures/items/brujula_umbral_prueba_10"
+    },
+    "warland_brujula_umbral_prueba_11": {
+      "textures": "textures/items/brujula_umbral_prueba_11"
+    },
+    "warland_brujula_umbral_prueba_12": {
+      "textures": "textures/items/brujula_umbral_prueba_12"
+    },
+    "warland_brujula_umbral_prueba_13": {
+      "textures": "textures/items/brujula_umbral_prueba_13"
+    },
+    "warland_brujula_umbral_prueba_14": {
+      "textures": "textures/items/brujula_umbral_prueba_14"
+    },
+    "warland_brujula_umbral_prueba_15": {
+      "textures": "textures/items/brujula_umbral_prueba_15"
+    },
+    "warland_brujula_umbral_prueba_16": {
+      "textures": "textures/items/brujula_umbral_prueba_16"
+    },
+    "warland_brujula_umbral_prueba_17": {
+      "textures": "textures/items/brujula_umbral_prueba_17"
+    },
+    "warland_brujula_umbral_prueba_18": {
+      "textures": "textures/items/brujula_umbral_prueba_18"
+    },
+    "warland_brujula_umbral_prueba_19": {
+      "textures": "textures/items/brujula_umbral_prueba_19"
+    },
+    "warland_brujula_umbral_prueba_20": {
+      "textures": "textures/items/brujula_umbral_prueba_20"
+    },
+    "warland_brujula_umbral_prueba_21": {
+      "textures": "textures/items/brujula_umbral_prueba_21"
+    },
+    "warland_brujula_umbral_prueba_22": {
+      "textures": "textures/items/brujula_umbral_prueba_22"
+    },
+    "warland_brujula_umbral_prueba_23": {
+      "textures": "textures/items/brujula_umbral_prueba_23"
+    },
+    "warland_brujula_umbral_prueba_24": {
+      "textures": "textures/items/brujula_umbral_prueba_24"
+    },
+    "warland_brujula_umbral_prueba_25": {
+      "textures": "textures/items/brujula_umbral_prueba_25"
+    },
+    "warland_brujula_umbral_prueba_26": {
+      "textures": "textures/items/brujula_umbral_prueba_26"
+    },
+    "warland_brujula_umbral_prueba_27": {
+      "textures": "textures/items/brujula_umbral_prueba_27"
+    },
+    "warland_brujula_umbral_prueba_28": {
+      "textures": "textures/items/brujula_umbral_prueba_28"
+    },
+    "warland_brujula_umbral_prueba_29": {
+      "textures": "textures/items/brujula_umbral_prueba_29"
+    },
+    "warland_brujula_umbral_prueba_30": {
+      "textures": "textures/items/brujula_umbral_prueba_30"
+    },
+    "warland_brujula_umbral_prueba_31": {
+      "textures": "textures/items/brujula_umbral_prueba_31"
+    },
+    "warland_echolocator": {
+      "textures": "textures/items/warland_echolocator"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "repository": "Dona12p4/warland-bedrock-equipo",
+  "mainBranch": "main",
+  "clientObserved": "1.26.63.1",
+  "serverVersion": "1.26.60.6",
+  "serverUrl": "https://www.minecraft.net/bedrockdedicatedserver/bin-win/bedrock-server-1.26.60.6.zip",
+  "serverSha256": "21620db4f80d0fe206f21cb08f52f4e5f14252ce865ec49ccfbe0d9f93ce88b0",
+  "stableScriptApi": "2.10.0",
+  "baseBetaException": "2.12.0-beta",
+  "port": 19152,
+  "portV6": 19153,
+  "transport": "nethernet"
+}

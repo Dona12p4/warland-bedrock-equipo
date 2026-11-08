@@ -1,0 +1,79 @@
+{
+  "format_version": [
+    1,
+    1,
+    0
+  ],
+  "warland:umbral_log": {
+    "sound": "wood"
+  },
+  "warland:umbral_leaves": {
+    "sound": "grass"
+  },
+  "warland:umbral_moss": {
+    "sound": "grass"
+  },
+  "warland:umbral_soil": {
+    "sound": "gravel"
+  },
+  "warland:umbral_fern": {
+    "sound": "grass"
+  },
+  "warland:umbral_fungus": {
+    "sound": "grass"
+  },
+  "warland:umbral_hanging": {
+    "sound": "grass"
+  },
+  "warland:umbral_rootwood": {
+    "sound": "wood"
+  },
+  "warland:umbral_root_soil": {
+    "sound": "gravel"
+  },
+  "warland:umbral_shelf": {
+    "sound": "grass"
+  },
+  "warland:umbral_ivory_fungus": {
+    "sound": "grass"
+  },
+  "warland:umbral_dry_fern": {
+    "sound": "grass"
+  },
+  "warland:umbral_blackwood": {
+    "sound": "wood"
+  },
+  "warland:umbral_black_leaves": {
+    "sound": "grass"
+  },
+  "warland:umbral_black_soil": {
+    "sound": "gravel"
+  },
+  "warland:umbral_ash_ground": {
+    "sound": "gravel"
+  },
+  "warland:umbral_cinder": {
+    "sound": "stone"
+  },
+  "warland:umbral_vent": {
+    "sound": "stone"
+  },
+  "warland:umbral_pale_scrub": {
+    "sound": "grass"
+  },
+  "warland:umbral_slate": {
+    "sound": "stone"
+  },
+  "warland:umbral_ruin": {
+    "sound": "stone"
+  },
+  "warland:umbral_ruin_cracked": {
+    "sound": "stone"
+  },
+  "warland:umbral_glowcap": {
+    "sound": "wood"
+  },
+  "warland:umbral_glow_vine": {
+    "sound": "grass"
+  }
+}

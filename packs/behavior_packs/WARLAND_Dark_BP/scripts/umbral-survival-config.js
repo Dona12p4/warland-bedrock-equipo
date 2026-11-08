@@ -1,0 +1,1 @@
+export const survivalConfig={"version":[0,10,0],"compassFrames":32,"compassUpdateTicks":5,"compassDeliveryTicks":20,"decaySeconds":15,"decayWarningSeconds":5,"decayScanTicks":5,"maximumDecayChecks":96,"maximumDecayBreaks":12,"maximumDecayEffects":4,"activeChunkRadius":4};

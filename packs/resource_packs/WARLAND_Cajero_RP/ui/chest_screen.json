@@ -1,0 +1,108 @@
+{
+  "namespace": "chest",
+  "small_chest_panel@warland_cash.router": {
+    "type": "panel",
+    "controls": [
+      {
+        "vanilla_host": {
+          "type": "stack_panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [
+            0,
+            0
+          ],
+          "orientation": "vertical",
+          "collection_name": "container_items",
+          "controls": [
+            {
+              "vanilla@warland_cash.vanilla_chest": {
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "container_items"
+                  },
+                  {
+                    "binding_name": "#item_durability_total_amount",
+                    "binding_name_override": "#cash_identity",
+                    "binding_type": "collection",
+                    "binding_collection_name": "container_items"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not (#cash_identity = 30001))",
+                    "target_property_name": "#visible"
+                  }
+                ],
+                "collection_index": 26
+              }
+            }
+          ]
+        }
+      },
+      {
+        "cash_host": {
+          "type": "stack_panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [
+            0,
+            0
+          ],
+          "orientation": "vertical",
+          "collection_name": "container_items",
+          "controls": [
+            {
+              "cash": {
+                "type": "panel",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "container_items"
+                  },
+                  {
+                    "binding_name": "#item_durability_total_amount",
+                    "binding_name_override": "#cash_identity",
+                    "binding_type": "collection",
+                    "binding_collection_name": "container_items"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(#cash_identity = 30001)",
+                    "target_property_name": "#visible"
+                  }
+                ],
+                "controls": [
+                  {
+                    "panel@warland_cash.deposit": {}
+                  },
+                  {
+                    "cursor@common.inventory_selected_icon_button": {
+                      "layer": -10
+                    }
+                  },
+                  {
+                    "details@common.selected_item_details_factory": {}
+                  }
+                ],
+                "collection_index": 26
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

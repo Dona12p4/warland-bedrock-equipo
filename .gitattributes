@@ -1,0 +1,14 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.js text eol=lf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.png binary
+*.tga binary
+*.jpg binary
+*.jpeg binary
+*.ogg binary
+packs/** -text
+pack-order/** -text

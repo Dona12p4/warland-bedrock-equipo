@@ -1,0 +1,15 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "warland.player.heart_break": {
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/warland/heart_break",
+          "stream": false,
+          "volume": 1
+        }
+      ]
+    }
+  }
+}

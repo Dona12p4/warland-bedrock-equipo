@@ -1,0 +1,56 @@
+{
+  "format_version": "1.26.60",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "warland:devour_orb",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "properties": {
+        "warland:orb_scale": {
+          "type": "int",
+          "range": [
+            0,
+            100
+          ],
+          "default": 100,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0,
+        "height": 0
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:timer": {
+        "time": {
+          "min": 8,
+          "max": 8
+        },
+        "looping": false,
+        "time_down_event": {
+          "event": "warland:remove",
+          "target": "self"
+        }
+      }
+    },
+    "component_groups": {
+      "remove": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "events": {
+      "warland:remove": {
+        "add": {
+          "component_groups": [
+            "remove"
+          ]
+        }
+      }
+    }
+  }
+}

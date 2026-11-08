@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.warland.apagavelas": {
+      "geometry": "Geometry.surface",
+      "materials": [
+        {
+          "*": "Material.cloth"
+        }
+      ],
+      "textures": [
+        "Texture.surface"
+      ],
+      "ignore_lighting": false
+    },
+    "controller.render.warland.apagavelas.white": {
+      "geometry": "Geometry.white_glow",
+      "materials": [
+        {
+          "*": "Material.white_glow"
+        }
+      ],
+      "textures": [
+        "Texture.white_glow"
+      ],
+      "ignore_lighting": true
+    }
+  }
+}

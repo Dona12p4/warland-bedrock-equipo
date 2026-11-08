@@ -1,0 +1,28 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:devour_orb",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/particle/shadow_black"
+      },
+      "geometry": {
+        "default": "geometry.warland.devour_orb"
+      },
+      "animations": {
+        "scale": "animation.warland.devour_orb.scale"
+      },
+      "scripts": {
+        "animate": [
+          "scale"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.devour_orb"
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:shadow_boss_prototype",
+      "materials": {
+        "default": "entity_alphatest",
+        "eyes": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/shadow_boss_bedrock"
+      },
+      "geometry": {
+        "default": "geometry.warland.shadow_boss_prototype"
+      },
+      "animations": {
+        "idle": "animation.warland.shadow_boss.idle",
+        "walk": "animation.warland.shadow_boss.walk",
+        "attack": "animation.warland.shadow_boss.attack",
+        "run": "animation.warland.shadow_boss.run",
+        "attack_left": "animation.warland.shadow_boss.attack_left",
+        "attack_double": "animation.warland.shadow_boss.attack_double",
+        "attack_thrust": "animation.warland.shadow_boss.attack_thrust",
+        "death": "animation.warland.shadow_boss.death",
+        "sequence": "animation.warland.shadow_boss.sequence",
+        "motion": "controller.animation.warland.shadow_boss.motion",
+        "gaze": "animation.warland.shadow_boss.gaze",
+        "scream_mouth": "animation.warland.shadow_boss.scream_mouth",
+        "mouth": "controller.animation.warland.shadow_boss.mouth",
+        "devour": "animation.warland.shadow_boss.devour"
+      },
+      "scripts": {
+        "animate": [
+          "motion",
+          "gaze",
+          {
+            "mouth": "!query.property('warland:devouring')"
+          }
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.shadow_boss"
+      ],
+      "spawn_egg": {
+        "base_color": "#101114",
+        "overlay_color": "#e9eff0"
+      }
+    }
+  }
+}

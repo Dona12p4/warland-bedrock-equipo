@@ -1,0 +1,45 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:palpador_prototype",
+      "materials": {
+        "default": "entity_alphatest",
+        "filaments": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/palpador",
+        "filaments": "textures/entity/palpador_filaments"
+      },
+      "geometry": {
+        "default": "geometry.warland.palpador",
+        "filaments": "geometry.warland.palpador.filaments"
+      },
+      "animations": {
+        "motion": "controller.animation.warland.palpador.motion",
+        "idle": "animation.warland.palpador.idle",
+        "walk": "animation.warland.palpador.walk",
+        "run": "animation.warland.palpador.run",
+        "attack_left": "animation.warland.palpador.attack_left",
+        "attack_right": "animation.warland.palpador.attack_right",
+        "attack_grab": "animation.warland.palpador.attack_grab",
+        "feel": "animation.warland.palpador.feel",
+        "feel_ground": "animation.warland.palpador.feel_ground",
+        "feel_wall": "animation.warland.palpador.feel_wall"
+      },
+      "scripts": {
+        "animate": [
+          "motion"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.palpador",
+        "controller.render.warland.palpador.filaments"
+      ],
+      "spawn_egg": {
+        "base_color": "#222320",
+        "overlay_color": "#a8a196"
+      }
+    }
+  }
+}

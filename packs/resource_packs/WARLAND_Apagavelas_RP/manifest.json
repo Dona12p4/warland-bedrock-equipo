@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Â· El Apagavelas [Movil - copia]",
+    "description": "Fantasma x16: tela semitransparente y orbe de oscuridad.",
+    "uuid": "c61afb5b-3db9-5b6f-99c0-3220a0e06edc",
+    "version": [
+      0,
+      4,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "bb79946e-6c80-5fb1-9889-5aaaa4e20de9",
+      "version": [
+        0,
+        4,
+        1
+      ]
+    }
+  ]
+}

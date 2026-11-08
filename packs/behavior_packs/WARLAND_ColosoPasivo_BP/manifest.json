@@ -1,0 +1,39 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · Coloso pasivo",
+    "description": "Respira, escucha, pasea y huye al recibir daño. Sin combate ni aparición natural.",
+    "uuid": "549ce3a7-db10-5bc5-96da-175b85c310b4",
+    "version": [
+      0,
+      2,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "00cae088-7950-529b-be81-83154ddc4928",
+      "version": [
+        0,
+        2,
+        1
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "3f9b4c53-b225-59da-92af-0f018723fccf",
+      "version": [
+        0,
+        2,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "warland:peto_del_osario"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "unlock": [
+      {
+        "item": "minecraft:phantom_membrane"
+      }
+    ],
+    "pattern": [
+      "M M",
+      "BHB",
+      "MMM"
+    ],
+    "key": {
+      "M": {
+        "item": "minecraft:phantom_membrane"
+      },
+      "B": {
+        "item": "minecraft:bone"
+      },
+      "H": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "item": "warland:peto_del_osario",
+      "count": 1
+    }
+  }
+}

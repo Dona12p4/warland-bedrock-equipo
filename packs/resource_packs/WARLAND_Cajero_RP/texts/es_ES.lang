@@ -1,0 +1,4 @@
+entity.warland:cajero.name=Cajero de Warcoins
+item.spawn_egg.entity.warland:cajero.name=Colocar cajero de Warcoins
+item.warland:warcoins_fisicos.name=Warcoins físicos
+item.warland:warcoin.name=Warcoin

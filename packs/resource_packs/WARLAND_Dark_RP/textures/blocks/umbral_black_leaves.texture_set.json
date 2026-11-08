@@ -1,0 +1,7 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:texture_set": {
+    "color": "umbral_black_leaves",
+    "metalness_emissive_roughness": "umbral_black_leaves_mer"
+  }
+}

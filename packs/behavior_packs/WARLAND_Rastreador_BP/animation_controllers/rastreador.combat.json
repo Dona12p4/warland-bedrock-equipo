@@ -1,0 +1,134 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.rastreador.combat": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "transitions": [
+            {
+              "ready_0": "query.property('warland:aggressive')"
+            }
+          ]
+        },
+        "ready_0": {
+          "on_entry": [
+            "@s warland:prepare_0"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "strike_0": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "strike_0": {
+          "on_entry": [
+            "@s warland:strike_0"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "recover_0": "!query.is_delayed_attacking || query.state_time >= 0.95"
+            }
+          ]
+        },
+        "recover_0": {
+          "on_entry": [
+            "@s warland:recover"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "ready_1": "query.state_time >= 0.05"
+            }
+          ]
+        },
+        "ready_1": {
+          "on_entry": [
+            "@s warland:prepare_1"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "strike_1": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "strike_1": {
+          "on_entry": [
+            "@s warland:strike_1"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "recover_1": "!query.is_delayed_attacking || query.state_time >= 1.2000000000000002"
+            }
+          ]
+        },
+        "recover_1": {
+          "on_entry": [
+            "@s warland:recover"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "ready_2": "query.state_time >= 0.05"
+            }
+          ]
+        },
+        "ready_2": {
+          "on_entry": [
+            "@s warland:prepare_2"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "strike_2": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "strike_2": {
+          "on_entry": [
+            "@s warland:strike_2"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "recover_2": "!query.is_delayed_attacking || query.state_time >= 1.3"
+            }
+          ]
+        },
+        "recover_2": {
+          "on_entry": [
+            "@s warland:recover"
+          ],
+          "transitions": [
+            {
+              "idle": "!query.property('warland:aggressive')"
+            },
+            {
+              "ready_0": "query.state_time >= 0.05"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

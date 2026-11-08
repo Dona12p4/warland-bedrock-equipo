@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Â· Garganta Abierta Â· Modelo",
+    "description": "Modelo x16 y 15 clips (13 movimientos, tres variantes de eco). Recursos para una futura entidad de comportamiento.",
+    "uuid": "042552e2-b532-4c8b-a06e-88b6652f40c4",
+    "version": [
+      0,
+      7,
+      2
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "8cffabf8-50e8-45f3-b85c-0fe95e923e12",
+      "version": [
+        0,
+        7,
+        2
+      ]
+    }
+  ]
+}

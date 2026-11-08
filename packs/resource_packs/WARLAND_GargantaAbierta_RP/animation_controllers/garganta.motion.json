@@ -1,0 +1,428 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.warland.garganta.motion": {
+      "initial_state": "idle",
+      "states": {
+        "listen_echo": {
+          "animations": [
+            "listen_echo"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo_2": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.property('warland:phase') == 1 && query.property('warland:echo') == 2)"
+            },
+            {
+              "listen_echo_3": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.property('warland:phase') == 1 && query.property('warland:echo') == 3)"
+            },
+            {
+              "alarm": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.property('warland:phase') == 2)"
+            },
+            {
+              "shake": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.property('warland:phase') == 3)"
+            },
+            {
+              "attack_bite": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.property('warland:visual_action') == 1)"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "hurt": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.property('warland:hurt'))"
+            },
+            {
+              "run": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 1) && (1.0)"
+            }
+          ]
+        },
+        "listen_echo_2": {
+          "animations": [
+            "listen_echo_2"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_3": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.property('warland:phase') == 1 && query.property('warland:echo') == 3)"
+            },
+            {
+              "alarm": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.property('warland:phase') == 2)"
+            },
+            {
+              "shake": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.property('warland:phase') == 3)"
+            },
+            {
+              "attack_bite": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.property('warland:visual_action') == 1)"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "hurt": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.property('warland:hurt'))"
+            },
+            {
+              "run": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 2) && (1.0)"
+            }
+          ]
+        },
+        "listen_echo_3": {
+          "animations": [
+            "listen_echo_3"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "alarm": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (query.property('warland:phase') == 2)"
+            },
+            {
+              "shake": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (query.property('warland:phase') == 3)"
+            },
+            {
+              "attack_bite": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (query.property('warland:visual_action') == 1)"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "hurt": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (query.property('warland:hurt'))"
+            },
+            {
+              "run": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:phase') == 1 && query.property('warland:echo') == 3) && (1.0)"
+            }
+          ]
+        },
+        "alarm": {
+          "animations": [
+            "alarm"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "shake": "!(query.property('warland:phase') == 2) && (query.property('warland:phase') == 3)"
+            },
+            {
+              "attack_bite": "!(query.property('warland:phase') == 2) && (query.property('warland:visual_action') == 1)"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:phase') == 2) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "hurt": "!(query.property('warland:phase') == 2) && (query.property('warland:hurt'))"
+            },
+            {
+              "run": "!(query.property('warland:phase') == 2) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:phase') == 2) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:phase') == 2) && (1.0)"
+            }
+          ]
+        },
+        "shake": {
+          "animations": [
+            "shake"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "alarm": "query.property('warland:phase') == 2"
+            },
+            {
+              "attack_bite": "!(query.property('warland:phase') == 3) && (query.property('warland:visual_action') == 1)"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:phase') == 3) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "hurt": "!(query.property('warland:phase') == 3) && (query.property('warland:hurt'))"
+            },
+            {
+              "run": "!(query.property('warland:phase') == 3) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:phase') == 3) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:phase') == 3) && (1.0)"
+            }
+          ]
+        },
+        "attack_bite": {
+          "animations": [
+            "attack_bite"
+          ],
+          "blend_transition": 0.06,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "alarm": "query.property('warland:phase') == 2"
+            },
+            {
+              "shake": "query.property('warland:phase') == 3"
+            },
+            {
+              "attack_lunge": "!(query.property('warland:visual_action') == 1) && (query.property('warland:visual_action') == 2)"
+            },
+            {
+              "hurt": "!(query.property('warland:visual_action') == 1) && (query.property('warland:hurt'))"
+            },
+            {
+              "run": "!(query.property('warland:visual_action') == 1) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:visual_action') == 1) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:visual_action') == 1) && (1.0)"
+            }
+          ]
+        },
+        "attack_lunge": {
+          "animations": [
+            "attack_lunge"
+          ],
+          "blend_transition": 0.06,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "alarm": "query.property('warland:phase') == 2"
+            },
+            {
+              "shake": "query.property('warland:phase') == 3"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "hurt": "!(query.property('warland:visual_action') == 2) && (query.property('warland:hurt'))"
+            },
+            {
+              "run": "!(query.property('warland:visual_action') == 2) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:visual_action') == 2) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:visual_action') == 2) && (1.0)"
+            }
+          ]
+        },
+        "hurt": {
+          "animations": [
+            "hurt"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "alarm": "query.property('warland:phase') == 2"
+            },
+            {
+              "shake": "query.property('warland:phase') == 3"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "run": "!(query.property('warland:hurt')) && (query.modified_move_speed > 0.01 && query.property('warland:aggressive'))"
+            },
+            {
+              "walk": "!(query.property('warland:hurt')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.property('warland:hurt')) && (1.0)"
+            }
+          ]
+        },
+        "run": {
+          "animations": [
+            "run"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "alarm": "query.property('warland:phase') == 2"
+            },
+            {
+              "shake": "query.property('warland:phase') == 3"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "walk": "!(query.modified_move_speed > 0.01 && query.property('warland:aggressive')) && (query.modified_move_speed > 0.01)"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01 && query.property('warland:aggressive')) && (1.0)"
+            }
+          ]
+        },
+        "walk": {
+          "animations": [
+            "walk"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "alarm": "query.property('warland:phase') == 2"
+            },
+            {
+              "shake": "query.property('warland:phase') == 3"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:aggressive')"
+            },
+            {
+              "idle": "!(query.modified_move_speed > 0.01) && (1.0)"
+            }
+          ]
+        },
+        "idle": {
+          "animations": [
+            "idle"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "listen_echo": "query.property('warland:phase') == 1 && query.property('warland:echo') == 1"
+            },
+            {
+              "listen_echo_2": "query.property('warland:phase') == 1 && query.property('warland:echo') == 2"
+            },
+            {
+              "listen_echo_3": "query.property('warland:phase') == 1 && query.property('warland:echo') == 3"
+            },
+            {
+              "alarm": "query.property('warland:phase') == 2"
+            },
+            {
+              "shake": "query.property('warland:phase') == 3"
+            },
+            {
+              "attack_bite": "query.property('warland:visual_action') == 1"
+            },
+            {
+              "attack_lunge": "query.property('warland:visual_action') == 2"
+            },
+            {
+              "hurt": "query.property('warland:hurt')"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:aggressive')"
+            },
+            {
+              "walk": "query.modified_move_speed > 0.01"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
