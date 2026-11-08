@@ -231,7 +231,15 @@ def setup_server(archive=None, root=ROOT):
         archive = local / ('bedrock-' + conf['serverVersion'] + '.zip')
         if not archive.exists():
             print('Descargando BDS oficial fijado: ' + conf['serverVersion'], flush=True)
-            urllib.request.urlretrieve(conf['serverUrl'], archive)
+            partial = archive.with_suffix('.partial')
+            if os.name == 'nt':
+                run(['powershell', '-NoProfile', '-File', root / 'tools/download.ps1',
+                     '-Url', conf['serverUrl'], '-Destination', partial])
+            else:
+                urllib.request.urlretrieve(conf['serverUrl'], partial)
+            if sha(partial) != conf['serverSha256']:
+                raise RuntimeError('Descarga incompleta o diferente; no se ejecutara')
+            partial.replace(archive)
     if sha(archive) != conf['serverSha256']:
         raise RuntimeError('SHA256 del servidor incorrecto')
     closed()
