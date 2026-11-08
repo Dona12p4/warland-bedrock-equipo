@@ -5,4 +5,6 @@
 - Los paquetes instalados son la base inicial: Base 0.6.20 (incluye lobby posterior), Dark BP 0.15.1, HUD 1.1.18. El inventario exacto esta en baseline.json.
 - Mantener el servidor BDS 1.26.60.6 existente y las API actuales. Cliente observado 1.26.63.1; no actualizar BDS automaticamente. Prueba visual en el PC del colaborador pendiente.
 - Bootstrap instala herramientas faltantes mediante winget solo cuando se ejecuta voluntariamente; no copia autenticaciones. GitHub y ChatGPT se autentican por persona.
-- El repositorio incluye assets de paquetes existentes del proyecto para colaboracion privada; no constituye autorizacion para redistribuirlos publicamente.
+- 2026-11-08, decision posterior: el propietario solicita hacer publico el repositorio al fallar la invitacion. Quedan publicos el codigo, los recursos existentes y las Releases; la invitacion sigue siendo necesaria para conceder escritura. Esto no altera la titularidad/licencias de recursos de terceros.
+- Atlas generado desde los paquetes completos, con categorias, buscador, modelos 3D, clips numericos, texturas, audio y archivos originales. La cobertura se verifica automaticamente; el visor no emula la IA ni todo Molang de Bedrock. GitHub Pages se reconstruye con main; el lanzador local sincroniza y genera al abrir.
+- Despues de instalar una incorporacion oficial autorizada, capturar/publicar sus packs y actualizar las descripciones afectadas; el catalogo queda como parte de la entrega. No copiar mundos abiertos ni confundir una captura publicada con observacion en vivo.

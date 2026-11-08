@@ -2,11 +2,13 @@
 
 Esta carpeta es el proyecto que deben abrir ambas personas en Codex. Incluye los paquetes actuales, sus texturas/animaciones y reglas para las dos IA. Las conversaciones personales y credenciales no se comparten.
 
-Repositorio privado: https://github.com/Dona12p4/warland-bedrock-equipo. Invitacion preparada para **TheDarkness6859**. La proteccion remota de main no esta disponible con el plan GitHub actual; se mantienen los controles locales y la instalacion oficial separada, sin comprar otro plan ni publicar el proyecto.
+Repositorio publico por orden del propietario: https://github.com/Dona12p4/warland-bedrock-equipo. Se puede consultar y descargar sin invitacion. La invitacion a **TheDarkness6859** sirve para colaborar con escritura y sigue necesitando aceptacion. Main tiene proteccion remota: comprobacion `check`, una revision y CODEOWNERS; el propietario puede omitirla como administrador.
+
+**Atlas completo:** https://dona12p4.github.io/warland-bedrock-equipo/ — criaturas 3D, clips, objetos, bloques, biomas, sonidos, recetas, comandos, sistemas y todos los archivos de los paquetes. En el PC, abrir **ABRIR-CATALOGO.cmd** para sincronizar y verlo sin servidor local.
 
 ## Primer uso del companero
 
-1. Aceptar la invitacion al repositorio privado con su cuenta GitHub. Tener Minecraft **Bedrock para Windows** y la aplicacion ChatGPT/Codex instalada; iniciar sesion con la cuenta que usara el.
+1. Tener Minecraft **Bedrock para Windows** y la aplicacion ChatGPT/Codex instalada; iniciar sesion con la cuenta que usara el. Aceptar la invitacion con su cuenta GitHub para enviar cambios al proyecto; no hace falta para leer el atlas o descargar el mundo.
 2. Descargar el kit inicial entregado por el propietario, descomprimirlo y abrir **PREPARAR-EQUIPO.cmd**. Instala Git, GitHub CLI y Python si faltan; pide autenticar GitHub y su gamertag una vez. Descarga el proyecto y el BDS fijado desde Minecraft, verifica los archivos y prepara la copia local del mundo.
 3. Abrir la carpeta indicada como proyecto local en Codex. Escribir la tarea normalmente: «Haz que el sol no se mueva». La IA lee AGENTS.md, sincroniza y trabaja en una rama aislada.
 4. Para jugar, **ACTUALIZAR-Y-PROBAR.cmd**; en Minecraft agregar servidor **127.0.0.1**, puerto **19152**. El servidor se cierra escribiendo `stop`, no cerrando la consola a la fuerza. Si el cliente requiere habilitar loopback, consultar el enlace oficial al final; los permisos los acepta el usuario.
@@ -28,9 +30,9 @@ Al haber un snapshot nuevo del mapa, el laboratorio se respalda y usa la copia n
 ## Publicar un cambio oficial (propietario)
 
 1. Ejecutar `python tools/team.py sync` y `python tools/team.py capture-installed "RUTA_DEL_MUNDO_OFICIAL"` con el mundo cerrado; revisar el diff, actualizar ESTADO/DECISIONES y pasar pruebas. La captura se niega si hay cambios del repositorio aun no incorporados a la base instalada. No ejecutar el build 0.4.2 del proyecto historico sobre esta base.
-2. Integrar el codigo revisado a main. Los hooks bloquean pushes accidentales a main: el propietario puede usar `WARLAND_OWNER_PUSH=1` en su entorno tras revisar. Esto es prevencion local, no una proteccion de permisos del servidor GitHub.
+2. Integrar el codigo revisado a main. Los hooks bloquean pushes accidentales a main: el propietario puede usar `WARLAND_OWNER_PUSH=1` en su entorno tras revisar. Ademas se aplican las reglas remotas de main. GitHub Actions reconstruye y publica el atlas al actualizar main; comprobar que termine la publicacion. Agregar descripciones de mecanicas nuevas en `catalogo/editorial.json`.
 3. Para compartir tambien el progreso/mapa: cerrar Minecraft y BDS; ejecutar `python tools/team.py snapshot "RUTA_DEL_MUNDO_OFICIAL" --label "Mapa actualizado"`. Hace una copia completa verificada, no modifica el original. Rechaza packs distintos de los de este repositorio para no publicar una base incoherente.
-4. Ejecutar `python tools/team.py publish-world ".local/releases/CARPETA_INDICADA"`, revisar y commitear `world-release.json`. La publicacion es privada. El companero la obtiene en la siguiente actualizacion/prueba.
+4. Ejecutar `python tools/team.py publish-world ".local/releases/CARPETA_INDICADA"`, revisar y commitear `world-release.json`. La publicacion es publica, como el repositorio. El companero la obtiene en la siguiente actualizacion/prueba.
 
 No hay un observador que copie partidas abiertas ni commits sin publicar. Una modificacion no es compartida hasta publicarla. Ninguna herramienta de este kit despliega sobre el mundo oficial. Para llevar una prueba a oficial se prepara una delta de packs con respaldo y revision, conservando DB/inventarios; nunca importar el mapa de pruebas sobre la partida real.
 
@@ -39,7 +41,9 @@ No hay un observador que copie partidas abiertas ni commits sin publicar. Una mo
 - `packs/`: base editable de 25 BP/RP instalados, con assets. JavaScript y JSON Bedrock.
 - `pack-order/`: activacion y versiones del mundo, en orden.
 - `baseline.json`: inventario y hashes de la base inicial.
-- `world-release.json`: puntero verificado al snapshot privado, sin guardar DB en Git.
+- `world-release.json`: puntero verificado al snapshot publicado, sin guardar DB en Git.
+- `catalogo/`: HTML, visor 3D y descripciones; datos generados desde packs al capturar, sincronizar, comprobar o publicar mundo. Los datos generados no se commitean para evitar conflictos.
+- `tools/build_site.py` y `.github/workflows/pages.yml`: publicacion automatica del atlas desde main. Solo incluye packs, catalogo y documentos de estado; excluye datos locales y credenciales. La cobertura total es de archivos de packs, no de todas las pruebas manuales ni de prototipos no instalados.
 - `docs/`: estado, decisiones y referencia historica; AGENTS.md es compacto para que la IA pueda leerlo completo.
 - `.local/`: mundos, BDS, descargas, respaldo, configuracion personal. Ignorado por Git.
 

@@ -1,6 +1,7 @@
 {
   "repository": "Dona12p4/warland-bedrock-equipo",
   "mainBranch": "main",
+  "approvedVisibility": "public",
   "clientObserved": "1.26.63.1",
   "serverVersion": "1.26.60.6",
   "serverUrl": "https://www.minecraft.net/bedrockdedicatedserver/bin-win/bedrock-server-1.26.60.6.zip",

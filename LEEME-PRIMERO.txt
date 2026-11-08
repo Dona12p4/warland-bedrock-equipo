@@ -1,6 +1,7 @@
 WARLAND - EQUIPO
 
-1. TheDarkness6859: acepta la invitacion privada:
+1. Proyecto publico: https://github.com/Dona12p4/warland-bedrock-equipo
+   Para enviar cambios, TheDarkness6859 acepta la invitacion de colaboracion:
    https://github.com/Dona12p4/warland-bedrock-equipo/invitations
 2. Descomprime este ZIP en Documentos y abre PREPARAR-EQUIPO.cmd.
 3. Inicia sesion GitHub con tu cuenta cuando lo pida y escribe tu gamertag.
@@ -12,6 +13,10 @@ instalados y con tu sesion iniciada. El script prepara las otras herramientas,
 codigo, paquetes, mundo de pruebas y servidor local, sin copiar contrasenas.
 
 Para jugar las pruebas: ACTUALIZAR-Y-PROBAR.cmd y servidor 127.0.0.1:19152.
+Para ver todo lo agregado: ABRIR-CATALOGO.cmd.
+Atlas publico: https://dona12p4.github.io/warland-bedrock-equipo/
+El atlas se actualiza al publicar cambios oficiales en main. El codigo, los
+recursos y las Releases del mundo son publicos por decision del propietario.
 Para guardar/cerrar el servidor: escribir stop en su consola.
 Tu IA puede darte operador SOLO en el laboratorio con op TU_GAMERTAG en esa
 consola cuando estes conectado. No cambia los administradores de la serie.

@@ -13,3 +13,6 @@ auth.json
 *.log
 db/
 backups/
+catalogo/data.js
+catalogo/coverage.json
+catalogo/models/
