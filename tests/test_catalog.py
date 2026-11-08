@@ -25,6 +25,8 @@ class CatalogTests(unittest.TestCase):
         expected = {catalog.rel(p, ROOT): catalog.digest(p) for p in (ROOT/'packs').rglob('*') if p.is_file()}
         self.assertEqual({f['path']: f['sha256'] for f in self.actual['files']}, expected)
         self.assertEqual(self.actual['coverage']['missing'], [])
+        paths = [f['path'] for f in self.actual['files']]
+        self.assertEqual(paths, sorted(paths))  # Identical order on Windows and Linux.
 
     def test_main_models_and_sounds_resolve(self):
         for entry in self.actual['entries']:

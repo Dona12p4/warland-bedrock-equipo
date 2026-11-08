@@ -32,7 +32,9 @@ def image_uri(p):
 
 def build(root=ROOT):
     root=Path(root);packs=root/'packs';editor=read(root/'catalogo/editorial.json')
-    paths=sorted(p for p in packs.rglob('*') if p.is_file())
+    # Path ordering is case-insensitive on Windows but not on Linux CI.
+    # Sort portable strings so both systems publish the same inventory hash.
+    paths=sorted((p for p in packs.rglob('*') if p.is_file()),key=lambda p:rel(p,root))
     docs={rel(p,root):read(p) for p in paths if p.suffix=='.json'}
     names={};textures={};terrain={};geometries={};animations={};clients={};images={};models={}
     files=[];entries=[];groups=[]
@@ -49,7 +51,7 @@ def build(root=ROOT):
         for ext in ('','.png','.tga','.jpg'):
             p=base/(name+ext)
             if p.is_file():return p
-        for d in (packs/'resource_packs').iterdir():
+        for d in sorted((packs/'resource_packs').iterdir(),key=lambda p:p.name):
             for ext in ('','.png','.tga'):
                 p=d/(name+ext)
                 if p.is_file():return p
