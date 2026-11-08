@@ -4,6 +4,8 @@ Leer `README.md`, `docs/ESTADO.md` y `baseline.json` antes de editar. Este repos
 
 El colaborador trabaja en Linux instalado directamente, con Codex CLI desde la terminal; dispone de arranque dual Windows para pruebas visuales Bedrock. Usar `python3` y los lanzadores `.sh` en Linux. Iniciar `codex` desde la raiz del clon o `bash ABRIR-CODEX.sh`; no necesita pegar los chats del propietario. No ejecutar .cmd, PowerShell ni bedrock_server.exe bajo Linux.
 
+Para una cuenta/equipo nuevo, leer `docs/INICIO-OTRA-CUENTA.md`. Verificar la identidad con `gh api user --jq .login` antes de publicar; cambiar la cuenta ChatGPT no cambia las credenciales GitHub de la terminal. No alterar la sesion del propietario ni copiarla al colaborador.
+
 ## Al empezar cada chat o retomar una tarea
 
 1. Ejecutar `python tools/team.py sync`. Requiere Internet; el repositorio es publico por orden del propietario. Si hay cambios sin guardar en Git, conservarlos, revisarlos y hacer un commit en la rama de trabajo antes de sincronizar; NO reset, clean, stash automatico ni descartar cambios. Un conflicto debe resolverse conservando ambas funcionalidades.

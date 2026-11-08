@@ -2,7 +2,9 @@
 
 Esta carpeta es el proyecto que deben abrir ambas personas en Codex. Incluye los paquetes actuales, sus texturas/animaciones y reglas para las dos IA. Las conversaciones personales y credenciales no se comparten.
 
-Repositorio publico por orden del propietario: https://github.com/Dona12p4/warland-bedrock-equipo. Se puede consultar y descargar sin invitacion. La invitacion a **TheDarkness6859** sirve para colaborar con escritura y sigue necesitando aceptacion. Main tiene proteccion remota: comprobacion `check`, una revision y CODEOWNERS; el propietario puede omitirla como administrador.
+Repositorio publico por orden del propietario: https://github.com/Dona12p4/warland-bedrock-equipo. Se puede consultar y descargar sin invitacion. **TheDarkness6859** ya tiene permiso de escritura, comprobado el 08/11/2026. Main tiene proteccion remota: comprobacion `check`, una revision y CODEOWNERS; el propietario puede omitirla como administrador.
+
+**Otra cuenta / otro computador:** leer [Inicio de la otra cuenta](docs/INICIO-OTRA-CUENTA.md). Distingue la conexion de ChatGPT, la autenticacion GitHub y la preparacion local de Linux; no se transfieren sesiones.
 
 **Atlas completo:** https://dona12p4.github.io/warland-bedrock-equipo/ — criaturas 3D, clips, objetos, bloques, biomas, sonidos, recetas, comandos, sistemas y todos los archivos de los paquetes. En el PC, abrir **ABRIR-CATALOGO.cmd** para sincronizar y verlo sin servidor local.
 
