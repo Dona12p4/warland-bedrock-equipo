@@ -233,7 +233,7 @@ def setup_server(archive=None, root=ROOT):
             print('Descargando BDS oficial fijado: ' + conf['serverVersion'], flush=True)
             partial = archive.with_suffix('.partial')
             if os.name == 'nt':
-                run(['powershell', '-NoProfile', '-File', root / 'tools/download.ps1',
+                run(['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', root / 'tools/download.ps1',
                      '-Url', conf['serverUrl'], '-Destination', partial])
             else:
                 urllib.request.urlretrieve(conf['serverUrl'], partial)
