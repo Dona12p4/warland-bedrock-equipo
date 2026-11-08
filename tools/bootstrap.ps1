@@ -38,6 +38,17 @@ if (-not (Test-Path -LiteralPath (Join-Path $projectRoot '.git'))) {
 }
 & python tools/team.py sync
 if ($LASTEXITCODE -ne 0) { throw 'Resolver los cambios pendientes antes de continuar.' }
+$configuredName = & git config user.name
+if (-not $configuredName) {
+    $gitLogin = & gh api user --jq .login
+    & git config user.name $gitLogin
+}
+$configuredEmail = & git config user.email
+if (-not $configuredEmail) {
+    $gitLogin = & gh api user --jq .login
+    $gitAccountId = & gh api user --jq .id
+    & git config user.email "$gitAccountId+$gitLogin@users.noreply.github.com"
+}
 New-Item -ItemType Directory -Path '.local' -Force | Out-Null
 if (-not (Test-Path '.local/user.json')) {
     $gamertag = Read-Host 'Tu gamertag Xbox para permitirte entrar al laboratorio'

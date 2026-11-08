@@ -2,6 +2,8 @@
 
 Esta carpeta es el proyecto que deben abrir ambas personas en Codex. Incluye los paquetes actuales, sus texturas/animaciones y reglas para las dos IA. Las conversaciones personales y credenciales no se comparten.
 
+Repositorio privado: https://github.com/Dona12p4/warland-bedrock-equipo. Invitacion preparada para **TheDarkness6859**. La proteccion remota de main no esta disponible con el plan GitHub actual; se mantienen los controles locales y la instalacion oficial separada, sin comprar otro plan ni publicar el proyecto.
+
 ## Primer uso del companero
 
 1. Aceptar la invitacion al repositorio privado con su cuenta GitHub. Tener Minecraft **Bedrock para Windows** y la aplicacion ChatGPT/Codex instalada; iniciar sesion con la cuenta que usara el.

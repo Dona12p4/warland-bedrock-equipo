@@ -1,5 +1,11 @@
 {
   "schema": 1,
-  "tag": null,
-  "note": "Snapshot privado pendiente de preparar."
+  "tag": "world-20261108-164424",
+  "asset": "WARLAND-world.zip",
+  "sha256": "f8f8432bd3a2268ec0f9a958d5ab830c192e89d7227b0d0a867cc6d13447e1cf",
+  "label": "WARLAND - mundo oficial guardado 08-11-2026",
+  "offlineBaseline": false,
+  "codeCommit": "8a5ceab566441e7560fdf48d21662636ad20db42",
+  "files": 1135,
+  "note": "Snapshot del cliente guardado y cerrado."
 }

@@ -1,0 +1,21 @@
+WARLAND - EQUIPO
+
+1. TheDarkness6859: acepta la invitacion privada:
+   https://github.com/Dona12p4/warland-bedrock-equipo/invitations
+2. Descomprime este ZIP en Documentos y abre PREPARAR-EQUIPO.cmd.
+3. Inicia sesion GitHub con tu cuenta cuando lo pida y escribe tu gamertag.
+4. Abre la carpeta WARLAND-Equipo que indique el instalador en Codex.
+   A partir de ahi pide tu cambio normalmente: las instrucciones ya estan incluidas.
+
+Minecraft debe ser Bedrock para Windows. ChatGPT/Codex y Minecraft deben estar
+instalados y con tu sesion iniciada. El script prepara las otras herramientas,
+codigo, paquetes, mundo de pruebas y servidor local, sin copiar contrasenas.
+
+Para jugar las pruebas: ACTUALIZAR-Y-PROBAR.cmd y servidor 127.0.0.1:19152.
+Para guardar/cerrar el servidor: escribir stop en su consola.
+Tu IA puede darte operador SOLO en el laboratorio con op TU_GAMERTAG en esa
+consola cuando estes conectado. No cambia los administradores de la serie.
+
+Los cambios se prueban aparte y se proponen al propietario. La partida oficial
+no se modifica automaticamente. Los avances se comparten cuando se publican;
+no basta iniciar sesion en ChatGPT para sincronizar archivos.
