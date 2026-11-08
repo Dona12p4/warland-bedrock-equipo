@@ -22,6 +22,9 @@ La distribución visual prevista es: panel de control en la base frontal; cámar
 - **#10:** corrigió el tamaño excesivo de los peluches interiores, la orientación frontal fija de cámara y el movimiento móvil del D-pad. Pidió mantener al jugador anclado y usar el desplazamiento detectado para mover la garra.
 - **#11:** identificó el contrato necesario entre propiedades de entidad, variables Molang y animación de la garra. La implementación debe comprobar el nombre de hueso real y mantener alineados cliente, animación y geometría.
 
+- **#12:** se renovaron las texturas de los seis peluches, se corrigió una tenaza y se ajustaron las animaciones de apertura, cierre y permanencia cerrada durante el ascenso. También se despejó la vista de la vitrina con una cámara lateral y el aviso de fallo pasó a la barra de acción. Las auditorías de modelos y animación terminaron sin errores; la prueba final en Minecraft PE queda a cargo del propietario.
+- **Ajuste 1.0.11:** el panel frontal del modelo sobresale hasta 1,5 bloques del origen, mientras la caja de colisión medía 2×4 bloques. Se amplió a 3×4 para cubrir el panel. Al golpear una máquina libre, el script la retira y devuelve el ítem; si está en uso, el golpe sigue siendo el control de la garra o se rechaza a otro jugador.
+
 El archivo de recomendaciones del proyecto concreta ese contrato como lectura de `warland:claw_x`, `warland:claw_z` y `warland:claw_y` en `pre_animation`, seguida de la animación `animation.claw_machine.move_claw`. Es una hipótesis de causa que se debe contrastar con los manifiestos y archivos actuales antes de reemplazar el JSON; nombres de hueso, valores/unidades y API deben derivarse de las fuentes vigentes, no copiarse a ciegas.
 
 La especificación completa original y los feedbacks con adjuntos no se copiaron al repositorio compartido para evitar trasladar chats o adjuntos personales. Este resumen conserva sus decisiones técnicas relevantes. Si se necesita recuperar un detalle exacto, se consulta la fuente privada de trabajo en lugar de asumirlo.
@@ -33,7 +36,7 @@ La especificación completa original y los feedbacks con adjuntos no se copiaron
 3. En móvil no se presupone acceso a los eventos físicos del joystick. La implementación observa el desplazamiento/velocidad durante la sesión, traduce la intención a los ejes de la garra y mantiene al jugador en el punto de juego.
 4. La máquina y los peluches se conectan mediante identificadores y contratos de geometría, animación y propiedades; cambiar un nombre requiere seguirlo por todos los JSON y scripts.
 5. Los peluches cuentan con modelos de entidad y modelos de objeto colocable; la textura y escala deben conservar lectura individual dentro del espacio limitado de la cámara.
-6. El pack se encuentra en versión 1.0.9. Ese número describe el paquete de origen, no una versión aceptada por la toolchain del repositorio compartido.
+6. El pack se encuentra en versión 1.0.11. Ese número describe el paquete de origen, no una versión aceptada por la toolchain del repositorio compartido.
 
 ## Estado migrado
 

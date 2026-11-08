@@ -17,7 +17,10 @@
       "animations": {
         "move_x_z": "animation.claw_machine.move_x_z",
         "claw_drop": "animation.claw_machine.drop",
-        "claw_grab": "animation.claw_machine.grab",
+        "claw_idle_open": "animation.claw_machine.claw_idle_open",
+        "claw_grab_open": "animation.claw_machine.grab_open",
+        "claw_grab_close": "animation.claw_machine.grab_close",
+        "claw_hold_closed": "animation.claw_machine.claw_hold_closed",
         "lever_move": "animation.claw_machine.lever_move",
         "win_drop": "animation.claw_machine.win_drop",
         "claw_return": "animation.claw_machine.return",

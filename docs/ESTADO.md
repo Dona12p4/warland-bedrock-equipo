@@ -32,3 +32,5 @@ Atlas de mecanicas, 08/11/2026: acceso directo a Combate tipo Java, Creepers, Lo
 ## Prototipo separado de la base instalada
 
 Se migró a `prototypes/claw-machine/` un prototipo de máquina de peluches con su contexto en `docs/claw-machine/`. No está instalado, registrado en `pack-order/` ni incluido en el catálogo; por tanto, la base de 25 packs descrita arriba permanece intacta. Requiere adaptación a la API estable del equipo y pruebas en laboratorio antes de proponer su integración.
+
+Actualización del prototipo de máquina, 08/11/2026: las fuentes de `prototypes/claw-machine/` se sincronizaron con el paquete local 1.0.11. Incluyen texturas/animaciones del feedback #12 y colisión 3×4 con recogida al golpear la máquina libre. El prototipo permanece separado de los 25 packs oficiales; ver `docs/claw-machine/HISTORIA-Y-ESTADO.md`. La comprobación automatizada y el cliente Bedrock son validaciones distintas.

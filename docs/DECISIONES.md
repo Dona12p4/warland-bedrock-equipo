@@ -13,3 +13,5 @@
 
 - 2026-11-08, aclaracion: el colaborador usa Linux instalado directamente y Codex desde terminal; tiene arranque dual Windows. Preparadores .sh, BDS Linux x86_64 fijado en 1.26.60.6 con SHA256 propio y mismas API/paquetes. Codex se inicia en la raiz del clon para leer el contexto. Clones/laboratorios independientes por sistema; Windows se conserva para pruebas visuales del cliente Bedrock.
 - 2026-11-08, preparacion de la segunda cuenta en el mismo PC: conservar el contexto portable en GitHub y comprobar por separado la cuenta ChatGPT, la identidad GitHub y el equipo de ejecucion. No copiar autenticaciones ni modificar las credenciales del propietario. TheDarkness6859 ya tiene escritura; guia de inicio en docs/INICIO-OTRA-CUENTA.md.
+
+- 2026-11-08: actualizar exclusivamente el prototipo de máquina a 1.0.11 en la rama de trabajo tras orden del propietario. Mantener BP/RP fuera de `packs/` y del mundo oficial hasta una orden de integración separada; documentar la hitbox ampliada y la recogida como cambios del prototipo.

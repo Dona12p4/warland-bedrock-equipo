@@ -131,13 +131,19 @@ world.afterEvents.playerInteractWithEntity.subscribe(({ player, target }) => {
   try {
     const location = target.location;
     const front = getMachineFront(target);
-    const frontX = front.x;
-    const frontZ = front.z;
+    const right = { x: -front.z, z: front.x };
+    const playerSide = (player.location.x - location.x) * right.x +
+      (player.location.z - location.z) * right.z;
+    const side = playerSide >= 0 ? -2.0 : 2.0;
     player.camera.setCamera("minecraft:free", {
-      location: { x: location.x + frontX * 5.0, y: location.y + 2.0, z: location.z + frontZ * 5.0 },
-      facingLocation: { x: location.x, y: location.y + 2.0, z: location.z }
+      location: {
+        x: location.x + front.x * 4.2 + right.x * side,
+        y: location.y + 2.75,
+        z: location.z + front.z * 4.2 + right.z * side
+      },
+      facingLocation: { x: location.x, y: location.y + 2.1, z: location.z }
     });
-  } catch {}
+  } catch { try { player.camera.setCamera("minecraft:first_person"); } catch {} }
   player.sendMessage("§eCruceta/joystick: mover X/Z | §aAtacar: bajar | §cAgacharse: salir");
 });
 
@@ -150,8 +156,24 @@ world.afterEvents.itemUse.subscribe(({ source }) => {
 world.afterEvents.entityHitEntity.subscribe(({ damagingEntity, hitEntity }) => {
   if (!(damagingEntity instanceof Player) || hitEntity.typeId !== MACHINE) return;
   const session = sessions.get(damagingEntity.id);
-  if (!session || session.machine.id !== hitEntity.id) return;
-  beginDrop(session);
+  if (session) {
+    if (session.machine.id === hitEntity.id) beginDrop(session);
+    return;
+  }
+  if ([...sessions.values()].some(active => active.machine.id === hitEntity.id)) {
+    damagingEntity.sendMessage("§cEsta máquina está en uso.");
+    return;
+  }
+  try {
+    hitEntity.remove();
+    const stack = new ItemStack(MACHINE, 1);
+    const inventory = damagingEntity.getComponent("inventory")?.container;
+    const leftover = inventory?.addItem(stack);
+    if (!inventory || leftover) damagingEntity.dimension.spawnItem(leftover ?? stack, damagingEntity.location);
+    damagingEntity.sendMessage("§aMáquina recogida.");
+  } catch {
+    damagingEntity.sendMessage("§cNo se pudo recoger la máquina.");
+  }
 });
 
 function award(player: Player, itemId: string) {
@@ -195,7 +217,7 @@ system.runInterval(() => {
       }
       if (session.ticks >= (session.prize ? 78 : 64)) {
         if (session.prize) award(player, session.prize);
-        else player.sendMessage("§cEl gancho resbaló. ¡Inténtalo de nuevo!");
+        else { try { player.onScreenDisplay.setActionBar("§cEl gancho resbaló. ¡Inténtalo de nuevo!"); } catch {} }
         session.prize = undefined;
         session.state = "PLAYING";
         session.ticks = 0;

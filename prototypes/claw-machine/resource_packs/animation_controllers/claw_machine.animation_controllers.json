@@ -7,7 +7,8 @@
 				"idle": {
 					"animations": [
 						"move_x_z",
-						"lever_move"
+						"lever_move",
+						"claw_idle_open"
 					],
 					"transitions": [
 						{
@@ -25,7 +26,7 @@
 					]
 				},
 				"button": {
-					"animations": ["lever_press"],
+					"animations": ["lever_press", "move_x_z", "claw_idle_open"],
 					"transitions": [
 						{"drop": "query.property('warland:state') == 1"},
 						{"idle": "query.property('warland:state') == 0"}
@@ -33,7 +34,8 @@
 				},
 				"drop": {
 					"animations": [
-						"claw_drop"
+						"claw_drop",
+						"claw_grab_open"
 					],
 					"transitions": [
 						{
@@ -46,7 +48,7 @@
 				},
 				"grab": {
 					"animations": [
-						"claw_grab"
+						"claw_grab_close"
 					],
 					"transitions": [
 						{
@@ -62,8 +64,10 @@
 				},
 				"win": {
 					"animations": [
-						"win_drop"
+                        "win_drop",
+                        "claw_hold_closed"
 					],
+					"blend_transition": 0.15,
 					"transitions": [
 						{
 							"idle": "query.property('warland:state') == 0"
@@ -72,8 +76,10 @@
 				},
 				"return": {
 					"animations": [
-						"claw_return"
+                        "claw_return",
+                        "claw_hold_closed"
 					],
+					"blend_transition": 0.15,
 					"transitions": [
 						{
 							"idle": "query.property('warland:state') == 0"
