@@ -94,3 +94,10 @@ Artefacto SHA256: 6fc887a93b423778a1d020a4f574aaffb7528fcc9f9ff82ff15d92093c13bc
 Informe privado outputs/biomes-particles/installation.json; respaldo verificado
 backups/biomes-complete-20261127-1240. No repetir el instalador sobre la nueva base.
 Fuente en codex/biomes-particulas; main/Pages sujetos a la revision del propietario.
+
+Ampliacion visual del 27/11: cinco auroras base, nieve, arena, luciernagas del
+Nether, polvo distorsionado y burbujas submarinas vistos dentro del cliente.
+Algunas auroras son pequenas/lejanas. Aparicion natural de auroras, variantes
+shorter, lluvia y todas las demas variantes no comprobadas siguen pendientes;
+no inferir 85/85 ni rendimiento Android. Detalle y restauracion de jugador/hora
+en PARTICULAS-BIOMAS.md. Esta ampliacion no modifica el artefacto 0.7.3.

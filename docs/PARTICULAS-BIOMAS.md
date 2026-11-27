@@ -68,3 +68,25 @@ esas muestras. No se ha revisado visualmente la totalidad de los 85 efectos ni
 medido FPS en Windows/Android. El jugador regreso al lobby y a Supervivencia;
 no se alteraron bloques, inventario, saldo ni archivos del mundo durante esta
 revision, y Minecraft quedo abierto.
+
+### Revision ampliada: auroras y otros ambientes (27/11/2026)
+
+Se visualizaron las cinco variantes base northern_lights_1..5 en el cliente
+oficial mediante comandos cosmeticos. Hay cortinas verdes, cian y violetas;
+algunas variantes se ven pequenas y lejanas. Las muestras nocturnas y diurnas
+no equivalen a verificar su aparicion natural en un bioma frio. La seleccion
+natural requiere noche, cielo despejado y bioma frio; las variantes shorter
+no se revisaron individualmente.
+
+Tambien se observaron snow_0, sandmote, nether_fireflies, warped_dust y
+underwater_bubbles. Las muestras del Nether se invocaron en el Overworld para
+comprobar su recurso, no su frecuencia natural. Las burbujas se comprobaron
+bajo el agua de un oceano. Se vieron mariposas naturales y motas submarinas,
+pero estas ultimas no se distinguieron inequívocamente del ambiente vanilla.
+El comando rain se acepto, pero las gotas no quedaron visibles en las capturas:
+esa comprobacion visual sigue pendiente. No hay medicion numerica de FPS.
+
+Al terminar se restauro la posicion inicial del jugador, Supervivencia, medio
+corazon y la hora del dia consultada antes de la prueba. El hotbar se conservo;
+el sistema otorgo normalmente una moneda por tiempo durante la sesion.
+No se cambiaron bloques ni packs, ni se cerraron Minecraft o los servidores.
