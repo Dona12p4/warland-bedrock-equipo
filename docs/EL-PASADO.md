@@ -6,7 +6,7 @@ Estado del 27/11/2026: el propietario autoriza instalar y revisar directamente e
 
 `warland:el_pasado` contiene una copia acotada del WARLAND I reconstruido, transformada en ruinas. No modifica el original. Se entra en aventura, sin romper/colocar bloques, abrir cofres, pulsar botones, usar objetos o cruzar portales históricos. Los contenedores de la copia no incluyen inventarios y los portales/bloques de comando se sustituyen por obsidiana durante la transferencia.
 
-Las ruinas son la visita inicial. La versión intacta queda como vista previa administrativa, separada 1.024 bloques; su apertura al público y la futura luz que guíe la salida siguen pendientes. Por ahora se regresa con el comando o el menú al punto y modo previos de cada jugador.
+Las ruinas son la visita inicial. La versión intacta queda como vista previa administrativa, separada 1.024 bloques; su apertura al público sigue pendiente. Una columna blanca intensa marca la entrada principal de la muralla (245,5 / 63 / -782,5; desplazada +1024 X en la vista intacta). Al permanecer un segundo junto a su base, se regresa al punto y modo previos. El comando y el menú siguen disponibles. La llegada aparece fuera del activador y las cámaras no pueden activarlo.
 
 Comandos del candidato:
 
@@ -32,18 +32,27 @@ La música continúa al terminar o cancelar la escena mientras se permanezca en 
 
 La iluminación clásica de Bedrock no reproduce literalmente las luces de color, sombras y exposición del render externo. Se adapta mediante oscuridad del recinto, niebla, materiales emisivos y partículas. No requiere RTX ni cambia la hora global. El parecido final necesita observarse en el cliente; no confundir la carga nativa con aprobación estética.
 
+## Luz de salida y viento
+
+La columna de luz sube hasta Y101, con núcleo blanco y halo cálido ancho, por encima de la muralla. Dieciocho bloques invisibles de nivel 15 iluminan las dos entradas; tres apoyos reparan el desnivel del acceso en ruinas. Solo se modifica el terreno importado de El Pasado, no el WARLAND original ni el decorado intacto de la película. Las partículas conservan profundidad: no se promete verlas a través de muros ni fuera de la distancia de renderizado.
+
+El viento es un Ogg original de 24 segundos y 88 KB, con ráfagas y fundidos suaves, transmitido en mono. Se reproduce individualmente solo en las ruinas, por debajo de la música (-20,51 LUFS en el archivo; volumen 0,38). Se detiene durante el primer acto intacto, al salir o al morir; reconectar no duplica la pista. La música continúa con su comportamiento anterior.
+
+Por petición expresa, no se harán comprobaciones visuales ni se tomará el control del cliente mientras el usuario juega. Validación automática y nativa separada; revisión estética y FPS móviles pendientes. Minecraft abierto impide respaldar e instalar la nueva dimensión con seguridad.
+
 ## Salidas de atascos y coste
 
 Además de los apoyos anteriores, esta revisión añade 62 salidas físicas entre ambas copias (1.523 bloques de escalones de piedra, más cuatro luces del escenario). Cada ruta tiene comprobación de soporte, espacio para la cabeza y pasos de como máximo un bloque. Incluye dos salidas en el río central de las ruinas. El plano y las rutas exactas se guardan en `.local/past-two-acts/river-exits.json`. La revisión dentro del motor se registra aparte; una ruta calculada no equivale por sí sola a una prueba manual completa de todo el mapa.
 
 La recuperación automática examina una persona por segundo, con hasta 160 nodos de búsqueda. Solo devuelve al último punto seguro cuando puede demostrar un recinto cerrado y la persona sigue detenida. Chunks no cargados o presupuesto agotado no se consideran pruebas de atasco. El comando manual vuelve siempre a la entrada: así también permite salir de recintos grandes que superen el alcance de la búsqueda local. No se escanea ni modifica continuamente todo el mapa.
 
-La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamente 2,69 MB a 0,71 MB. Se compararon todos los puntos de la curva original con error máximo de 0,00001. Ceniza: hasta cuatro focos compartidos, 48+12 partículas por emisión; desaparición: 240 partículas. La música se transmite como Ogg, sin cargar un vídeo. No hay una medición real en Android de 3–4 GB.
+La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamente 2,69 MB a 0,71 MB. Se compararon todos los puntos de la curva original con error máximo de 0,00001. Ceniza en tormenta: hasta cuatro focos compartidos, 72+28 partículas nuevas por segundo y vidas de 2,8/2,5 segundos. Ráfagas laterales de 2,7–4,1 bloques/s y polvo bajo, siempre en el espacio del mundo y con colisión. Presupuesto máximo de 1.276 partículas de ambiente incluyendo las dos guías, considerando cohortes superpuestas; desaparición del Coloso: 240 adicionales y transitorias. La música se transmite como Ogg, sin cargar un vídeo. No hay una medición real en Android de 3–4 GB.
 
 ## Verificación y transferencia
 
 - Pruebas del controlador: dos actos, siete tomas, TP, continuación de música, salida, permisos, convivencia con muerte y recuperación.
-- BDS 1.26.60.6: completo 0.7.3 con 633 comprobaciones de registros, celdas de 62 rutas, siete cámaras, actor, orientación y luces; cero errores y cierre `Quit correctly`. El proceso del laboratorio anterior se conservó abierto.
+- BDS 1.26.60.6: candidato completo 0.7.4 con 652 comprobaciones de registros, celdas de 62 rutas, siete cámaras, actor, orientación, luces nivel 15 y camino de acceso a la guía; cero errores y cierre `Quit correctly`. Los servidores anteriores y Minecraft se conservan abiertos.
+- 54 pruebas Python correctas, incluidas las pruebas JavaScript de retorno por la luz, protección de cámaras, fases de tormenta y viento tras reconexión, muerte o salida. Los cambios posteriores solo suavizan el solapamiento de la columna para evitar pulsos de brillo; las cuatro pruebas de El Pasado también se repitieron.
 - Se separan 19 comprobaciones funcionales de las 1.350 comprobaciones de celdas vacías del recinto de prueba; no son 1.369 escenarios jugables.
 - La exportación acotada contiene 15.680 registros de terreno y 1.147 chunks, con los 544 chunks exigidos de zona jugable y margen completos. Cinco chunks periféricos de la fuente intacta nunca se generaron; se conservan como ausencia de origen, fuera del recorrido protegido.
 - La transferencia excluye jugadores, actores, inventarios, reglas y ticking areas. El id numérico de dimensión del laboratorio se elimina del artefacto. El instalador debe resolver el id del destino y rechazar cualquier colisión con terreno existente.

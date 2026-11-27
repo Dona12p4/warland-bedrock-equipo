@@ -32,6 +32,17 @@
           "volume": 1
         }
       ]
+    },
+    "warland.past.wind": {
+      "category": "weather",
+      "sounds": [
+        {
+          "name": "sounds/warland/past_wind",
+          "stream": true,
+          "is3D": false,
+          "volume": 1
+        }
+      ]
     }
   }
 }

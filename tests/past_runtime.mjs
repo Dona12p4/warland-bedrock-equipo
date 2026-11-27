@@ -42,8 +42,8 @@ class Player{
  teleport(l,o={}){this.location={...l};if(o.dimension)this.dimension=o.dimension}
 }
 const ctx=vm.createContext({...policy,Date:{now:()=>runtimeClock},world,system,Player,GameMode:{Creative:'creative',Adventure:'adventure',Survival:'survival',Spectator:'spectator'},HudVisibility:{Hide:0,Reset:1},InputPermissionCategory:{Camera:'camera',Movement:'movement'},EasingType:{Linear:'Linear'},CommandPermissionLevel:{Any:0},CustomCommandStatus:{Success:0,Failure:1},ActionFormData:class{},console:{warn:x=>logs.push(x)}});
-for(const name of ['past-music.js','past-travel.js','past-palm-path.js','past-lighting.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
-const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe})',ctx);
+for(const name of ['past-music.js','past-travel.js','past-palm-path.js','past-lighting.js','past-environment.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
+const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe,createPastWind,createPastGuide,stormActive,PAST_GUIDE,PAST_WIND})',ctx);
 async function pump(promise){let done=false,error,result;promise.then(v=>{done=true;result=v},e=>{done=true;error=e});for(let i=0;i<500&&!done;i++){for(const f of timeouts.splice(0))f();await Promise.resolve();}assert(done,'async operation failed to settle');if(error)throw error;return result;}
 for(const f of after.worldLoad.callbacks)f();
 const a=new Player('DanielGamerSC'),b=new Player('visitor');players.push(a,b);
@@ -122,3 +122,41 @@ assert([...lamps.values()].some(b=>b.typeId.startsWith('minecraft:light_block'))
 light.clear();assert([...lamps.values()].every(b=>b.isAir),'temporary palm light remained after cancellation');
 light.update(lampDimension,8);const lit=[...lamps.values()].find(b=>!b.isAir);lit.setPermutation({typeId:'minecraft:stone'});light.clear();assert.equal(lit.typeId,'minecraft:stone','cleanup erased a later block');
 console.log('PASS: palm lighting, cancellation cleanup and occupied-cell preservation.');
+
+// A visitor spawns inside the city, outside the gate trigger. Returning through
+// the light takes a one-second dwell and must preserve the original location.
+const gate=api.createPastGuide(),gp=new Player('gate');gp.dimension=dims.get(policy.PAST.dimension);
+gp.location={...policy.PAST.spawn};assert(!gate.ready(gp,0));assert(!gate.ready(gp,100));
+gp.location={...api.PAST_GUIDE.at};assert(!gate.ready(gp,101));assert(!gate.ready(gp,120));assert(gate.ready(gp,121));
+assert(!gate.ready(gp,122));assert(!gate.ready(gp,150,false),'busy/dead visitor triggered exit');
+gp.addTag(policy.PAST.filmTag);assert(!gate.ready(gp,200));assert(!gate.ready(gp,240));gp.removeTag(policy.PAST.filmTag);
+gp.location.x+=policy.PAST.normalOffset;assert(!gate.ready(gp,300));assert(gate.ready(gp,320),'intact preview has no exit');
+gp.location.y+=20;assert(!gate.ready(gp,400),'light shaft teleported a flying visitor');
+
+let windClock=0;const wc=api.createPastWind(()=>windClock),wl=new Player('wind');wl.dimension=dims.get(policy.PAST.dimension);wl.location={...policy.PAST.spawn};
+assert(api.stormActive(wl));wc.update(wl,true);assert.equal(wl.sounds.length,1);
+windClock=23999;wc.update(wl,true);assert.equal(wl.sounds.length,1,'overlapping wind loop');
+windClock=24000;wc.update(wl,true);assert.equal(wl.sounds.length,2);
+wl.addTag(policy.PAST.filmTag);assert(!api.stormActive(wl));assert(!api.stormActive(wl,{playing:true,memory:true}));assert(api.stormActive(wl,{playing:true,memory:false}));
+wc.update(wl,false);assert(!wl.getDynamicProperty(api.PAST_WIND.key));
+wl.removeTag(policy.PAST.filmTag);wl.location.x+=1024;assert(!api.stormActive(wl),'intact preview has a storm');
+wl.location.x-=1024;wc.update(wl,true);wl.getComponent=()=>({currentValue:0});wc.update(wl,true);assert(!wl.getDynamicProperty(api.PAST_WIND.key),'dead visitor retained wind');
+wl.getComponent=()=>({currentValue:20});wl.setDynamicProperty(api.PAST_WIND.key,true);const freshWind=api.createPastWind(()=>windClock);const beforeStops=commands.length;freshWind.update(wl,true);
+assert(commands.slice(beforeStops).includes('stopsound @s warland.past.wind'),'reconnect duplicated wind');
+wl.dimension=dims.get('minecraft:overworld');freshWind.update(wl,true);assert(!wl.getDynamicProperty(api.PAST_WIND.key));
+
+const visit=intervals.find(x=>x.t===20).f;
+await pump(api.exitPast(a));const gateOrigin={...a.location};await pump(api.enterPast(a));
+a.location={...api.PAST_GUIDE.at};system.currentTick+=20;visit();system.currentTick+=20;visit();
+await pump(Promise.resolve().then(async()=>{for(let i=0;i<10;i++){for(const f of timeouts.splice(0))f();await Promise.resolve()}}));
+assert.equal(a.dimension.id,'minecraft:overworld','walking into guide did not return');assert.deepEqual(a.location,gateOrigin);assert.equal(a.mode,'creative');
+assert(!a.getDynamicProperty(api.PAST_WIND.key));assert(!a.getDynamicProperty('warland:past_music_v1'));
+
+await pump(api.startPastFilm(a));let from=effects.length;visit();
+assert(!effects.slice(from).some(e=>e[0].startsWith('warland:past_ash')),'intact opening emitted ash');
+assert(!a.getDynamicProperty(api.PAST_WIND.key),'intact opening played wind');
+runtimeClock+=27500;filmTick();visit();assert(a.getDynamicProperty(api.PAST_WIND.key));
+assert(effects.slice(from).some(e=>e[0]==='warland:past_ash'),'ruined act missing storm');
+api.stopPastFilm(a);assert(a.getDynamicProperty(api.PAST_WIND.key),'exploring lost wind after film');
+await pump(api.exitPast(a));
+console.log('PASS: gate dwell/return, intact gate, protected film, storm act boundary, wind loop/reconnect/death/exit.');
