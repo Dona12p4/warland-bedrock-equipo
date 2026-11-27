@@ -3,7 +3,7 @@ import {PAST,inPast} from './past-policy.js';
 import {PAST_ARRIVAL,pastArrivalFrame,pastArrivalLight} from './past-arrival-policy.js';
 const jobs=new Map(),permissions=[InputPermissionCategory.Camera,InputPermissionCategory.Movement];
 const alive=p=>p.isValid&&(p.getComponent('minecraft:health')?.currentValue??0)>0;
-const deathOwns=p=>!!p.getDynamicProperty('warland:heart_death_v1')||p.hasTag('warland_heart_spectator');
+const deathOwns=p=>world.getDynamicProperty('warland:heart_overlay_v1')===true||!!p.getDynamicProperty('warland:heart_death_v1')||p.hasTag('warland_heart_spectator');
 const audit=(action,p,extra={})=>console.warn('[PAST_ARRIVAL] '+JSON.stringify({action,name:p?.name,...extra}));
 export const pastArrivalActive=p=>jobs.has(p.id)||p.hasTag(PAST_ARRIVAL.tag);
 export const pastArrivalDebug=()=>[...jobs.values()].map(s=>({id:s.p.id,elapsed:system.currentTick-s.start,emissions:s.emissions}));

@@ -48,8 +48,8 @@ const arrivalCtx=vm.createContext({...ctx,system:{...system,get currentTick(){re
 for(const name of ['past-arrival-policy.js','past-arrival.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),arrivalCtx);
 const arrival=vm.runInContext('({PAST_ARRIVAL,pastArrivalFrame,pastArrivalLight,pastArrivalActive,startPastArrival,stopPastArrival,recoverPastArrival,pastArrivalDebug})',arrivalCtx);
 Object.assign(ctx,arrival);
-for(const name of ['past-music.js','past-travel.js','past-palm-path.js','past-lighting.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
-const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe})',ctx);
+for(const name of ['past-music.js','past-travel.js','past-palm-path.js','past-lighting.js','past-environment.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
+const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe,createPastWind,createPastGuide,stormActive,PAST_GUIDE,PAST_WIND})',ctx);
 const defaultEntry=api.enterPast;
 // Existing film/travel checks use its explicit skip path; default entry is
 // exercised with the new arrival controller below.
@@ -164,3 +164,52 @@ await pump(api.exitPast(a));assert(await pump(api.startPastFilm(a)),'direct film
 assert(arrival.startPastArrival(a));a.setDynamicProperty('warland:heart_death_v1','active');system.currentTick+=2;arrivalIntervals.find(x=>x.t===2).f();
 assert(a.getDynamicProperty(arrival.PAST_ARRIVAL.key),'death recovery record lost');a.setDynamicProperty('warland:heart_death_v1',undefined);arrivalIntervals.find(x=>x.t===20).f();assert(!a.getDynamicProperty(arrival.PAST_ARRIVAL.key));assert.equal(a.mode,'adventure');
 console.log('PASS: corner-to-corner arrival, wide view, entrance landing, private light, film exclusion and death recovery.');
+
+// A visitor spawns inside the city, outside the gate trigger. Returning through
+// the light takes a one-second dwell and must preserve the original location.
+const gate=api.createPastGuide(),gp=new Player('gate');gp.dimension=dims.get(policy.PAST.dimension);
+gp.location={...policy.PAST.spawn};assert(!gate.ready(gp,0));assert(!gate.ready(gp,100));
+gp.location={...api.PAST_GUIDE.at};assert(!gate.ready(gp,101));assert(!gate.ready(gp,120));assert(gate.ready(gp,121));
+assert(!gate.ready(gp,122));assert(!gate.ready(gp,150,false),'busy/dead visitor triggered exit');
+gp.addTag(policy.PAST.filmTag);assert(!gate.ready(gp,200));assert(!gate.ready(gp,240));gp.removeTag(policy.PAST.filmTag);
+gp.location.x+=policy.PAST.normalOffset;assert(!gate.ready(gp,300));assert(gate.ready(gp,320),'intact preview has no exit');
+gp.location.y+=20;assert(!gate.ready(gp,400),'light shaft teleported a flying visitor');
+
+let windClock=0;const wc=api.createPastWind(()=>windClock),wl=new Player('wind');wl.dimension=dims.get(policy.PAST.dimension);wl.location={...policy.PAST.spawn};
+assert(api.stormActive(wl));wc.update(wl,true);assert.equal(wl.sounds.length,1);
+windClock=23999;wc.update(wl,true);assert.equal(wl.sounds.length,1,'overlapping wind loop');
+windClock=24000;wc.update(wl,true);assert.equal(wl.sounds.length,2);
+wl.addTag(policy.PAST.filmTag);assert(!api.stormActive(wl));assert(!api.stormActive(wl,{playing:true,memory:true}));assert(api.stormActive(wl,{playing:true,memory:false}));
+wc.update(wl,false);assert(!wl.getDynamicProperty(api.PAST_WIND.key));
+wl.removeTag(policy.PAST.filmTag);wl.location.x+=1024;assert(!api.stormActive(wl),'intact preview has a storm');
+wl.location.x-=1024;wc.update(wl,true);wl.getComponent=()=>({currentValue:0});wc.update(wl,true);assert(!wl.getDynamicProperty(api.PAST_WIND.key),'dead visitor retained wind');
+wl.getComponent=()=>({currentValue:20});wl.setDynamicProperty(api.PAST_WIND.key,true);const freshWind=api.createPastWind(()=>windClock);const beforeStops=commands.length;freshWind.update(wl,true);
+assert(commands.slice(beforeStops).includes('stopsound @s warland.past.wind'),'reconnect duplicated wind');
+wl.dimension=dims.get('minecraft:overworld');freshWind.update(wl,true);assert(!wl.getDynamicProperty(api.PAST_WIND.key));
+
+const visit=intervals.find(x=>x.t===20).f;
+await pump(api.exitPast(a));const gateOrigin={...a.location};await pump(api.enterPast(a));
+a.location={...api.PAST_GUIDE.at};system.currentTick+=20;visit();system.currentTick+=20;visit();
+await pump(Promise.resolve().then(async()=>{for(let i=0;i<10;i++){for(const f of timeouts.splice(0))f();await Promise.resolve()}}));
+assert.equal(a.dimension.id,'minecraft:overworld','walking into guide did not return');assert.deepEqual(a.location,gateOrigin);assert.equal(a.mode,'creative');
+assert(!a.getDynamicProperty(api.PAST_WIND.key));assert(!a.getDynamicProperty('warland:past_music_v1'));
+
+await pump(api.startPastFilm(a));let from=effects.length;visit();
+assert(!effects.slice(from).some(e=>e[0].startsWith('warland:past_ash')),'intact opening emitted ash');
+assert(!a.getDynamicProperty(api.PAST_WIND.key),'intact opening played wind');
+runtimeClock+=27500;filmTick();visit();assert(a.getDynamicProperty(api.PAST_WIND.key));
+assert(effects.slice(from).some(e=>e[0]==='warland:past_ash'),'ruined act missing storm');
+api.stopPastFilm(a);assert(a.getDynamicProperty(api.PAST_WIND.key),'exploring lost wind after film');
+await pump(api.exitPast(a));
+console.log('PASS: gate dwell/return, intact gate, protected film, storm act boundary, wind loop/reconnect/death/exit.');
+
+// A simultaneous explorer must not make the gate visible in someone else's film.
+await pump(api.startPastFilm(a));await pump(api.enterPast(b));
+let filmParticles=a.particles.length,explorerParticles=b.particles.length,globalEffects=effects.length;
+visit();assert.equal(a.particles.length,filmParticles,'gate leaked into film');
+assert(b.particles.length>explorerParticles,'explorer lost return guide');
+assert(!effects.slice(globalEffects).some(e=>e[0].startsWith('warland:past_guide')),'gate was broadcast');
+const emitter=api.createPastGuide();assert.equal(emitter.emit(a),false);assert.equal(emitter.emit(b),true);
+api.stopPastFilm(a);filmParticles=a.particles.length;visit();assert(a.particles.length>filmParticles,'guide did not resume after movie');
+await pump(api.exitPast(a));await pump(api.exitPast(b));
+console.log('PASS: guide is private, hidden in both film acts, and returns while exploring.');

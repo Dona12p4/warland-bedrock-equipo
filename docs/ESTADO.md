@@ -1,5 +1,9 @@
 # Estado de partida de la colaboracion
 
+## Preparación vigente: luz de salida y tormenta de El Pasado (27/11/2026)
+
+Completo 0.7.4 pendiente de instalar sobre el 0.7.3 vigente. Incluye la luz blanca intensa en la entrada principal, iluminación clásica nivel 15, retorno al origen por proximidad, ráfagas de ceniza y viento continuo solo en las ruinas. Preserva las partículas de biomas, Impostor 0.3.3, Lobby 1.2.0 y demás contenido integrado. Fuente y terreno se validan fuera de la partida abierta; el usuario pidió no controlar Minecraft ni hacer comprobaciones visuales para poder seguir jugando. No confundir preparación con instalación. La instalación sigue dirigida al oficial 3–4 GB y a los archivos del servidor vigente, con respaldo cerrado, conservación de progreso y paridad.
+
 ## Estado vigente: completo 0.7.2 instalado en ambos destinos (27/11/2026)
 
 La instalacion autorizada sustituyo las activaciones modulares por WARLAND Completo 0.7.2 (un BP y un RP) en el servidor de proyecto 19152 y el mundo oficial Movil 3-4 GB. Los 1081 archivos y las referencias coinciden por SHA-256 en ambos destinos. Incluye Lobby 1.2.0 y la correccion de huesos del Impostor 0.3.3. El candidato El Pasado permanece separado y no instalado. Los antecedentes de preparacion siguientes describen estados anteriores.

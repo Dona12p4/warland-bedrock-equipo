@@ -41,3 +41,8 @@ El constructor completo 0.7.1 conserva las fuentes de la rama actual, incluido L
 
 
 - 27/11/2026: incorporar Biomes-Particles al oficial, integrado en el pack completo, con prioridad en optimizar las particulas. Se entregan Overworld/Nether con recursos de MrsTrader, limites por jugador y sin alterar el Umbral. Unico WARLAND.mcaddon 0.7.3, mismo BP/RP en servidor y oficial. No detener servidores abiertos.
+
+
+## 27/11/2026: luz fuerte, ceniza y viento en El Pasado
+
+El usuario pide una luz muy potente en la entrada de WARLAND que guíe el regreso, ceniza como tormenta de arena y sonido de viento. Se conserva intacto y limpio el primer acto de la cinemática. El retorno usa el origen individual guardado y no se activa durante cámaras ni sobre la llegada. Orden adicional: no hacer confirmaciones visuales ni tomar el cliente; el usuario sigue jugando. Preparar y probar automáticamente sin modificar la DB abierta. Instalación oficial y paridad quedan pendientes del cierre.

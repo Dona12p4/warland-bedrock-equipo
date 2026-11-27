@@ -5,17 +5,18 @@ import {createPastMusic,PAST_MUSIC} from './past-music.js';
 import {escapeProbe,safeLanding} from './past-travel.js';
 import {createPastLighting} from './past-lighting.js';
 import {pastArrivalActive,startPastArrival,stopPastArrival} from './past-arrival.js';
+import {createPastWind,createPastGuide,stormActive} from './past-environment.js';
 
 const wait=t=>new Promise(r=>system.runTimeout(r,t)),v=a=>({x:a[0],y:a[1],z:a[2]});
 const permissions=[InputPermissionCategory.Camera,InputPermissionCategory.Movement];
 const busy=new Set(),lastSafe=new Map(),regions=new Set(),regionLoads=new Map();let film=null,actor=null,loaded=false;
-const music=createPastMusic(),lighting=createPastLighting(),travel=new Map();let travelCursor=0;
+const music=createPastMusic(),wind=createPastWind(),guide=createPastGuide(),lighting=createPastLighting(),travel=new Map();let travelCursor=0;
 const read=(p,k)=>{try{return JSON.parse(p.getDynamicProperty(k)??'null')}catch{return null}};
 const heart=p=>world.getDynamicProperty('warland:heart_overlay_v1')===true||!!p.getDynamicProperty('warland:heart_death_v1');
 const alive=p=>p.isValid&&(p.getComponent('minecraft:health')?.currentValue??0)>0;
 const audit=(action,p,detail={})=>console.warn('[WARLAND_PAST] '+JSON.stringify({action,name:p?.name,tick:system.currentTick,...detail}));
 const dimension=()=>world.getDimension(PAST.dimension);
-function notice(p,text){try{p.sendMessage('§7'+text)}catch{}}
+function notice(p,text){try{p.sendMessage('Â§7'+text)}catch{}}
 function fog(p,normal,cinematic=false){
  for(const id of ['wl_past_ruins','wl_past_intact','wl_past_cinema'])try{p.runCommand('fog @s remove '+id)}catch{}
  const name=normal?'intact':cinematic?'cinema':'ruins';
@@ -36,7 +37,7 @@ async function region(normal){
   try{if(d.getBlock({x:250+dx,y:61,z:-783})&&!d.getBlock({x:250+dx,y:61,z:-783}).isAir)return d}catch{}
   await wait(2);
  }
- throw Error('El terreno de El Pasado no está instalado o no termina de cargar.');})();
+ throw Error('El terreno de El Pasado no estÃ¡ instalado o no termina de cargar.');})();
  regionLoads.set(name,load);
  try{return await load}finally{regionLoads.delete(name)}
 }
@@ -59,7 +60,7 @@ function saveOrigin(p){
 }
 export async function enterPast(p,normal=false,skipArrival=false){
  if(busy.has(p.id)||!canStart(p))return false;
- if(normal&&!pastAdmin(p.name)){notice(p,'Ese recuerdo todavía no está disponible.');return false;}
+ if(normal&&!pastAdmin(p.name)){notice(p,'Ese recuerdo todavÃ­a no estÃ¡ disponible.');return false;}
  busy.add(p.id);
  const showArrival=!normal&&!skipArrival&&!inPast(p);
  try{
@@ -68,9 +69,10 @@ export async function enterPast(p,normal=false,skipArrival=false){
   await wait(4);if(!alive(p)||heart(p))return false;
   p.teleport(offsetPoint(PAST.spawn,normal),{dimension:d,rotation:{x:0,y:-90}});p.setGameMode(GameMode.Adventure);
   lastSafe.set(p.id,{...p.location});travel.delete(p.id);fog(p,normal);music.update(p);
-  p.onScreenDisplay.setTitle(normal?'El Pasado · Antes de la ceniza':'El Pasado',{subtitle:normal?'Un recuerdo que aún permanece.':'WARLAND I · Lo que quedó.',fadeInDuration:10,stayDuration:40,fadeOutDuration:20});
+  p.onScreenDisplay.setTitle(normal?'El Pasado Â· Antes de la ceniza':'El Pasado',{subtitle:normal?'Un recuerdo que aÃºn permanece.':'WARLAND I Â· Lo que quedÃ³.',fadeInDuration:10,stayDuration:40,fadeOutDuration:20});
+  wind.update(p,stormActive(p));guide.forget(p.id);
   if(showArrival)startPastArrival(p);
-  notice(p,'Recorre el recuerdo. /warland:pasado_salir para volver.');audit('entered',p,{normal});return true;
+  notice(p,'Sigue la luz de la entrada para regresar.');audit('entered',p,{normal});return true;
  }catch(e){notice(p,String(e.message??e));audit('entry_error',p,{error:String(e)});return false}
  finally{busy.delete(p.id);releaseRegions()}
 }
@@ -90,10 +92,10 @@ function restoreFilm(p){
 }
 export function stopPastFilm(p,reason='cancelled'){
  if(film?.p.id===p.id){film=null;lighting.clear();if(actor?.isValid)actor.remove();actor=null;}
- restoreFilm(p);audit('cinema_stopped',p,{reason});releaseRegions();
+ restoreFilm(p);wind.update(p,stormActive(p));audit('cinema_stopped',p,{reason});releaseRegions();
 }
 export async function exitPast(p){
- if(!alive(p)||heart(p)){notice(p,'Espera a que termine la reaparición.');return false}
+ if(!alive(p)||heart(p)){notice(p,'Espera a que termine la reapariciÃ³n.');return false}
  if(busy.has(p.id))return false;
  if(pastArrivalActive(p))stopPastArrival(p,'exit');
  if(p.getDynamicProperty(PAST.filmKey))stopPastFilm(p);
@@ -104,13 +106,13 @@ export async function exitPast(p){
   p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:.15,holdTime:.3,fadeOutTime:.5}});await wait(4);
   if(!alive(p)||heart(p))return false;
   p.teleport(s.location,{dimension:world.getDimension(s.dimension),rotation:s.rotation});
-  p.setGameMode(s.mode);p.setDynamicProperty(PAST.returnKey,undefined);lastSafe.delete(p.id);travel.delete(p.id);music.stop(p);fog(p,false);audit('returned',p,{dimension:s.dimension});return true;
- }catch(e){notice(p,'No se pudo regresar todavía. Repite /warland:pasado_salir.');audit('return_error',p,{error:String(e)});return false}
+  p.setGameMode(s.mode);p.setDynamicProperty(PAST.returnKey,undefined);lastSafe.delete(p.id);travel.delete(p.id);guide.forget(p.id);wind.stop(p);music.stop(p);fog(p,false);audit('returned',p,{dimension:s.dimension});return true;
+ }catch(e){notice(p,'No se pudo regresar todavÃ­a. Repite /warland:pasado_salir.');audit('return_error',p,{error:String(e)});return false}
  finally{busy.delete(p.id);releaseRegions()}
 }
 export async function startPastFilm(p){
- if(film){notice(p,'La escena está en curso. Espera a que termine.');return false}
- if(!pastAdmin(p.name)){notice(p,'La cinemática está en revisión por los administradores.');return false}
+ if(film){notice(p,'La escena estÃ¡ en curso. Espera a que termine.');return false}
+ if(!pastAdmin(p.name)){notice(p,'La cinemÃ¡tica estÃ¡ en revisiÃ³n por los administradores.');return false}
  if(pastArrivalActive(p))stopPastArrival(p,'film');
  if(!canStart(p)||busy.has(p.id))return false;
  if(!inPast(p)||normalPast(p)){if(!await enterPast(p,false,true))return false}
@@ -118,6 +120,7 @@ export async function startPastFilm(p){
  const saved={location:{...p.location},rotation:p.getRotation(),hidden:p.onScreenDisplay.getHiddenHudElements(),permissions:permissions.map(c=>[c,p.inputPermissions.isPermissionCategoryEnabled(c)])};
  p.setDynamicProperty(PAST.filmKey,JSON.stringify(saved));p.addTag(PAST.filmTag);
  const s={p,start:0,playing:false,index:-1,memory:true,fading:false};film=s;
+ wind.stop(p);guide.forget(p.id);
  try{
   permissions.forEach(c=>p.inputPermissions.setPermissionCategory(c,false));p.setGameMode(GameMode.Spectator);p.onScreenDisplay.setHudVisibility(HudVisibility.Hide);
   p.onScreenDisplay.setTitle('WL_PAST|FILM',{fadeInDuration:0,stayDuration:1600,fadeOutDuration:0});
@@ -159,9 +162,9 @@ world.afterEvents.playerSpawn.subscribe(({player:p})=>system.runTimeout(()=>{
 },10));
 world.afterEvents.playerDimensionChange.subscribe(({player:p})=>system.runTimeout(()=>{
  if(!p.isValid)return;
- if(!inPast(p)){if(film?.p.id===p.id)stopPastFilm(p,'dimension');music.stop(p);fog(p,false);releaseRegions()}
+ if(!inPast(p)){if(film?.p.id===p.id)stopPastFilm(p,'dimension');wind.stop(p);guide.forget(p.id);music.stop(p);fog(p,false);releaseRegions()}
 },4));
-world.afterEvents.playerLeave.subscribe(({playerId})=>{lastSafe.delete(playerId);travel.delete(playerId);music.forget(playerId);busy.delete(playerId);if(film?.p.id===playerId){film=null;lighting.clear();if(actor?.isValid)actor.remove();actor=null}releaseRegions()});
+world.afterEvents.playerLeave.subscribe(({playerId})=>{lastSafe.delete(playerId);travel.delete(playerId);music.forget(playerId);wind.forget(playerId);guide.forget(playerId);busy.delete(playerId);if(film?.p.id===playerId){film=null;lighting.clear();if(actor?.isValid)actor.remove();actor=null}releaseRegions()});
 world.afterEvents.worldLoad.subscribe(()=>{loaded=true;try{dimension();audit('dimension_loaded',null)}catch(e){audit('dimension_error',null,{error:String(e)})}});
 system.runInterval(()=>{
  if(!loaded)return;
@@ -171,7 +174,7 @@ system.runInterval(()=>{
    const c=cameraAt(t),index=shotAt(t).index,cut=index!==s.index,flash=c.memory!==s.memory;
    lighting.update(dimension(),t-ACTOR_START);
    if(cut){s.index=index;p.camera.setFov({fov:c.fov});if(index===ACTOR_SHOT&&actor?.isValid)actor.setProperty('warland:performance',true);audit('cut',p,{index,time:t,intact:c.memory})}
-   if(flash){s.memory=c.memory;fog(p,c.memory,true);audit('memory',p,{visible:c.memory,time:t})}
+   if(flash){s.memory=c.memory;fog(p,c.memory,true);wind.update(p,stormActive(p,s));audit('memory',p,{visible:c.memory,time:t})}
    // Camera listener is explicitly the player. Keep the spectator behind the
    // rail, close enough to stream terrain, the actor and the world particles.
    if(cut||flash||system.currentTick%4===0)p.teleport(cameraAnchor(c));
@@ -187,6 +190,10 @@ system.runInterval(()=>{
  const players=world.getAllPlayers(),probePlayer=players.length?players[travelCursor++%players.length]?.id:null;
  const cells=new Set();for(const p of players)try{
   music.update(p);
+  const storm=stormActive(p,film?.p.id===p.id?film:null);wind.update(p,storm);
+  if(guide.ready(p,system.currentTick,alive(p)&&!heart(p)&&!pastArrivalActive(p)&&!busy.has(p.id)&&validReturn(read(p,PAST.returnKey)))){
+   exitPast(p).catch(e=>audit('guide_return_error',p,{error:String(e)}));continue;
+  }
   if(!inPast(p)){
    if(!heart(p)&&alive(p)&&p.getDynamicProperty(PAST.filmKey)&&film?.p.id!==p.id)restoreFilm(p);
    const s=read(p,PAST.returnKey);
@@ -207,7 +214,9 @@ system.runInterval(()=>{
     }
    }
   }
-  if(normalPast(p))continue;
+  const normal=normalPast(p);
+  if(!pastArrivalActive(p))guide.emit(p)
+  if(!storm)continue;
   let at={...p.location,y:p.location.y+2};if(film?.p.id===p.id&&film.playing){const c=cameraAt((Date.now()-film.start)/1000);if(c.memory)continue;at=v(c.position)}
   const key=Math.floor(at.x/12)+':'+Math.floor(at.z/12);if(cells.has(key)||cells.size>=4)continue;cells.add(key);
   // Emission cells stay fixed in world coordinates, never attached to the view.
@@ -221,18 +230,18 @@ export function unstuckPast(p,automatic=false){
  const previous=lastSafe.get(p.id),fallback=offsetPoint(PAST.spawn,normalPast(p)),target=automatic&&previous&&safeLanding(p.dimension,previous)?previous:fallback;
  // Manual recovery always reaches the entrance: a large sealed room may exceed
  // the bounded local search, so its last walking point is not a reliable exit.
- p.teleport(target);travel.delete(p.id);lastSafe.set(p.id,{...target});notice(p,automatic?'Has vuelto al último paso seguro.':'Has vuelto a la entrada del recuerdo.');audit('unstuck',p,{automatic,target});return true;
+ p.teleport(target);travel.delete(p.id);lastSafe.set(p.id,{...target});notice(p,automatic?'Has vuelto al Ãºltimo paso seguro.':'Has vuelto a la entrada del recuerdo.');audit('unstuck',p,{automatic,target});return true;
 }
 async function menu(p){
  const f=new ActionFormData().title('El Pasado').body('Un lugar que permanece en la memoria.').button('Recorrer las cenizas');
  const actions=[()=>enterPast(p,false)];
- if(pastAdmin(p.name)){f.button('Ver cinemática');actions.push(()=>startPastFilm(p));f.button('Antes de la ceniza · vista previa');actions.push(()=>enterPast(p,true))}
+ if(pastAdmin(p.name)){f.button('Ver cinemÃ¡tica');actions.push(()=>startPastFilm(p));f.button('Antes de la ceniza Â· vista previa');actions.push(()=>enterPast(p,true))}
  if(read(p,PAST.returnKey)){f.button('Volver');actions.push(()=>exitPast(p))}
  if(inPast(p)){f.button('Volver a la entrada');actions.push(()=>unstuckPast(p))}
  const r=await f.show(p);if(!r.canceled)await actions[r.selection]?.();
 }
 system.beforeEvents.startup.subscribe(({customCommandRegistry:r})=>{
- for(const [name,description,action] of [['pasado','Entrar al recuerdo de WARLAND I',p=>menu(p)],['pasado_cenizas','Recorrer las ruinas de WARLAND I',p=>enterPast(p,false)],['pasado_intacto','Vista previa administrativa de WARLAND I',p=>enterPast(p,true)],['pasado_salir','Volver desde El Pasado',p=>exitPast(p)],['pasado_desatascar','Volver a la entrada de El Pasado',p=>unstuckPast(p)],['cinematica','Ver la cinemática nativa de WARLAND I',p=>startPastFilm(p)],['cinematica_salir','Salir de la cinemática',p=>stopPastFilm(p)]]){
+ for(const [name,description,action] of [['pasado','Entrar al recuerdo de WARLAND I',p=>menu(p)],['pasado_cenizas','Recorrer las ruinas de WARLAND I',p=>enterPast(p,false)],['pasado_intacto','Vista previa administrativa de WARLAND I',p=>enterPast(p,true)],['pasado_salir','Volver desde El Pasado',p=>exitPast(p)],['pasado_desatascar','Volver a la entrada de El Pasado',p=>unstuckPast(p)],['cinematica','Ver la cinemÃ¡tica nativa de WARLAND I',p=>startPastFilm(p)],['cinematica_salir','Salir de la cinemÃ¡tica',p=>stopPastFilm(p)]]){
   r.registerCommand({name:'warland:'+name,description,permissionLevel:CommandPermissionLevel.Any,cheatsRequired:false},origin=>{
    const p=origin.sourceEntity;if(!(p instanceof Player))return {status:CustomCommandStatus.Failure,message:'Requiere un jugador.'};
    system.run(()=>Promise.resolve(action(p)).catch(e=>audit('command_error',p,{error:String(e)})));return {status:CustomCommandStatus.Success};

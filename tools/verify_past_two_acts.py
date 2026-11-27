@@ -2,12 +2,14 @@
 from pathlib import Path
 import json,subprocess,time
 import team
+from past_guide_terrain import LIGHTS
 R=team.ROOT
 def run(out):
     server=out/'server';world=server/'worlds/WARLAND_LAB';bp=world/'behavior_packs/WARLAND_BP';entry=bp/'scripts/main.js';saved=entry.read_bytes()
     routes=team.read(R/'.local/past-two-acts/river-exits.json')['routes']
     script="""import {world,system,EntityTypes,ItemTypes,BlockTypes} from '@minecraft/server';
 import {PAST,SHOTS,cameraAt,ACTOR_START,ACTOR_VANISH} from './components/warland_bp/past-policy.js';
+import {PAST_GUIDE,createPastGuide} from './components/warland_bp/past-environment.js';
 const routes=ROUTES,expected=EXPECTED,wait=t=>new Promise(r=>system.runTimeout(r,t));
 world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
  const d=world.getDimension(PAST.dimension),checks=[];let actor=null;
@@ -22,6 +24,10 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
    d.runCommand('tickingarea remove exits');await wait(2);
   }
   ok(d.runCommand('tickingarea add 208 48 -848 415 420 -737 shots true').successCount===1,'load camera sets');await wait(40);
+  for(const [x,y,z]of GUIDE_LIGHTS)ok(d.getBlock({x,y,z})?.typeId==='minecraft:light_block_15','maximum entrance light',{at:[x,y,z]});
+  for(const [x,y]of [[250,62],[249,62],[248,63],[247,63],[246,63],[245,63]])ok(pass(d.getBlock({x,y,z:-783}))&&pass(d.getBlock({x,y:y+1,z:-783}))&&!pass(d.getBlock({x,y:y-1,z:-783})),'walk to guide',{x,y});
+  const guide=createPastGuide();guide.emit(d);ok(true,'guide particles emitted');
+  for(const effect of ['warland:past_ash','warland:past_ash_near','warland:past_drift']){d.spawnParticle(effect,{...PAST_GUIDE.at,y:66});ok(true,'storm emitted '+effect)}
   for(const s of SHOTS){const c=cameraAt(s.t);for(const a of [c.position,c.target])ok(!!d.getBlock({x:Math.floor(a[0]),y:Math.floor(a[1]),z:Math.floor(a[2])}),'camera loaded '+s.t);}
   for(const e of d.getEntities({type:PAST.actor}))e.remove();actor=d.spawnEntity(PAST.actor,PAST.actorAt);actor.setRotation({x:0,y:180});actor.setProperty('warland:performance',true);await wait(300);
   ok(actor.isValid,'colossus survives entire performance');ok(Math.abs(Math.abs(actor.getRotation().y)-180)<.1,'back toward camera');ok(actor.getProperty('warland:performance'),'performance property');
@@ -35,7 +41,7 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
         for f in (bp/kind).rglob('*.json'):
             ident=team.read(f).get(tag,{}).get('description',{}).get('identifier')
             if ident:ids[kind].append(ident)
-    script=script.replace('ROUTES',json.dumps(routes)).replace('EXPECTED',json.dumps(ids));probe=bp/'scripts/two-acts-probe.js';probe.write_text(script,encoding='utf-8');entry.write_bytes(saved+b"\nimport './two-acts-probe.js';\n")
+    script=script.replace('ROUTES',json.dumps(routes)).replace('EXPECTED',json.dumps(ids)).replace('GUIDE_LIGHTS',json.dumps(LIGHTS));probe=bp/'scripts/two-acts-probe.js';probe.write_text(script,encoding='utf-8');entry.write_bytes(saved+b"\nimport './two-acts-probe.js';\n")
     log=out/'native.log'
     with log.open('w',encoding='utf-8')as stream:
         proc=subprocess.Popen([str(server/'bedrock_server.exe')],cwd=server,stdin=subprocess.PIPE,stdout=stream,stderr=subprocess.STDOUT,text=True,creationflags=subprocess.CREATE_NO_WINDOW)

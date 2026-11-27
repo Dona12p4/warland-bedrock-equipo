@@ -1,5 +1,5 @@
 from pathlib import Path
-import json,subprocess,sys,unittest
+import json,math,subprocess,sys,unittest
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 import past_terrain as terrain
@@ -32,8 +32,20 @@ class PastTests(unittest.TestCase):
             c=json.loads((rp/f'particles/{name}.json').read_text())['particle_effect']['components']
             self.assertTrue(c['minecraft:particle_motion_collision']['expire_on_contact'])
             self.assertNotIn('minecraft:emitter_local_space',c)
-            counts.append(c['minecraft:emitter_rate_instant']['num_particles']*c['minecraft:particle_lifetime_expression']['max_lifetime'])
-        self.assertLessEqual(sum(counts)*4,1200)
+            counts.append(c['minecraft:emitter_rate_instant']['num_particles']*math.ceil(c['minecraft:particle_lifetime_expression']['max_lifetime']))
+            self.assertIn('2.7',str(c['minecraft:particle_initial_speed'][0]))
+        drift=json.loads((rp/'particles/past_drift.json').read_text())['particle_effect']['components']
+        drift_alive=drift['minecraft:emitter_rate_instant']['num_particles']*math.ceil(drift['minecraft:particle_lifetime_expression']['max_lifetime']/3)*4
+        guide_alive=0
+        for name in ['beam','halo','core','sparks']:
+            c=json.loads((rp/f'particles/past_guide_{name}.json').read_text())['particle_effect']['components']
+            self.assertNotIn('minecraft:emitter_local_space',c)
+            self.assertNotIn('minecraft:particle_appearance_lighting',c)
+            guide_alive+=c['minecraft:emitter_rate_instant']['num_particles']*math.ceil(c['minecraft:particle_lifetime_expression']['max_lifetime'])*2
+        self.assertLessEqual(sum(counts)*4+drift_alive+guide_alive,1300)
+        sound=json.loads((rp/'sounds/sound_definitions.json').read_text())['sound_definitions']['warland.past.wind']['sounds'][0]
+        self.assertTrue(sound['stream']);self.assertFalse(sound['is3D'])
+        self.assertLess((rp/(sound['name']+'.ogg')).stat().st_size,150000)
         self.assertFalse(list(rp.rglob('memoria_frames*')))
 
 if __name__=='__main__':unittest.main()
