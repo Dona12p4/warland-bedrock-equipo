@@ -41,3 +41,15 @@ La inspeccion del 27/11 encontro la fuente compartida con 27 modulos, una llegad
 ## Actualizacion 27/11: completo 0.7.3
 
 Particulas de biomas optimizadas instaladas con paridad en oficial Movil 3-4 GB y servidor de proyecto19152. Misma identidad BP/RP, 1242 archivos por destino; DB y progreso intactos. 85 efectos, seis emisores recientes por jugador, 24 particulas/emisor. Informe outputs/biomes-particles/installation.json; candidato .runtime/biomes-particles-worktree/.local/complete-0.7.3-r2. No reinstalar 0.7.2 ni modulos separados. Servidores abiertos de otros laboratorios no se detuvieron. Fuente codex/biomes-particulas; muestra visual revisada en Minecraft Windows (luciernagas y hojas naturales, sin texturas faltantes observadas); restantes efectos y FPS Android no verificados. Main/Pages pendientes de revision.
+
+
+## Instalado: completo 0.7.4 con El Pasado (27/11/2026)
+
+Instalado con respaldo cerrado en el oficial Movil 3-4 GB y en los archivos del servidor de proyecto19152. Paridad verificada: un BP, un RP, mismas UUID/versiones y 1.275 archivos exactos; registro Shared actualizado. Cada destino conserva sus propios registros anteriores (24.084 oficial, 21.975 servidor); se añade la dimensión El Pasado con 15.680 registros de terreno y 1.147 chunks. Inventarios, saldos, progreso y terreno anterior conservados. No se copió una DB de laboratorio sobre ninguna partida.
+
+Incluye los dos actos intacto/ruinas, luz de salida intensa, ceniza en tormenta, viento y accesos transitables, conservando biomas e Impostor0.3.3/Lobby1.2.0. 54 pruebas y 652 comprobaciones nativas previas pasaron; después de instalar se verificaron archivos y referencias en ambos destinos. No se hizo revisión visual por orden del usuario. Minecraft se reabrió por la persona después de completar la instalación.
+
+La entrada guardada del servidor correcto es **WARLAND - Luz - LAB**, 127.0.0.1:19152. Ese servidor estaba detenido y se mantuvo así. Los procesos19160 (WARLAND I - Estudio local) y19178 (El Pasado - Dos actos) son laboratorios anteriores, no se actualizaron ni detuvieron. No modificar su DB para igualarlos. El cambio de nombre previsto no se aplicó porque Minecraft volvió a abrirse; no decir que la lista ya tiene otro nombre.
+
+Informe local outputs/past-official-installation.json; paridad outputs/past-official-final-parity.json. Respaldo past-official-20261127T215100Z. WARLAND.mcaddon SHA256 5f2f5cdabc19daf1e861be20495342b06968a82544e292ffc36f7bd2cfef3bc9. Fuente/catálogo en codex/el-pasado; main y Pages requieren integración del propietario. No ejecutar otra vez el instalador de dimensión nueva: rechaza reemplazar un Pasado ya existente.
+

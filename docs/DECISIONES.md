@@ -48,6 +48,9 @@ El constructor completo 0.7.1 conserva las fuentes de la rama actual, incluido L
 El usuario pide una luz muy potente en la entrada de WARLAND que guíe el regreso, ceniza como tormenta de arena y sonido de viento. Se conserva intacto y limpio el primer acto de la cinemática. El retorno usa el origen individual guardado y no se activa durante cámaras ni sobre la llegada. Orden adicional: no hacer confirmaciones visuales ni tomar el cliente; el usuario sigue jugando. Preparar y probar automáticamente sin modificar la DB abierta. Instalación oficial y paridad quedan pendientes del cierre.
 
 
+27/11/2026, orden posterior «instalalo»: completado el despliegue0.7.4 en ambos destinos con Minecraft cerrado. Paridad, respaldos y conservación de registros verificados. Sin revisión visual; los procesos de laboratorios abiertos se mantienen. El servidor vigente es19152, entrada guardada «WARLAND - Luz - LAB»; no confundirlo con19160/19178.
+
+
 ## 27/11/2026: llegada por las esquinas, sin luces guia en la pelicula
 
 - La luz de llegada recorre El Pasado de esquina a esquina y termina en la entrada. Plano lateral distante a mitad del descenso. No modifica la ruta de la pelicula del Coloso.

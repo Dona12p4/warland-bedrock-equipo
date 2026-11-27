@@ -1,10 +1,20 @@
 # Estado de partida de la colaboracion
 
-## Preparación vigente: luz de salida y tormenta de El Pasado (27/11/2026)
+## Instalado: completo 0.7.4 con El Pasado (27/11/2026)
+
+Instalado con respaldo cerrado en el oficial Movil 3-4 GB y en los archivos del servidor de proyecto19152. Paridad verificada: un BP, un RP, mismas UUID/versiones y 1.275 archivos exactos; registro Shared actualizado. Cada destino conserva sus propios registros anteriores (24.084 oficial, 21.975 servidor); se añade la dimensión El Pasado con 15.680 registros de terreno y 1.147 chunks. Inventarios, saldos, progreso y terreno anterior conservados. No se copió una DB de laboratorio sobre ninguna partida.
+
+Incluye los dos actos intacto/ruinas, luz de salida intensa, ceniza en tormenta, viento y accesos transitables, conservando biomas e Impostor0.3.3/Lobby1.2.0. 54 pruebas y 652 comprobaciones nativas previas pasaron; después de instalar se verificaron archivos y referencias en ambos destinos. No se hizo revisión visual por orden del usuario. Minecraft se reabrió por la persona después de completar la instalación.
+
+La entrada guardada del servidor correcto es **WARLAND - Luz - LAB**, 127.0.0.1:19152. Ese servidor estaba detenido y se mantuvo así. Los procesos19160 (WARLAND I - Estudio local) y19178 (El Pasado - Dos actos) son laboratorios anteriores, no se actualizaron ni detuvieron. No modificar su DB para igualarlos. El cambio de nombre previsto no se aplicó porque Minecraft volvió a abrirse; no decir que la lista ya tiene otro nombre.
+
+Informe local outputs/past-official-installation.json; paridad outputs/past-official-final-parity.json. Respaldo past-official-20261127T215100Z. WARLAND.mcaddon SHA256 5f2f5cdabc19daf1e861be20495342b06968a82544e292ffc36f7bd2cfef3bc9. Fuente/catálogo en codex/el-pasado; main y Pages requieren integración del propietario. No ejecutar otra vez el instalador de dimensión nueva: rechaza reemplazar un Pasado ya existente.
+
+## Antecedente de preparación: luz de salida y tormenta de El Pasado (27/11/2026)
 
 Completo 0.7.4 pendiente de instalar sobre el 0.7.3 vigente. Incluye la luz blanca intensa en la entrada principal, iluminación clásica nivel 15, retorno al origen por proximidad, ráfagas de ceniza y viento continuo solo en las ruinas. Preserva las partículas de biomas, Impostor 0.3.3, Lobby 1.2.0 y demás contenido integrado. Fuente y terreno se validan fuera de la partida abierta; el usuario pidió no controlar Minecraft ni hacer comprobaciones visuales para poder seguir jugando. No confundir preparación con instalación. La instalación sigue dirigida al oficial 3–4 GB y a los archivos del servidor vigente, con respaldo cerrado, conservación de progreso y paridad.
 
-## Estado vigente: completo 0.7.2 instalado en ambos destinos (27/11/2026)
+## Antecedente: completo 0.7.2 instalado en ambos destinos (27/11/2026)
 
 La instalacion autorizada sustituyo las activaciones modulares por WARLAND Completo 0.7.2 (un BP y un RP) en el servidor de proyecto 19152 y el mundo oficial Movil 3-4 GB. Los 1081 archivos y las referencias coinciden por SHA-256 en ambos destinos. Incluye Lobby 1.2.0 y la correccion de huesos del Impostor 0.3.3. El candidato El Pasado permanece separado y no instalado. Los antecedentes de preparacion siguientes describen estados anteriores.
 
