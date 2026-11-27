@@ -1,5 +1,9 @@
 # Estado de partida de la colaboracion
 
+## Servidor19152 encendido y persistente (27/11/2026)
+
+Por orden posterior del usuario, el servidor vigente0.7.4 ya está en línea. Inicio al iniciar sesión, recuperación tras salida del proceso y protección contra duplicados. No detener ni reiniciar para instalaciones o al terminar un chat. Los estados anteriores que lo dejan detenido son históricos. Guía: [SERVIDOR-SIEMPRE-EN-LINEA.md](SERVIDOR-SIEMPRE-EN-LINEA.md).
+
 ## Instalado: completo 0.7.4 con El Pasado (27/11/2026)
 
 Instalado con respaldo cerrado en el oficial Movil 3-4 GB y en los archivos del servidor de proyecto19152. Paridad verificada: un BP, un RP, mismas UUID/versiones y 1.275 archivos exactos; registro Shared actualizado. Cada destino conserva sus propios registros anteriores (24.084 oficial, 21.975 servidor); se añade la dimensión El Pasado con 15.680 registros de terreno y 1.147 chunks. Inventarios, saldos, progreso y terreno anterior conservados. No se copió una DB de laboratorio sobre ninguna partida.

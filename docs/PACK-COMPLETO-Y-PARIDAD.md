@@ -32,6 +32,8 @@ Los laboratorios temporales pueden contener sondas aisladas y UUID de recursos p
 
 ## Servidor abierto
 
+Orden posterior permanente del 27/11: mantener en linea19152. No detener ni reiniciar al terminar tareas o para instalar actualizaciones; preparar cambios fuera y esperar una nueva orden expresa de interrupcion. Arranque persistente y recuperacion de caidas configurados; ver SERVIDOR-SIEMPRE-EN-LINEA.md.
+
 El usuario ordeno no cerrar el servidor local en esta ronda. No detenerlo ni reiniciarlo por rutina. Preparar fuentes y artefactos fuera de los destinos abiertos; si el destino exige una interrupcion, dejar el paquete concreto listo y explicar que falta esa ventana de instalacion. Una orden historica de cierre/apagado no autoriza uno nuevo.
 
 ## Estado inicial de esta regla

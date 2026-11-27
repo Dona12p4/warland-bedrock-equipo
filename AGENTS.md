@@ -1,3 +1,11 @@
+## Servidor local siempre en linea (27/11/2026)
+
+Las rutas siguientes parten de la raiz local WARLAND. En el checkout collaboration, el servidor vigente es .local/server; no confundirlo con el .local/server de otro worktree.
+
+Orden expresa del usuario: mantener encendido el servidor vigente de `collaboration/.local/server`, puerto19152, entrada guardada «WARLAND - Luz - LAB». No detenerlo ni reiniciarlo al terminar un chat, para instalar, probar, copiar, limpiar o sincronizar. Si un cambio requiere cierre, dejarlo preparado; solo una orden posterior expresa del usuario habilita la interrupcion. No sustituirlo por los laboratorios19160/19178 ni arrancar otro mundo.
+
+Inicio persistente local: `collaboration/.local/persistent-server/keep_server_online.py`, con estado y logs en esa carpeta y acceso de inicio de sesion de Windows «WARLAND - Servidor local.lnk». Recupera caidas con espera y no relanza procesos que sigan vivos. No reactivar ordenes historicas de apagado. Una nueva orden expresa de apagar/pausar prevalece: leer docs/SERVIDOR-SIEMPRE-EN-LINEA.md para cerrar de forma controlada sin que la recuperacion lo vuelva a arrancar. No editar ni copiar su DB abierta. Las pruebas usan procesos desechables distintos y no justifican cerrar19152.
+
 ## Revision visual suspendida por el usuario (27/11/2026)
 
 No controlar Minecraft ni realizar confirmaciones visuales en esta ronda: el usuario quiere seguir jugando. Continuar con pruebas automaticas y preparar el completo; no editar ni copiar su DB abierta. No reactivar revisiones de cliente por instrucciones anteriores.

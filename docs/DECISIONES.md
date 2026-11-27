@@ -49,3 +49,6 @@ El usuario pide una luz muy potente en la entrada de WARLAND que guíe el regres
 
 
 27/11/2026, orden posterior «instalalo»: completado el despliegue0.7.4 en ambos destinos con Minecraft cerrado. Paridad, respaldos y conservación de registros verificados. Sin revisión visual; los procesos de laboratorios abiertos se mantienen. El servidor vigente es19152, entrada guardada «WARLAND - Luz - LAB»; no confundirlo con19160/19178.
+
+
+27/11/2026: el usuario ordena «nunca lo detengas mantenlo en linea siempre». Se arranca el servidor vigente19152 sin reinstalar ni modificar partidas. No interrumpirlo por rutina; mantener arranque persistente y recuperación tras caídas, sin reiniciar procesos vivos. Las actualizaciones que requieren cierre quedan pendientes de una nueva orden expresa.
