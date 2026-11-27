@@ -100,8 +100,14 @@ assert.equal(a.sounds.filter(s=>s.id==='warland.past.ambient').length,soundtrack
 assert(a.getDynamicProperty('warland:past_music_v1'),'film completion stopped exploring soundtrack');
 await pump(api.exitPast(a));assert(!a.getDynamicProperty('warland:past_music_v1'),'ambient survived leaving dimension');
 // Recovery never records the trapped location again after teleporting.
-await pump(api.enterPast(a));const safe={...a.location};a.location={x:0.5,y:60,z:0.5};
-// This assertion uses the recovery action directly so outside-bounds protection
-// does not mask it. The stored last-safe location belongs to this visit only.
-assert(api.unstuckPast(a));assert.deepEqual(a.location,safe);
-console.log('PASS: native controller timeline, three flashes, instant TP, continued music, exit cleanup and last-safe recovery.');
+await pump(api.enterPast(a));const entrance={...a.location};
+const walkDimension=dims.get(policy.PAST.dimension),oldBlocks=walkDimension.getBlock;
+walkDimension.getBlock=flat.getBlock;a.location={x:300.5,y:64,z:-780.5};
+for(let i=0;i<3;i++){system.currentTick+=20;intervals.find(x=>x.t===20).f();}
+const safe={...a.location};a.location={x:303.5,y:60,z:-780.5};
+assert(api.unstuckPast(a,true));assert.deepEqual(a.location,safe,'automatic recovery lost the walked safe point');
+// A broad sealed room can exceed the local search radius. Manual recovery
+// must reach the entrance even when a different last-safe point was recorded.
+a.location={x:305.5,y:64,z:-780.5};assert(api.unstuckPast(a));assert.deepEqual(a.location,entrance);
+walkDimension.getBlock=oldBlocks;
+console.log('PASS: native controller timeline, three flashes, instant TP, continued music, exit cleanup and two recovery routes.');
