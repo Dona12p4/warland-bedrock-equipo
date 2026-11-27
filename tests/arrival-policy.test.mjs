@@ -25,11 +25,21 @@ for(let t=0;t<=ARRIVAL.impact;t++){
  const f=arrivalFrame(t,cfg.spawn);assert.ok(f.lightY<=previous);assert.ok(f.lightY>=1.1);previous=f.lightY;
  assert.ok(Object.values(f.location).every(Number.isFinite));assert.ok(Object.values(f.facingLocation).every(Number.isFinite));
 }
-assert.equal(arrivalFrame(0,cfg.spawn).lightY,27.1);
+assert.equal(arrivalFrame(0,cfg.spawn).lightY+cfg.spawn.y,194,'Light originates IN the vanilla cloud layer');
 assert.equal(arrivalFrame(ARRIVAL.impact,cfg.spawn).lightY,1.1);
 assert.equal(arrivalFrame(ARRIVAL.reveal,cfg.spawn).phase,'reveal');
 assert.ok(Math.hypot(arrivalFrame(0,cfg.spawn).location.x-cfg.spawn.x,arrivalFrame(0,cfg.spawn).location.z-cfg.spawn.z)>=24,'Opening shows the whole sanctuary from a distance');
-assert.equal(arrivalFrame(0,cfg.spawn).phase,'omen');
+assert.equal(arrivalFrame(0,cfg.spawn).phase,'vortex');
 assert.equal(arrivalFrame(ARRIVAL.descent,cfg.spawn).phase,'descent');
 for(const storm of ARRIVAL_STORM)assert.ok(storm.tick<storm.soundTick&&storm.soundTick<ARRIVAL.descent,'Bolt then thunder before descent');
+for(const groundY of [64,72,96]){
+ const origin={...cfg.spawn,y:groundY};
+ assert.equal(arrivalFrame(0,origin).lightY+groundY,194,'Cloud altitude is absolute, not an offset above the temple');
+ assert.ok(arrivalFrame(0,origin).location.y>196,'Opening camera is ABOVE the real cloud layer');
+ for(let t=1;t<ARRIVAL.returnView;t++){
+  const a=arrivalFrame(t-1,origin),b=arrivalFrame(t,origin);
+  assert.ok(Math.hypot(...['x','y','z'].map(k=>a.location[k]-b.location[k]))<3,'Continuous camera flight, without the former hard cut');
+ }
+}
+for(const storm of ARRIVAL_STORM)assert.ok(ARRIVAL.cloudY+storm.offset.y>=192&&ARRIVAL.cloudY+storm.offset.y<=196,'Lightning stays inside clouds');
 console.log('Arrival policy: entry, reconnect, personal spawn, fallback and continuous descent passed');

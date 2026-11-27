@@ -1,9 +1,9 @@
 // One shared timeline for the native camera, particles and the review viewer.
-export const ARRIVAL = Object.freeze({ticks:158,descent:48,cut:40,impact:96,reveal:124,returnView:152,settle:4,height:26,maxConcurrent:8,maxWait:1200});
+export const ARRIVAL = Object.freeze({ticks:222,descent:60,impact:160,underRoof:172,reveal:188,returnView:216,settle:4,cloudY:194,maxConcurrent:8,maxWait:1200});
 // Cosmetic sky bolts only. No lightning entity, global weather or block damage.
 export const ARRIVAL_STORM = Object.freeze([
- Object.freeze({tick:6,soundTick:12,offset:{x:-8,y:19,z:7},pitch:.82,volume:.6}),
- Object.freeze({tick:28,soundTick:34,offset:{x:9,y:21,z:4},pitch:.95,volume:.75})
+ Object.freeze({tick:18,soundTick:26,offset:{x:-7,y:0,z:3},pitch:.82,volume:.6}),
+ Object.freeze({tick:40,soundTick:48,offset:{x:7,y:.3,z:-2},pitch:.95,volume:.75})
 ]);
 export const CINEMATIC_TAG='warland_lobby_cinematic';
 export const RESPAWN_TAG='warland_lobby_respawn_pending';
@@ -20,18 +20,24 @@ export function lobbyRespawn(at,dimension,defaultSpawn,personalSpawn,cfg){
  return true;
 }
 export function arrivalFrame(t,spawn){
- if(t<ARRIVAL.cut){
-  const u=smooth(t/ARRIVAL.cut),angle=(-36+u*5)*Math.PI/180,radius=26-u*3;
-  return {lightY:27.1,location:{x:spawn.x+Math.sin(angle)*radius,y:spawn.y+20-u*2,z:spawn.z-Math.cos(angle)*radius},facingLocation:{x:spawn.x,y:spawn.y+9,z:spawn.z},phase:'omen'};
+ // Overworld clouds occupy Y192..196, independent of the lobby's altitude.
+ const startHeight=ARRIVAL.cloudY-spawn.y;
+ if(t<ARRIVAL.descent){
+  const u=smooth(t/ARRIVAL.descent),angle=(-50+u*14)*Math.PI/180,radius=28-27.75*u;
+  return {lightY:startHeight,location:{x:spawn.x+Math.sin(angle)*radius,y:ARRIVAL.cloudY+22-15*u,z:spawn.z-Math.cos(angle)*radius},facingLocation:{x:spawn.x,y:ARRIVAL.cloudY,z:spawn.z},phase:'vortex'};
  }
- const local=Math.max(0,t-ARRIVAL.descent),drop=smooth(local/(ARRIVAL.impact-ARRIVAL.descent)),orbit=smooth((t-ARRIVAL.impact)/(ARRIVAL.returnView-ARRIVAL.impact));
- // Look through the central opening first; the original wide angle hit the roof.
- const opening=smooth((local-24)/24);
- const angle=(-36+orbit*16)*Math.PI/180,radius=t<ARRIVAL.impact?.25+3.35*opening:3.6-orbit*.8;
+ const drop=smooth((t-ARRIVAL.descent)/(ARRIVAL.impact-ARRIVAL.descent));
+ const lightY=1.1+(startHeight-1.1)*(1-drop);
+ const lowering=smooth((t-ARRIVAL.impact)/(ARRIVAL.underRoof-ARRIVAL.impact));
+ const opening=smooth((t-ARRIVAL.underRoof)/(ARRIVAL.reveal-ARRIVAL.underRoof));
+ const orbit=smooth((t-ARRIVAL.reveal)/(ARRIVAL.returnView-ARRIVAL.reveal));
+ // Follow ABOVE the descending light, through the opening. Widen only below
+ // the roof, so neither the camera nor its light sightline crosses solid blocks.
+ const angle=(-36+orbit*16)*Math.PI/180,radius=.25+3.35*opening-orbit*.8;
  return {
-  lightY:1.1+ARRIVAL.height*(1-drop),
-  location:{x:spawn.x+Math.sin(angle)*radius,y:spawn.y+2.6+Math.sin(orbit*Math.PI)*.7,z:spawn.z-Math.cos(angle)*radius},
-  facingLocation:{x:spawn.x,y:spawn.y+Math.max(1.15,1.1+ARRIVAL.height*(1-drop)),z:spawn.z},
-  phase:t<ARRIVAL.descent?'omen':t<ARRIVAL.impact?'descent':t<ARRIVAL.reveal?'formation':t<ARRIVAL.returnView?'reveal':'return'
+  lightY,
+  location:{x:spawn.x+Math.sin(angle)*radius,y:spawn.y+lightY+7-5.5*lowering+Math.sin(orbit*Math.PI)*.7,z:spawn.z-Math.cos(angle)*radius},
+  facingLocation:{x:spawn.x,y:spawn.y+Math.max(1.1,lightY),z:spawn.z},
+  phase:t<ARRIVAL.impact?'descent':t<ARRIVAL.reveal?'formation':t<ARRIVAL.returnView?'reveal':'return'
  };
 }

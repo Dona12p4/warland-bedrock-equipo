@@ -40,20 +40,20 @@
       },
       "minecraft:particle_appearance_billboard": {
         "size": [
-          2.5,
-          7
+          6,
+          2.5
         ],
-        "facing_camera_mode": "lookat_xyz",
+        "facing_camera_mode": "emitter_transform_xz",
         "uv": {
           "texture_width": 64,
-          "texture_height": 128,
+          "texture_height": 32,
           "uv": [
             0,
             0
           ],
           "uv_size": [
             64,
-            128
+            32
           ]
         }
       },

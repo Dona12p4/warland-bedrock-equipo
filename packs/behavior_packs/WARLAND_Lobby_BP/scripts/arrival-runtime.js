@@ -1,4 +1,4 @@
-import {world,system,GameMode,InputPermissionCategory,EasingType} from '@minecraft/server';
+import {world,system,GameMode,InputPermissionCategory,EasingType,MolangVariableMap} from '@minecraft/server';
 import {lobbyConfig as cfg} from './lobby-config.js';
 import {safeArrival} from './lobby-policy.js';
 import {ARRIVAL,ARRIVAL_STORM,CINEMATIC_TAG,RESPAWN_TAG,HEART_TAG,RECOVERY,arrivalFrame,lobbyRespawn,distance} from './arrival-policy.js';
@@ -31,7 +31,12 @@ function finish(p,reason){
  audit('finished',p,{reason,emissions:s.emissions});
 }
 function emit(s,name,at=s.at){
- try{s.p.dimension.spawnParticle('warland:arrival_'+name,at);s.emissions++;}catch(e){audit('particle_error',s.p,{name,error:String(e)});}
+ try{
+  const vars=new MolangVariableMap();vars.setFloat('variable.arrival_height',ARRIVAL.cloudY-s.at.y-1.1);vars.setFloat('variable.arrival_cloud_y',ARRIVAL.cloudY-s.at.y);
+  // Explicitly target the cinematic player so sky effects reach the camera
+  // over 120 blocks above the grounded player, without global storm broadcasts.
+  s.p.spawnParticle('warland:arrival_'+name,at,vars);s.emissions++;
+ }catch(e){audit('particle_error',s.p,{name,error:String(e)});}
 }
 export function startArrival(p,reason='preview'){
  if(jobs.has(p.id)||!alive(p)||p.hasTag(HEART_TAG)||p.getGameMode()===GameMode.Spectator||p.dimension.id!=='minecraft:overworld'||distance(p.location,cfg.spawn)>4||!safeArrival(p.dimension,cfg.spawn))return false;
@@ -48,6 +53,7 @@ export function startArrival(p,reason='preview'){
   p.onScreenDisplay.setActionBar('');
   p.teleport(s.at,{rotation:{x:0,y:180}});
   const frame=arrivalFrame(0,s.at);p.camera.setCamera('minecraft:free',{location:frame.location,facingLocation:frame.facingLocation});
+  emit(s,'cloud_outer');emit(s,'cloud_inner');
   audit('started',p,{reason});return true;
  }catch(e){audit('start_error',p,{error:String(e)});finish(p,'start_error');return false;}
 }
@@ -85,17 +91,15 @@ system.runInterval(()=>{
    if(!alive(p)||p.hasTag(HEART_TAG)||p.dimension.id!=='minecraft:overworld'||distance(p.location,s.at)>2){finish(p,'interrupted');continue;}
    if(t>=ARRIVAL.ticks){finish(p,'complete');continue;}
    for(const [i,storm]of ARRIVAL_STORM.entries()){
-    if(t>=storm.tick&&!s.bolts.has(i)){s.bolts.add(i);emit(s,'lightning',{x:s.at.x+storm.offset.x,y:s.at.y+storm.offset.y,z:s.at.z+storm.offset.z});audit('lightning',p,{index:i,elapsed:t});}
-    if(t>=storm.soundTick&&!s.thunder.has(i)){s.thunder.add(i);p.playSound('ambient.weather.thunder',{volume:storm.volume,pitch:storm.pitch});audit('thunder',p,{index:i,elapsed:t});}
+    if(t>=storm.tick&&!s.bolts.has(i)){s.bolts.add(i);emit(s,'lightning',{x:s.at.x+storm.offset.x,y:ARRIVAL.cloudY+storm.offset.y,z:s.at.z+storm.offset.z});audit('lightning',p,{index:i,elapsed:t,y:ARRIVAL.cloudY+storm.offset.y});}
+    if(t>=storm.soundTick&&!s.thunder.has(i)){s.thunder.add(i);p.playSound('ambient.weather.thunder',{volume:storm.volume,pitch:storm.pitch,location:{x:s.at.x+storm.offset.x,y:ARRIVAL.cloudY,z:s.at.z+storm.offset.z}});audit('thunder',p,{index:i,elapsed:t});}
    }
-   // The short flash masks a cut through the roof; no camera flies through blocks.
-   if(t>=ARRIVAL.cut-4&&!s.approachFlash){s.approachFlash=true;p.camera.fade({fadeColor:{red:.88,green:.93,blue:1},fadeTime:{fadeInTime:.12,holdTime:.12,fadeOutTime:.18}});}
    if(t>=ARRIVAL.descent&&!s.descent){s.descent=true;emit(s,'core');emit(s,'trail');p.playSound('beacon.activate',{volume:.35,pitch:1.5});audit('descent',p,{elapsed:t});}
    if(t>=ARRIVAL.impact&&!s.impact){s.impact=true;emit(s,'body');emit(s,'ring');emit(s,'converge');}
    if(t>=ARRIVAL.reveal&&!s.revealed){s.revealed=true;revealPlayer(p);emit(s,'embers');p.playSound('random.orb',{volume:.3,pitch:.7});audit('revealed',p,{elapsed:t});}
    if(t>=ARRIVAL.returnView&&!s.returning){s.returning=true;p.camera.fade({fadeColor:{red:1,green:.96,blue:.84},fadeTime:{fadeInTime:.12,holdTime:.04,fadeOutTime:.3}});}
    if(t>=ARRIVAL.returnView+4&&!s.cleared){p.camera.clear();s.cleared=true;}
-   else if(t%4===0&&t<ARRIVAL.returnView){const f=arrivalFrame(t,s.at);p.camera.setCamera('minecraft:free',{location:f.location,facingLocation:f.facingLocation,...(t===ARRIVAL.cut?{}:{easeOptions:{easeTime:.2,easeType:EasingType.Linear}})});}
+   else if(t%2===0&&t<ARRIVAL.returnView){const f=arrivalFrame(t,s.at);p.camera.setCamera('minecraft:free',{location:f.location,facingLocation:f.facingLocation,easeOptions:{easeTime:.1,easeType:EasingType.Linear}});}
   }catch(e){audit('sequence_error',p,{error:String(e)});finish(p,'error');}
  }
 },2);
