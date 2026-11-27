@@ -24,3 +24,9 @@
 - 2026-11-26, corrección posterior: el vórtice será DE LUZ en la capa de nubes, no de masas grises. Dos espirales blancas/doradas y 32 chispas giratorias sustituyen las nubes anteriores (130 partículas totales). Viento grave original de 5,8 s, con crescendo y máximo coincidente con el descenso al segundo 3; una reproducción por llegada, solo para ese jugador, cancelada al recuperar la escena. No se cambia el volumen del equipo. Conserva Y194, rayos arriba y recorrido de cámara.
 
 - 2026-11-26, giro del vórtice: corregida la rotación anulada al combinar particle_initial_spin con particle_motion_parametric. Ahora rotation depende de particle_age en el propio movimiento paramétrico, con velocidad inicial de 72–84 grados/s y aceleración suave. Altura Y194, luz, viento, partículas y duración conservados. Referencia: https://learn.microsoft.com/en-us/minecraft/creator/reference/content/particlesreference/particlecomponents/minecraftparticle_motion_parametric .
+# 27/11/2026: complemento unico y paridad obligatoria
+
+El propietario exige integrar cada cambio en el pack completo, reinstalar el completo cuando haga falta y aplicar la misma version al servidor vigente y al mundo Movil 3-4 GB. No volver a instalar mods sueltos. La referencia obligatoria es [PACK-COMPLETO-Y-PARIDAD.md](PACK-COMPLETO-Y-PARIDAD.md). La igualdad se verifica por UUID/version, hashes y configuracion; no autoriza sustituir DB ni progreso de una partida por otra. Los antiguos mundos de estudio conservan sus datos y funciones; revisar dependencias antes de retirar registros de Minecraft. Se respeta la orden de no cerrar el servidor local.
+
+El constructor completo 0.7.1 conserva las fuentes de la rama actual, incluido Lobby 1.2.0 e Impostor 0.3.2. Se rechaza usar el viejo candidato unificado 0.7.0 como fuente porque omitiria la llegada de luz. La paridad se audita con `tools/audit_pack_parity.py`; una prueba o un paquete generado no equivalen a instalacion en ambos destinos.
+

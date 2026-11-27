@@ -1,5 +1,13 @@
 # Estado de partida de la colaboracion
 
+## Pack completo y paridad: preparado, sin instalar (27/11/2026)
+
+Por orden expresa del usuario, toda entrega debe ser un unico `WARLAND.mcaddon` y quedar igual en el servidor vigente y el mundo Movil 3-4 GB. Leer `PACK-COMPLETO-Y-PARIDAD.md` antes de continuar. Se conservara la organizacion modular en fuente; el constructor `tools/build_unified.py` fusiona los 27 modulos de esta rama (incluye Impostor 0.3.2 y llegada Lobby 1.2.0 con vortice giratorio) en un BP y un RP, version 0.7.1. No usar el candidato 0.7.0 antiguo que carece de esta llegada.
+
+Validacion de preparacion: 42 pruebas Python de la fuente existente, tres adicionales de colisiones/paridad/candidato alterado, cuatro JavaScript de conservacion de propiedades, catalogo de 1154 archivos y 183 comprobaciones nativas en un BDS desechable separado. BDS 1.26.60.6 cargo el conjunto sin errores y cerro con Quit correctly. Se preservo el proceso del servidor preexistente. Esto NO certifica aun migracion de los datos reales, revision visual en Minecraft ni Android. El addon tiene 1081 archivos; su ZIP contiene exactamente dos manifests y hashes verificados, ademas de iconos propios.
+
+Auditoria de solo lectura: ni el servidor de referencia ni el mundo oficial estan todavia en este par unificado. Hay registros historicos referenciados por mundos de estudio; no retirarlos suprimiendo sus funciones ni borrar esos mundos por inferencia. El instalador historico `consolidate-warland-installation.py` tambien retira mundos y referencias ajenas a estos dos destinos; NO ejecutarlo para esta peticion. Preparar una migracion especifica con respaldo cerrado. El usuario ordeno conservar abierto el servidor local; se mantiene. Instalacion y limpieza pendientes de cerrar Minecraft y comprobar de nuevo rutas/dependencias. No publicado ni instalado.
+
 ## Incorporacion oficial 27/11/2026: El Impostor 0.3.2
 
 Instalado en WARLAND - Movil 3-4 GB - COPIA (Importado) con respaldo completo verificado. Los 27 paquetes / 1138 archivos de esta fuente coinciden por SHA-256 con el oficial. Los 25 anteriores quedan intactos; solo se agregan BP/RP del Impostor y sus referencias. DB, terreno e inventarios sin cambios. Snapshot de noviembre 8 y copia offline conservados, no reimportarlos sobre progreso reciente.
