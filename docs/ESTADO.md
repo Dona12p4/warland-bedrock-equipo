@@ -1,6 +1,16 @@
 # Estado de partida de la colaboracion
 
-## Pack completo y paridad: preparado, sin instalar (27/11/2026)
+## Estado vigente: completo 0.7.2 instalado en ambos destinos (27/11/2026)
+
+La instalacion autorizada sustituyo las activaciones modulares por WARLAND Completo 0.7.2 (un BP y un RP) en el servidor de proyecto 19152 y el mundo oficial Movil 3-4 GB. Los 1081 archivos y las referencias coinciden por SHA-256 en ambos destinos. Incluye Lobby 1.2.0 y la correccion de huesos del Impostor 0.3.3. El candidato El Pasado permanece separado y no instalado. Los antecedentes de preparacion siguientes describen estados anteriores.
+
+Se respaldaron ambos mundos completos antes de migrar sus propiedades: 1989 propiedades conservadas en el oficial y 2030 en el servidor. No se copio la DB de un destino al otro ni se reinicio terreno. Se retiraron 147 registros globales WARLAND duplicados a un respaldo externo. Se conserva una excepcion historica, WARLAND_MemoriaIII_BP, porque una copia de estudio depende de una variante distinta; no eliminarla ni sobrescribirla por inferencia. Addons ajenos intactos. Los servidores que ya estaban abiertos no se detuvieron; 19152 ya estaba cerrado al instalar.
+
+Validacion: 183 comprobaciones nativas del completo 0.7.2, cero errores y Quit correctly, mas las pruebas de construccion, paridad y migracion indicadas abajo. En cliente Windows v26.65 se abrio el mundo oficial: lobby, HUD y saldo38 visibles; Impostor invocado con textura/nombre y desplazamiento observados. La vegetacion impidio revisar con claridad todos los ciclos de brazos, carrera y saltos: pendiente, tampoco probado en Android. Actor temporal retirado; jugador devuelto al lobby y supervivencia; Guardar y salir confirmado y cliente dejado en menu principal.
+
+Informes locales fuera de Git: outputs/pack-consolidation/paired-installation.json y registration-retirement.json, respaldo paired-complete-20261127-024528. Artefacto WARLAND.mcaddon SHA-256 3d21a9f75f7a700834d7808786818a268cfda879057d974c6cfd2ad29a6dea80. Fuente modular y catalogo conservados; no ejecutar capture-installed antiguo sobre los dos packs fusionados ni prepare-lab para reinstalar 27 packs separados. Usar build_unified.py y audit_pack_parity.py; cualquier reinstalacion requiere migracion cerrada y verificacion en ambos destinos. Publicar una rama no significa que Pages/main ya esten actualizados.
+
+## Antecedente: pack completo preparado, antes de instalar (27/11/2026)
 
 Por orden expresa del usuario, toda entrega debe ser un unico `WARLAND.mcaddon` y quedar igual en el servidor vigente y el mundo Movil 3-4 GB. Leer `PACK-COMPLETO-Y-PARIDAD.md` antes de continuar. Se conservara la organizacion modular en fuente; el constructor `tools/build_unified.py` fusiona los 27 modulos de esta rama (incluye Impostor 0.3.2 y llegada Lobby 1.2.0 con vortice giratorio) en un BP y un RP, version 0.7.1. No usar el candidato 0.7.0 antiguo que carece de esta llegada.
 
