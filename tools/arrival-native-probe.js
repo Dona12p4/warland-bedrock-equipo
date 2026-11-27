@@ -21,7 +21,7 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
  let p,q;const d=world.getDimension('overworld');
  try{
   d.runCommand(`tickingarea add circle ${cfg.spawn.x} ${cfg.spawn.y} ${cfg.spawn.z} 2 wl_arrival_probe true`);await wait(40);
-  for(let t=0;t<ARRIVAL.returnView;t+=2){const f=arrivalFrame(t,cfg.spawn),b=d.getBlock(f.location);check('Camera clear at tick '+t,b?.isAir||/^minecraft:light(_block)?$/.test(b?.typeId??''),{type:b?.typeId,at:f.location});}
+  for(let t=0;t<ARRIVAL.returnView;t+=2){const f=arrivalFrame(t,cfg.spawn),b=d.getBlock(f.location);check('Camera clear at tick '+t,b?.isAir||/^minecraft:light(_block(_[0-9]+)?)?$/.test(b?.typeId??''),{type:b?.typeId,at:f.location});}
   for(let t=ARRIVAL.descent;t<ARRIVAL.impact;t+=4){
    const f=arrivalFrame(t,cfg.spawn),occluders=[];
    const length=Math.hypot(...['x','y','z'].map(k=>f.facingLocation[k]-f.location[k]));

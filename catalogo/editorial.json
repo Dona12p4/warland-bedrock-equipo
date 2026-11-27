@@ -23,7 +23,7 @@
     {"name":"Portal y brújula","summary":"Grieta de regreso, señal, búsqueda de salida distante y estados de orientación de la brújula. Las distancias exactas se consultan en la configuración instalada.","patterns":["*rift*","*brujula*","*compass*"]},
     {"name":"Construcción temporal","summary":"Bloques de materiales propios del Umbral permanecen. Los ajenos se permiten temporalmente; incluye expiración y reglas del agua.","patterns":["*building*"]},
     {"name":"Población y represalia","summary":"Aparición y distribución de criaturas, hábitats y reacción a golpes. El Coloso conserva su excepción pasiva.","patterns":["*habitat*","*retaliation*","*/spawn_rules/*","*notice*"]},
-    {"name":"Lobby, regalos y cronología","summary":"Lobby protegido y cronología manual. Esta propuesta añade una llegada de 7,9 segundos con plano general, relámpagos y truenos antes de la luz: primera entrada y reaparición en el lobby sin otro spawn válido. Conserva camas, inventario y la secuencia del corazón; regalos pendientes.","patterns":["*lobby*","*sanctuary*","*spawn-polish*","*arrival*"]},
+    {"name":"Lobby, regalos y cronología","summary":"Lobby protegido y cronología manual. Esta propuesta añade una llegada de 11,1 segundos desde la capa de nubes, con vórtice, relámpagos y truenos antes de la luz: primera entrada y reaparición en el lobby sin otro spawn válido. Conserva camas, inventario y la secuencia del corazón; regalos pendientes.","patterns":["*lobby*","*sanctuary*","*spawn-polish*","*arrival*"]},
     {"name":"Auditoría y estadísticas","summary":"Registro de actividad, economía y seguridad. Los indicios de sospechosos se separan de los responsables confirmados.","patterns":["*security*","*core.js","*runtime.js","*records*"]}
   ],
   "habitats": {
