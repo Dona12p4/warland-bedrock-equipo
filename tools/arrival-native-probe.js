@@ -10,7 +10,7 @@ const checks=[],wait=t=>new Promise(r=>system.runTimeout(r,t));
 const check=(name,ok,detail)=>{checks.push({name,passed:!!ok,detail});if(!ok)throw Error(name+' '+JSON.stringify(detail));};
 const active=p=>arrivalDebug().active.find(s=>s.id===p.id);
 async function until(fn,ticks=240){for(let t=0;t<ticks;t+=2){if(fn())return true;await wait(2);}return false;}
-async function die(p){p.runCommand('kill @s');await wait(3);if(p.getComponent('health').currentValue<=0)p.respawn();}
+async function die(p){p.kill();await wait(3);check('Native death registered',p.hasTag(HEART_TAG),{health:p.getComponent('health').currentValue,at:p.location});if(p.getComponent('health').currentValue<=0)p.respawn();}
 world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
  let p,q;const d=world.getDimension('overworld');
  try{
@@ -33,7 +33,8 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   check('Spawn not modified',JSON.stringify(p.getSpawnPoint())===JSON.stringify(personal));
   check('Reconnect is keep',arrive(p,true)==='keep');observeArrivalSpawn(p,true);await wait(12);check('Reconnect does not replay',!active(p)&&arrivalDebug().pending===0);
   p.setSpawnPoint(undefined);
-  const remote={x:cfg.spawn.x+22,y:cfg.spawn.y,z:cfg.spawn.z};
+  const remote={x:cfg.spawn.x+180,y:150,z:cfg.spawn.z};
+  d.runCommand(`tickingarea add circle ${remote.x} ${remote.y} ${remote.z} 1 wl_arrival_remote true`);await wait(30);
   d.runCommand(`fill ${Math.floor(remote.x)-2} ${remote.y-1} ${Math.floor(remote.z)-2} ${Math.floor(remote.x)+2} ${remote.y-1} ${Math.floor(remote.z)+2} stone`);
   d.runCommand(`fill ${Math.floor(remote.x)-2} ${remote.y} ${Math.floor(remote.z)-2} ${Math.floor(remote.x)+2} ${remote.y+3} ${Math.floor(remote.z)+2} air`);
   p.teleport(remote);await wait(3);await die(p);await wait(6);
@@ -41,7 +42,7 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   check('Lobby death gets arrival after heart',await until(()=>active(p)?.reason==='respawn',220),arrivalDebug());
   check('Heart spectator ended before camera',!p.hasTag(HEART_TAG)&&p.getGameMode()===GameMode.Survival);
   await wait(ARRIVAL.ticks+4);check('Respawn scene completes',!active(p)&&p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));
-  q=GameTest.spawnSimulatedPlayer({dimension:d,...remote},'ArrivalPersonal',GameMode.Survival);q.setDynamicProperty(ARRIVED,true);await wait(12);
+  q=GameTest.spawnSimulatedPlayer({dimension:d,...remote},'Personal'+String(Date.now()).slice(-6),GameMode.Survival);q.setDynamicProperty(ARRIVED,true);await wait(12);
   q.setSpawnPoint({dimension:d,...remote});await die(q);await wait(250);
   check('Personal spawn skips cinematic',!active(q)&&Math.hypot(q.location.x-remote.x,q.location.z-remote.z)<4,{at:q.location,debug:arrivalDebug()});
   check('Personal spawn retained',q.getSpawnPoint()?.x===remote.x);
@@ -54,5 +55,5 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   check('Saved camera ownership recovers',!active(p)&&!p.hasTag(CINEMATIC_TAG)&&!p.getDynamicProperty(RECOVERY)&&p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Camera));
   console.warn('[ARRIVAL_NATIVE_RESULT] '+JSON.stringify({passed:true,checks}));
  }catch(e){console.warn('[ARRIVAL_NATIVE_RESULT] '+JSON.stringify({passed:false,checks,error:String(e),stack:e.stack}));}
- finally{try{p?.disconnect();q?.disconnect();d.runCommand('tickingarea remove wl_arrival_probe');}catch{}}
+ finally{try{p?.disconnect();q?.disconnect();d.runCommand('tickingarea remove wl_arrival_probe');d.runCommand('tickingarea remove wl_arrival_remote');}catch{}}
 },40));
