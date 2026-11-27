@@ -2,12 +2,12 @@
   "format_version": 2,
   "header": {
     "name": "WARLAND - La Cuna - Llegada",
-    "description": "Llegada cinematografica de luz y retorno al lobby. Primera entrada y reaparicion sin otro spawn.",
+    "description": "Llegada de luz al lobby: primera entrada, reaparicion sin otro spawn y cruce de la luz de El Pasado.",
     "uuid": "d61524c8-d0b5-4055-bd0c-a9e8eb35aa70",
     "version": [
       1,
       2,
-      0
+      1
     ],
     "min_engine_version": [
       1,
@@ -23,7 +23,7 @@
       "version": [
         1,
         2,
-        0
+        1
       ],
       "entry": "scripts/main.js"
     },
@@ -33,7 +33,7 @@
       "version": [
         1,
         2,
-        0
+        1
       ]
     }
   ],

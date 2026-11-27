@@ -44,6 +44,7 @@ export function startArrival(p,reason='preview'){
  if(jobs.size>=ARRIVAL.maxConcurrent)return false;
  const saved=permissions.map(c=>[c,p.inputPermissions.isPermissionCategoryEnabled(c)]);
  if(saved.some(([,enabled])=>!enabled))return false;
+ requests.delete(p.id);p.removeTag(RESPAWN_TAG);
  const s={p,reason,start:system.currentTick,at:{...cfg.spawn},permissions:saved,cameraOwned:true,emissions:0,bolts:new Set(),thunder:new Set()};
  // Hide the rendered bones, including head and attachments. Never move items,
  // change skin, add invisibility or change physical scale/game mode.

@@ -5,7 +5,10 @@ import {PAST} from './components/warland_bp/past-policy.js';
 import {enterPast,exitPast,startPastFilm,stopPastFilm} from './components/warland_bp/past.js';
 import {pastArrivalActive,pastArrivalDebug,startPastArrival,stopPastArrival} from './components/warland_bp/past-arrival.js';
 import {PAST_ARRIVAL,pastArrivalFrame} from './components/warland_bp/past-arrival-policy.js';
-import {createPastGuide} from './components/warland_bp/past-environment.js';
+import {createPastGuide,PAST_GUIDE} from './components/warland_bp/past-environment.js';
+import {arrivalDebug} from './components/warland_lobby_bp/arrival-runtime.js';
+import {ARRIVAL} from './components/warland_lobby_bp/arrival-policy.js';
+import {lobbyConfig} from './components/warland_lobby_bp/lobby-config.js';
 const checks=[],wait=t=>new Promise(r=>system.runTimeout(r,t));
 const check=(name,ok,detail)=>{checks.push({name,passed:!!ok,detail});if(!ok)throw Error(name+' '+JSON.stringify(detail))};
 const air=b=>!!b&&(b.isAir||b.typeId.startsWith('minecraft:light_block'));
@@ -47,6 +50,18 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   stopPastFilm(p);check('guide returns after film',guide.emit(p)===true);
   check('exit restores original dimension',await exitPast(p)&&p.dimension.id===od.id);
   check('exit restores original mode',p.getGameMode()===GameMode.Creative);
+  check('gate scenario enters Past',await enterPast(p,false,true));
+  p.teleport(PAST_GUIDE.at);await wait(65);
+  check('crossing light reaches Lobby',p.dimension.id===od.id&&Math.hypot(p.location.x-lobbyConfig.spawn.x,p.location.z-lobbyConfig.spawn.z)<.2,p.location);
+  check('real lobby cinematic starts from gate',arrivalDebug().active.some(s=>s.id===p.id&&s.reason==='past'),arrivalDebug());
+  check('Past return record cleared after handoff',!p.getDynamicProperty(PAST.returnKey));
+  check('Past ambient stopped before Lobby sequence',!p.getDynamicProperty('warland:past_music_v1')&&!p.getDynamicProperty('warland:past_wind_v1'));
+  await wait(ARRIVAL.ticks+15);
+  check('lobby cinematic ends without replay',!arrivalDebug().active.some(s=>s.id===p.id)&&arrivalDebug().pending===0,arrivalDebug());
+  check('lobby hands back control',p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Camera)&&p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));
+  check('Lobby transfer keeps inventory',inventory.getItem(8)?.amount===3&&inventory.getItem(8)?.typeId==='minecraft:diamond');
+  check('Lobby transfer preserves personal spawn',JSON.stringify(p.getSpawnPoint())===JSON.stringify(spawn));
+  check('Lobby preserves original mode',p.getGameMode()===GameMode.Creative);
   console.warn('[PAST_ARRIVAL_RESULT] '+JSON.stringify({passed:true,checks,clientVisualVerified:false}));
  }catch(e){console.warn('[PAST_ARRIVAL_RESULT] '+JSON.stringify({passed:false,error:String(e),stack:e.stack,checks}));}
  finally{try{if(p?.isValid){stopPastArrival(p);stopPastFilm(p);p.disconnect()}q?.disconnect();world.getDimension('overworld').runCommand('tickingarea remove arrival_fixture')}catch{}}

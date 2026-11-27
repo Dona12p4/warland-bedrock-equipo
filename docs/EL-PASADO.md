@@ -6,7 +6,7 @@ Estado del 27/11/2026: **completo 0.7.4 instalado en el oficial Movil 3–4 GB y
 
 `warland:el_pasado` contiene una copia acotada del WARLAND I reconstruido, transformada en ruinas. No modifica el original. Se entra en aventura, sin romper/colocar bloques, abrir cofres, pulsar botones, usar objetos o cruzar portales históricos. Los contenedores de la copia no incluyen inventarios y los portales/bloques de comando se sustituyen por obsidiana durante la transferencia.
 
-Las ruinas son la visita inicial. La versión intacta queda como vista previa administrativa, separada 1.024 bloques; su apertura al público sigue pendiente. Una columna blanca intensa marca la entrada principal de la muralla (245,5 / 63 / -782,5; desplazada +1024 X en la vista intacta). Al permanecer un segundo junto a su base, se regresa al punto y modo previos. El comando y el menú siguen disponibles. La llegada aparece fuera del activador y las cámaras no pueden activarlo.
+Las ruinas son la visita inicial. La versión intacta queda como vista previa administrativa, separada 1.024 bloques; su apertura al público sigue pendiente. Una columna blanca intensa marca la entrada principal de la muralla (245,5 / 63 / -782,5; desplazada +1024 X en la vista intacta). En el candidato 0.7.6, al permanecer un segundo junto a su base se viaja al lobby y se reproduce su llegada de luz; al terminar queda allí con el modo original. El comando /warland:pasado_salir y el botón Volver conservan el regreso al punto previo como alternativa. La llegada aparece fuera del activador y las cámaras no pueden activarlo.
 
 Comandos disponibles:
 
@@ -71,3 +71,15 @@ La llegada usa 32 chunks temporales adicionales al norte y los libera al termina
 El controlador persiste los permisos y el modo anterior, restaura el control y cede ante la muerte global. El jugador que salga o se desconecte conserva su retorno. No se ha controlado el cliente ni realizado una revision visual, por peticion expresa. Preparado fuera de las partidas abiertas; consultar el informe local de instalacion antes de atribuir esta version al oficial.
 
 Validacion de 0.7.5: 54 pruebas del proyecto y sonda BDS 1.26.60.6 con 184 registros mas 161 comprobaciones de la llegada (incluye muestreos de camara y visibilidad del recorrido). Jugador simulado: aterrizaje, permisos, inventario, spawn, cambio a pelicula y guia individual correctos; cero errores y Quit correctly. No es una comprobacion visual. El Pasado 0.7.4 ya fue instalado por la tarea paralela: esta delta requiere solo actualizar el addon con respaldo, nunca volver a importar terreno. Informe outputs/past-arrival/preparation.json.
+
+## Cruce de la luz hacia el lobby (27/11/2026)
+
+Aclaración del usuario: cruzar la columna de salida debe reproducir la animación de llegada y dejar al jugador en el lobby. Candidato completo 0.7.6, Base 0.6.23 y Lobby BP 1.2.1. Conserva la llegada diagonal de El Pasado y la exclusión de luces guía durante la película.
+
+El complemento unificado conecta la salida con la animación existente del lobby (11,1 segundos), sin una segunda escena distinta. Precarga y comprueba el suelo de destino antes de trasladar, recupera el modo anterior, retira música/viento/niebla de El Pasado y devuelve el control al acabar. No modifica cama, inventario, saldos ni progreso. No repite la escena al reconectar.
+
+La salida espera a que no haya una muerte en curso; si no carga el suelo o se alcanza la capacidad de llegadas simultáneas, conserva el regreso guardado y permite reintentar. Las cargas temporales se comparten entre visitantes y se liberan al terminar. El comando de salida manual mantiene el retorno al origen.
+
+Preparado sin instalar: el usuario sigue jugando y el servidor 19152 debe continuar encendido. Solo se actualizarán los packs cuando exista una ventana autorizada, con respaldo; no volver a importar El Pasado ni reemplazar DB.
+
+Validación del candidato 0.7.6: 55 pruebas del proyecto y BDS 1.26.60.6 con 184 registros y 171 comprobaciones del recorrido. La prueba nativa cruza la luz con un jugador simulado, inicia la llegada real del lobby, termina sin repetición y conserva controles, inventario, cama y modo. Cero errores, cierre Quit correctly y servidores anteriores conservados. No es una revisión visual. Evidencia local: .local/past-lobby-native-0.7.6/native.json.

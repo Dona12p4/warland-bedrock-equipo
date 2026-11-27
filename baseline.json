@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "capturedUtc": "2026-11-27T22:01:26Z",
+  "capturedUtc": "2026-11-27T22:20:29Z",
   "packs": [
     {
       "folder": "packs/behavior_packs/WARLAND_Apagavelas_BP",
@@ -54,7 +54,7 @@
       "version": [
         0,
         6,
-        22
+        23
       ],
       "dependencies": [
         {
@@ -192,7 +192,7 @@
       "version": [
         1,
         2,
-        0
+        1
       ],
       "dependencies": [
         {
@@ -504,7 +504,7 @@
     "behavior_packs/WARLAND_BP/items/selector_terreno.json": "23cc50a11d96fff7405dab22a6ba18e47e2854408750c3e2a016196586824819",
     "behavior_packs/WARLAND_BP/items/territorios.json": "0197facafd7a04bde839f218e1473950baf6ee645bf0ac09e15e97e981502fb3",
     "behavior_packs/WARLAND_BP/LICENSE-Mojang.txt": "ca18c0dede68ce24ea1cd6f9df0813579b6f9f979787983a50baec99345f975d",
-    "behavior_packs/WARLAND_BP/manifest.json": "85420a256887f73175863c281adb04916c6a79d1467036c80a7d0373886fc70d",
+    "behavior_packs/WARLAND_BP/manifest.json": "a84e70ab53ac995c6bbd913e7fee9737182aca03806800c0c46dda3d87c4bf3b",
     "behavior_packs/WARLAND_BP/scripts/actions.js": "bfdeb7da9a5a31de95434b2999162203efc7248a32411e6013a3f73b0340988d",
     "behavior_packs/WARLAND_BP/scripts/actions.js.map": "8289caa63c54d78563a0070aca7a299fffccb7683ab155a0f8c0c3831406aed9",
     "behavior_packs/WARLAND_BP/scripts/apagavelas-safety-bridge.js": "7a53cffd5948cc33973a6e0d2d01cfc230a05d6f68163b31265bd725ab8a4cd5",
@@ -539,7 +539,7 @@
     "behavior_packs/WARLAND_BP/scripts/past-palm-path.js": "0b42a04153be1bbb0bb77d9f3d6ec70c5e9f74aa2309bbf6a8299dcf55af9c10",
     "behavior_packs/WARLAND_BP/scripts/past-policy.js": "a38c057628060e90a382680d5466ddf41a8ad40659ce64d0225c297d77ec56f5",
     "behavior_packs/WARLAND_BP/scripts/past-travel.js": "8193f694c1d4670f8fd7008a3227848cab57af71593872d78a78c478f7bd1b43",
-    "behavior_packs/WARLAND_BP/scripts/past.js": "9b714b51e5136f456618223a98e0cf6003932675f834f5e00d795dafe4288b3e",
+    "behavior_packs/WARLAND_BP/scripts/past.js": "980746b466fe3fcf5bde4c718acd500401a541d28961c73409ea4213f4dc8000",
     "behavior_packs/WARLAND_BP/scripts/personal-hud.js": "e7ea4f5898fc2a514459a33cb73bab5a7fbaa081fff636160d23b0c566b1add0",
     "behavior_packs/WARLAND_BP/scripts/player-presentation.js": "1d51c7fcc7e708e48192acbea56f4e15ceebe04621d233d567671e04e5e40002",
     "behavior_packs/WARLAND_BP/scripts/polish-items.js": "ddc4a663791fd86a5d8afd857106af96656c48c8f9d4fef8bb3c5fa49bda8542",
@@ -790,15 +790,16 @@
     "behavior_packs/WARLAND_Lobby_BP/blocks/cuna/wood__dark.json": "ca113c5a527128d5e2ed88dc2324b16d66e35229bbe43af8290a949bf2a9fe9a",
     "behavior_packs/WARLAND_Lobby_BP/blocks/cuna/yellowflower__dead.json": "0c47c7e5e511ab51a698ba77a19eefe262cc81e8a9c4d6e354c9f0a6aec00d09",
     "behavior_packs/WARLAND_Lobby_BP/blocks/cuna/yellowflower__dry.json": "19d461a09dd513ad036200b4f0280631fecba97ac298f054b6e9bff19d55456c",
-    "behavior_packs/WARLAND_Lobby_BP/manifest.json": "230a858635e10e8c50e2506f53cacc805e9d3fa4f930a87679f3cc9abbd64b80",
+    "behavior_packs/WARLAND_Lobby_BP/manifest.json": "e44f196c3a69566db498d3a0c87b7947a6c5afab9489ad0eddca055d05b006c7",
     "behavior_packs/WARLAND_Lobby_BP/scripts/arrival-policy.js": "4a1e21664de69d4e5b311f56dfe4e872874b6a1b58bbd713d372311e42c9006f",
-    "behavior_packs/WARLAND_Lobby_BP/scripts/arrival-runtime.js": "13eaa9c7df58f0f8830d1b3ad54af74531ab86b4cf9a7c1ed58daa692a2c5c77",
+    "behavior_packs/WARLAND_Lobby_BP/scripts/arrival-runtime.js": "ffa46ddb8f4fb26ce8abd3186a20eb130269cc4f8116130b4f00ea2c03836354",
     "behavior_packs/WARLAND_Lobby_BP/scripts/lobby-block-palette.js": "542f8f1f36f13025f78facad29bb675278d353379463f044d57c5861e3eea806",
-    "behavior_packs/WARLAND_Lobby_BP/scripts/lobby-config.js": "5474a09e5be5195326b2753e07618f6775e7f19894dfd3c492607dd372e2652d",
+    "behavior_packs/WARLAND_Lobby_BP/scripts/lobby-config.js": "76c3c9c37980f6e8f63d2d8efc4b162e14af570ef05f87214a3687911ec92ed7",
     "behavior_packs/WARLAND_Lobby_BP/scripts/lobby-policy.js": "f8e8ef51292a7ac8337aa1650a87a92c54222cfc95b9437488df58333d113e91",
     "behavior_packs/WARLAND_Lobby_BP/scripts/lobby-timeline-policy.js": "0d57f13366b3f58990188ad9d726ea2003172bd317e81b32c18bcb298ba2ecde",
     "behavior_packs/WARLAND_Lobby_BP/scripts/lobby-timeline-runtime.js": "e9d59b16753e4271d3dbce3396b16f1d3db4c076c340059e0936914f3d42f300",
     "behavior_packs/WARLAND_Lobby_BP/scripts/main.js": "091d878141b77327ed7698b86bdba16ff0bd8908bc1fcc4a80f807f956712c48",
+    "behavior_packs/WARLAND_Lobby_BP/scripts/past-return.js": "b5fee3e15325bf9cf2df2750c2ab8c2f7ca1898d2e70fd60010416a806e0f595",
     "behavior_packs/WARLAND_Lobby_BP/scripts/timeline-data.js": "5994d86dd41b2c97864ecd68c4bb08676a5a3acb0cb6cb6f03d7717c1e2166f8",
     "behavior_packs/WARLAND_Palpador_BP/animation_controllers/palpador.combat.json": "b4bdf5f6263f65fc981a1a99a954b0a664f2327f62f86600554cb80c2896b104",
     "behavior_packs/WARLAND_Palpador_BP/animation_controllers/palpador.senses.json": "87e64bc13c5862725ec0456d268d1c4a2682448e6c35a04a0d652d978149a06e",

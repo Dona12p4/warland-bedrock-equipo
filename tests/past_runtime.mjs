@@ -49,7 +49,7 @@ for(const name of ['past-arrival-policy.js','past-arrival.js'])vm.runInContext(f
 const arrival=vm.runInContext('({PAST_ARRIVAL,pastArrivalFrame,pastArrivalLight,pastArrivalActive,startPastArrival,stopPastArrival,recoverPastArrival,pastArrivalDebug})',arrivalCtx);
 Object.assign(ctx,arrival);
 for(const name of ['past-music.js','past-travel.js','past-palm-path.js','past-lighting.js','past-environment.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
-const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe,createPastWind,createPastGuide,stormActive,PAST_GUIDE,PAST_WIND})',ctx);
+const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe,createPastWind,createPastGuide,stormActive,PAST_GUIDE,PAST_WIND,registerPastLobbyTransfer})',ctx);
 const defaultEntry=api.enterPast;
 // Existing film/travel checks use its explicit skip path; default entry is
 // exercised with the new arrival controller below.
@@ -190,9 +190,13 @@ wl.dimension=dims.get('minecraft:overworld');freshWind.update(wl,true);assert(!w
 
 const visit=intervals.find(x=>x.t===20).f;
 await pump(api.exitPast(a));const gateOrigin={...a.location};await pump(api.enterPast(a));
+assert.equal(await pump(api.exitPast(a,true)),false,'missing Lobby component lost the return record');
+assert(a.getDynamicProperty(policy.PAST.returnKey));
+const lobbyDestination={x:1240.5,y:72,z:-1367.5};let lobbyPlays=0;
+api.registerPastLobbyTransfer(async(p,mode,valid)=>{assert(valid());lobbyPlays++;p.teleport(lobbyDestination,{dimension:dims.get('minecraft:overworld')});p.setGameMode(mode);return true});
 a.location={...api.PAST_GUIDE.at};system.currentTick+=20;visit();system.currentTick+=20;visit();
 await pump(Promise.resolve().then(async()=>{for(let i=0;i<10;i++){for(const f of timeouts.splice(0))f();await Promise.resolve()}}));
-assert.equal(a.dimension.id,'minecraft:overworld','walking into guide did not return');assert.deepEqual(a.location,gateOrigin);assert.equal(a.mode,'creative');
+assert.equal(a.dimension.id,'minecraft:overworld','walking into guide did not return');assert.deepEqual(a.location,lobbyDestination);assert.notDeepEqual(a.location,gateOrigin);assert.equal(lobbyPlays,1);assert.equal(a.mode,'creative');
 assert(!a.getDynamicProperty(api.PAST_WIND.key));assert(!a.getDynamicProperty('warland:past_music_v1'));
 
 await pump(api.startPastFilm(a));let from=effects.length;visit();

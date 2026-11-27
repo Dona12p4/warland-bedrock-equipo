@@ -8,6 +8,9 @@ class PastTests(unittest.TestCase):
     def test_runtime_contracts(self):
         subprocess.run(['node',str(ROOT/'tests/past_runtime.mjs')],check=True,capture_output=True,text=True)
 
+    def test_lobby_return_contracts(self):
+        subprocess.run(['node',str(ROOT/'tests/past_lobby_return.mjs')],check=True,capture_output=True,text=True)
+
     def test_all_concatenated_containers_stripped_and_shifted(self):
         records=[]
         for x in [201,230]:

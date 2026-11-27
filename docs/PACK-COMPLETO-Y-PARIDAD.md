@@ -53,3 +53,7 @@ La entrada guardada del servidor correcto es **WARLAND - Luz - LAB**, 127.0.0.1:
 
 Informe local outputs/past-official-installation.json; paridad outputs/past-official-final-parity.json. Respaldo past-official-20261127T215100Z. WARLAND.mcaddon SHA256 5f2f5cdabc19daf1e861be20495342b06968a82544e292ffc36f7bd2cfef3bc9. Fuente/catálogo en codex/el-pasado; main y Pages requieren integración del propietario. No ejecutar otra vez el instalador de dimensión nueva: rechaza reemplazar un Pasado ya existente.
 
+
+## Preparado 0.7.6: salida con llegada al lobby
+
+El candidato vigente incorpora lo instalado en 0.7.4, llegada diagonal de El Pasado, luces privadas excluidas de la película y salida hacia el lobby con su animación existente. Fuente Base0.6.23/LobbyBP1.2.1. Un solo BP/RP, mismas UUID completas. No instalado: el usuario sigue jugando y el servidor19152 debe permanecer encendido. No detener ni reiniciar servidores, tomar el cliente o copiar una DB abierta. Actualizador de packs con respaldo cerrado cuando exista una nueva ventana autorizada; no reimportar terreno. Informe outputs/past-arrival/preparation.json.

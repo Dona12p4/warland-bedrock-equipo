@@ -11,6 +11,8 @@ const wait=t=>new Promise(r=>system.runTimeout(r,t)),v=a=>({x:a[0],y:a[1],z:a[2]
 const permissions=[InputPermissionCategory.Camera,InputPermissionCategory.Movement];
 const busy=new Set(),lastSafe=new Map(),regions=new Set(),regionLoads=new Map();let film=null,actor=null,loaded=false;
 const music=createPastMusic(),wind=createPastWind(),guide=createPastGuide(),lighting=createPastLighting(),travel=new Map();let travelCursor=0;
+let lobbyTransfer=null;
+export function registerPastLobbyTransfer(handler){lobbyTransfer=handler}
 const read=(p,k)=>{try{return JSON.parse(p.getDynamicProperty(k)??'null')}catch{return null}};
 const heart=p=>world.getDynamicProperty('warland:heart_overlay_v1')===true||!!p.getDynamicProperty('warland:heart_death_v1');
 const alive=p=>p.isValid&&(p.getComponent('minecraft:health')?.currentValue??0)>0;
@@ -72,7 +74,7 @@ export async function enterPast(p,normal=false,skipArrival=false){
   p.onScreenDisplay.setTitle(normal?'El Pasado · Antes de la ceniza':'El Pasado',{subtitle:normal?'Un recuerdo que aún permanece.':'WARLAND I · Lo que quedó.',fadeInDuration:10,stayDuration:40,fadeOutDuration:20});
   wind.update(p,stormActive(p));guide.forget(p.id);
   if(showArrival)startPastArrival(p);
-  notice(p,'Sigue la luz de la entrada para regresar.');audit('entered',p,{normal});return true;
+  notice(p,'Cruza la luz de la entrada para llegar al lobby.');audit('entered',p,{normal});return true;
  }catch(e){notice(p,String(e.message??e));audit('entry_error',p,{error:String(e)});return false}
  finally{busy.delete(p.id);releaseRegions()}
 }
@@ -94,19 +96,24 @@ export function stopPastFilm(p,reason='cancelled'){
  if(film?.p.id===p.id){film=null;lighting.clear();if(actor?.isValid)actor.remove();actor=null;}
  restoreFilm(p);wind.update(p,stormActive(p));audit('cinema_stopped',p,{reason});releaseRegions();
 }
-export async function exitPast(p){
+export async function exitPast(p,toLobby=false){
  if(pastArrivalActive(p))stopPastArrival(p,'exit');
  if(!alive(p)||heart(p)){notice(p,'Espera a que termine la reaparición.');return false}
  if(busy.has(p.id))return false;
  if(p.getDynamicProperty(PAST.filmKey))stopPastFilm(p);
  const s=read(p,PAST.returnKey);
  if(!validReturn(s)){notice(p,'No hay un punto de regreso guardado.');return false}
+ if(toLobby&&(!inPast(p)||typeof lobbyTransfer!=='function')){notice(p,'La llegada al lobby todavía no está disponible.');return false}
  busy.add(p.id);
  try{
-  p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:.15,holdTime:.3,fadeOutTime:.5}});await wait(4);
-  if(!alive(p)||heart(p))return false;
-  p.teleport(s.location,{dimension:world.getDimension(s.dimension),rotation:s.rotation});
-  p.setGameMode(s.mode);p.setDynamicProperty(PAST.returnKey,undefined);lastSafe.delete(p.id);travel.delete(p.id);guide.forget(p.id);wind.stop(p);music.stop(p);fog(p,false);audit('returned',p,{dimension:s.dimension});return true;
+  if(toLobby){
+   if(!await lobbyTransfer(p,s.mode,()=>alive(p)&&!heart(p)&&inPast(p))){notice(p,'La llegada está ocupada o aún está cargando. Vuelve a cruzar la luz.');return false}
+  }else{
+   p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:.15,holdTime:.3,fadeOutTime:.5}});await wait(4);
+   if(!alive(p)||heart(p))return false;
+   p.teleport(s.location,{dimension:world.getDimension(s.dimension),rotation:s.rotation});p.setGameMode(s.mode);
+  }
+  p.setDynamicProperty(PAST.returnKey,undefined);lastSafe.delete(p.id);travel.delete(p.id);guide.forget(p.id);wind.stop(p);music.stop(p);fog(p,false);audit('returned',p,{dimension:p.dimension.id,route:toLobby?'lobby':'origin'});return true;
  }catch(e){notice(p,'No se pudo regresar todavía. Repite /warland:pasado_salir.');audit('return_error',p,{error:String(e)});return false}
  finally{busy.delete(p.id);releaseRegions()}
 }
@@ -192,7 +199,7 @@ system.runInterval(()=>{
   music.update(p);
   const storm=stormActive(p,film?.p.id===p.id?film:null);wind.update(p,storm);
   if(guide.ready(p,system.currentTick,alive(p)&&!heart(p)&&!pastArrivalActive(p)&&!busy.has(p.id)&&validReturn(read(p,PAST.returnKey)))){
-   exitPast(p).catch(e=>audit('guide_return_error',p,{error:String(e)}));continue;
+   exitPast(p,true).catch(e=>audit('guide_return_error',p,{error:String(e)}));continue;
   }
   if(!inPast(p)){
    if(!heart(p)&&alive(p)&&p.getDynamicProperty(PAST.filmKey)&&film?.p.id!==p.id)restoreFilm(p);

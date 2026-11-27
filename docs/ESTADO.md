@@ -1,5 +1,12 @@
 # Estado de partida de la colaboracion
 
+## Candidato vigente: completo 0.7.6, cruce al lobby (27/11/2026)
+
+La luz de salida de El Pasado ahora conduce al lobby y reproduce su llegada existente. Conserva el recorrido diagonal de entrada y la guía privada excluida de la película. Fuente Base 0.6.23 / Lobby BP 1.2.1; un solo BP/RP. Cama, inventario y modo previo conservados. La salida manual sigue permitiendo volver al origen.
+
+Preparado, **no instalado**: usuario jugando y servidor19152 siempre encendido. La versión instalada continúa en 0.7.4; las secciones anteriores de 0.7.5 son antecedentes de preparación. No controlar Minecraft, reiniciar servidores ni copiar DB abierta.
+
+
 ## Instalado: completo 0.7.4 con El Pasado (27/11/2026)
 
 Instalado con respaldo cerrado en el oficial Movil 3-4 GB y en los archivos del servidor de proyecto19152. Paridad verificada: un BP, un RP, mismas UUID/versiones y 1.275 archivos exactos; registro Shared actualizado. Cada destino conserva sus propios registros anteriores (24.084 oficial, 21.975 servidor); se añade la dimensión El Pasado con 15.680 registros de terreno y 1.147 chunks. Inventarios, saldos, progreso y terreno anterior conservados. No se copió una DB de laboratorio sobre ninguna partida.
@@ -128,3 +135,5 @@ en PARTICULAS-BIOMAS.md. Esta ampliacion no modifica el artefacto 0.7.3.
 Integra 0.7.4 (tormenta, viento y retorno por la entrada) y la nueva llegada diagonal con plano abierto. La luz movil y la guia fija son individuales: quedan excluidas de la pelicula incluso con otros visitantes. Conserva las tomas y luces propias del Coloso. Rama codex/pasado-llegada-esquinas. Instalacion oficial y servidor pendiente mientras Minecraft siga abierto; no se detuvieron servidores ni se tomo control del cliente. No confundir este candidato con la llegada del lobby, que conserva su comportamiento anterior.
 
 Validacion de 0.7.5: 54 pruebas del proyecto y sonda BDS 1.26.60.6 con 184 registros mas 161 comprobaciones de la llegada (incluye muestreos de camara y visibilidad del recorrido). Jugador simulado: aterrizaje, permisos, inventario, spawn, cambio a pelicula y guia individual correctos; cero errores y Quit correctly. No es una comprobacion visual. El Pasado 0.7.4 ya fue instalado por la tarea paralela: esta delta requiere solo actualizar el addon con respaldo, nunca volver a importar terreno. Informe outputs/past-arrival/preparation.json.
+
+Validación del candidato 0.7.6: 55 pruebas del proyecto y BDS 1.26.60.6 con 184 registros y 171 comprobaciones del recorrido. La prueba nativa cruza la luz con un jugador simulado, inicia la llegada real del lobby, termina sin repetición y conserva controles, inventario, cama y modo. Cero errores, cierre Quit correctly y servidores anteriores conservados. No es una revisión visual. Evidencia local: .local/past-lobby-native-0.7.6/native.json.

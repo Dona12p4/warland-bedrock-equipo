@@ -56,3 +56,9 @@ El usuario pide una luz muy potente en la entrada de WARLAND que guíe el regres
 - La luz de llegada recorre El Pasado de esquina a esquina y termina en la entrada. Plano lateral distante a mitad del descenso. No modifica la ruta de la pelicula del Coloso.
 - La luz de llegada y la columna de regreso no se muestran durante la cinematica. Emision individual para preservar esa exclusion en multijugador.
 - El propietario pide continuar sin confirmaciones visuales ni tomar el control de Minecraft. No cerrar partidas o servidores; dejar la instalacion preparada si estan abiertos.
+
+## 27/11/2026: cruzar la salida reproduce la llegada al lobby
+
+- El usuario aclaró «que se reproduzca la animacion y aparezca en el libby»: es el comportamiento solicitado, no un error que deba eliminarse. La luz de salida de El Pasado lleva al lobby y reproduce su llegada existente. Sustituye el retorno al origen por proximidad de la revisión anterior.
+- /warland:pasado_salir y el menú Volver conservan el regreso original como alternativa. La cama, inventario y modo previo se preservan. Se limpian el ambiente y el registro de viaje al aceptar el traslado.
+- Completo candidato 0.7.6. Sigue pendiente de instalación por orden «Sigo jugando; dejarla preparada». Servidor 19152 siempre en línea: no detenerlo ni reiniciarlo, ni tomar el cliente para revisión visual.

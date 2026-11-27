@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse, collections, hashlib, json, shutil, uuid, zipfile, struct, zlib, subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION=[0,7,5]
+VERSION=[0,7,6]
 BP_ID='0c8a75c4-f955-5e24-bacf-72e9b2cb02ec'
 RP_ID='3493724d-c395-54d4-929c-a229b0398abf'
 def read(p): return json.loads(p.read_text(encoding='utf-8-sig'))
@@ -82,7 +82,11 @@ def build(out):
         if kind=='behavior_packs':
             manifest['modules'].append({'type':'script','language':'javascript','entry':'scripts/main.js','uuid':str(uuid.uuid5(uuid.NAMESPACE_URL,'warland/unified/script')),'version':VERSION})
             manifest['dependencies']=[{'uuid':RP_ID,'version':VERSION},{'module_name':'@minecraft/server','version':'2.12.0-beta'},{'module_name':'@minecraft/server-ui','version':'2.0.0'}]
-            (dst/'scripts/main.js').write_text('// Unified entry point; original module-relative imports are preserved.\n'+'\n'.join("import '"+e+"';" for e in entries)+'\n',encoding='utf-8')
+            entry='// Unified entry point; original module-relative imports are preserved.\n'+'\n'.join("import '"+e+"';" for e in entries)+'\n'
+            if (dst/'scripts/components/warland_lobby_bp/past-return.js').is_file():
+                if not (dst/'scripts/components/warland_bp/past.js').is_file():raise ValueError('Past return needs the complete Base component')
+                entry+="import {registerPastLobbyTransfer} from './components/warland_bp/past.js';\nimport {returnFromPast} from './components/warland_lobby_bp/past-return.js';\nregisterPastLobbyTransfer(returnFromPast);\n"
+            (dst/'scripts/main.js').write_text(entry,encoding='utf-8')
         write(dst/'manifest.json',manifest)
         (dst/'pack_icon.png').write_bytes(pack_icon())
     report['merged']=sorted(set(report['merged']))
