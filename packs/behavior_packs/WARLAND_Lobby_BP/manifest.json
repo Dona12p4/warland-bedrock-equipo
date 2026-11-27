@@ -2,12 +2,12 @@
   "format_version": 2,
   "header": {
     "name": "WARLAND - La Cuna - Llegada",
-    "description": "Spawn inicial y presencia divina. Bedrock estable.",
+    "description": "Llegada cinematografica de luz y retorno al lobby. Primera entrada y reaparicion sin otro spawn.",
     "uuid": "d61524c8-d0b5-4055-bd0c-a9e8eb35aa70",
     "version": [
       1,
-      1,
-      2
+      2,
+      0
     ],
     "min_engine_version": [
       1,
@@ -22,8 +22,8 @@
       "uuid": "f781ae4d-86de-4fc4-8d20-404f2616dc90",
       "version": [
         1,
-        1,
-        2
+        2,
+        0
       ],
       "entry": "scripts/main.js"
     },
@@ -32,8 +32,8 @@
       "uuid": "48782a45-45f6-44d5-a315-a82d28f7f128",
       "version": [
         1,
-        1,
-        2
+        2,
+        0
       ]
     }
   ],
@@ -50,7 +50,7 @@
       "uuid": "d7af1768-053f-4b95-977d-37d31f42b61c",
       "version": [
         1,
-        1,
+        2,
         0
       ]
     }

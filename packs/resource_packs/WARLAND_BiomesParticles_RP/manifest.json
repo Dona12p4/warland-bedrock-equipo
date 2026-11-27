@@ -1,0 +1,35 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Biomes Particles · fuente",
+    "description": "Particulas de MrsTrader adaptadas al pack completo WARLAND. No instalar separado.",
+    "uuid": "dbf8ed41-ce18-5d22-9283-a8336da0d120",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "metadata": {
+    "authors": [
+      "MrsTrader",
+      "WARLAND (adaptacion y optimizacion)"
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "1704c7ef-8632-5fde-9751-1ed986611bbf",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}

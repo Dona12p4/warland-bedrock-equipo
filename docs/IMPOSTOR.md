@@ -88,3 +88,9 @@ Los 25 paquetes anteriores del oficial coinciden byte por byte con la base publi
 Validacion adicional: 37 pruebas Python, seis JavaScript, inventario de 27 paquetes y 1138 archivos. Ficha, comandos y modelo Steve revisados en el navegador del catalogo. Esta revision del atlas no sustituye la comprobacion visual en Minecraft; cliente y Android pendientes. Las cifras de las secciones anteriores corresponden a sus revisiones historicas.
 
 Instalacion final: 1135 archivos respaldados; 1133 originales intactos. Solo cambian las dos listas de activacion y se agregan los 19 archivos del Impostor. Verificacion posterior: los 27 paquetes del oficial coinciden por SHA-256 con esta fuente. Copia offline y snapshot de noviembre 8 sin sobrescribir; el laboratorio integra el snapshot con los paquetes actuales.
+
+## Revision visual 0.3.3 preparada, aun sin instalar
+
+El usuario observa desplazamiento con extremidades inmoviles dentro de Minecraft. Se prepara una correccion conservadora de los nombres de huesos y sus enlaces: geometria, padres y animaciones usan los identificadores canonicos en minusculas. No cambia cubos, UV, texturas ni logica de movimiento. Referencia Bedrock: https://learn.microsoft.com/en-us/minecraft/creator/documents/animations/animationsoverview (Names). La causa visual y el resultado aun deben comprobarse en el cliente, no se dan por confirmados a partir del BDS.
+
+Validacion de la candidata: cuatro pruebas de recursos y check de 27 paquetes / 1138 archivos. Nueva prueba nativa con 30 comprobaciones iniciales y cinco tras reinicio, cero errores y Quit correctly. Se corrige tambien la sonda para rechazar una pasada etiquetada como inicial que en realidad solo comprobara persistencia. Minecraft sigue en uso: no se ha actualizado el oficial ni Shared ni se ha publicado esta candidata como instalada.

@@ -1,0 +1,7 @@
+Biomes Particles Addon: particle artwork and original effects by MrsTrader.
+User-supplied original version 1.0.0. Adapted for the complete WARLAND pack.
+WARLAND changes: isolated identifiers/textures, finite emitter lifetime, bounded
+emission counts, removal of missing recursive trails, private player emission,
+biome/roof cache and staggered work. Original artwork is preserved.
+Two unused fragment effects were excluded because their texture was not supplied.
+This module is source material, not a separately distributed or installed addon.

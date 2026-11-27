@@ -4,14 +4,14 @@
     "animation.warland.impostor.idle": {
       "loop": true,
       "bones": {
-        "rightArm": {
+        "rightarm": {
           "rotation": [
             "math.sin(query.life_time * 67.0) * 1.5",
             0,
             "math.cos(query.life_time * 57.0) * 1.5 + 1.5"
           ]
         },
-        "leftArm": {
+        "leftarm": {
           "rotation": [
             "-math.sin(query.life_time * 67.0) * 1.5",
             0,
@@ -30,28 +30,28 @@
             0
           ]
         },
-        "rightArm": {
+        "rightarm": {
           "rotation": [
             "math.cos(query.modified_distance_moved * 76.34) * math.min(query.modified_move_speed * 100.0, 35.0)",
             0,
             0
           ]
         },
-        "leftArm": {
+        "leftarm": {
           "rotation": [
             "-(math.cos(query.modified_distance_moved * 76.34) * math.min(query.modified_move_speed * 100.0, 35.0))",
             0,
             0
           ]
         },
-        "rightLeg": {
+        "rightleg": {
           "rotation": [
             "-(math.cos(query.modified_distance_moved * 76.34) * math.min(query.modified_move_speed * 100.0, 35.0))",
             0,
             0
           ]
         },
-        "leftLeg": {
+        "leftleg": {
           "rotation": [
             "math.cos(query.modified_distance_moved * 76.34) * math.min(query.modified_move_speed * 100.0, 35.0)",
             0,
@@ -82,28 +82,28 @@
             0
           ]
         },
-        "rightArm": {
+        "rightarm": {
           "rotation": [
             "math.cos(query.modified_distance_moved * 76.34) * 52.0",
             0,
             0
           ]
         },
-        "leftArm": {
+        "leftarm": {
           "rotation": [
             "-(math.cos(query.modified_distance_moved * 76.34) * 52.0)",
             0,
             0
           ]
         },
-        "rightLeg": {
+        "rightleg": {
           "rotation": [
             "-(math.cos(query.modified_distance_moved * 76.34) * 52.0)",
             0,
             0
           ]
         },
-        "leftLeg": {
+        "leftleg": {
           "rotation": [
             "math.cos(query.modified_distance_moved * 76.34) * 52.0",
             0,
@@ -461,7 +461,7 @@
             ]
           }
         },
-        "rightArm": {
+        "rightarm": {
           "rotation": {
             "0.000": [
               0.0,
@@ -540,7 +540,7 @@
             ]
           }
         },
-        "leftArm": {
+        "leftarm": {
           "rotation": [
             0,
             0,
@@ -566,28 +566,28 @@
             0
           ]
         },
-        "rightArm": {
+        "rightarm": {
           "rotation": [
             "math.cos(query.modified_distance_moved * 76.34) * 52.0",
             0,
             0
           ]
         },
-        "leftArm": {
+        "leftarm": {
           "rotation": [
             "-(math.cos(query.modified_distance_moved * 76.34) * 52.0)",
             0,
             0
           ]
         },
-        "rightLeg": {
+        "rightleg": {
           "rotation": [
             "-(math.cos(query.modified_distance_moved * 76.34) * 52.0)",
             0,
             0
           ]
         },
-        "leftLeg": {
+        "leftleg": {
           "rotation": [
             "math.cos(query.modified_distance_moved * 76.34) * 52.0",
             0,

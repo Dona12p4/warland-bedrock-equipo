@@ -36,7 +36,7 @@ class ImpostorResources(unittest.TestCase):
         self.assertEqual(len(geometries), 2)
         for geo, width in zip(geometries, [4, 3]):
             bones = {b['name']: b for b in geo['bones']}
-            for arm in ['leftArm', 'rightArm', 'leftSleeve', 'rightSleeve']:
+            for arm in ['leftarm', 'rightarm', 'leftsleeve', 'rightsleeve']:
                 self.assertEqual(bones[arm]['cubes'][0]['size'][0], width)
             self.assertTrue(all(b.get('parent') in bones for b in bones.values() if b.get('parent')))
             height = max(c['origin'][1] + c['size'][1] for b in bones.values() for c in b.get('cubes', [])) / 16
@@ -49,6 +49,7 @@ class ImpostorResources(unittest.TestCase):
         animations = read(RP / 'animations/impostor.animation.json')['animations']
         for geo in geometries:
             names = {b['name'] for b in geo['bones']}
+            self.assertTrue(all(name == name.lower() for name in names), 'Bedrock animation bone identifiers must use canonical lowercase names')
             for clip in animations.values(): self.assertTrue(set(clip['bones']) <= names)
         controller = read(RP / 'render_controllers/impostor.render_controllers.json')['render_controllers']['controller.render.warland.impostor']
         self.assertEqual(len(controller['arrays']['textures']['Array.skins']), 2)

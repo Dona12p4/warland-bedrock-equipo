@@ -17,7 +17,7 @@ world.afterEvents.worldLoad.subscribe(() => system.runTimeout(async () => {
     dim.runCommand('fill 9980 109 9980 10020 109 10020 stone');
     dim.runCommand('fill 9980 110 9980 10020 116 10020 air');
     dim.runCommand('gamerule doMobSpawning false');
-    const saved = world.getDynamicProperty('warland:impostor_probe_v032_saved');
+    const saved = world.getDynamicProperty('warland:impostor_probe_v033_saved');
     if (saved) {
       await wait(50);
       const state = JSON.parse(saved), mob = world.getEntity(state.id);
@@ -138,7 +138,7 @@ world.afterEvents.worldLoad.subscribe(() => system.runTimeout(async () => {
     check('name still matches while walking', mob.nameTag === 'Copia Alice');
     check('no phantom player in player list', world.getAllPlayers().length === 3, world.getAllPlayers().map(p => p.name));
     const state = { id: mob.id, name: mob.nameTag };
-    world.setDynamicProperty('warland:impostor_probe_v032_saved', JSON.stringify(state));
+    world.setDynamicProperty('warland:impostor_probe_v033_saved', JSON.stringify(state));
     alice.disconnect(); bob.disconnect(); admin.disconnect();
     await wait(5);
     check('disconnection does not turn name into undefined', mob.nameTag === state.name);
