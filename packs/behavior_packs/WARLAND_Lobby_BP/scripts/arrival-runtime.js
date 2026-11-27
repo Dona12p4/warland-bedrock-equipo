@@ -18,6 +18,7 @@ export function recoverArrival(p){
  const raw=p.getDynamicProperty(RECOVERY);if(typeof raw!=='string'){p.removeTag(CINEMATIC_TAG);return;}
  let s;try{s=JSON.parse(raw);}catch{p.setDynamicProperty(RECOVERY,undefined);p.removeTag(CINEMATIC_TAG);return;}
  if(!alive(p))return;
+ try{p.runCommand('stopsound @s warland.arrival.wind');}catch{}
  if(s.visualOwned)revealPlayer(p);
  if(s.cameraOwned)p.camera.clear();
  for(const [category,enabled]of s.permissions??[])p.inputPermissions.setPermissionCategory(category,enabled);
@@ -53,7 +54,9 @@ export function startArrival(p,reason='preview'){
   p.onScreenDisplay.setActionBar('');
   p.teleport(s.at,{rotation:{x:0,y:180}});
   const frame=arrivalFrame(0,s.at);p.camera.setCamera('minecraft:free',{location:frame.location,facingLocation:frame.facingLocation});
-  emit(s,'cloud_outer');emit(s,'cloud_inner');
+  emit(s,'vortex');emit(s,'vortex_sparks');
+  p.playSound('warland.arrival.wind',{volume:.8,pitch:1});
+  audit('wind',p,{peakAt:ARRIVAL.descent});
   audit('started',p,{reason});return true;
  }catch(e){audit('start_error',p,{error:String(e)});finish(p,'start_error');return false;}
 }

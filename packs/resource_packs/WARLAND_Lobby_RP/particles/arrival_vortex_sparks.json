@@ -2,15 +2,15 @@
   "format_version": "1.10.0",
   "particle_effect": {
     "description": {
-      "identifier": "warland:arrival_cloud_inner",
+      "identifier": "warland:arrival_vortex_sparks",
       "basic_render_parameters": {
         "material": "particles_blend",
-        "texture": "textures/particle/arrival_cloud"
+        "texture": "textures/particle/lobby_light"
       }
     },
     "components": {
       "minecraft:emitter_rate_instant": {
-        "num_particles": 14
+        "num_particles": 32
       },
       "minecraft:emitter_lifetime_once": {
         "active_time": 0.01
@@ -33,36 +33,36 @@
       },
       "minecraft:particle_motion_parametric": {
         "relative_position": [
-          "(4.5+variable.particle_random_1*4)*math.cos(variable.particle_random_1*540+variable.particle_age*52)",
-          "variable.arrival_cloud_y-.6+(variable.particle_random_3-.5)",
-          "(4.5+variable.particle_random_1*4)*math.sin(variable.particle_random_1*540+variable.particle_age*52)"
+          "(3+variable.particle_random_1*10)*(1-.12*variable.particle_age)*math.cos(variable.particle_random_1*720+variable.particle_age*65)",
+          "variable.arrival_cloud_y+.4+(variable.particle_random_3-.5)",
+          "(3+variable.particle_random_1*10)*(1-.12*variable.particle_age)*math.sin(variable.particle_random_1*720+variable.particle_age*65)"
         ]
       },
       "minecraft:particle_appearance_billboard": {
         "size": [
-          "2+variable.particle_random_2",
-          1.2
+          0.13,
+          0.38
         ],
         "facing_camera_mode": "lookat_xyz",
         "uv": {
-          "texture_width": 32,
-          "texture_height": 32,
+          "texture_width": 64,
+          "texture_height": 128,
           "uv": [
             0,
             0
           ],
           "uv_size": [
-            32,
-            32
+            64,
+            128
           ]
         }
       },
       "minecraft:particle_appearance_tinting": {
         "color": [
-          0.48,
-          0.54,
-          0.65,
-          ".9*math.clamp(variable.particle_age/.55,0,1)*math.clamp((5.2-variable.particle_age)/1.3,0,1)"
+          1,
+          1,
+          1,
+          ".9*math.clamp(variable.particle_age/.5,0,1)*math.clamp((5.2-variable.particle_age)/1.3,0,1)"
         ]
       }
     }

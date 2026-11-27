@@ -1,6 +1,6 @@
 """Deterministic native particle choreography. Reuses the existing lobby texture."""
 from pathlib import Path
-import json, subprocess
+import json, subprocess, math
 from PIL import Image, ImageDraw
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'packs/resource_packs/WARLAND_Lobby_RP/particles'
@@ -21,8 +21,8 @@ specs={
  'converge':dict(count=28,life=1.55,pos=[f'(2.1*(1-{smooth(age+"/1.4")}))*math.cos({r1}*360+{age}*150)',f'.15+{r2}*2.1',f'(2.1*(1-{smooth(age+"/1.4")}))*math.sin({r1}*360+{age}*150)'],size=[.11,.18],alpha=f'{clamp(age+"/.15")}*{clamp("(1.55-"+age+")/.35")}'),
  'embers':dict(count=16,life=1.25,pos=[f'({r1}-.5)*(1+{age})',f'.2+{r2}*1.8+{age}*.6',f'({r3}-.5)*(1+{age})'],size=[.06,.09],alpha=f'.7*{clamp("(1.25-"+age+")/.7")}'),
  'lightning':dict(count=1,life=.5,pos=[0,0,0],size=[6,2.5],alpha=f'{age}<.08?1:({age}<.14?.12:({age}<.23?.9:{clamp("(.5-"+age+")/.27")}))',texture='arrival_lightning',uv=[64,32],facing='emitter_transform_xz'),
- 'cloud_outer':dict(count=22,life=5.4,pos=[f'(9+{r1}*5)*math.cos({r1}*360+{age}*26)',f'{cloud_y}+({r3}-.5)*1.2',f'(9+{r1}*5)*math.sin({r1}*360+{age}*26)'],size=[f'3.5+{r2}*1.5',f'1.4+{r3}*.6'],alpha=f'.88*{clamp(age+"/.55")}*{clamp("(5.4-"+age+")/1.5")}',texture='arrival_cloud',uv=[32,32]),
- 'cloud_inner':dict(count=14,life=5.2,pos=[f'(4.5+{r1}*4)*math.cos({r1}*540+{age}*52)',f'{cloud_y}-.6+({r3}-.5)',f'(4.5+{r1}*4)*math.sin({r1}*540+{age}*52)'],size=[f'2+{r2}',1.2],alpha=f'.9*{clamp(age+"/.55")}*{clamp("(5.2-"+age+")/1.3")}',texture='arrival_cloud',uv=[32,32]),
+ 'vortex':dict(count=2,life=5.4,pos=[0,f'{cloud_y}+({r3}-.5)*.6',0],size=[f'14-{age}*.3',f'14-{age}*.3'],alpha=f'.8*{clamp(age+"/.5")}*{clamp("(5.4-"+age+")/1.7")}',texture='arrival_vortex',uv=[128,128],facing='emitter_transform_xz',spin={'rotation':f'{r1}*180','rotation_rate':34}),
+ 'vortex_sparks':dict(count=32,life=5.2,pos=[f'(3+{r1}*10)*(1-.12*{age})*math.cos({r1}*720+{age}*65)',f'{cloud_y}+.4+({r3}-.5)',f'(3+{r1}*10)*(1-.12*{age})*math.sin({r1}*720+{age}*65)'],size=[.13,.38],alpha=f'.9*{clamp(age+"/.5")}*{clamp("(5.2-"+age+")/1.3")}'),
 }
 # Small original pixel-art bolt, reproducible from blocky paths. Two sprites,
 # not a rainstorm or dozens of segment emitters. No vanilla texture replacement.
@@ -31,9 +31,19 @@ paths=[[(0,13),(10,13),(10,19),(23,19),(23,11),(37,11),(37,18),(48,18),(48,13),(
 for width,color in [(11,(125,161,255,24)),(7,(154,187,255,72)),(3,(205,222,255,245)),(1,(255,250,230,255))]:
  for path in paths:draw.line(path,fill=color,width=width)
 bolt.save(ROOT/'packs/resource_packs/WARLAND_Lobby_RP/textures/particle/arrival_lightning.png')
-cloud=Image.new('RGBA',(32,32),(0,0,0,0));draw=ImageDraw.Draw(cloud)
-for box,color in [((4,11,27,24),(165,175,190,90)),((1,13,30,21),(185,193,207,130)),((5,8,25,24),(195,203,215,235)),((9,5,20,24),(213,220,230,245)),((3,12,28,22),(204,213,224,245)),((7,9,24,17),(232,237,245,255)),((11,6,19,13),(248,250,255,255)),((6,20,25,24),(162,173,191,220))]:draw.rectangle(box,fill=color)
-cloud.save(ROOT/'packs/resource_packs/WARLAND_Lobby_RP/textures/particle/arrival_cloud.png')
+# Four luminous spiral arms, with an open eye. Two rotating planes provide
+# the broad silhouette; the second effect adds depth with only 32 moving sparks.
+vortex=Image.new('RGBA',(128,128),(0,0,0,0));draw=ImageDraw.Draw(vortex)
+paths=[]
+for arm in range(4):
+ points=[]
+ for i in range(100):
+  u=i/99;radius=13+44*u;angle=arm*math.pi/2+u*math.pi*1.45
+  points.append((round(63.5+radius*math.cos(angle)),round(63.5+radius*math.sin(angle))))
+ paths.append(points)
+for width,color in [(9,(255,190,65,12)),(7,(255,206,100,24)),(5,(255,218,145,54)),(3,(255,234,184,150)),(1,(255,255,245,255))]:
+ for path in paths:draw.line(path,fill=color,width=width)
+vortex.save(ROOT/'packs/resource_packs/WARLAND_Lobby_RP/textures/particle/arrival_vortex.png')
 animations_path=ROOT/'packs/resource_packs/WARLAND_Lobby_RP/animations/arrival_player.json'
 animations=json.loads(animations_path.read_text());animations['animations']['animation.warland.arrival.hidden']['animation_length']=timeline['reveal']/20
 animations_path.write_text(json.dumps(animations,indent=2)+'\n',encoding='utf8')
@@ -47,8 +57,9 @@ for name,s in specs.items():
   'minecraft:particle_lifetime_expression':{'max_lifetime':s['life']},
   'minecraft:particle_motion_parametric':{'relative_position':s['pos']},
   'minecraft:particle_appearance_billboard':{'size':s['size'],'facing_camera_mode':s.get('facing','lookat_y' if name=='body' else 'lookat_xyz'),'uv':{'texture_width':uv[0],'texture_height':uv[1],'uv':[0,0],'uv_size':uv}},
-  'minecraft:particle_appearance_tinting':{'color':([.48,.54,.65] if name.startswith('cloud_') else [1,1,1])+[s['alpha']]}
+  'minecraft:particle_appearance_tinting':{'color':[1,1,1,s['alpha']]}
  }
+ if 'spin' in s:components['minecraft:particle_initial_spin']=s['spin']
  effect={'format_version':'1.10.0','particle_effect':{'description':{'identifier':'warland:arrival_'+name,'basic_render_parameters':{'material':'particles_blend','texture':'textures/particle/'+texture}},'components':components}}
  (OUT/('arrival_'+name+'.json')).write_text(json.dumps(effect,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({'effects':len(specs),'particlesPerSequence':sum(s['count']*(2 if name=='lightning' else 1) for name,s in specs.items())}))

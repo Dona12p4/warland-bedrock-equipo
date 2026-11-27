@@ -26,12 +26,12 @@ class ArrivalTests(unittest.TestCase):
             self.assertLessEqual(c['minecraft:particle_lifetime_expression']['max_lifetime'], 6)
             self.assertIn('minecraft:particle_motion_parametric', c)
             self.assertNotIn('minecraft:emitter_rate_steady', c)
-        self.assertLessEqual(total, 144, 'Includes the finite cloud vortex, no continuous spawning')
+        self.assertLessEqual(total, 144, 'Includes the finite light vortex, no continuous spawning')
 
     def test_cloud_lightning_is_horizontal_and_clouds_have_a_clear_eye(self):
         bolt=json.loads((RP/'particles/arrival_lightning.json').read_text())['particle_effect']['components']
         self.assertEqual(bolt['minecraft:particle_appearance_billboard']['facing_camera_mode'],'emitter_transform_xz')
-        for name in ('cloud_outer','cloud_inner'):
+        for name in ('vortex','vortex_sparks'):
             effect=json.loads((RP/f'particles/arrival_{name}.json').read_text())['particle_effect']['components']
             self.assertIn('variable.arrival_cloud_y',effect['minecraft:particle_motion_parametric']['relative_position'][1])
             self.assertNotIn('minecraft:emitter_lifetime_looping',effect)
@@ -48,6 +48,14 @@ class ArrivalTests(unittest.TestCase):
         for bone in ('root', 'head', 'body', 'cape', 'leftItem', 'rightItem'):
             self.assertEqual(hidden['bones'][bone]['scale'], 0, bone)
             self.assertEqual(restore['bones'][bone]['scale'], 1, bone)
+
+    def test_wind_sound_resource_is_local_and_finite(self):
+        definitions=json.loads((RP/'sounds/sound_definitions.json').read_text())['sound_definitions']
+        sound=definitions['warland.arrival.wind']['sounds'][0]
+        path=RP/(sound['name']+'.ogg')
+        self.assertEqual(path.read_bytes()[:4],b'OggS')
+        self.assertLess(path.stat().st_size,100_000)
+        self.assertFalse(sound['stream'])
 
 if __name__ == '__main__':
     unittest.main()
