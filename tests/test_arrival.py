@@ -14,7 +14,7 @@ class ArrivalTests(unittest.TestCase):
 
     def test_particle_assets_and_budget(self):
         effects = list((RP / 'particles').glob('arrival_*.json'))
-        self.assertEqual(len(effects), 6)
+        self.assertEqual(len(effects), 7)
         total = 0
         for file in effects:
             effect = json.loads(file.read_text(encoding='utf-8'))['particle_effect']
@@ -22,7 +22,7 @@ class ArrivalTests(unittest.TestCase):
             texture = effect['description']['basic_render_parameters']['texture']
             self.assertTrue((RP / (texture + '.png')).is_file(), texture)
             c = effect['components']
-            total += c['minecraft:emitter_rate_instant']['num_particles']
+            total += c['minecraft:emitter_rate_instant']['num_particles'] * (2 if file.stem == 'arrival_lightning' else 1)
             self.assertLessEqual(c['minecraft:particle_lifetime_expression']['max_lifetime'], 5.5)
             self.assertIn('minecraft:particle_motion_parametric', c)
             self.assertNotIn('minecraft:emitter_rate_steady', c)
@@ -33,7 +33,8 @@ class ArrivalTests(unittest.TestCase):
         hidden = animations['animation.warland.arrival.hidden']
         restore = animations['animation.warland.arrival.restore']
         self.assertFalse(hidden['loop'], 'A script failure must not leave an endless invisible player')
-        self.assertEqual(hidden['animation_length'], 3.8)
+        policy = subprocess.run(['node', '--input-type=module', '-e', "import {ARRIVAL} from './packs/behavior_packs/WARLAND_Lobby_BP/scripts/arrival-policy.js';console.log(ARRIVAL.reveal/20)"], cwd=ROOT, capture_output=True, text=True, check=True)
+        self.assertEqual(hidden['animation_length'], float(policy.stdout))
         for bone in ('root', 'head', 'body', 'cape', 'leftItem', 'rightItem'):
             self.assertEqual(hidden['bones'][bone]['scale'], 0, bone)
             self.assertEqual(restore['bones'][bone]['scale'], 1, bone)

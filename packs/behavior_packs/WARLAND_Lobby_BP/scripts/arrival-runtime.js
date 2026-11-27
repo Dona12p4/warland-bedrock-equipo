@@ -1,7 +1,7 @@
 import {world,system,GameMode,InputPermissionCategory,EasingType} from '@minecraft/server';
 import {lobbyConfig as cfg} from './lobby-config.js';
 import {safeArrival} from './lobby-policy.js';
-import {ARRIVAL,CINEMATIC_TAG,RESPAWN_TAG,HEART_TAG,RECOVERY,arrivalFrame,lobbyRespawn,distance} from './arrival-policy.js';
+import {ARRIVAL,ARRIVAL_STORM,CINEMATIC_TAG,RESPAWN_TAG,HEART_TAG,RECOVERY,arrivalFrame,lobbyRespawn,distance} from './arrival-policy.js';
 
 const jobs=new Map(),requests=new Map();
 const permissions=[InputPermissionCategory.Camera,InputPermissionCategory.Movement];
@@ -10,7 +10,7 @@ const revealPlayer=p=>p.playAnimation('animation.warland.arrival.restore',{contr
 const alive=p=>p.isValid&&(p.getComponent('minecraft:health')?.currentValue??0)>0;
 const audit=(action,p,extra={})=>console.warn('[WARLAND_ARRIVAL] '+JSON.stringify({action,gamertag:p?.name,tick:system.currentTick,...extra}));
 export const arrivalActive=p=>jobs.has(p.id)||p.hasTag(CINEMATIC_TAG);
-export const arrivalDebug=()=>({active:[...jobs.values()].map(s=>({id:s.p.id,reason:s.reason,elapsed:system.currentTick-s.start,emissions:s.emissions,visualHidden:!s.revealed})),pending:requests.size});
+export const arrivalDebug=()=>({active:[...jobs.values()].map(s=>({id:s.p.id,reason:s.reason,elapsed:system.currentTick-s.start,emissions:s.emissions,thunder:s.thunder.size,bolts:s.bolts.size,descentStarted:!!s.descent,visualHidden:!s.revealed})),pending:requests.size});
 
 export function recoverArrival(p){
  // Persisted ownership lets a disconnect, script reload or failed camera call
@@ -30,15 +30,15 @@ function finish(p,reason){
  try{recoverArrival(p);}catch(e){audit('recovery_deferred',p,{error:String(e)});}
  audit('finished',p,{reason,emissions:s.emissions});
 }
-function emit(s,name){
- try{s.p.dimension.spawnParticle('warland:arrival_'+name,s.at);s.emissions++;}catch(e){audit('particle_error',s.p,{name,error:String(e)});}
+function emit(s,name,at=s.at){
+ try{s.p.dimension.spawnParticle('warland:arrival_'+name,at);s.emissions++;}catch(e){audit('particle_error',s.p,{name,error:String(e)});}
 }
 export function startArrival(p,reason='preview'){
  if(jobs.has(p.id)||!alive(p)||p.hasTag(HEART_TAG)||p.getGameMode()===GameMode.Spectator||p.dimension.id!=='minecraft:overworld'||distance(p.location,cfg.spawn)>4||!safeArrival(p.dimension,cfg.spawn))return false;
  if(jobs.size>=ARRIVAL.maxConcurrent)return false;
  const saved=permissions.map(c=>[c,p.inputPermissions.isPermissionCategoryEnabled(c)]);
  if(saved.some(([,enabled])=>!enabled))return false;
- const s={p,reason,start:system.currentTick,at:{...cfg.spawn},permissions:saved,cameraOwned:true,emissions:0};
+ const s={p,reason,start:system.currentTick,at:{...cfg.spawn},permissions:saved,cameraOwned:true,emissions:0,bolts:new Set(),thunder:new Set()};
  // Hide the rendered bones, including head and attachments. Never move items,
  // change skin, add invisibility or change physical scale/game mode.
  p.setDynamicProperty(RECOVERY,JSON.stringify({permissions:saved,cameraOwned:true,visualOwned:true}));jobs.set(p.id,s);p.addTag(CINEMATIC_TAG);
@@ -48,8 +48,6 @@ export function startArrival(p,reason='preview'){
   p.onScreenDisplay.setActionBar('');
   p.teleport(s.at,{rotation:{x:0,y:180}});
   const frame=arrivalFrame(0,s.at);p.camera.setCamera('minecraft:free',{location:frame.location,facingLocation:frame.facingLocation});
-  emit(s,'core');emit(s,'trail');
-  p.playSound('beacon.activate',{volume:.35,pitch:1.5});
   audit('started',p,{reason});return true;
  }catch(e){audit('start_error',p,{error:String(e)});finish(p,'start_error');return false;}
 }
@@ -86,11 +84,18 @@ system.runInterval(()=>{
    if(!p.isValid){jobs.delete(p.id);continue;}
    if(!alive(p)||p.hasTag(HEART_TAG)||p.dimension.id!=='minecraft:overworld'||distance(p.location,s.at)>2){finish(p,'interrupted');continue;}
    if(t>=ARRIVAL.ticks){finish(p,'complete');continue;}
+   for(const [i,storm]of ARRIVAL_STORM.entries()){
+    if(t>=storm.tick&&!s.bolts.has(i)){s.bolts.add(i);emit(s,'lightning',{x:s.at.x+storm.offset.x,y:s.at.y+storm.offset.y,z:s.at.z+storm.offset.z});audit('lightning',p,{index:i,elapsed:t});}
+    if(t>=storm.soundTick&&!s.thunder.has(i)){s.thunder.add(i);p.playSound('ambient.weather.thunder',{volume:storm.volume,pitch:storm.pitch});audit('thunder',p,{index:i,elapsed:t});}
+   }
+   // The short flash masks a cut through the roof; no camera flies through blocks.
+   if(t>=ARRIVAL.cut-4&&!s.approachFlash){s.approachFlash=true;p.camera.fade({fadeColor:{red:.88,green:.93,blue:1},fadeTime:{fadeInTime:.12,holdTime:.12,fadeOutTime:.18}});}
+   if(t>=ARRIVAL.descent&&!s.descent){s.descent=true;emit(s,'core');emit(s,'trail');p.playSound('beacon.activate',{volume:.35,pitch:1.5});audit('descent',p,{elapsed:t});}
    if(t>=ARRIVAL.impact&&!s.impact){s.impact=true;emit(s,'body');emit(s,'ring');emit(s,'converge');}
    if(t>=ARRIVAL.reveal&&!s.revealed){s.revealed=true;revealPlayer(p);emit(s,'embers');p.playSound('random.orb',{volume:.3,pitch:.7});audit('revealed',p,{elapsed:t});}
    if(t>=ARRIVAL.returnView&&!s.returning){s.returning=true;p.camera.fade({fadeColor:{red:1,green:.96,blue:.84},fadeTime:{fadeInTime:.12,holdTime:.04,fadeOutTime:.3}});}
    if(t>=ARRIVAL.returnView+4&&!s.cleared){p.camera.clear();s.cleared=true;}
-   else if(t%4===0&&t<ARRIVAL.returnView){const f=arrivalFrame(t,s.at);p.camera.setCamera('minecraft:free',{location:f.location,facingLocation:f.facingLocation,easeOptions:{easeTime:.2,easeType:EasingType.Linear}});}
+   else if(t%4===0&&t<ARRIVAL.returnView){const f=arrivalFrame(t,s.at);p.camera.setCamera('minecraft:free',{location:f.location,facingLocation:f.facingLocation,...(t===ARRIVAL.cut?{}:{easeOptions:{easeTime:.2,easeType:EasingType.Linear}})});}
   }catch(e){audit('sequence_error',p,{error:String(e)});finish(p,'error');}
  }
 },2);

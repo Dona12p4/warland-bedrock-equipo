@@ -1,6 +1,7 @@
 """Deterministic native particle choreography. Reuses the existing lobby texture."""
 from pathlib import Path
 import json
+from PIL import Image, ImageDraw
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'packs/resource_packs/WARLAND_Lobby_RP/particles'
 age='variable.particle_age';life='variable.particle_lifetime'
@@ -16,7 +17,15 @@ specs={
  'ring':dict(count=24,life=1.05,pos=[f'(.4+{age}*3)*math.cos({r1}*360)',.08,f'(.4+{age}*3)*math.sin({r1}*360)'],size=[.12,.09],alpha=f'.85*{clamp("(1.05-"+age+")/.7")}'),
  'converge':dict(count=28,life=1.55,pos=[f'(2.1*(1-{smooth(age+"/1.4")}))*math.cos({r1}*360+{age}*150)',f'.15+{r2}*2.1',f'(2.1*(1-{smooth(age+"/1.4")}))*math.sin({r1}*360+{age}*150)'],size=[.11,.18],alpha=f'{clamp(age+"/.15")}*{clamp("(1.55-"+age+")/.35")}'),
  'embers':dict(count=16,life=1.25,pos=[f'({r1}-.5)*(1+{age})',f'.2+{r2}*1.8+{age}*.6',f'({r3}-.5)*(1+{age})'],size=[.06,.09],alpha=f'.7*{clamp("(1.25-"+age+")/.7")}'),
+ 'lightning':dict(count=1,life=.5,pos=[0,0,0],size=[2.5,7],alpha=f'{age}<.08?1:({age}<.14?.12:({age}<.23?.9:{clamp("(.5-"+age+")/.27")}))'),
 }
+# Small original pixel-art bolt, reproducible from blocky paths. Two sprites,
+# not a rainstorm or dozens of segment emitters. No vanilla texture replacement.
+bolt=Image.new('RGBA',(64,128),(0,0,0,0));draw=ImageDraw.Draw(bolt)
+paths=[[(36,0),(36,14),(28,14),(28,29),(35,29),(35,42),(23,42),(23,58),(30,58),(30,73),(20,73),(20,92),(26,92),(26,108),(18,108),(18,127)],[(28,29),(46,29),(46,44),(53,44),(53,60)],[(30,73),(42,73),(42,88),(48,88),(48,103)]]
+for width,color in [(11,(125,161,255,24)),(7,(154,187,255,72)),(3,(205,222,255,245)),(1,(255,250,230,255))]:
+ for path in paths:draw.line(path,fill=color,width=width)
+bolt.save(ROOT/'packs/resource_packs/WARLAND_Lobby_RP/textures/particle/arrival_lightning.png')
 for name,s in specs.items():
  components={
   'minecraft:emitter_rate_instant':{'num_particles':s['count']},
@@ -28,6 +37,6 @@ for name,s in specs.items():
   'minecraft:particle_appearance_billboard':{'size':s['size'],'facing_camera_mode':'lookat_y' if name=='body' else 'lookat_xyz','uv':{'texture_width':64,'texture_height':128,'uv':[0,0],'uv_size':[64,128]}},
   'minecraft:particle_appearance_tinting':{'color':[1,1,1,s['alpha']]}
  }
- effect={'format_version':'1.10.0','particle_effect':{'description':{'identifier':'warland:arrival_'+name,'basic_render_parameters':{'material':'particles_blend','texture':'textures/particle/lobby_light'}},'components':components}}
+ effect={'format_version':'1.10.0','particle_effect':{'description':{'identifier':'warland:arrival_'+name,'basic_render_parameters':{'material':'particles_blend','texture':'textures/particle/'+('arrival_lightning' if name=='lightning' else 'lobby_light')}},'components':components}}
  (OUT/('arrival_'+name+'.json')).write_text(json.dumps(effect,indent=2)+'\n',encoding='utf-8')
-print(json.dumps({'effects':len(specs),'particlesPerSequence':sum(s['count'] for s in specs.values())}))
+print(json.dumps({'effects':len(specs),'particlesPerSequence':sum(s['count']*(2 if name=='lightning' else 1) for name,s in specs.items())}))

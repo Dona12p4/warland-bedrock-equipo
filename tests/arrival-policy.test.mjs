@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {ARRIVAL,arrivalFrame,lobbyRespawn} from '../packs/behavior_packs/WARLAND_Lobby_BP/scripts/arrival-policy.js';
+import {ARRIVAL,ARRIVAL_STORM,arrivalFrame,lobbyRespawn} from '../packs/behavior_packs/WARLAND_Lobby_BP/scripts/arrival-policy.js';
 import {firstArrivalDecision,ARRIVED,safeArrival} from '../packs/behavior_packs/WARLAND_Lobby_BP/scripts/lobby-policy.js';
 const cfg={spawn:{x:1240.5,y:72,z:-1367.5},existingPlayerIds:['old-id'],existingPlayerNames:['existing']},dim='minecraft:overworld';
 const player=(name='New',id='new-id',arrived)=>({name,id,getDynamicProperty:key=>key===ARRIVED?arrived:undefined});
@@ -28,4 +28,8 @@ for(let t=0;t<=ARRIVAL.impact;t++){
 assert.equal(arrivalFrame(0,cfg.spawn).lightY,27.1);
 assert.equal(arrivalFrame(ARRIVAL.impact,cfg.spawn).lightY,1.1);
 assert.equal(arrivalFrame(ARRIVAL.reveal,cfg.spawn).phase,'reveal');
+assert.ok(Math.hypot(arrivalFrame(0,cfg.spawn).location.x-cfg.spawn.x,arrivalFrame(0,cfg.spawn).location.z-cfg.spawn.z)>=24,'Opening shows the whole sanctuary from a distance');
+assert.equal(arrivalFrame(0,cfg.spawn).phase,'omen');
+assert.equal(arrivalFrame(ARRIVAL.descent,cfg.spawn).phase,'descent');
+for(const storm of ARRIVAL_STORM)assert.ok(storm.tick<storm.soundTick&&storm.soundTick<ARRIVAL.descent,'Bolt then thunder before descent');
 console.log('Arrival policy: entry, reconnect, personal spawn, fallback and continuous descent passed');
