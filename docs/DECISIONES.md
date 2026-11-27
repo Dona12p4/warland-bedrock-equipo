@@ -1,3 +1,7 @@
+# Decision vigente 27/11/2026
+
+El propietario exige trabajar en el mundo oficial Movil 3-4 GB; autoriza integrar El Pasado para revisarlo alli. Conservar todas las mejoras ya instaladas, incluida Particulas de biomas 0.7.3, y respaldar antes de actualizar. No requiere otra aprobacion estetica en laboratorio antes de esta instalacion.
+
 # Decisiones compartidas
 
 - 2026-11-27, corrección posterior de El Pasado: el usuario elige primero todo intacto y después destruido. Sustituye los destellos breves. Siete tomas, cortes también sobre bajos suaves; actor de espaldas, cuerpo legible y luz en la mano. Añadir salidas físicas del río en las dos copias y comprobarlas en BDS. Completo 0.7.3 candidato, sin instalar en los dos destinos hasta revisión final.

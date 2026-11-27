@@ -1,3 +1,7 @@
+## Revision vigente: trabajar en el oficial 3-4 GB (27/11/2026)
+
+El usuario ordeno trabajar y revisar los cambios en WARLAND - Movil 3-4 GB - COPIA (Importado), porque no quiere depender de que un laboratorio este abierto. Esta orden autoriza integrar El Pasado y las correcciones preparadas en esa partida. Sustituye el requisito anterior de revision jugable exclusiva en laboratorio. Conservar respaldo cerrado y datos/progreso; las comprobaciones internas pueden usar stages desechables, sin trasladar al usuario a otro mundo. Mantener un solo addon y paridad con los archivos del servidor vigente; no detener servidores que el usuario dejo abiertos.
+
 # WARLAND: instrucciones compartidas
 
 Antes de toda tarea de juego o entrega, leer [docs/PACK-COMPLETO-Y-PARIDAD.md](docs/PACK-COMPLETO-Y-PARIDAD.md), decision expresa del 27/11. Todo cambio aprobado debe integrarse en el unico WARLAND.mcaddon (BP/RP unificados) y quedar igual por hashes/version/configuracion en el servidor vigente y el mundo Movil 3-4 GB. No instalar mods sueltos ni copiar DB entre destinos. No afirmar terminado en ambos si solo se probo o instalo en uno. Esta regla prevalece sobre despliegues historicos separados. Respetar la orden vigente de no detener el servidor local.

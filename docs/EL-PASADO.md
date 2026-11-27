@@ -1,6 +1,6 @@
 # El Pasado: candidato de cinemática nativa y recuerdo jugable
 
-Estado del 27/11/2026: preparado en una rama y laboratorio independientes. **No instalado en el mundo oficial ni en el servidor de entrega.** La revisión visual final en Minecraft sigue pendiente. La instalación futura debe integrarse en el único addon completo y conservar la paridad servidor/mundo móvil; no entregar estos módulos por separado.
+Estado del 27/11/2026: el propietario autoriza instalar y revisar directamente en el **mundo oficial Movil 3-4 GB**; ya no exige otra aprobación visual en laboratorio. Completo 0.7.4 preparado con El Pasado y las partículas de biomas vigentes. La instalación todavía espera el cierre de Minecraft para respaldar. Ver `outputs/past-official-preparation.json` en el proyecto local; no afirmar instalado hasta el recibo final y la paridad de ambos destinos. Se conserva el original WARLAND I.
 
 ## Recorrido
 
@@ -48,4 +48,4 @@ La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamen
 - La exportación acotada contiene 15.680 registros de terreno y 1.147 chunks, con los 544 chunks exigidos de zona jugable y margen completos. Cinco chunks periféricos de la fuente intacta nunca se generaron; se conservan como ausencia de origen, fuera del recorrido protegido.
 - La transferencia excluye jugadores, actores, inventarios, reglas y ticking areas. El id numérico de dimensión del laboratorio se elimina del artefacto. El instalador debe resolver el id del destino y rechazar cualquier colisión con terreno existente.
 
-Las pruebas y artefactos locales están bajo `.local/`; no se publica una DB de laboratorio. Se construye WARLAND completo 0.7.3 (un BP y un RP) para esta revisión. Faltan la aprobación visual final e instalación con respaldo en ambos destinos y comprobación de sus hashes. El 0.7.2 oficial sigue intacto.
+Las pruebas y artefactos locales están bajo `.local/`; no se publica una DB de laboratorio. Se construyó WARLAND completo 0.7.4 (un BP y un RP), incluyendo las partículas de biomas de 0.7.3. La revisión visual se hará en el oficial por orden posterior. Falta el cierre del cliente para respaldar e instalar la actualización autorizada en ambos destinos.
