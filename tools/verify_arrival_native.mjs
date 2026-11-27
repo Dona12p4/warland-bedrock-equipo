@@ -2,7 +2,12 @@ import {readFileSync,writeFileSync,cpSync,mkdirSync,existsSync,unlinkSync} from 
 import {resolve,join} from 'node:path';import {spawn,execFileSync} from 'node:child_process';
 const R=resolve(import.meta.dirname,'..'),server=join(R,'.local/server'),world=join(server,'worlds/WARLAND_LAB');
 const O=join(R,'.local/arrival-review');mkdirSync(O,{recursive:true});
-execFileSync('python',['-c',"import sys;sys.path.insert(0,'tools');import team;team.closed();assert team.read(team.ROOT/'.local/lab.json')['managed']=='warland-team-v1';team.archive_tree(team.ROOT/'.local/server/worlds/WARLAND_LAB',team.ROOT/'.local/arrival-review/before-native.zip')"],{cwd:R});
+// Other chats can have independent BDS labs. Guard THIS server and its ports;
+// never stop another test or copy any world it owns.
+const running=JSON.parse(execFileSync('powershell',['-NoProfile','-Command',"@(Get-CimInstance Win32_Process -Filter \"Name = 'bedrock_server.exe'\" | Select-Object ExecutablePath) | ConvertTo-Json -Compress"],{encoding:'utf8'})||'[]');
+if([].concat(running).some(p=>p?.ExecutablePath?.toLowerCase()===join(server,'bedrock_server.exe').toLowerCase())||existsSync(join(R,'.local/mutation.lock')))throw Error('This lab is still running or being prepared');
+execFileSync('powershell',['-NoProfile','-Command',"if(Get-NetTCPConnection -LocalPort 19152 -State Listen -ErrorAction SilentlyContinue){exit 1}"],{stdio:'pipe'});
+execFileSync('python',['-c',"import sys;sys.path.insert(0,'tools');import team;assert team.read(team.ROOT/'.local/lab.json')['managed']=='warland-team-v1';team.archive_tree(team.ROOT/'.local/server/worlds/WARLAND_LAB',team.ROOT/'.local/arrival-review/before-native.zip')"],{cwd:R});
 const bp=join(world,'behavior_packs/WARLAND_Lobby_BP'),manifest=join(bp,'manifest.json'),probe=join(bp,'scripts/arrival-native-probe.js');
 if(existsSync(probe))throw Error('A previous probe needs recovery first');
 const original=readFileSync(manifest),config=join(server,'config/default/permissions.json'),originalConfig=readFileSync(config);
