@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/Mojang/bedrock-samples",
+  "revision": "15701fa9c13923f12662984c32c124327e40e3d3",
+  "notes": "Texturas oficiales Steve/Alex sin modificar. Geometria humanoide adaptada a brazos slim de Alex. Sin skins privadas ni descargas durante la partida.",
+  "files": {
+    "textures/entity/impostor/steve.png": "86312cb1215f9bf7a734e66791460581764ee12a6b790a5bd27da716d953bb40",
+    "textures/entity/impostor/alex.png": "d740a83f881cdb9291dee97ba0342883bd53ba0c6cf4ce30147da059fcc66434"
+  }
+}

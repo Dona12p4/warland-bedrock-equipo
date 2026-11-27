@@ -1,0 +1,47 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:impostor",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/impostor/steve",
+        "alex": "textures/entity/impostor/alex"
+      },
+      "geometry": {
+        "default": "geometry.warland.impostor.steve",
+        "alex": "geometry.warland.impostor.alex"
+      },
+      "animations": {
+        "idle": "animation.warland.impostor.idle",
+        "walk": "animation.warland.impostor.walk",
+        "look": "animation.warland.impostor.look",
+        "run": "animation.warland.impostor.run",
+        "jump": "animation.warland.impostor.jump",
+        "inspect": "animation.warland.impostor.inspect",
+        "locomotion": "controller.animation.warland.impostor.locomotion"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          "locomotion",
+          {
+            "look": "query.is_on_ground && query.modified_move_speed < 0.01 && !query.property('warland:inspecting')"
+          },
+          {
+            "inspect": "query.property('warland:inspecting')"
+          }
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.impostor"
+      ],
+      "spawn_egg": {
+        "base_color": "#40A2A7",
+        "overlay_color": "#4D376B"
+      }
+    }
+  }
+}

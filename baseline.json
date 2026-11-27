@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "capturedUtc": "2026-11-08T16:38:06Z",
+  "capturedUtc": "2026-11-27T06:29:39Z",
   "packs": [
     {
       "folder": "packs/behavior_packs/WARLAND_Apagavelas_BP",
@@ -131,6 +131,29 @@
           "version": [
             0,
             7,
+            2
+          ]
+        },
+        {
+          "module_name": "@minecraft/server",
+          "version": "2.10.0"
+        }
+      ]
+    },
+    {
+      "folder": "packs/behavior_packs/WARLAND_Impostor_BP",
+      "uuid": "9dd279a2-018d-5e44-9d0a-5cd8a31eb5f7",
+      "version": [
+        0,
+        3,
+        2
+      ],
+      "dependencies": [
+        {
+          "uuid": "83f99674-8c28-599c-b64d-6ff3a2224a73",
+          "version": [
+            0,
+            3,
             2
           ]
         },
@@ -324,6 +347,16 @@
       "version": [
         0,
         7,
+        2
+      ],
+      "dependencies": []
+    },
+    {
+      "folder": "packs/resource_packs/WARLAND_Impostor_RP",
+      "uuid": "83f99674-8c28-599c-b64d-6ff3a2224a73",
+      "version": [
+        0,
+        3,
         2
       ],
       "dependencies": []
@@ -622,6 +655,12 @@
     "behavior_packs/WARLAND_GargantaAbierta_BP/scripts/garganta-dimension-audio.js": "a5f58c338252a434bccc4edc0356a52e59bb2d35bf6ede7caac09f167cd4ccf9",
     "behavior_packs/WARLAND_GargantaAbierta_BP/scripts/hostile-retaliation.js": "46cbcc94cb913ddcf2a6ecc9c0c26095e5aea9559cdea605c67bb1a6c5adb9d3",
     "behavior_packs/WARLAND_GargantaAbierta_BP/scripts/main.js": "bbbbdb86af3d5dba1074272721d43e8158cbf82991f2f7c48c4277f717ed8af7",
+    "behavior_packs/WARLAND_Impostor_BP/entities/impostor.json": "b050211c09edeb8acb6865176235167ffbe581a4c3b507befa33475582bcdead",
+    "behavior_packs/WARLAND_Impostor_BP/loot_tables/entities/impostor.json": "0c2f19322b3f385388a186f899d7443007fabb476766e857f0d0cd99aba3b419",
+    "behavior_packs/WARLAND_Impostor_BP/manifest.json": "0481eeecb309cf7aab761e6b93cec9a2d9c1fce50a1e267c831b6f880cee9f77",
+    "behavior_packs/WARLAND_Impostor_BP/scripts/identity.js": "e490ff5ffdb25d5b674d192c55111e7501f9fe9bf3424ce6c1b104a850593de0",
+    "behavior_packs/WARLAND_Impostor_BP/scripts/main.js": "351c082ada41ca4bf4b3ab0149fd947208a1bde4b0de91b1ecbc34a4446c57a0",
+    "behavior_packs/WARLAND_Impostor_BP/scripts/movement.js": "258944815444acdd14a6e5472ff3d9c54f5273a2df5a94306d76912384018b63",
     "behavior_packs/WARLAND_Lobby_BP/blocks/cuna/azalea__dead.json": "e2756fbc7cb8d88da15c65a3730a1fd88496257af1e81a4df34c1c86469f3a89",
     "behavior_packs/WARLAND_Lobby_BP/blocks/cuna/azalea__dry.json": "1a521ad7c2d04b56a4546ab7d5b7af3c7a1a1414e3e98a21bfd34bf302d18ff0",
     "behavior_packs/WARLAND_Lobby_BP/blocks/cuna/blueflower__dead.json": "10266e86bf171cf702eddeea0b0cf60cf0d855a5d43435e7b17abce80d91b138",
@@ -1195,6 +1234,19 @@
     "resource_packs/WARLAND_GargantaAbierta_RP/textures/entity/garganta_gills.tga": "3a11cca7482bfbe0c1a72e27fee16f8f568d663389559fa95cdb2b22090eba95",
     "resource_packs/WARLAND_GargantaAbierta_RP/textures/entity/garganta_gills_mer.png": "deada88b86e7b3800c37e8bf971c1780403792488f5a8e434449a00843a7e6ef",
     "resource_packs/WARLAND_GargantaAbierta_RP/textures/particle/garganta_scream_white.png": "71cafc08e690af325a486f738e5171121a852984b76a0e1096668e326f212555",
+    "resource_packs/WARLAND_Impostor_RP/animation_controllers/impostor.animation_controllers.json": "0c349fcc1bf5612c16a89985d6cb123c87c361cd8e9878b1b0f54d4dc3248364",
+    "resource_packs/WARLAND_Impostor_RP/animations/impostor.animation.json": "e72d168dcffb824132bdb1dc0dd34d29de8d5ea183efb42175517e2f41f6d57f",
+    "resource_packs/WARLAND_Impostor_RP/asset-sources.json": "acf1931980d87064a8928735b43e7049800d6ffc23febe7ba4ec2ab2a52c49c7",
+    "resource_packs/WARLAND_Impostor_RP/entity/impostor.entity.json": "807c83bc3761f837753d4ac546a277d6ff7b4e1a3ae8ecda5d005ccd0a554623",
+    "resource_packs/WARLAND_Impostor_RP/manifest.json": "1dc7a3d8352ecaebd91d03d72d847517c5b516ec2dd62bd7787d3b4e4addb501",
+    "resource_packs/WARLAND_Impostor_RP/models/entity/impostor.geo.json": "60a5c8b4d485cd2db9fc3661a05e0450e81a077b055ee02f6116381d32252a3e",
+    "resource_packs/WARLAND_Impostor_RP/render_controllers/impostor.render_controllers.json": "570972d25b9758d1535f3c707e5a6c86975fad0a03db1a7b47779fdd5bbca74e",
+    "resource_packs/WARLAND_Impostor_RP/texts/en_US.lang": "83c7d676f01346f259eafa3a72de26fc47caa533ce1d27c7653f7245cb696fc2",
+    "resource_packs/WARLAND_Impostor_RP/texts/es_ES.lang": "83c7d676f01346f259eafa3a72de26fc47caa533ce1d27c7653f7245cb696fc2",
+    "resource_packs/WARLAND_Impostor_RP/texts/es_MX.lang": "83c7d676f01346f259eafa3a72de26fc47caa533ce1d27c7653f7245cb696fc2",
+    "resource_packs/WARLAND_Impostor_RP/texts/languages.json": "2ef3d167d30353299b4712d701c8d9f9c1fe8e10dccd35f7e51cd4890369de9c",
+    "resource_packs/WARLAND_Impostor_RP/textures/entity/impostor/alex.png": "d740a83f881cdb9291dee97ba0342883bd53ba0c6cf4ce30147da059fcc66434",
+    "resource_packs/WARLAND_Impostor_RP/textures/entity/impostor/steve.png": "86312cb1215f9bf7a734e66791460581764ee12a6b790a5bd27da716d953bb40",
     "resource_packs/WARLAND_Lobby_RP/block_culling/corruption_root_tip.json": "931ff56e59a10fe6cff1d30490e638fae02d09fd22abc2c17e256f3a57b00412",
     "resource_packs/WARLAND_Lobby_RP/block_culling/lantern__dim.json": "8bb1a4f1e8d30eac9586a864216d68d31bc6631d14b8f64000f3f7754ee68c21",
     "resource_packs/WARLAND_Lobby_RP/block_culling/lily__dead.json": "920396991bb38a1d71c6ac198209ce92878c32c207dd74b2145b62fba130f708",
