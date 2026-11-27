@@ -27,7 +27,8 @@
     {"name":"Construcción temporal","summary":"Bloques de materiales propios del Umbral permanecen. Los ajenos se permiten temporalmente; incluye expiración y reglas del agua.","patterns":["*building*"]},
     {"name":"Población y represalia","summary":"Aparición y distribución de criaturas, hábitats y reacción a golpes. El Coloso conserva su excepción pasiva.","patterns":["*habitat*","*retaliation*","*/spawn_rules/*","*notice*"]},
     {"name":"Lobby, regalos y cronología","summary":"Lobby protegido y cronología manual. Esta propuesta añade una llegada de 11,1 segundos desde la capa de nubes, con vórtice luminoso, viento creciente, relámpagos y truenos antes de la luz: primera entrada y reaparición en el lobby sin otro spawn válido. Conserva camas, inventario y la secuencia del corazón; regalos pendientes.","patterns":["*lobby*","*sanctuary*","*spawn-polish*","*arrival*"]},
-    {"name":"Auditoría y estadísticas","summary":"Registro de actividad, economía y seguridad. Los indicios de sospechosos se separan de los responsables confirmados.","patterns":["*security*","*core.js","*runtime.js","*records*"]}
+    {"name":"Auditoría y estadísticas","summary":"Registro de actividad, economía y seguridad. Los indicios de sospechosos se separan de los responsables confirmados.","patterns":["*security*","*core.js","*runtime.js","*records*"]},
+    {"name": "Particulas ambientales por bioma", "summary": "85 efectos de MrsTrader integrados en el completo WARLAND; hojas, luciernagas, lluvia, nieve, polvo y ambiente del Nether con limites para movil. No invade el Umbral.", "patterns": ["*BiomesParticles*"]}
   ],
   "habitats": {
     "roots":"Raíces, madera oscura, hongos y refugios del Rastreador.",

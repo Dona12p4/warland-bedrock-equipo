@@ -35,3 +35,5 @@ El propietario exige integrar cada cambio en el pack completo, reinstalar el com
 
 El constructor completo 0.7.1 conserva las fuentes de la rama actual, incluido Lobby 1.2.0 e Impostor 0.3.2. Se rechaza usar el viejo candidato unificado 0.7.0 como fuente porque omitiria la llegada de luz. La paridad se audita con `tools/audit_pack_parity.py`; una prueba o un paquete generado no equivalen a instalacion en ambos destinos.
 
+
+- 27/11/2026: incorporar Biomes-Particles al oficial, integrado en el pack completo, con prioridad en optimizar las particulas. Se entregan Overworld/Nether con recursos de MrsTrader, limites por jugador y sin alterar el Umbral. Unico WARLAND.mcaddon 0.7.3, mismo BP/RP en servidor y oficial. No detener servidores abiertos.
