@@ -4,6 +4,7 @@ export const PAST={dimension:'warland:el_pasado',returnKey:'warland:past_return_
 const entrance={a:[229,65.6,-782.5],b:[266,67,-782.5],f:[284,67,-783],fov:64};
 const fountain={a:[268,70.5,-795],b:[276,70,-800],f:[284,67,-783],fov:64};
 const skyline={a:[302,79,-766],b:[294,76,-760],f:[284,67,-783],fov:64};
+const actorView={a:[362.1,68.8,-761.5],b:[361.9,68.7,-761.9],f:[361.2,67.1,-770.6],fov:55};
 export const ACTOR_SHOT=6,ACTOR_START=44+19/30,ACTOR_VANISH=ACTOR_START+14.4+4/30;
 export const SHOTS=[
  {t:0,...entrance,memory:true},
@@ -12,7 +13,7 @@ export const SHOTS=[
  {t:27.5,...entrance,memory:false},
  {t:34+17/30,...fountain,memory:false},
  {t:39+23/30,...skyline,memory:false},
- {t:ACTOR_START,a:[365.25,70.4,-766.6],b:[365,70.3,-767],f:[361.7,69.6,-774],fov:55,memory:false}
+ {t:ACTOR_START,...actorView,memory:false}
 ];
 PAST.duration=ACTOR_START+568/30;
 SHOTS.forEach((s,i)=>s.d=(SHOTS[i+1]?.t??PAST.duration)-s.t);
@@ -33,7 +34,7 @@ export function performanceTime(t){
 }
 export function cameraAt(seconds){
  const {shot:s,u,index}=shotAt(seconds);let position=s.a.map((n,i)=>n+(s.b[i]-n)*u);
- if(index===ACTOR_SHOT){const t=Math.min(1,Math.max(0,performanceTime(seconds-s.t)/24)),k=t*t*(3-2*t);position=[365.25-.25*k,70.4-.1*k,-766.6-.4*k]}
+ if(index===ACTOR_SHOT){const t=Math.min(1,Math.max(0,performanceTime(seconds-s.t)/24)),k=t*t*(3-2*t);position=s.a.map((n,i)=>n+(s.b[i]-n)*k)}
  const memory=memoryAt(seconds),dy=memory?MEMORY_HEIGHT:0;
  return {position:position.map((x,i)=>x+(i===1?dy:0)),target:s.f.map((x,i)=>x+(i===1?dy:0)),fov:s.fov,memory};
 }

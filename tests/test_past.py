@@ -11,6 +11,9 @@ class PastTests(unittest.TestCase):
     def test_lobby_return_contracts(self):
         subprocess.run(['node',str(ROOT/'tests/past_lobby_return.mjs')],check=True,capture_output=True,text=True)
 
+    def test_admin_menu_navigation_and_permissions(self):
+        subprocess.run(['node',str(ROOT/'tests/past_admin_menu.mjs')],check=True,capture_output=True,text=True)
+
     def test_all_concatenated_containers_stripped_and_shifted(self):
         records=[]
         for x in [201,230]:

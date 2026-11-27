@@ -1,7 +1,7 @@
 // TEST ONLY: full addon plus a previously closed copy of the real Past terrain.
 import {world,system,GameMode,ItemStack,InputPermissionCategory} from '@minecraft/server';
 import {spawnSimulatedPlayer} from '@minecraft/server-gametest';
-import {PAST} from './components/warland_bp/past-policy.js';
+import {PAST,ACTOR_START,ACTOR_VANISH,cameraAt} from './components/warland_bp/past-policy.js';
 import {enterPast,exitPast,startPastFilm,stopPastFilm} from './components/warland_bp/past.js';
 import {pastArrivalActive,pastArrivalDebug,startPastArrival,stopPastArrival} from './components/warland_bp/past-arrival.js';
 import {PAST_ARRIVAL,pastArrivalFrame} from './components/warland_bp/past-arrival-policy.js';
@@ -9,6 +9,7 @@ import {createPastGuide,PAST_GUIDE} from './components/warland_bp/past-environme
 import {arrivalDebug} from './components/warland_lobby_bp/arrival-runtime.js';
 import {ARRIVAL} from './components/warland_lobby_bp/arrival-policy.js';
 import {lobbyConfig} from './components/warland_lobby_bp/lobby-config.js';
+import {pastAdminPage} from './components/warland_bp/past-admin-menu.js';
 const checks=[],wait=t=>new Promise(r=>system.runTimeout(r,t));
 const check=(name,ok,detail)=>{checks.push({name,passed:!!ok,detail});if(!ok)throw Error(name+' '+JSON.stringify(detail))};
 const air=b=>!!b&&(b.isAir||b.typeId.startsWith('minecraft:light_block'));
@@ -22,7 +23,8 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   await wait(20);p.teleport({x:10000.5,y:150,z:10000.5});p.setGameMode(GameMode.Creative);
   const inventory=p.getComponent('inventory').container;inventory.setItem(8,new ItemStack('minecraft:diamond',3));
   const spawn=p.getSpawnPoint();
-  check('real default entry starts',await enterPast(p));check('arrival owns spectator',pastArrivalActive(p)&&p.getGameMode()===GameMode.Spectator);
+  const menu=pastAdminPage(p);check('admin menu exposes Past arrival',menu.rows.some(r=>r.id==='past-arrival'));
+  check('real menu entry starts',await menu.rows.find(r=>r.id==='past-arrival').run());check('arrival owns spectator',pastArrivalActive(p)&&p.getGameMode()===GameMode.Spectator);
   check('input held only during flight',!p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));
   await wait(45);
   for(let t=0;t<=PAST_ARRIVAL.ticks;t+=4){
@@ -47,6 +49,15 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   const guide=createPastGuide();check('gate hidden from film viewer',guide.emit(p)===false);
   check('gate still usable by companion',guide.emit(q)===true);
   await wait(25);check('film still has no arrival emitter',!pastArrivalDebug().some(s=>s.id===p.id));
+  const colossus=d.getEntities({type:PAST.actor})[0];check('Colossus rotation preserved for rear shot',colossus&&Math.abs(Math.abs(colossus.getRotation().y)-180)<.1);
+  for(let t=ACTOR_START;t<ACTOR_VANISH;t+=1){
+   const c=cameraAt(t),cam={x:c.position[0],y:c.position[1],z:c.position[2]},focus={x:PAST.actorAt.x,y:PAST.actorAt.y+4.1,z:PAST.actorAt.z+.5};
+   check('rear camera clear '+t,air(d.getBlock(cam)),cam);
+   const dx=cam.x-PAST.actorAt.x,dz=cam.z-PAST.actorAt.z;check('camera behind cape '+t,dz/Math.hypot(dx,dz)>.98,{dx,dz});
+   const len=Math.hypot(...['x','y','z'].map(k=>focus[k]-cam[k])),blocked=[];
+   for(let u=0;u<len;u+=.25){const at=Object.fromEntries(['x','y','z'].map(k=>[k,cam[k]+(focus[k]-cam[k])*u/len]));const b=d.getBlock(at);if(!air(b))blocked.push({at,type:b?.typeId})}
+   check('cape visible without terrain obstruction '+t,!blocked.length,blocked.slice(0,3));
+  }
   stopPastFilm(p);check('guide returns after film',guide.emit(p)===true);
   check('exit restores original dimension',await exitPast(p)&&p.dimension.id===od.id);
   check('exit restores original mode',p.getGameMode()===GameMode.Creative);

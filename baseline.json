@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "capturedUtc": "2026-11-27T22:20:29Z",
+  "capturedUtc": "2026-11-27T22:30:19Z",
   "packs": [
     {
       "folder": "packs/behavior_packs/WARLAND_Apagavelas_BP",
@@ -54,7 +54,7 @@
       "version": [
         0,
         6,
-        23
+        24
       ],
       "dependencies": [
         {
@@ -504,7 +504,7 @@
     "behavior_packs/WARLAND_BP/items/selector_terreno.json": "23cc50a11d96fff7405dab22a6ba18e47e2854408750c3e2a016196586824819",
     "behavior_packs/WARLAND_BP/items/territorios.json": "0197facafd7a04bde839f218e1473950baf6ee645bf0ac09e15e97e981502fb3",
     "behavior_packs/WARLAND_BP/LICENSE-Mojang.txt": "ca18c0dede68ce24ea1cd6f9df0813579b6f9f979787983a50baec99345f975d",
-    "behavior_packs/WARLAND_BP/manifest.json": "a84e70ab53ac995c6bbd913e7fee9737182aca03806800c0c46dda3d87c4bf3b",
+    "behavior_packs/WARLAND_BP/manifest.json": "5af5f8df57f3710bc4473d0118685183a97e1f7dc72545d3479c94757afa5ad6",
     "behavior_packs/WARLAND_BP/scripts/actions.js": "bfdeb7da9a5a31de95434b2999162203efc7248a32411e6013a3f73b0340988d",
     "behavior_packs/WARLAND_BP/scripts/actions.js.map": "8289caa63c54d78563a0070aca7a299fffccb7683ab155a0f8c0c3831406aed9",
     "behavior_packs/WARLAND_BP/scripts/apagavelas-safety-bridge.js": "7a53cffd5948cc33973a6e0d2d01cfc230a05d6f68163b31265bd725ab8a4cd5",
@@ -522,7 +522,7 @@
     "behavior_packs/WARLAND_BP/scripts/heart-death.js": "2e9812604903df937947d8f7b99a66e43a9d54b0e9f99fee90bed099f0cb5b66",
     "behavior_packs/WARLAND_BP/scripts/hostile-defense.js": "7c2cd627cb04aa1913bedcd56570666a60c69e090667d706bfdd09ce040b0c72",
     "behavior_packs/WARLAND_BP/scripts/insurance-preview.js": "8a06ea9cb5989076addd2044abb46b53950c443069a31cbc6933c355eb0be088",
-    "behavior_packs/WARLAND_BP/scripts/inventory-menu.js": "43141992cf91958b0863eb0a64b9275515622134582338678529b5c9e52ae300",
+    "behavior_packs/WARLAND_BP/scripts/inventory-menu.js": "1665f0d0d16276b8fd0558fc33b001ac928e2e254da8d26c0cd3fe1a6c7a4389",
     "behavior_packs/WARLAND_BP/scripts/inventory-menu.js.map": "dbe9f821d7a89507fbed77f155583b22b19f384f071e20df4ed9c042863d98d4",
     "behavior_packs/WARLAND_BP/scripts/java-combat-rules.js": "8f7ae19799b57b81bdd90be582ead08f7acf29f6703648bd571a71456423066e",
     "behavior_packs/WARLAND_BP/scripts/java-combat-visuals.js": "06f21a0bb9f49623c5740994e65852a060827113f37cc19465bd1bc46a869bf3",
@@ -531,13 +531,14 @@
     "behavior_packs/WARLAND_BP/scripts/main.js": "4e2814e590263bb3ffebe305cb2d5f9fd5405b9f0ec11dccdd0cb5c5c174307f",
     "behavior_packs/WARLAND_BP/scripts/main.js.map": "52637228e66958e60769140ec8348aadad6af141197aa8ff98e99a9a1211c80b",
     "behavior_packs/WARLAND_BP/scripts/mob-hit-guard.js": "72fa7ceed75f27a449c1288add3f34436729e60f14aaf9568a6460033d146f1a",
+    "behavior_packs/WARLAND_BP/scripts/past-admin-menu.js": "3caceb82a77e0d86ba051f72b6d5f5fcceff0bebaa8c3dad50c5ef322366d3a2",
     "behavior_packs/WARLAND_BP/scripts/past-arrival-policy.js": "b8953dfdc002d7e0caacf3c427d2b7c05afbf436fb0ab542fc6e154c2c780f9d",
     "behavior_packs/WARLAND_BP/scripts/past-arrival.js": "8e6dd02d7b2d14913d157dc72532b565e6ce894733954785d6b1bb5601e07f9a",
     "behavior_packs/WARLAND_BP/scripts/past-environment.js": "d2086aca7f2194309c16130c3568d8403d57d72d72045eda990ec6e80101ec5f",
     "behavior_packs/WARLAND_BP/scripts/past-lighting.js": "15e45f49669304f3ead0cac43b39602aeac6002d806a8dc7bd7d08fe9ada7978",
     "behavior_packs/WARLAND_BP/scripts/past-music.js": "36e198cdbc50cd79bdf5d26168427076a84eb0df637a8e47ee8f9f8e532e00da",
     "behavior_packs/WARLAND_BP/scripts/past-palm-path.js": "0b42a04153be1bbb0bb77d9f3d6ec70c5e9f74aa2309bbf6a8299dcf55af9c10",
-    "behavior_packs/WARLAND_BP/scripts/past-policy.js": "a38c057628060e90a382680d5466ddf41a8ad40659ce64d0225c297d77ec56f5",
+    "behavior_packs/WARLAND_BP/scripts/past-policy.js": "743916bf586264485c65b21c0782b631f4eb03af4c6c61450c2434078d7849a8",
     "behavior_packs/WARLAND_BP/scripts/past-travel.js": "8193f694c1d4670f8fd7008a3227848cab57af71593872d78a78c478f7bd1b43",
     "behavior_packs/WARLAND_BP/scripts/past.js": "980746b466fe3fcf5bde4c718acd500401a541d28961c73409ea4213f4dc8000",
     "behavior_packs/WARLAND_BP/scripts/personal-hud.js": "e7ea4f5898fc2a514459a33cb73bab5a7fbaa081fff636160d23b0c566b1add0",

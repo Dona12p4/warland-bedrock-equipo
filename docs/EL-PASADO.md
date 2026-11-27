@@ -83,3 +83,11 @@ La salida espera a que no haya una muerte en curso; si no carga el suelo o se al
 Preparado sin instalar: el usuario sigue jugando y el servidor 19152 debe continuar encendido. Solo se actualizarán los packs cuando exista una ventana autorizada, con respaldo; no volver a importar El Pasado ni reemplazar DB.
 
 Validación del candidato 0.7.6: 55 pruebas del proyecto y BDS 1.26.60.6 con 184 registros y 171 comprobaciones del recorrido. La prueba nativa cruza la luz con un jugador simulado, inicia la llegada real del lobby, termina sin repetición y conserva controles, inventario, cama y modo. Cero errores, cierre Quit correctly y servidores anteriores conservados. No es una revisión visual. Evidencia local: .local/past-lobby-native-0.7.6/native.json.
+
+## 27/11: controles de Administración y plano trasero del Coloso
+
+Candidato completo 0.7.7, Base0.6.24. Administración muestra «El Pasado y llegadas» para los administradores autorizados; también aparece en Pruebas de la beta. Permite llegada diagonal, ruinas sin llegada, película, recuerdo intacto, retorno por la entrada, salida al lobby con animación y regreso al origen. Fuera de El Pasado permite visitar el lobby y probar su llegada dentro de la luz. La acción cierra el formulario; la primera entrada no duplica la llegada y la prueba permite repetirla desde las ruinas. Los jugadores sin permiso no reciben estos controles.
+
+El Coloso ya usaba yaw180, pero el plano anterior estaba a unos 51 grados del eje trasero. Se alinea la cámara a menos de 8 grados detrás de la capa, más apartada para encuadrar el cuerpo. No se gira el modelo, no se cambia el gesto ni su luz en la mano. La prueba nativa revisa el espacio de cámara y la visibilidad del torso entre los bloques; no equivale a una revisión visual del cliente.
+
+El usuario ordenó instalar el conjunto. La interrupción de instalación y reapertura de19152 quedan autorizadas para esta entrega; no cambia la orden de mantenerlo encendido después. No controlar Minecraft para una revisión estética.

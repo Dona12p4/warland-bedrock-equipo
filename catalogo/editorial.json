@@ -14,7 +14,7 @@
     "warland:cajero": {"name":"El Cajero","summary":"Personaje del banco de WARLAND, conectado con los Warcoins físicos y la cuenta del jugador."}
   },
   "systems": [
-    {"name":"El Pasado","summary":"Ruinas de WARLAND I, película nativa, ceniza, viento y luz guía. Instalado en completo 0.7.4. Candidato 0.7.6: llegada entre esquinas; luces privadas ocultas durante la película; cruzar la salida reproduce la llegada al lobby y deja allí al jugador. Pendiente de instalar; conserva cama, inventario y progreso.","patterns":["*past-*","*past_*","*pasado*"]},
+    {"name":"El Pasado","summary":"Ruinas de WARLAND I, película nativa, ceniza, viento y luz guía. Instalado en completo 0.7.4. Candidato 0.7.7: llegada entre esquinas; luces privadas ocultas durante la película; cruzar la salida reproduce la llegada al lobby y deja allí al jugador. Incluye botones de Administración y plano trasero del Coloso alineado. Pendiente de instalar; conserva cama, inventario y progreso.","patterns":["*past-*","*past_*","*pasado*"]},
     {"name":"Warcoins y banco","summary":"Saldo individual, monedas físicas, cajero y registro económico. Pago por tiempo y recompensas de misiones son sistemas separados.","patterns":["*warcoin*","*cajero*","*econom*"]},
     {"name":"Equipos y terrenos","summary":"Equipos compartidos, invitaciones, disolución, selección de parcelas y protección. El combate contra amenazas se integra con los permisos de la zona.","patterns":["*team-*","*territor*","*security*","*mob-hit-guard*"]},
     {"name":"Misiones y temporada","summary":"Misiones con recompensa automática, progresión y herramientas de beta. Que el código exista no significa que la temporada esté iniciada.","patterns":["*warland3*","*mission*","*beta-policy*","*beta-feedback*"]},

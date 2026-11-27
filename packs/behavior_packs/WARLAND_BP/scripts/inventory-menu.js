@@ -5,6 +5,7 @@ import { registerAction, performAction } from './actions.js';
 import { localDay, W3, seasonDay } from './warland3/domain.js';
 import { freeBetaShop } from './beta-policy.js';
 import { teamTag } from './team-style.js';
+import { pastAdminPage } from './past-admin-menu.js';
 export const MENU_ITEMS = [
     { id: 'warland:administracion', name: '§6WARLAND · Administración', page: 'main' },
 ];
@@ -94,6 +95,7 @@ export function createInventoryMenu(ctx) {
         const run = (name, arg) => () => performAction(name, p, arg);
         const back = { text: 'Volver', page: 'main' };
         const title = 'Administración' + (beta() ? ' · BETA' : '');
+        if (page === 'past') return pastAdminPage(p);
         if (page === 'missions') {
             ctx.w3.sync(p);
             const current = ctx.w3.repo.get(r.id), today = current.days[localDay(Date.now())];
@@ -150,6 +152,7 @@ export function createInventoryMenu(ctx) {
             if (!admin(p) || !beta())
                 throw Error('Solo administradores de la beta.');
             return { title: 'Pruebas · BETA', body: `Solo este mundo de pruebas.\n${a.maximumHealth / 2} corazones · ${a.balance} WC\nPérdida al morir: ${season.firstMandateAt === null ? 'desactivada' : '−1 corazón (mínimo ½)'}`, rows: [
+                    { text: 'El Pasado y llegadas', page: 'past' },
                     { text: season.firstMandateAt === null ? 'Activar pérdida al morir' : 'Desactivar pérdida al morir', run: run('betaprueba', season.firstMandateAt === null ? 'mandato_on' : 'mandato_off') },
                     { text: 'Restaurar 10 corazones', run: run('betaprueba', 'vida20') },
                     { text: 'Probar ½ corazón', run: run('betaprueba', 'vida1') },
@@ -163,6 +166,7 @@ export function createInventoryMenu(ctx) {
                 { text: 'Misiones', page: 'missions' }, { text: 'Equipos y terrenos', page: 'team' }, { text: 'Corazones', page: 'health' },
                 { text: 'Estadísticas', run: () => info(p, 'Estadísticas', `${Math.floor(r.playMs / 60000)} min · ${a.balance} Warcoins\nMuertes: ${r.deaths}\nBajas: ${r.kills} · Mobs: ${r.mobs}\nBloques: ${r.broken} rotos / ${r.placed} colocados`) },
                 ...(ItemTypes.get('warland:umbral') ? [{ text: 'El Umbral', run: () => { p.runCommand('warland:umbral'); }, close: true }] : []),
+                ...(admin(p) ? [{ text: 'El Pasado y llegadas', page: 'past' }] : []),
                 ...(admin(p) ? [{ text: 'Controles de administrador', page: 'admin' }] : []),
                 { text: 'En desarrollo', run: () => info(p, 'En desarrollo', 'Seguro individual, animación de muerte de jugadores, portales y contenido semanal.') },
             ] };

@@ -62,3 +62,11 @@ El usuario pide una luz muy potente en la entrada de WARLAND que guíe el regres
 - El usuario aclaró «que se reproduzca la animacion y aparezca en el libby»: es el comportamiento solicitado, no un error que deba eliminarse. La luz de salida de El Pasado lleva al lobby y reproduce su llegada existente. Sustituye el retorno al origen por proximidad de la revisión anterior.
 - /warland:pasado_salir y el menú Volver conservan el regreso original como alternativa. La cama, inventario y modo previo se preservan. Se limpian el ambiente y el registro de viaje al aceptar el traslado.
 - Completo candidato 0.7.6. Sigue pendiente de instalación por orden «Sigo jugando; dejarla preparada». Servidor 19152 siempre en línea: no detenerlo ni reiniciarlo, ni tomar el cliente para revisión visual.
+
+## 27/11: controles de Administración y plano trasero del Coloso
+
+Candidato completo 0.7.7, Base0.6.24. Administración muestra «El Pasado y llegadas» para los administradores autorizados; también aparece en Pruebas de la beta. Permite llegada diagonal, ruinas sin llegada, película, recuerdo intacto, retorno por la entrada, salida al lobby con animación y regreso al origen. Fuera de El Pasado permite visitar el lobby y probar su llegada dentro de la luz. La acción cierra el formulario; la primera entrada no duplica la llegada y la prueba permite repetirla desde las ruinas. Los jugadores sin permiso no reciben estos controles.
+
+El Coloso ya usaba yaw180, pero el plano anterior estaba a unos 51 grados del eje trasero. Se alinea la cámara a menos de 8 grados detrás de la capa, más apartada para encuadrar el cuerpo. No se gira el modelo, no se cambia el gesto ni su luz en la mano. La prueba nativa revisa el espacio de cámara y la visibilidad del torso entre los bloques; no equivale a una revisión visual del cliente.
+
+El usuario ordenó instalar el conjunto. La interrupción de instalación y reapertura de19152 quedan autorizadas para esta entrega; no cambia la orden de mantenerlo encendido después. No controlar Minecraft para una revisión estética.
