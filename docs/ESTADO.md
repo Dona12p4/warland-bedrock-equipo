@@ -1,5 +1,9 @@
 # Estado de partida de la colaboracion
 
+Propuesta en revisión, 26/11/2026: Lobby BP/RP 1.2.0 incorpora una llegada de luz de 5,5 segundos en primera entrada y reaparición de emergencia en el lobby. La primera entrada respeta el registro de jugadores existentes; reconectar no repite la escena. Se reconoció además el suelo de vidrio blanco del lobby instalado, que la comprobación antigua de cuarzo rechazaba. Sin cambios de mapa, cuentas, inventarios ni otros packs.
+
+Validación de esta propuesta: 35 pruebas Python, política JavaScript y 52 comprobaciones nativas correctas; 25 packs/1127 archivos. La sonda `node tools/verify_arrival_native.mjs` comprueba cámara libre en 26 posiciones, controles, inventario, punto de reaparición, coordinación con el corazón e interrupciones; cero errores y cierre `Quit correctly`. GameTest necesita suministrar el destino de fallback que normalmente confirma el cliente; no equivale a probar esa transición con una persona. Evidencia local en `.local/arrival-review/native.json`. Revisión visual de la luz/cámara en el cliente pendiente; no instalada en oficial ni publicada. Cliente observado en menú v26.65 (paquete 1.26.6501.0), BDS fijado 1.26.60.6; Lobby conserva Script API 2.10.0.
+
 Captura de paquetes instalados el 08/11/2026. Los 25 paquetes del mundo cliente y de la copia offline coinciden byte por byte. Base 0.6.20, Lobby BP 1.1.2 / RP 1.1.0, Dark BP 0.15.1, HUD 1.1.18. El inventario exacto se genera en baseline.json.
 
 Se conservan los mobs, animaciones, sonido, comercio, Warcoins/Keep, equipos, misiones, salud, muerte global, Umbral, biomas, lobby y combate que ya estan en los paquetes. Este repositorio no certifica que toda mecanica este terminada: consultar historial y pruebas de cada cambio.

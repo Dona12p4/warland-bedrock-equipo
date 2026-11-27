@@ -1,5 +1,9 @@
 # Decisiones compartidas
 
+- 2026-11-26: llegada de luz en el lobby, únicamente en la primera entrada al mundo y al morir cuando Bedrock devuelve al jugador al lobby por no tener otro spawn válido. No repetirla al reconectar ni trasladar a jugadores desde camas válidas. El usuario confirmó «Solo la primera entrada».
+- Propuesta Lobby BP/RP 1.2.0: secuencia de 110 ticks, luz descendente y revelado del jugador real. La cámara empieza después del flujo del corazón; no modifica modo, inventario ni punto de reaparición. Mantener API estable 2.10.0 y las protecciones existentes. El comando de revisión /warland:llegada es solo para los administradores dentro de la luz.
+- La instalación y publicación de esta propuesta no están hechas. La prueba se limita al laboratorio local; no modifica el servidor del compañero. GameTest solo se usa en una sonda temporal retirada al cerrar BDS, nunca en la dependencia del pack entregable.
+
 - 2026-11-08: preparar colaboracion con otra persona/cuenta. Cada tarea se prueba aparte. El propietario decide que pasa a oficial.
 - Version oficial: WARLAND - Movil 3-4 GB - COPIA. Partida y progreso publicados como snapshots separados del codigo. Nunca sincronizar carpetas LevelDB en uso ni fusionar dos partidas.
 - Los paquetes instalados son la base inicial: Base 0.6.20 (incluye lobby posterior), Dark BP 0.15.1, HUD 1.1.18. El inventario exacto esta en baseline.json.
