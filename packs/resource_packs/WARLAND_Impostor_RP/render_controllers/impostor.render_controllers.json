@@ -1,0 +1,30 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.warland.impostor": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [
+            "Texture.default",
+            "Texture.alex"
+          ]
+        },
+        "geometries": {
+          "Array.bodies": [
+            "Geometry.default",
+            "Geometry.alex"
+          ]
+        }
+      },
+      "geometry": "Array.bodies[query.property('warland:appearance')]",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Array.skins[query.property('warland:appearance')]"
+      ]
+    }
+  }
+}

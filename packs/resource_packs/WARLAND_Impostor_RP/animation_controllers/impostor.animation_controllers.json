@@ -1,0 +1,76 @@
+{
+  "format_version": "1.17.30",
+  "animation_controllers": {
+    "controller.animation.warland.impostor.locomotion": {
+      "initial_state": "rest",
+      "states": {
+        "rest": {
+          "animations": [],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "air": "!query.is_on_ground && !query.is_in_water"
+            },
+            {
+              "run": "query.modified_move_speed > 0.01 && query.property('warland:running')"
+            },
+            {
+              "walk": "query.modified_move_speed > 0.01"
+            }
+          ]
+        },
+        "walk": {
+          "animations": [
+            "walk"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "air": "!query.is_on_ground && !query.is_in_water"
+            },
+            {
+              "rest": "!(query.modified_move_speed > 0.01)"
+            },
+            {
+              "run": "query.property('warland:running')"
+            }
+          ]
+        },
+        "run": {
+          "animations": [
+            "run"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "air": "!query.is_on_ground && !query.is_in_water"
+            },
+            {
+              "rest": "!(query.modified_move_speed > 0.01)"
+            },
+            {
+              "walk": "!query.property('warland:running')"
+            }
+          ]
+        },
+        "air": {
+          "animations": [
+            "jump"
+          ],
+          "blend_transition": 0.12,
+          "transitions": [
+            {
+              "run": "query.is_on_ground && query.property('warland:running') && query.modified_move_speed > 0.01"
+            },
+            {
+              "walk": "query.is_on_ground && query.modified_move_speed > 0.01"
+            },
+            {
+              "rest": "query.is_on_ground || query.is_in_water"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
