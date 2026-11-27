@@ -83,8 +83,12 @@ particulas con jugador simulado; cero errores, Quit correctly. La primera
 sonda esperaba el cambio de lluvia demasiado pronto y se corrigio su espera;
 la segunda encontro otro laboratorio reiniciado por un proceso ajeno durante
 la prueba. La corrida final paso tambien la conservacion de todos los PID.
-Revision visual pendiente: Minecraft no expuso una ventana al intentar abrirlo.
-No afirmar rendimiento medido en Android ni validacion visual completa.
+Revision visual posterior en el cliente Windows v26.65: luciernagas luminosas
+invocadas para revisar textura y hojas verdes pixeladas apareciendo naturalmente
+en el bosque del oficial. Sin texturas faltantes en esas muestras; densidad baja.
+Jugador devuelto al lobby y Supervivencia, con salud, saldo y hotbar conservados.
+El mundo queda abierto; no se detuvieron servidores ni se tocaron packs durante
+la revision. No es una revision de los 85 efectos ni una medicion FPS/Android.
 
 Artefacto SHA256: 6fc887a93b423778a1d020a4f574aaffb7528fcc9f9ff82ff15d92093c13bc3c.
 Informe privado outputs/biomes-particles/installation.json; respaldo verificado

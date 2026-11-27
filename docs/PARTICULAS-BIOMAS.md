@@ -58,3 +58,13 @@ Fuentes técnicas de Bedrock consultadas:
 - https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/dimension
 - https://learn.microsoft.com/en-us/minecraft/creator/reference/content/particlesreference/particlecomponents/minecraftemitter_lifetime_once
 - https://learn.microsoft.com/en-us/minecraft/creator/reference/content/particlesreference/particlecomponents/minecraftemitter_rate_steady
+
+## Revision visual en el oficial (27/11/2026)
+
+En Minecraft Bedrock Windows v26.65 se observaron luciernagas luminosas mediante
+un comando cosmetico y hojas verdes pixeladas apareciendo naturalmente sobre
+el bosque. La densidad observada fue baja y no se vieron texturas faltantes en
+esas muestras. No se ha revisado visualmente la totalidad de los 85 efectos ni
+medido FPS en Windows/Android. El jugador regreso al lobby y a Supervivencia;
+no se alteraron bloques, inventario, saldo ni archivos del mundo durante esta
+revision, y Minecraft quedo abierto.
