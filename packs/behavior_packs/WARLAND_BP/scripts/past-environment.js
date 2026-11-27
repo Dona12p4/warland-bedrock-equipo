@@ -37,14 +37,16 @@ export function createPastGuide(){
   if(tick-arrived.get(p.id)<PAST_GUIDE.holdTicks)return false;
   arrived.delete(p.id);return true;
  }
- function emit(d,normal=false){
-  const at=offsetPoint(PAST_GUIDE.at,normal);
-  // The shaft rises above the real gate; depth remains enabled. It is never a
-  // screen overlay or a beam drawn through walls. Two copies share four effects.
-  d.spawnParticle('warland:past_guide_beam',{...at,y:84});
-  d.spawnParticle('warland:past_guide_halo',{...at,y:84});
-  d.spawnParticle('warland:past_guide_core',{...at,y:at.y+1.8});
-  d.spawnParticle('warland:past_guide_sparks',{...at,y:at.y+.2});
+ function emit(p){
+  if(!inPast(p)||p.hasTag(PAST.filmTag))return false;
+  const at=offsetPoint(PAST_GUIDE.at,normalPast(p));
+  // Individual emission excludes every film viewer, even when another player
+  // explores the ruins concurrently. Old particles expire during film warmup.
+  p.spawnParticle('warland:past_guide_beam',{...at,y:84});
+  p.spawnParticle('warland:past_guide_halo',{...at,y:84});
+  p.spawnParticle('warland:past_guide_core',{...at,y:at.y+1.8});
+  p.spawnParticle('warland:past_guide_sparks',{...at,y:at.y+.2});
+  return true;
  }
  return {ready,emit,forget:id=>arrived.delete(id)};
 }

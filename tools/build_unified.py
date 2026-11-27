@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse, collections, hashlib, json, shutil, uuid, zipfile, struct, zlib, subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION=[0,7,4]
+VERSION=[0,7,5]
 BP_ID='0c8a75c4-f955-5e24-bacf-72e9b2cb02ec'
 RP_ID='3493724d-c395-54d4-929c-a229b0398abf'
 def read(p): return json.loads(p.read_text(encoding='utf-8-sig'))
@@ -78,7 +78,7 @@ def build(out):
                     report['merged'].append(rel.as_posix())
                 else:shutil.copy2(src,target)
                 report['files'].append({'source':src.relative_to(ROOT).as_posix(),'sourceSha256':digest(src),'output':target.relative_to(out).as_posix()})
-        manifest={'format_version':2,'header':{'name':'WARLAND · '+('Juego' if kind=='behavior_packs' else 'Recursos'),'description':'Todo WARLAND en un solo complemento. Incluye criaturas, Umbral, lobby, economia y HUD.','uuid':ident,'version':VERSION,'min_engine_version':[1,26,60]},'modules':[{'type':'data' if kind=='behavior_packs' else 'resources','uuid':str(uuid.uuid5(uuid.NAMESPACE_URL,'warland/unified/'+kind)),'version':VERSION}]}
+        manifest={'format_version':2,'header':{'name':'WARLAND Â· '+('Juego' if kind=='behavior_packs' else 'Recursos'),'description':'Todo WARLAND en un solo complemento. Incluye criaturas, Umbral, lobby, economia y HUD.','uuid':ident,'version':VERSION,'min_engine_version':[1,26,60]},'modules':[{'type':'data' if kind=='behavior_packs' else 'resources','uuid':str(uuid.uuid5(uuid.NAMESPACE_URL,'warland/unified/'+kind)),'version':VERSION}]}
         if kind=='behavior_packs':
             manifest['modules'].append({'type':'script','language':'javascript','entry':'scripts/main.js','uuid':str(uuid.uuid5(uuid.NAMESPACE_URL,'warland/unified/script')),'version':VERSION})
             manifest['dependencies']=[{'uuid':RP_ID,'version':VERSION},{'module_name':'@minecraft/server','version':'2.12.0-beta'},{'module_name':'@minecraft/server-ui','version':'2.0.0'}]

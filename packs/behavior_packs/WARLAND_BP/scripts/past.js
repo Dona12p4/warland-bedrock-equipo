@@ -4,6 +4,7 @@ import {PAST,SHOTS,ACTOR_SHOT,ACTOR_START,ACTOR_VANISH,pastAdmin,inPast,normalPa
 import {createPastMusic,PAST_MUSIC} from './past-music.js';
 import {escapeProbe,safeLanding} from './past-travel.js';
 import {createPastLighting} from './past-lighting.js';
+import {pastArrivalActive,startPastArrival,stopPastArrival} from './past-arrival.js';
 import {createPastWind,createPastGuide,stormActive} from './past-environment.js';
 
 const wait=t=>new Promise(r=>system.runTimeout(r,t)),v=a=>({x:a[0],y:a[1],z:a[2]});
@@ -50,17 +51,18 @@ function releaseRegions(){
   regions.delete(name);
  }
 }
-function canStart(p){return alive(p)&&!heart(p)&&!p.hasTag('warland_lobby_arrival')&&!p.hasTag('warland_lobby_cinematic')&&permissions.every(c=>p.inputPermissions.isPermissionCategoryEnabled(c));}
+function canStart(p){return alive(p)&&!heart(p)&&!pastArrivalActive(p)&&!p.hasTag('warland_lobby_arrival')&&!p.hasTag('warland_lobby_cinematic')&&permissions.every(c=>p.inputPermissions.isPermissionCategoryEnabled(c));}
 function saveOrigin(p){
  if(inPast(p))return;
  const s={dimension:p.dimension.id,location:{...p.location},rotation:p.getRotation(),mode:p.getGameMode()};
  if(!validReturn(s))throw Error('No se pudo guardar el punto de regreso.');
  p.setDynamicProperty(PAST.returnKey,JSON.stringify(s));
 }
-export async function enterPast(p,normal=false){
+export async function enterPast(p,normal=false,skipArrival=false){
  if(busy.has(p.id)||!canStart(p))return false;
  if(normal&&!pastAdmin(p.name)){notice(p,'Ese recuerdo todavía no está disponible.');return false;}
  busy.add(p.id);
+ const showArrival=!normal&&!skipArrival&&!inPast(p);
  try{
   const d=await region(normal);if(!alive(p)||heart(p))return false;
   saveOrigin(p);p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:.15,holdTime:.4,fadeOutTime:.6}});
@@ -69,6 +71,7 @@ export async function enterPast(p,normal=false){
   lastSafe.set(p.id,{...p.location});travel.delete(p.id);fog(p,normal);music.update(p);
   p.onScreenDisplay.setTitle(normal?'El Pasado · Antes de la ceniza':'El Pasado',{subtitle:normal?'Un recuerdo que aún permanece.':'WARLAND I · Lo que quedó.',fadeInDuration:10,stayDuration:40,fadeOutDuration:20});
   wind.update(p,stormActive(p));guide.forget(p.id);
+  if(showArrival)startPastArrival(p);
   notice(p,'Sigue la luz de la entrada para regresar.');audit('entered',p,{normal});return true;
  }catch(e){notice(p,String(e.message??e));audit('entry_error',p,{error:String(e)});return false}
  finally{busy.delete(p.id);releaseRegions()}
@@ -92,6 +95,7 @@ export function stopPastFilm(p,reason='cancelled'){
  restoreFilm(p);wind.update(p,stormActive(p));audit('cinema_stopped',p,{reason});releaseRegions();
 }
 export async function exitPast(p){
+ if(pastArrivalActive(p))stopPastArrival(p,'exit');
  if(!alive(p)||heart(p)){notice(p,'Espera a que termine la reaparición.');return false}
  if(busy.has(p.id))return false;
  if(p.getDynamicProperty(PAST.filmKey))stopPastFilm(p);
@@ -109,8 +113,9 @@ export async function exitPast(p){
 export async function startPastFilm(p){
  if(film){notice(p,'La escena está en curso. Espera a que termine.');return false}
  if(!pastAdmin(p.name)){notice(p,'La cinemática está en revisión por los administradores.');return false}
+ if(pastArrivalActive(p))stopPastArrival(p,'film');
  if(!canStart(p)||busy.has(p.id))return false;
- if(!inPast(p)||normalPast(p)){if(!await enterPast(p,false))return false}
+ if(!inPast(p)||normalPast(p)){if(!await enterPast(p,false,true))return false}
  const d=await region(false);if(!canStart(p)||film)return false;
  const saved={location:{...p.location},rotation:p.getRotation(),hidden:p.onScreenDisplay.getHiddenHudElements(),permissions:permissions.map(c=>[c,p.inputPermissions.isPermissionCategoryEnabled(c)])};
  p.setDynamicProperty(PAST.filmKey,JSON.stringify(saved));p.addTag(PAST.filmTag);
@@ -183,10 +188,10 @@ system.runInterval(()=>{
 system.runInterval(()=>{
  if(!loaded)return;
  const players=world.getAllPlayers(),probePlayer=players.length?players[travelCursor++%players.length]?.id:null;
- const cells=new Set(),beacons=new Set();for(const p of players)try{
+ const cells=new Set();for(const p of players)try{
   music.update(p);
   const storm=stormActive(p,film?.p.id===p.id?film:null);wind.update(p,storm);
-  if(guide.ready(p,system.currentTick,alive(p)&&!heart(p)&&!busy.has(p.id)&&validReturn(read(p,PAST.returnKey)))){
+  if(guide.ready(p,system.currentTick,alive(p)&&!heart(p)&&!pastArrivalActive(p)&&!busy.has(p.id)&&validReturn(read(p,PAST.returnKey)))){
    exitPast(p).catch(e=>audit('guide_return_error',p,{error:String(e)}));continue;
   }
   if(!inPast(p)){
@@ -195,7 +200,7 @@ system.runInterval(()=>{
    if(s&&!busy.has(p.id)&&!heart(p)&&alive(p)){if(validReturn(s))p.setGameMode(s.mode);p.setDynamicProperty(PAST.returnKey,undefined)}
    continue;
   }
-  if(!p.hasTag(PAST.filmTag)&&!heart(p)){
+  if(!p.hasTag(PAST.filmTag)&&!pastArrivalActive(p)&&!heart(p)){
    if(p.getDynamicProperty(PAST.filmKey))restoreFilm(p);
    if(p.getGameMode()!==GameMode.Adventure)p.setGameMode(GameMode.Adventure);
    if(!inPastBounds(p.location))p.teleport(lastSafe.get(p.id)??offsetPoint(PAST.spawn,normalPast(p)));
@@ -210,7 +215,7 @@ system.runInterval(()=>{
    }
   }
   const normal=normalPast(p);
-  if(!p.hasTag(PAST.filmTag)&&!beacons.has(normal)){beacons.add(normal);guide.emit(p.dimension,normal)}
+  if(!pastArrivalActive(p))guide.emit(p);
   if(!storm)continue;
   let at={...p.location,y:p.location.y+2};if(film?.p.id===p.id&&film.playing){const c=cameraAt((Date.now()-film.start)/1000);if(c.memory)continue;at=v(c.position)}
   const key=Math.floor(at.x/12)+':'+Math.floor(at.z/12);if(cells.has(key)||cells.size>=4)continue;cells.add(key);
@@ -221,7 +226,7 @@ system.runInterval(()=>{
  }catch(e){audit('visitor_error',p,{error:String(e)})}
 },20);
 export function unstuckPast(p,automatic=false){
- if(!inPast(p)||p.hasTag(PAST.filmTag)||busy.has(p.id)||heart(p)||!alive(p))return false;
+ if(!inPast(p)||pastArrivalActive(p)||p.hasTag(PAST.filmTag)||busy.has(p.id)||heart(p)||!alive(p))return false;
  const previous=lastSafe.get(p.id),fallback=offsetPoint(PAST.spawn,normalPast(p)),target=automatic&&previous&&safeLanding(p.dimension,previous)?previous:fallback;
  // Manual recovery always reaches the entrance: a large sealed room may exceed
  // the bounded local search, so its last walking point is not a reliable exit.

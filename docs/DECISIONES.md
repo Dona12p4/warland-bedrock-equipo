@@ -49,3 +49,10 @@ El usuario pide una luz muy potente en la entrada de WARLAND que guíe el regres
 
 
 27/11/2026, orden posterior «instalalo»: completado el despliegue0.7.4 en ambos destinos con Minecraft cerrado. Paridad, respaldos y conservación de registros verificados. Sin revisión visual; los procesos de laboratorios abiertos se mantienen. El servidor vigente es19152, entrada guardada «WARLAND - Luz - LAB»; no confundirlo con19160/19178.
+
+
+## 27/11/2026: llegada por las esquinas, sin luces guia en la pelicula
+
+- La luz de llegada recorre El Pasado de esquina a esquina y termina en la entrada. Plano lateral distante a mitad del descenso. No modifica la ruta de la pelicula del Coloso.
+- La luz de llegada y la columna de regreso no se muestran durante la cinematica. Emision individual para preservar esa exclusion en multijugador.
+- El propietario pide continuar sin confirmaciones visuales ni tomar el control de Minecraft. No cerrar partidas o servidores; dejar la instalacion preparada si estan abiertos.
