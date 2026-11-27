@@ -10,7 +10,8 @@ export function firstArrivalDecision(player,initialSpawn,cfg){
 export function safeArrival(dimension,point){
  try{for(const [dx,dz]of [[0,0],[-.25,-.25],[.25,.25]]){
   const x=Math.floor(point.x+dx),z=Math.floor(point.z+dz),feet=Math.floor(point.y);
-  const floor=dimension.getBlock({x,y:feet-1,z});if(!floor||floor.isAir||floor.isLiquid||!['minecraft:chiseled_quartz_block','warland:cuna_chiseled__stained','warland:cuna_chiseled__dark'].includes(floor.typeId))return false;
+  // The installed lobby has a white-glass light well at its centre.
+  const floor=dimension.getBlock({x,y:feet-1,z});if(!floor||floor.isAir||floor.isLiquid||!['minecraft:white_stained_glass','minecraft:chiseled_quartz_block','warland:cuna_chiseled__stained','warland:cuna_chiseled__dark'].includes(floor.typeId))return false;
   for(let y=feet;y<feet+2;y++){const b=dimension.getBlock({x,y,z});if(!b||!b.isAir)return false;}
  }return true;}catch{return false;}
 }
