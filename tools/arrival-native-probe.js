@@ -22,12 +22,19 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
  try{
   d.runCommand(`tickingarea add circle ${cfg.spawn.x} ${cfg.spawn.y} ${cfg.spawn.z} 2 wl_arrival_probe true`);await wait(40);
   for(let t=0;t<ARRIVAL.returnView;t+=4){const f=arrivalFrame(t,cfg.spawn),b=d.getBlock(f.location);const alternatives=[];if(!b?.isAir)for(const radius of [2,3,4,5,6])for(const h of [2.6,4,6]){const a=-36*Math.PI/180,at={x:cfg.spawn.x+Math.sin(a)*radius,y:cfg.spawn.y+h,z:cfg.spawn.z-Math.cos(a)*radius};alternatives.push({radius,h,type:d.getBlock(at)?.typeId});}check('Camera clear at tick '+t,b?.isAir,{type:b?.typeId,at:f.location,alternatives});}
+  for(let t=0;t<ARRIVAL.impact;t+=4){
+   const f=arrivalFrame(t,cfg.spawn),occluders=[];
+   const length=Math.hypot(...['x','y','z'].map(k=>f.facingLocation[k]-f.location[k]));
+   for(let a=0;a<length;a+=.2){const at=Object.fromEntries(['x','y','z'].map(k=>[k,f.location[k]+(f.facingLocation[k]-f.location[k])*a/length])),b=d.getBlock(at);if(!b?.isAir&&!/glass|light_block|minecraft:light$/.test(b?.typeId??''))occluders.push({at,type:b?.typeId});}
+   check('Descending light visible at tick '+t,occluders.length===0,occluders);
+  }
   check('World spawn is lobby',Math.hypot(world.getDefaultSpawnLocation().x-cfg.spawn.x,world.getDefaultSpawnLocation().y-cfg.spawn.y,world.getDefaultSpawnLocation().z-cfg.spawn.z)<2);
   p=GameTest.spawnSimulatedPlayer({dimension:d,...cfg.spawn},'Arrival'+String(Date.now()).slice(-6),GameMode.Survival);
   console.warn('[ARRIVAL_PROBE_IDENTITY] '+JSON.stringify({id:p.id,arrived:p.getDynamicProperty(ARRIVED),choice:firstArrivalDecision(p,true,cfg),safe:safeArrival(d,cfg.spawn),at:p.location,blocks:[-1,0,1].map(y=>d.getBlock({x:Math.floor(cfg.spawn.x),y:cfg.spawn.y+y,z:Math.floor(cfg.spawn.z)})?.typeId)}));
   arrive(p,true); // GameTest players do not emit the client's initial-join event.
   check('First entry begins',await until(()=>!!active(p),120),{...arrivalDebug(),id:p.id,arrived:p.getDynamicProperty(ARRIVED),choice:firstArrivalDecision(p,true,cfg),safe:safeArrival(d,cfg.spawn),at:p.location});
   check('First entry reason',active(p).reason==='first');
+  check('Visual hidden until reveal',active(p).visualHidden&&JSON.parse(p.getDynamicProperty(RECOVERY)).visualOwned===true);
   check('Arrival marker persisted',p.getDynamicProperty(ARRIVED)===true);
   check('Camera and movement locked',!p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Camera)&&!p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));
   check('No spectator or mode change',p.getGameMode()===GameMode.Survival);

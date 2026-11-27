@@ -5,10 +5,12 @@ import {ARRIVAL,CINEMATIC_TAG,RESPAWN_TAG,HEART_TAG,RECOVERY,arrivalFrame,lobbyR
 
 const jobs=new Map(),requests=new Map();
 const permissions=[InputPermissionCategory.Camera,InputPermissionCategory.Movement];
+const visualController='wl_arrival_player';
+const revealPlayer=p=>p.playAnimation('animation.warland.arrival.restore',{controller:visualController,blendOutTime:0,stopExpression:'query.any_animation_finished'});
 const alive=p=>p.isValid&&(p.getComponent('minecraft:health')?.currentValue??0)>0;
 const audit=(action,p,extra={})=>console.warn('[WARLAND_ARRIVAL] '+JSON.stringify({action,gamertag:p?.name,tick:system.currentTick,...extra}));
 export const arrivalActive=p=>jobs.has(p.id)||p.hasTag(CINEMATIC_TAG);
-export const arrivalDebug=()=>({active:[...jobs.values()].map(s=>({id:s.p.id,reason:s.reason,elapsed:system.currentTick-s.start,emissions:s.emissions})),pending:requests.size});
+export const arrivalDebug=()=>({active:[...jobs.values()].map(s=>({id:s.p.id,reason:s.reason,elapsed:system.currentTick-s.start,emissions:s.emissions,visualHidden:!s.revealed})),pending:requests.size});
 
 export function recoverArrival(p){
  // Persisted ownership lets a disconnect, script reload or failed camera call
@@ -16,6 +18,7 @@ export function recoverArrival(p){
  const raw=p.getDynamicProperty(RECOVERY);if(typeof raw!=='string'){p.removeTag(CINEMATIC_TAG);return;}
  let s;try{s=JSON.parse(raw);}catch{p.setDynamicProperty(RECOVERY,undefined);p.removeTag(CINEMATIC_TAG);return;}
  if(!alive(p))return;
+ if(s.visualOwned)revealPlayer(p);
  if(s.cameraOwned)p.camera.clear();
  for(const [category,enabled]of s.permissions??[])p.inputPermissions.setPermissionCategory(category,enabled);
  p.setDynamicProperty(RECOVERY,undefined);p.removeTag(CINEMATIC_TAG);jobs.delete(p.id);
@@ -36,13 +39,16 @@ export function startArrival(p,reason='preview'){
  const saved=permissions.map(c=>[c,p.inputPermissions.isPermissionCategoryEnabled(c)]);
  if(saved.some(([,enabled])=>!enabled))return false;
  const s={p,reason,start:system.currentTick,at:{...cfg.spawn},permissions:saved,cameraOwned:true,emissions:0};
- // Commit recovery before touching controls; normal skin/equipment stay intact.
- p.setDynamicProperty(RECOVERY,JSON.stringify({permissions:saved,cameraOwned:true}));jobs.set(p.id,s);p.addTag(CINEMATIC_TAG);
+ // Hide the rendered bones, including head and attachments. Never move items,
+ // change skin, add invisibility or change physical scale/game mode.
+ p.setDynamicProperty(RECOVERY,JSON.stringify({permissions:saved,cameraOwned:true,visualOwned:true}));jobs.set(p.id,s);p.addTag(CINEMATIC_TAG);
  try{
+  p.playAnimation('animation.warland.arrival.hidden',{controller:visualController,blendOutTime:0,stopExpression:'query.any_animation_finished'});
   for(const c of permissions)p.inputPermissions.setPermissionCategory(c,false);
+  p.onScreenDisplay.setActionBar('');
   p.teleport(s.at,{rotation:{x:0,y:180}});
   const frame=arrivalFrame(0,s.at);p.camera.setCamera('minecraft:free',{location:frame.location,facingLocation:frame.facingLocation});
-  emit(s,'core');emit(s,'trail');emit(s,'body');
+  emit(s,'core');emit(s,'trail');
   p.playSound('beacon.activate',{volume:.35,pitch:1.5});
   audit('started',p,{reason});return true;
  }catch(e){audit('start_error',p,{error:String(e)});finish(p,'start_error');return false;}
@@ -80,8 +86,8 @@ system.runInterval(()=>{
    if(!p.isValid){jobs.delete(p.id);continue;}
    if(!alive(p)||p.hasTag(HEART_TAG)||p.dimension.id!=='minecraft:overworld'||distance(p.location,s.at)>2){finish(p,'interrupted');continue;}
    if(t>=ARRIVAL.ticks){finish(p,'complete');continue;}
-   if(t>=ARRIVAL.impact&&!s.impact){s.impact=true;emit(s,'ring');emit(s,'converge');}
-   if(t>=ARRIVAL.reveal&&!s.revealed){s.revealed=true;emit(s,'embers');p.playSound('random.orb',{volume:.3,pitch:.7});}
+   if(t>=ARRIVAL.impact&&!s.impact){s.impact=true;emit(s,'body');emit(s,'ring');emit(s,'converge');}
+   if(t>=ARRIVAL.reveal&&!s.revealed){s.revealed=true;revealPlayer(p);emit(s,'embers');p.playSound('random.orb',{volume:.3,pitch:.7});audit('revealed',p,{elapsed:t});}
    if(t>=ARRIVAL.returnView&&!s.returning){s.returning=true;p.camera.fade({fadeColor:{red:1,green:.96,blue:.84},fadeTime:{fadeInTime:.12,holdTime:.04,fadeOutTime:.3}});}
    if(t>=ARRIVAL.returnView+4&&!s.cleared){p.camera.clear();s.cleared=true;}
    else if(t%4===0&&t<ARRIVAL.returnView){const f=arrivalFrame(t,s.at);p.camera.setCamera('minecraft:free',{location:f.location,facingLocation:f.facingLocation,easeOptions:{easeTime:.2,easeType:EasingType.Linear}});}

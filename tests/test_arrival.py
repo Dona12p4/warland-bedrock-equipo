@@ -28,5 +28,15 @@ class ArrivalTests(unittest.TestCase):
             self.assertNotIn('minecraft:emitter_rate_steady', c)
         self.assertLessEqual(total, 100, 'Keep mobile fill rate and event load bounded')
 
+    def test_hidden_player_expires_and_restores_head_and_attachments(self):
+        animations = json.loads((RP / 'animations/arrival_player.json').read_text())['animations']
+        hidden = animations['animation.warland.arrival.hidden']
+        restore = animations['animation.warland.arrival.restore']
+        self.assertFalse(hidden['loop'], 'A script failure must not leave an endless invisible player')
+        self.assertEqual(hidden['animation_length'], 3.8)
+        for bone in ('root', 'head', 'body', 'cape', 'leftItem', 'rightItem'):
+            self.assertEqual(hidden['bones'][bone]['scale'], 0, bone)
+            self.assertEqual(restore['bones'][bone]['scale'], 1, bone)
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,0 +1,41 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.warland.arrival.hidden": {
+      "animation_length": 3.8,
+      "loop": false,
+      "bones": {
+        "root": { "scale": 0 },
+        "waist": { "scale": 0 },
+        "body": { "scale": 0 },
+        "head": { "scale": 0 },
+        "hat": { "scale": 0 },
+        "cape": { "scale": 0 },
+        "leftArm": { "scale": 0 },
+        "rightArm": { "scale": 0 },
+        "leftLeg": { "scale": 0 },
+        "rightLeg": { "scale": 0 },
+        "leftItem": { "scale": 0 },
+        "rightItem": { "scale": 0 }
+      }
+    },
+    "animation.warland.arrival.restore": {
+      "animation_length": 0.1,
+      "loop": false,
+      "bones": {
+        "root": { "scale": 1 },
+        "waist": { "scale": 1 },
+        "body": { "scale": 1 },
+        "head": { "scale": 1 },
+        "hat": { "scale": 1 },
+        "cape": { "scale": 1 },
+        "leftArm": { "scale": 1 },
+        "rightArm": { "scale": 1 },
+        "leftLeg": { "scale": 1 },
+        "rightLeg": { "scale": 1 },
+        "leftItem": { "scale": 1 },
+        "rightItem": { "scale": 1 }
+      }
+    }
+  }
+}

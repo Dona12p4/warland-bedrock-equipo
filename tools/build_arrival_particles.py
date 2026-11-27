@@ -12,7 +12,7 @@ drop=smooth(f'{age}/2.4')
 specs={
  'core':dict(count=3,life=3.15,pos=[f'({r1}-.5)*.12',f'1.1+26*(1-{drop})',f'({r2}-.5)*.12'],size=[f'.65+.5*{drop}',f'1.0+.25*{drop}'],alpha=f'{clamp(age+"/.18")}*{clamp("(3.15-"+age+")/.65")}'),
  'trail':dict(count=20,life=3.2,pos=[f'(.1+{r1}*.32)*math.cos({r2}*360+{age}*45)',f'1.1+26*(1-{smooth("("+age+"-"+r3+"*.4)/2.4")})',f'(.1+{r1}*.32)*math.sin({r2}*360+{age}*45)'],size=[.11,.6],alpha=f'.65*{clamp(age+"/.2")}*{clamp("(3.2-"+age+")/.65")}'),
- 'body':dict(count=3,life=4.75,pos=[f'({r1}-.5)*.08',1.1,f'({r2}-.5)*.08'],size=[f'1.15+.18*math.sin({age}*110)',1.5],alpha=f'{clamp(age+"/.12")}*{clamp("(4.75-"+age+")/1.2")}'),
+ 'body':dict(count=3,life=2.35,pos=[f'({r1}-.5)*.08',1.1,f'({r2}-.5)*.08'],size=[f'1.15+.18*math.sin({age}*110)',1.5],alpha=f'{clamp(age+"/.12")}*{clamp("(2.35-"+age+")/1.2")}'),
  'ring':dict(count=24,life=1.05,pos=[f'(.4+{age}*3)*math.cos({r1}*360)',.08,f'(.4+{age}*3)*math.sin({r1}*360)'],size=[.12,.09],alpha=f'.85*{clamp("(1.05-"+age+")/.7")}'),
  'converge':dict(count=28,life=1.55,pos=[f'(2.1*(1-{smooth(age+"/1.4")}))*math.cos({r1}*360+{age}*150)',f'.15+{r2}*2.1',f'(2.1*(1-{smooth(age+"/1.4")}))*math.sin({r1}*360+{age}*150)'],size=[.11,.18],alpha=f'{clamp(age+"/.15")}*{clamp("(1.55-"+age+")/.35")}'),
  'embers':dict(count=16,life=1.25,pos=[f'({r1}-.5)*(1+{age})',f'.2+{r2}*1.8+{age}*.6',f'({r3}-.5)*(1+{age})'],size=[.06,.09],alpha=f'.7*{clamp("(1.25-"+age+")/.7")}'),
