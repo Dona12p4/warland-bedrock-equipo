@@ -15,10 +15,20 @@ writeFileSync(join(O,'manifest-before.json'),original);writeFileSync(join(O,'per
 const m=JSON.parse(original);m.modules.find(x=>x.type==='script').entry='scripts/arrival-native-probe.js';m.dependencies.push({module_name:'@minecraft/server-gametest',version:'1.0.0-beta'});
 writeFileSync(manifest,JSON.stringify(m));cpSync(join(R,'tools/arrival-native-probe.js'),probe);
 const permissions=JSON.parse(originalConfig);permissions.allowed_modules=[...new Set([...(permissions.allowed_modules??[]),'@minecraft/server','@minecraft/server-ui','@minecraft/server-gametest'])];writeFileSync(config,JSON.stringify(permissions));
-let output='',result,stopping=false;const child=spawn(join(server,'bedrock_server.exe'),[],{cwd:server,windowsHide:true,stdio:['pipe','pipe','pipe']});
+let output='',pending='',result,stopping=false;const child=spawn(join(server,'bedrock_server.exe'),[],{cwd:server,windowsHide:true,stdio:['pipe','pipe','pipe']});
 const stop=()=>{if(!stopping){stopping=true;child.stdin.write('stop\n');}};
 const timer=setTimeout(()=>{result??={passed:false,error:'Native test timeout'};stop();},180000);
-const consume=b=>{output+=String(b);const hit=output.match(/\[ARRIVAL_NATIVE_RESULT\] (\{[^\r\n]*\})/);if(hit&&!result){result=JSON.parse(hit[1]);stop();}};
+const consume=b=>{
+ const text=String(b);output+=text;pending+=text;
+ const lines=pending.split(/\r?\n/);pending=lines.pop();
+ for(const line of lines){
+  const hit=line.match(/\[ARRIVAL_NATIVE_RESULT\] (\{.*\})/);
+  if(hit&&!result){
+   try{result=JSON.parse(hit[1]);}catch(e){result={passed:false,error:'Invalid native report: '+String(e)};}
+   stop();
+  }
+ }
+};
 child.stdout.on('data',consume);child.stderr.on('data',consume);
 child.on('close',code=>{
  clearTimeout(timer);writeFileSync(manifest,original);writeFileSync(config,originalConfig);unlinkSync(probe);
