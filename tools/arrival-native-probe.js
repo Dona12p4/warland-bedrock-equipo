@@ -10,7 +10,13 @@ const checks=[],wait=t=>new Promise(r=>system.runTimeout(r,t));
 const check=(name,ok,detail)=>{checks.push({name,passed:!!ok,detail});if(!ok)throw Error(name+' '+JSON.stringify(detail));};
 const active=p=>arrivalDebug().active.find(s=>s.id===p.id);
 async function until(fn,ticks=240){for(let t=0;t<ticks;t+=2){if(fn())return true;await wait(2);}return false;}
-async function die(p){p.kill();await wait(3);check('Native death registered',p.hasTag(HEART_TAG),{health:p.getComponent('health').currentValue,at:p.location});if(p.getComponent('health').currentValue<=0)p.respawn();}
+async function die(p,destination){
+ p.kill();await wait(3);check('Native death registered',p.hasTag(HEART_TAG),{health:p.getComponent('health').currentValue,at:p.location});
+ if(p.getComponent('health').currentValue<=0)p.respawn();
+ // SimulatedPlayer does not acknowledge the client's relocation on fallback.
+ // Supply that destination before Base's two-tick settle, not a fake death.
+ if(destination)p.teleport(destination);
+}
 world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
  let p,q;const d=world.getDimension('overworld');
  try{
@@ -37,7 +43,7 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   d.runCommand(`tickingarea add circle ${remote.x} ${remote.y} ${remote.z} 1 wl_arrival_remote true`);await wait(30);
   d.runCommand(`fill ${Math.floor(remote.x)-2} ${remote.y-1} ${Math.floor(remote.z)-2} ${Math.floor(remote.x)+2} ${remote.y-1} ${Math.floor(remote.z)+2} stone`);
   d.runCommand(`fill ${Math.floor(remote.x)-2} ${remote.y} ${Math.floor(remote.z)-2} ${Math.floor(remote.x)+2} ${remote.y+3} ${Math.floor(remote.z)+2} air`);
-  p.teleport(remote);await wait(3);await die(p);await wait(6);
+  p.teleport(remote);await wait(3);await die(p,cfg.spawn);await wait(6);
   check('Heart flow remains in charge',p.hasTag(HEART_TAG)&&!active(p));
   check('Lobby death gets arrival after heart',await until(()=>active(p)?.reason==='respawn',220),arrivalDebug());
   check('Heart spectator ended before camera',!p.hasTag(HEART_TAG)&&p.getGameMode()===GameMode.Survival);
@@ -53,7 +59,7 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   check('External input lock respected',!startArrival(p,'preview')&&!p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));p.inputPermissions.setPermissionCategory(InputPermissionCategory.Movement,true);
   check('Recovery scene starts',startArrival(p,'preview'));recoverArrival(p);
   check('Saved camera ownership recovers',!active(p)&&!p.hasTag(CINEMATIC_TAG)&&!p.getDynamicProperty(RECOVERY)&&p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Camera));
-  console.warn('[ARRIVAL_NATIVE_RESULT] '+JSON.stringify({passed:true,checks}));
+  console.warn('[ARRIVAL_NATIVE_RESULT] '+JSON.stringify({passed:true,checks,simulatedFallbackDestination:true,realClientFallbackVerified:false}));
  }catch(e){console.warn('[ARRIVAL_NATIVE_RESULT] '+JSON.stringify({passed:false,checks,error:String(e),stack:e.stack}));}
  finally{try{p?.disconnect();q?.disconnect();d.runCommand('tickingarea remove wl_arrival_probe');d.runCommand('tickingarea remove wl_arrival_remote');}catch{}}
 },40));
