@@ -1321,6 +1321,54 @@
                 }
               ]
             }
+          },
+          {
+            "warland_past_frame": {
+              "type": "panel",
+              "size": [
+                "100%",
+                "100%"
+              ],
+              "layer": 120,
+              "bindings": [
+                {
+                  "binding_name": "#hud_title_text_string"
+                },
+                {
+                  "binding_type": "view",
+                  "source_property_name": "(#hud_title_text_string = 'WL_PAST|FILM')",
+                  "target_property_name": "#visible"
+                }
+              ],
+              "controls": [
+                {
+                  "top": {
+                    "type": "image",
+                    "texture": "textures/ui/past_black",
+                    "size": [
+                      "100%",
+                      "12.222222%"
+                    ],
+                    "anchor_from": "top_middle",
+                    "anchor_to": "top_middle",
+                    "layer": 120
+                  }
+                },
+                {
+                  "bottom": {
+                    "type": "image",
+                    "texture": "textures/ui/past_black",
+                    "size": [
+                      "100%",
+                      "12.222222%"
+                    ],
+                    "anchor_from": "bottom_middle",
+                    "anchor_to": "bottom_middle",
+                    "layer": 120
+                  }
+                }
+              ]
+            }
           }
         ]
       },

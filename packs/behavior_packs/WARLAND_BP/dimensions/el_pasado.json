@@ -7,7 +7,7 @@
     "components": {
       "minecraft:dimension_height": {
         "min_y": -64,
-        "height_range": 384
+        "height_range": 512
       },
       "minecraft:generation": {
         "generator_type": "void"

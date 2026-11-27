@@ -12,11 +12,23 @@
       ]
     },
     "warland.past.cinema": {
-      "category": "music",
+      "category": "ambient",
       "sounds": [
         {
           "name": "sounds/warland/past_cinema",
           "stream": true,
+          "is3D": false,
+          "volume": 1
+        }
+      ]
+    },
+    "warland.past.ambient": {
+      "category": "ambient",
+      "sounds": [
+        {
+          "name": "sounds/warland/past_ambient",
+          "stream": true,
+          "is3D": false,
           "volume": 1
         }
       ]
