@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import {ARRIVAL,arrivalFrame,lobbyRespawn} from '../packs/behavior_packs/WARLAND_Lobby_BP/scripts/arrival-policy.js';
+import {firstArrivalDecision,ARRIVED} from '../packs/behavior_packs/WARLAND_Lobby_BP/scripts/lobby-policy.js';
+const cfg={spawn:{x:1240.5,y:72,z:-1367.5},existingPlayerIds:['old-id'],existingPlayerNames:['existing']},dim='minecraft:overworld';
+const player=(name='New',id='new-id',arrived)=>({name,id,getDynamicProperty:key=>key===ARRIVED?arrived:undefined});
+assert.equal(firstArrivalDecision(player(),true,cfg),'arrive');
+assert.equal(firstArrivalDecision(player(),false,cfg),'keep');
+assert.equal(firstArrivalDecision(player('New','id',true),true,cfg),'keep');
+assert.equal(firstArrivalDecision(player('Existing'),true,cfg),'existing');
+assert.equal(firstArrivalDecision(player('Other','old-id'),true,cfg),'existing');
+assert.equal(lobbyRespawn(cfg.spawn,dim,cfg.spawn,undefined,cfg),true);
+assert.equal(lobbyRespawn(cfg.spawn,'minecraft:nether',cfg.spawn,undefined,cfg),false);
+assert.equal(lobbyRespawn({...cfg.spawn,x:1260},dim,cfg.spawn,undefined,cfg),false);
+assert.equal(lobbyRespawn(cfg.spawn,dim,{x:0,y:80,z:0},undefined,cfg),false);
+assert.equal(lobbyRespawn({...cfg.spawn,x:1243},dim,cfg.spawn,{...cfg.spawn,x:1243,dimension:{id:dim}},cfg),false);
+assert.equal(lobbyRespawn(cfg.spawn,dim,cfg.spawn,{x:900,y:64,z:900,dimension:{id:dim}},cfg),true,'broken bed fallback');
+assert.equal(lobbyRespawn(cfg.spawn,dim,cfg.spawn,{...cfg.spawn,dimension:{id:dim}},cfg),true,'explicit lobby point');
+let previous=Infinity;
+for(let t=0;t<=ARRIVAL.impact;t++){
+ const f=arrivalFrame(t,cfg.spawn);assert.ok(f.lightY<=previous);assert.ok(f.lightY>=1.1);previous=f.lightY;
+ assert.ok(Object.values(f.location).every(Number.isFinite));assert.ok(Object.values(f.facingLocation).every(Number.isFinite));
+}
+assert.equal(arrivalFrame(0,cfg.spawn).lightY,27.1);
+assert.equal(arrivalFrame(ARRIVAL.impact,cfg.spawn).lightY,1.1);
+assert.equal(arrivalFrame(ARRIVAL.reveal,cfg.spawn).phase,'reveal');
+console.log('Arrival policy: entry, reconnect, personal spawn, fallback and continuous descent passed');
