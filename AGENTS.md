@@ -1,5 +1,7 @@
 # WARLAND: instrucciones compartidas
 
+Antes de toda tarea de juego o entrega, leer [docs/PACK-COMPLETO-Y-PARIDAD.md](docs/PACK-COMPLETO-Y-PARIDAD.md), decision expresa del 27/11. Todo cambio aprobado debe integrarse en el unico WARLAND.mcaddon (BP/RP unificados) y quedar igual por hashes/version/configuracion en el servidor vigente y el mundo Movil 3-4 GB. No instalar mods sueltos ni copiar DB entre destinos. No afirmar terminado en ambos si solo se probo o instalo en uno. Esta regla prevalece sobre despliegues historicos separados. Respetar la orden vigente de no detener el servidor local.
+
 Leer `README.md`, `docs/ESTADO.md` y `baseline.json` antes de editar. Este repositorio contiene la base de paquetes REALMENTE instalados; el antiguo proyecto 0.4.2 no reproduce esta version y no debe desplegarse encima.
 
 El colaborador trabaja en Linux instalado directamente, con Codex CLI desde la terminal; dispone de arranque dual Windows para pruebas visuales Bedrock. Usar `python3` y los lanzadores `.sh` en Linux. Iniciar `codex` desde la raiz del clon o `bash ABRIR-CODEX.sh`; no necesita pegar los chats del propietario. No ejecutar .cmd, PowerShell ni bedrock_server.exe bajo Linux.

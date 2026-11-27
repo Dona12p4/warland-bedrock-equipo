@@ -1,0 +1,16 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "warland.arrival.wind": {
+      "category": "weather",
+      "sounds": [
+        {
+          "name": "sounds/arrival/wind",
+          "stream": false,
+          "is3D": false,
+          "volume": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "warland:arrival_core",
+      "basic_render_parameters": {
+        "material": "particles_blend",
+        "texture": "textures/particle/lobby_light"
+      }
+    },
+    "components": {
+      "minecraft:emitter_rate_instant": {
+        "num_particles": 3
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 0.01
+      },
+      "minecraft:emitter_shape_point": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          0
+        ]
+      },
+      "minecraft:particle_initial_speed": 0,
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": 5.75
+      },
+      "minecraft:particle_motion_parametric": {
+        "relative_position": [
+          "(variable.particle_random_1-.5)*.12",
+          "1.1+variable.arrival_height*(1-(math.clamp(variable.particle_age/5.0,0,1)*math.clamp(variable.particle_age/5.0,0,1)*(3-2*math.clamp(variable.particle_age/5.0,0,1))))",
+          "(variable.particle_random_2-.5)*.12"
+        ]
+      },
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          ".65+.5*(math.clamp(variable.particle_age/5.0,0,1)*math.clamp(variable.particle_age/5.0,0,1)*(3-2*math.clamp(variable.particle_age/5.0,0,1)))",
+          "1.0+.25*(math.clamp(variable.particle_age/5.0,0,1)*math.clamp(variable.particle_age/5.0,0,1)*(3-2*math.clamp(variable.particle_age/5.0,0,1)))"
+        ],
+        "facing_camera_mode": "lookat_xyz",
+        "uv": {
+          "texture_width": 64,
+          "texture_height": 128,
+          "uv": [
+            0,
+            0
+          ],
+          "uv_size": [
+            64,
+            128
+          ]
+        }
+      },
+      "minecraft:particle_appearance_tinting": {
+        "color": [
+          1,
+          1,
+          1,
+          "math.clamp(variable.particle_age/.18,0,1)*math.clamp((5.75-variable.particle_age)/.65,0,1)"
+        ]
+      }
+    }
+  }
+}
