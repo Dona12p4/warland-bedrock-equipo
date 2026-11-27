@@ -124,7 +124,7 @@
           ]
         },
         {
-          "name": "leftArm",
+          "name": "leftarm",
           "parent": "body",
           "pivot": [
             5.0,
@@ -151,8 +151,8 @@
           ]
         },
         {
-          "name": "leftSleeve",
-          "parent": "leftArm",
+          "name": "leftsleeve",
+          "parent": "leftarm",
           "pivot": [
             5.0,
             22.0,
@@ -179,16 +179,16 @@
           ]
         },
         {
-          "name": "leftItem",
+          "name": "leftitem",
           "pivot": [
             6.0,
             15.0,
             1.0
           ],
-          "parent": "leftArm"
+          "parent": "leftarm"
         },
         {
-          "name": "rightArm",
+          "name": "rightarm",
           "parent": "body",
           "pivot": [
             -5.0,
@@ -215,8 +215,8 @@
           ]
         },
         {
-          "name": "rightSleeve",
-          "parent": "rightArm",
+          "name": "rightsleeve",
+          "parent": "rightarm",
           "pivot": [
             -5.0,
             22.0,
@@ -243,7 +243,7 @@
           ]
         },
         {
-          "name": "rightItem",
+          "name": "rightitem",
           "pivot": [
             -6,
             15,
@@ -256,10 +256,10 @@
               1
             ]
           },
-          "parent": "rightArm"
+          "parent": "rightarm"
         },
         {
-          "name": "leftLeg",
+          "name": "leftleg",
           "parent": "root",
           "pivot": [
             1.9,
@@ -286,8 +286,8 @@
           ]
         },
         {
-          "name": "leftPants",
-          "parent": "leftLeg",
+          "name": "leftpants",
+          "parent": "leftleg",
           "pivot": [
             1.9,
             12.0,
@@ -314,7 +314,7 @@
           ]
         },
         {
-          "name": "rightLeg",
+          "name": "rightleg",
           "parent": "root",
           "pivot": [
             -1.9,
@@ -341,8 +341,8 @@
           ]
         },
         {
-          "name": "rightPants",
-          "parent": "rightLeg",
+          "name": "rightpants",
+          "parent": "rightleg",
           "pivot": [
             -1.9,
             12.0,
@@ -521,7 +521,7 @@
           ]
         },
         {
-          "name": "leftArm",
+          "name": "leftarm",
           "parent": "body",
           "pivot": [
             5.0,
@@ -548,8 +548,8 @@
           ]
         },
         {
-          "name": "leftSleeve",
-          "parent": "leftArm",
+          "name": "leftsleeve",
+          "parent": "leftarm",
           "pivot": [
             5.0,
             21.5,
@@ -576,16 +576,16 @@
           ]
         },
         {
-          "name": "leftItem",
+          "name": "leftitem",
           "pivot": [
             6.0,
             15.0,
             1.0
           ],
-          "parent": "leftArm"
+          "parent": "leftarm"
         },
         {
-          "name": "rightArm",
+          "name": "rightarm",
           "parent": "body",
           "pivot": [
             -5.0,
@@ -612,8 +612,8 @@
           ]
         },
         {
-          "name": "rightSleeve",
-          "parent": "rightArm",
+          "name": "rightsleeve",
+          "parent": "rightarm",
           "pivot": [
             -5.0,
             21.5,
@@ -640,7 +640,7 @@
           ]
         },
         {
-          "name": "rightItem",
+          "name": "rightitem",
           "pivot": [
             -6,
             15,
@@ -653,10 +653,10 @@
               1
             ]
           },
-          "parent": "rightArm"
+          "parent": "rightarm"
         },
         {
-          "name": "leftLeg",
+          "name": "leftleg",
           "parent": "root",
           "pivot": [
             1.9,
@@ -683,8 +683,8 @@
           ]
         },
         {
-          "name": "leftPants",
-          "parent": "leftLeg",
+          "name": "leftpants",
+          "parent": "leftleg",
           "pivot": [
             1.9,
             12.0,
@@ -711,7 +711,7 @@
           ]
         },
         {
-          "name": "rightLeg",
+          "name": "rightleg",
           "parent": "root",
           "pivot": [
             -1.9,
@@ -738,8 +738,8 @@
           ]
         },
         {
-          "name": "rightPants",
-          "parent": "rightLeg",
+          "name": "rightpants",
+          "parent": "rightleg",
           "pivot": [
             -1.9,
             12.0,

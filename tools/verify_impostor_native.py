@@ -75,7 +75,7 @@ def run_pass(server, phase):
             raise RuntimeError('El servidor no confirma cierre. No forzar ni copiar su mundo. PID=' + str(proc.pid))
     text = ''.join(lines)
     errors = [l for l in text.splitlines() if re.search(r'\bERROR\]', l, re.I)]
-    passed = bool(result and result.get('passed') and not errors and 'Quit correctly' in text and proc.returncode == 0)
+    passed = bool(result and result.get('passed') and result.get('phase') == phase and not errors and 'Quit correctly' in text and proc.returncode == 0)
     report = {'passed': passed, 'phase': phase, 'result': result, 'errors': errors, 'exitCode': proc.returncode, 'quitCorrectly': 'Quit correctly' in text, 'clientVisualVerified': False, 'androidVerified': False}
     (ROOT / f'.local/impostor-{phase}.log').write_text(text, encoding='utf-8')
     write(ROOT / f'.local/impostor-{phase}.json', report)
