@@ -4,6 +4,7 @@ import {PAST,SHOTS,ACTOR_SHOT,ACTOR_START,ACTOR_VANISH,pastAdmin,inPast,normalPa
 import {createPastMusic,PAST_MUSIC} from './past-music.js';
 import {escapeProbe,safeLanding} from './past-travel.js';
 import {createPastLighting} from './past-lighting.js';
+import {pastArrivalActive,startPastArrival,stopPastArrival} from './past-arrival.js';
 
 const wait=t=>new Promise(r=>system.runTimeout(r,t)),v=a=>({x:a[0],y:a[1],z:a[2]});
 const permissions=[InputPermissionCategory.Camera,InputPermissionCategory.Movement];
@@ -49,17 +50,18 @@ function releaseRegions(){
   regions.delete(name);
  }
 }
-function canStart(p){return alive(p)&&!heart(p)&&!p.hasTag('warland_lobby_arrival')&&!p.hasTag('warland_lobby_cinematic')&&permissions.every(c=>p.inputPermissions.isPermissionCategoryEnabled(c));}
+function canStart(p){return alive(p)&&!heart(p)&&!pastArrivalActive(p)&&!p.hasTag('warland_lobby_arrival')&&!p.hasTag('warland_lobby_cinematic')&&permissions.every(c=>p.inputPermissions.isPermissionCategoryEnabled(c));}
 function saveOrigin(p){
  if(inPast(p))return;
  const s={dimension:p.dimension.id,location:{...p.location},rotation:p.getRotation(),mode:p.getGameMode()};
  if(!validReturn(s))throw Error('No se pudo guardar el punto de regreso.');
  p.setDynamicProperty(PAST.returnKey,JSON.stringify(s));
 }
-export async function enterPast(p,normal=false){
+export async function enterPast(p,normal=false,skipArrival=false){
  if(busy.has(p.id)||!canStart(p))return false;
  if(normal&&!pastAdmin(p.name)){notice(p,'Ese recuerdo todavía no está disponible.');return false;}
  busy.add(p.id);
+ const showArrival=!normal&&!skipArrival&&!inPast(p);
  try{
   const d=await region(normal);if(!alive(p)||heart(p))return false;
   saveOrigin(p);p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:.15,holdTime:.4,fadeOutTime:.6}});
@@ -67,6 +69,7 @@ export async function enterPast(p,normal=false){
   p.teleport(offsetPoint(PAST.spawn,normal),{dimension:d,rotation:{x:0,y:-90}});p.setGameMode(GameMode.Adventure);
   lastSafe.set(p.id,{...p.location});travel.delete(p.id);fog(p,normal);music.update(p);
   p.onScreenDisplay.setTitle(normal?'El Pasado · Antes de la ceniza':'El Pasado',{subtitle:normal?'Un recuerdo que aún permanece.':'WARLAND I · Lo que quedó.',fadeInDuration:10,stayDuration:40,fadeOutDuration:20});
+  if(showArrival)startPastArrival(p);
   notice(p,'Recorre el recuerdo. /warland:pasado_salir para volver.');audit('entered',p,{normal});return true;
  }catch(e){notice(p,String(e.message??e));audit('entry_error',p,{error:String(e)});return false}
  finally{busy.delete(p.id);releaseRegions()}
@@ -92,6 +95,7 @@ export function stopPastFilm(p,reason='cancelled'){
 export async function exitPast(p){
  if(!alive(p)||heart(p)){notice(p,'Espera a que termine la reaparición.');return false}
  if(busy.has(p.id))return false;
+ if(pastArrivalActive(p))stopPastArrival(p,'exit');
  if(p.getDynamicProperty(PAST.filmKey))stopPastFilm(p);
  const s=read(p,PAST.returnKey);
  if(!validReturn(s)){notice(p,'No hay un punto de regreso guardado.');return false}
@@ -107,8 +111,9 @@ export async function exitPast(p){
 export async function startPastFilm(p){
  if(film){notice(p,'La escena está en curso. Espera a que termine.');return false}
  if(!pastAdmin(p.name)){notice(p,'La cinemática está en revisión por los administradores.');return false}
+ if(pastArrivalActive(p))stopPastArrival(p,'film');
  if(!canStart(p)||busy.has(p.id))return false;
- if(!inPast(p)||normalPast(p)){if(!await enterPast(p,false))return false}
+ if(!inPast(p)||normalPast(p)){if(!await enterPast(p,false,true))return false}
  const d=await region(false);if(!canStart(p)||film)return false;
  const saved={location:{...p.location},rotation:p.getRotation(),hidden:p.onScreenDisplay.getHiddenHudElements(),permissions:permissions.map(c=>[c,p.inputPermissions.isPermissionCategoryEnabled(c)])};
  p.setDynamicProperty(PAST.filmKey,JSON.stringify(saved));p.addTag(PAST.filmTag);
@@ -188,7 +193,7 @@ system.runInterval(()=>{
    if(s&&!busy.has(p.id)&&!heart(p)&&alive(p)){if(validReturn(s))p.setGameMode(s.mode);p.setDynamicProperty(PAST.returnKey,undefined)}
    continue;
   }
-  if(!p.hasTag(PAST.filmTag)&&!heart(p)){
+  if(!p.hasTag(PAST.filmTag)&&!pastArrivalActive(p)&&!heart(p)){
    if(p.getDynamicProperty(PAST.filmKey))restoreFilm(p);
    if(p.getGameMode()!==GameMode.Adventure)p.setGameMode(GameMode.Adventure);
    if(!inPastBounds(p.location))p.teleport(lastSafe.get(p.id)??offsetPoint(PAST.spawn,normalPast(p)));
@@ -212,7 +217,7 @@ system.runInterval(()=>{
  }catch(e){audit('visitor_error',p,{error:String(e)})}
 },20);
 export function unstuckPast(p,automatic=false){
- if(!inPast(p)||p.hasTag(PAST.filmTag)||busy.has(p.id)||heart(p)||!alive(p))return false;
+ if(!inPast(p)||p.hasTag(PAST.filmTag)||pastArrivalActive(p)||busy.has(p.id)||heart(p)||!alive(p))return false;
  const previous=lastSafe.get(p.id),fallback=offsetPoint(PAST.spawn,normalPast(p)),target=automatic&&previous&&safeLanding(p.dimension,previous)?previous:fallback;
  // Manual recovery always reaches the entrance: a large sealed room may exceed
  // the bounded local search, so its last walking point is not a reliable exit.
