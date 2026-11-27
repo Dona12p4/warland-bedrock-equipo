@@ -36,7 +36,8 @@
           0,
           "variable.arrival_cloud_y+(variable.particle_random_3-.5)*.6",
           0
-        ]
+        ],
+        "rotation": "variable.particle_random_1*90+(72+12*variable.particle_random_2)*variable.particle_age+8*variable.particle_age*variable.particle_age"
       },
       "minecraft:particle_appearance_billboard": {
         "size": [
@@ -64,10 +65,6 @@
           1,
           ".8*math.clamp(variable.particle_age/.5,0,1)*math.clamp((5.4-variable.particle_age)/1.7,0,1)"
         ]
-      },
-      "minecraft:particle_initial_spin": {
-        "rotation": "variable.particle_random_1*180",
-        "rotation_rate": 34
       }
     }
   }

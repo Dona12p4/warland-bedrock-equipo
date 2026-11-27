@@ -21,7 +21,7 @@ specs={
  'converge':dict(count=28,life=1.55,pos=[f'(2.1*(1-{smooth(age+"/1.4")}))*math.cos({r1}*360+{age}*150)',f'.15+{r2}*2.1',f'(2.1*(1-{smooth(age+"/1.4")}))*math.sin({r1}*360+{age}*150)'],size=[.11,.18],alpha=f'{clamp(age+"/.15")}*{clamp("(1.55-"+age+")/.35")}'),
  'embers':dict(count=16,life=1.25,pos=[f'({r1}-.5)*(1+{age})',f'.2+{r2}*1.8+{age}*.6',f'({r3}-.5)*(1+{age})'],size=[.06,.09],alpha=f'.7*{clamp("(1.25-"+age+")/.7")}'),
  'lightning':dict(count=1,life=.5,pos=[0,0,0],size=[6,2.5],alpha=f'{age}<.08?1:({age}<.14?.12:({age}<.23?.9:{clamp("(.5-"+age+")/.27")}))',texture='arrival_lightning',uv=[64,32],facing='emitter_transform_xz'),
- 'vortex':dict(count=2,life=5.4,pos=[0,f'{cloud_y}+({r3}-.5)*.6',0],size=[f'14-{age}*.3',f'14-{age}*.3'],alpha=f'.8*{clamp(age+"/.5")}*{clamp("(5.4-"+age+")/1.7")}',texture='arrival_vortex',uv=[128,128],facing='emitter_transform_xz',spin={'rotation':f'{r1}*180','rotation_rate':34}),
+ 'vortex':dict(count=2,life=5.4,pos=[0,f'{cloud_y}+({r3}-.5)*.6',0],size=[f'14-{age}*.3',f'14-{age}*.3'],alpha=f'.8*{clamp(age+"/.5")}*{clamp("(5.4-"+age+")/1.7")}',texture='arrival_vortex',uv=[128,128],facing='emitter_transform_xz',rotation=f'{r1}*90+(72+12*{r2})*{age}+8*{age}*{age}'),
  'vortex_sparks':dict(count=32,life=5.2,pos=[f'(3+{r1}*10)*(1-.12*{age})*math.cos({r1}*720+{age}*65)',f'{cloud_y}+.4+({r3}-.5)',f'(3+{r1}*10)*(1-.12*{age})*math.sin({r1}*720+{age}*65)'],size=[.13,.38],alpha=f'.9*{clamp(age+"/.5")}*{clamp("(5.2-"+age+")/1.3")}'),
 }
 # Small original pixel-art bolt, reproducible from blocky paths. Two sprites,
@@ -59,7 +59,8 @@ for name,s in specs.items():
   'minecraft:particle_appearance_billboard':{'size':s['size'],'facing_camera_mode':s.get('facing','lookat_y' if name=='body' else 'lookat_xyz'),'uv':{'texture_width':uv[0],'texture_height':uv[1],'uv':[0,0],'uv_size':uv}},
   'minecraft:particle_appearance_tinting':{'color':[1,1,1,s['alpha']]}
  }
- if 'spin' in s:components['minecraft:particle_initial_spin']=s['spin']
+ # Parametric motion owns rotation every frame; initial_spin is overridden.
+ if 'rotation' in s:components['minecraft:particle_motion_parametric']['rotation']=s['rotation']
  effect={'format_version':'1.10.0','particle_effect':{'description':{'identifier':'warland:arrival_'+name,'basic_render_parameters':{'material':'particles_blend','texture':'textures/particle/'+texture}},'components':components}}
  (OUT/('arrival_'+name+'.json')).write_text(json.dumps(effect,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({'effects':len(specs),'particlesPerSequence':sum(s['count']*(2 if name=='lightning' else 1) for name,s in specs.items())}))
