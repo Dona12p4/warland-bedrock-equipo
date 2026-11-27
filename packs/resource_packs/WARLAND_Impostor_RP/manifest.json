@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · El Impostor RP",
+    "description": "Prototipo: nombres de jugadores conectados, apariencia Steve/Alex.",
+    "uuid": "83f99674-8c28-599c-b64d-6ff3a2224a73",
+    "version": [
+      0,
+      3,
+      2
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "9b4e1181-b5a9-544b-a13b-2b53fedc45d3",
+      "version": [
+        0,
+        3,
+        2
+      ]
+    }
+  ]
+}

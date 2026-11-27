@@ -1,5 +1,6 @@
 # Decisiones compartidas
 
+- 2026-11-27: por orden de instalar del propietario, incorporar El Impostor 0.3.2 en el oficial de 3-4 GB. Conservar los 25 paquetes previos, UUID, orden, datos e inventarios; agregar BP/RP independientes (27 paquetes). No incluir propuestas del lobby ni la fusion experimental de paquetes de otras ramas. Pasivo y sin aparicion natural; Steve/Alex como alternativa autorizada a las skins personales. Publicar la fuente y ficha del atlas con las limitaciones reales.
 - 2026-11-08: preparar colaboracion con otra persona/cuenta. Cada tarea se prueba aparte. El propietario decide que pasa a oficial.
 - Version oficial: WARLAND - Movil 3-4 GB - COPIA. Partida y progreso publicados como snapshots separados del codigo. Nunca sincronizar carpetas LevelDB en uso ni fusionar dos partidas.
 - Los paquetes instalados son la base inicial: Base 0.6.20 (incluye lobby posterior), Dark BP 0.15.1, HUD 1.1.18. El inventario exacto esta en baseline.json.

@@ -2,6 +2,7 @@
   "title": "WARLAND 3",
   "subtitle": "Atlas del mundo oficial",
   "entities": {
+    "warland:impostor": {"name":"El Impostor","summary":"Adopta el nombre exacto de un jugador conectado y lo conserva. Usa Steve o Alex; pasea, corre, encadena saltos e inspecciona cofres sin alterar objetos. Pasivo, invocable con huevo o comando; no aparece naturalmente ni copia skins personalizadas."},
     "warland:shadow_boss_prototype": {"name":"Sombra","summary":"La mirada inicia la caza. Alterna garras y estocada; su captura rara puede trasladar al jugador al Umbral fuera de esa dimensión."},
     "warland:thermal_creeper_prototype": {"name":"Creeper térmico","summary":"Rastrea movimiento y fuentes de calor. Grita, persigue, succiona a su alrededor y detona; los supervivientes reciben ceguera y efectos sonoros."},
     "warland:palpador_prototype": {"name":"El Palpador","summary":"Percibe movimiento durante sus tanteos. Persigue con rapidez y encadena ataques; los filamentos reaccionan durante la búsqueda."},

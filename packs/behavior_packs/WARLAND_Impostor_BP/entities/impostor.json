@@ -1,0 +1,283 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "warland:impostor",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "warland:appearance": {
+          "type": "int",
+          "range": [
+            0,
+            1
+          ],
+          "default": 0,
+          "client_sync": true
+        },
+        "warland:running": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        },
+        "warland:inspecting": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "warland_impostor",
+          "mob"
+        ]
+      },
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+      "minecraft:physics": {
+        "has_gravity": true,
+        "has_collision": true
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:movement": {
+        "value": 0.25
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:navigation.walk": {
+        "avoid_water": true,
+        "avoid_damage_blocks": true,
+        "can_pass_doors": true,
+        "can_open_doors": true
+      },
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:nameable": {
+        "always_show": true,
+        "allow_name_tag_renaming": false
+      },
+      "minecraft:persistent": {},
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.open_door": {
+        "priority": 2,
+        "close_door_after": true
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/impostor.json"
+      },
+      "minecraft:experience_reward": {
+        "on_death": 0
+      }
+    },
+    "component_groups": {
+      "warland:walk": {
+        "minecraft:movement": {
+          "value": 0.25
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 5,
+          "speed_multiplier": 1,
+          "xz_dist": 12,
+          "y_dist": 3,
+          "interval": 20
+        }
+      },
+      "warland:run": {
+        "minecraft:movement": {
+          "value": 0.38
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 5,
+          "speed_multiplier": 1,
+          "xz_dist": 20,
+          "y_dist": 3,
+          "interval": 5
+        }
+      },
+      "warland:rest": {
+        "minecraft:movement": {
+          "value": 0
+        },
+        "minecraft:behavior.look_at_player": {
+          "priority": 6,
+          "look_distance": 12,
+          "probability": 0.12,
+          "look_time": {
+            "min": 1,
+            "max": 3
+          }
+        },
+        "minecraft:behavior.random_look_around": {
+          "priority": 7
+        }
+      },
+      "warland:inspect": {
+        "minecraft:movement": {
+          "value": 0
+        }
+      },
+      "warland:search": {
+        "minecraft:movement": {
+          "value": 0.22
+        },
+        "minecraft:behavior.move_to_block": {
+          "priority": 3,
+          "speed_multiplier": 1,
+          "search_range": 8,
+          "search_height": 2,
+          "tick_interval": 20,
+          "start_chance": 1,
+          "goal_radius": 1.1,
+          "stay_duration": 3.5,
+          "target_offset": [
+            0,
+            0,
+            -1
+          ],
+          "target_selection_method": "nearest",
+          "target_blocks": [
+            "minecraft:chest",
+            "minecraft:barrel"
+          ],
+          "on_reach": [
+            {
+              "event": "warland:inspect_reached",
+              "target": "self"
+            }
+          ],
+          "on_stay_completed": [
+            {
+              "event": "warland:inspect_done",
+              "target": "self"
+            }
+          ]
+        }
+      }
+    },
+    "events": {
+      "warland:walk": {
+        "remove": {
+          "component_groups": [
+            "warland:walk",
+            "warland:run",
+            "warland:rest",
+            "warland:inspect",
+            "warland:search"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:walk"
+          ]
+        },
+        "set_property": {
+          "warland:running": false,
+          "warland:inspecting": false
+        }
+      },
+      "warland:run": {
+        "remove": {
+          "component_groups": [
+            "warland:walk",
+            "warland:run",
+            "warland:rest",
+            "warland:inspect",
+            "warland:search"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:run"
+          ]
+        },
+        "set_property": {
+          "warland:running": true,
+          "warland:inspecting": false
+        }
+      },
+      "warland:rest": {
+        "remove": {
+          "component_groups": [
+            "warland:walk",
+            "warland:run",
+            "warland:rest",
+            "warland:inspect",
+            "warland:search"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:rest"
+          ]
+        },
+        "set_property": {
+          "warland:running": false,
+          "warland:inspecting": false
+        }
+      },
+      "warland:search": {
+        "remove": {
+          "component_groups": [
+            "warland:walk",
+            "warland:run",
+            "warland:rest",
+            "warland:inspect",
+            "warland:search"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:search"
+          ]
+        },
+        "set_property": {
+          "warland:running": false,
+          "warland:inspecting": false
+        }
+      },
+      "warland:inspect": {
+        "remove": {
+          "component_groups": [
+            "warland:walk",
+            "warland:run",
+            "warland:rest",
+            "warland:inspect",
+            "warland:search"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "warland:inspect"
+          ]
+        },
+        "set_property": {
+          "warland:running": false,
+          "warland:inspecting": true
+        }
+      },
+      "warland:inspect_reached": {
+        "set_property": {
+          "warland:inspecting": true
+        }
+      },
+      "warland:inspect_done": {
+        "set_property": {
+          "warland:inspecting": false
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,15 @@
 # Estado de partida de la colaboracion
 
+## Incorporacion oficial 27/11/2026: El Impostor 0.3.2
+
+Instalado en WARLAND - Movil 3-4 GB - COPIA (Importado) con respaldo completo verificado. Los 27 paquetes / 1138 archivos de esta fuente coinciden por SHA-256 con el oficial. Los 25 anteriores quedan intactos; solo se agregan BP/RP del Impostor y sus referencias. DB, terreno e inventarios sin cambios. Snapshot de noviembre 8 y copia offline conservados, no reimportarlos sobre progreso reciente.
+
+El Impostor copia el nombre de un participante conectado y conserva la identidad. Usa Steve/Alex, pasea, corre con saltos e inspecciona cofres; pasivo, sin aparicion natural ni copia de skins personalizadas. Comandos y limites en [IMPOSTOR.md](IMPOSTOR.md) y en el atlas.
+
+Validacion: 35 comprobaciones nativas con los 27 paquetes, incluidas cinco tras reinicio; cero errores y Quit correctly. 37 pruebas Python y seis JavaScript; ficha/modelo del atlas revisados en navegador. Cliente instalado 1.26.6501.0, BDS 1.26.60.6, Script API estable 2.10.0, sin nuevos experimentos. Revision visual en el cliente Minecraft y Android pendiente, separada de la prueba nativa.
+
+## Antecedentes de la base inicial
+
 Captura de paquetes instalados el 08/11/2026. Los 25 paquetes del mundo cliente y de la copia offline coinciden byte por byte. Base 0.6.20, Lobby BP 1.1.2 / RP 1.1.0, Dark BP 0.15.1, HUD 1.1.18. El inventario exacto se genera en baseline.json.
 
 Se conservan los mobs, animaciones, sonido, comercio, Warcoins/Keep, equipos, misiones, salud, muerte global, Umbral, biomas, lobby y combate que ya estan en los paquetes. Este repositorio no certifica que toda mecanica este terminada: consultar historial y pruebas de cada cambio.
@@ -27,4 +37,4 @@ Atlas publico generado: https://dona12p4.github.io/warland-bedrock-equipo/. Incl
 
 Validacion del atlas: 22 pruebas de catalogo y colaboracion en Windows; navegador de desarrollo con las 19 secciones, 14 modelos principales, metadatos de los 16 eventos de sonido y disposicion a 390 px sin desbordamiento. Revisadas capturas reales de portada y ficha 3D. No es una nueva prueba del cliente Minecraft ni de la logica del juego.
 
-Atlas de mecanicas, 08/11/2026: acceso directo a Combate tipo Java, Creepers, Lobby, Dias y semanas y Seguridad. Las 15 fichas de sistemas tienen explicaciones, limites y referencias; siete creepers cuentan con ficha/modelo. La cronologia se lee de la politica instalada: siete estados manuales del lobby y dias 8–30 pendientes. Las misiones instaladas siguen siendo tiempo/hostiles/chunks; no confundirlas con la propuesta posterior de objetivos diarios mas dificiles. Los regalos del lobby siguen sin catalogo de recompensas. Ningun pack ni partida se modifica al ampliar este HTML.
+Atlas de mecanicas, 08/11/2026: acceso directo a Combate tipo Java, Creepers, Lobby, Dias y semanas y Seguridad. Las 15 fichas de sistemas tienen explicaciones, limites y referencias; siete creepers cuentan con ficha/modelo. La cronologia se lee de la politica instalada: siete estados manuales del lobby y dias 8â€“30 pendientes. Las misiones instaladas siguen siendo tiempo/hostiles/chunks; no confundirlas con la propuesta posterior de objetivos diarios mas dificiles. Los regalos del lobby siguen sin catalogo de recompensas. Ningun pack ni partida se modifica al ampliar este HTML.

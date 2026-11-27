@@ -1,0 +1,54 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND · El Impostor BP",
+    "description": "Prototipo: nombres de jugadores conectados, apariencia Steve/Alex.",
+    "uuid": "9dd279a2-018d-5e44-9d0a-5cd8a31eb5f7",
+    "version": [
+      0,
+      3,
+      2
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "416a546c-5aeb-5afd-81ec-23d82913852e",
+      "version": [
+        0,
+        3,
+        2
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "51dfec7d-64be-58da-adb5-f622b8d7267e",
+      "version": [
+        0,
+        3,
+        2
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "83f99674-8c28-599c-b64d-6ff3a2224a73",
+      "version": [
+        0,
+        3,
+        2
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    }
+  ]
+}
