@@ -2,6 +2,7 @@
 
 - 2026-11-26: llegada de luz en el lobby, únicamente en la primera entrada al mundo y al morir cuando Bedrock devuelve al jugador al lobby por no tener otro spawn válido. No repetirla al reconectar ni trasladar a jugadores desde camas válidas. El usuario confirmó «Solo la primera entrada».
 - Propuesta Lobby BP/RP 1.2.0: secuencia de 110 ticks, luz descendente y revelado del jugador real. La cámara empieza después del flujo del corazón; no modifica modo, inventario ni punto de reaparición. Mantener API estable 2.10.0 y las protecciones existentes. El comando de revisión /warland:llegada es solo para los administradores dentro de la luz.
+- 2026-11-26, corrección visual: el jugador no debe verse antes de que baje la luz. Ocultar cuerpo, cabeza y objetos durante los primeros 76 ticks y restaurarlos con el revelado o al interrumpir. La cámara inicial mira por la abertura central del techo. Conservar el jugador real, su equipo y su inventario; no sustituirlo por un actor.
 - La instalación y publicación de esta propuesta no están hechas. La prueba se limita al laboratorio local; no modifica el servidor del compañero. GameTest solo se usa en una sonda temporal retirada al cerrar BDS, nunca en la dependencia del pack entregable.
 
 - 2026-11-08: preparar colaboracion con otra persona/cuenta. Cada tarea se prueba aparte. El propietario decide que pasa a oficial.
