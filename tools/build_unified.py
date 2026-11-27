@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse, collections, hashlib, json, shutil, uuid, zipfile, struct, zlib, subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION=[0,7,1]
+VERSION=[0,7,2]
 BP_ID='0c8a75c4-f955-5e24-bacf-72e9b2cb02ec'
 RP_ID='3493724d-c395-54d4-929c-a229b0398abf'
 def read(p): return json.loads(p.read_text(encoding='utf-8-sig'))
