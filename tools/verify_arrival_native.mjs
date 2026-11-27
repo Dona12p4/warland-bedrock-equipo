@@ -1,0 +1,24 @@
+import {readFileSync,writeFileSync,cpSync,mkdirSync,existsSync,unlinkSync} from 'node:fs';
+import {resolve,join} from 'node:path';import {spawn,execFileSync} from 'node:child_process';
+const R=resolve(import.meta.dirname,'..'),server=join(R,'.local/server'),world=join(server,'worlds/WARLAND_LAB');
+const O=join(R,'.local/arrival-review');mkdirSync(O,{recursive:true});
+execFileSync('python',['-c',"import sys;sys.path.insert(0,'tools');import team;team.closed();assert team.read(team.ROOT/'.local/lab.json')['managed']=='warland-team-v1';team.archive_tree(team.ROOT/'.local/server/worlds/WARLAND_LAB',team.ROOT/'.local/arrival-review/before-native.zip')"],{cwd:R});
+const bp=join(world,'behavior_packs/WARLAND_Lobby_BP'),manifest=join(bp,'manifest.json'),probe=join(bp,'scripts/arrival-native-probe.js');
+if(existsSync(probe))throw Error('A previous probe needs recovery first');
+const original=readFileSync(manifest),config=join(server,'config/default/permissions.json'),originalConfig=readFileSync(config);
+writeFileSync(join(O,'manifest-before.json'),original);writeFileSync(join(O,'permissions-before.json'),originalConfig);
+const m=JSON.parse(original);m.modules.find(x=>x.type==='script').entry='scripts/arrival-native-probe.js';m.dependencies.push({module_name:'@minecraft/server-gametest',version:'1.0.0-beta'});
+writeFileSync(manifest,JSON.stringify(m));cpSync(join(R,'tools/arrival-native-probe.js'),probe);
+const permissions=JSON.parse(originalConfig);permissions.allowed_modules=[...new Set([...(permissions.allowed_modules??[]),'@minecraft/server','@minecraft/server-ui','@minecraft/server-gametest'])];writeFileSync(config,JSON.stringify(permissions));
+let output='',result,stopping=false;const child=spawn(join(server,'bedrock_server.exe'),[],{cwd:server,windowsHide:true,stdio:['pipe','pipe','pipe']});
+const stop=()=>{if(!stopping){stopping=true;child.stdin.write('stop\n');}};
+const timer=setTimeout(()=>{result??={passed:false,error:'Native test timeout'};stop();},180000);
+const consume=b=>{output+=String(b);const hit=output.match(/\[ARRIVAL_NATIVE_RESULT\] (\{[^\r\n]*\})/);if(hit&&!result){result=JSON.parse(hit[1]);stop();}};
+child.stdout.on('data',consume);child.stderr.on('data',consume);
+child.on('close',code=>{
+ clearTimeout(timer);writeFileSync(manifest,original);writeFileSync(config,originalConfig);unlinkSync(probe);
+ const errors=output.split(/\r?\n/).filter(x=>/\[ERROR\]|\[.*?error\]/i.test(x));
+ const report={passed:!!result?.passed&&code===0&&output.includes('Quit correctly')&&!errors.length,result,errors,quitCorrectly:output.includes('Quit correctly'),exitCode:code,serverVersion:output.match(/Version: ([\d.]+)/)?.[1],productionApi:'2.10.0',probeOnlyGameTest:true,probeRemoved:true};
+ writeFileSync(join(O,'native.json'),JSON.stringify(report,null,2));writeFileSync(join(O,'native.log'),output);
+ console.log(JSON.stringify(report));process.exitCode=report.passed?0:1;
+});

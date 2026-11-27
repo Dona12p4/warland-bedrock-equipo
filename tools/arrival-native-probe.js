@@ -15,7 +15,7 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
  let p,q;const d=world.getDimension('overworld');
  try{
   d.runCommand(`tickingarea add circle ${cfg.spawn.x} ${cfg.spawn.y} ${cfg.spawn.z} 2 wl_arrival_probe true`);await wait(40);
-  for(let t=0;t<ARRIVAL.returnView;t+=4){const f=arrivalFrame(t,cfg.spawn),b=d.getBlock(f.location);check('Camera clear at tick '+t,b?.isAir,{type:b?.typeId,at:f.location});}
+  for(let t=0;t<ARRIVAL.returnView;t+=4){const f=arrivalFrame(t,cfg.spawn),b=d.getBlock(f.location);const alternatives=[];if(!b?.isAir)for(const radius of [2,3,4,5,6])for(const h of [2.6,4,6]){const a=-36*Math.PI/180,at={x:cfg.spawn.x+Math.sin(a)*radius,y:cfg.spawn.y+h,z:cfg.spawn.z-Math.cos(a)*radius};alternatives.push({radius,h,type:d.getBlock(at)?.typeId});}check('Camera clear at tick '+t,b?.isAir,{type:b?.typeId,at:f.location,alternatives});}
   check('World spawn is lobby',Math.hypot(world.getDefaultSpawnLocation().x-cfg.spawn.x,world.getDefaultSpawnLocation().y-cfg.spawn.y,world.getDefaultSpawnLocation().z-cfg.spawn.z)<2);
   p=GameTest.spawnSimulatedPlayer({dimension:d,...cfg.spawn},'ArrivalFirst',GameMode.Survival);
   check('First entry begins',await until(()=>!!active(p),50),arrivalDebug());

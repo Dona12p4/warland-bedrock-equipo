@@ -16,7 +16,7 @@ export function lobbyRespawn(at,dimension,defaultSpawn,personalSpawn,cfg){
 }
 export function arrivalFrame(t,spawn){
  const drop=smooth(t/ARRIVAL.impact),orbit=smooth((t-ARRIVAL.impact)/(ARRIVAL.returnView-ARRIVAL.impact));
- const angle=(-36+orbit*16)*Math.PI/180,radius=8-orbit*2.4;
+ const angle=(-36+orbit*16)*Math.PI/180,radius=4.8-orbit*1.4;
  return {
   lightY:1.1+ARRIVAL.height*(1-drop),
   location:{x:spawn.x+Math.sin(angle)*radius,y:spawn.y+2.6+Math.sin(orbit*Math.PI)*.7,z:spawn.z-Math.cos(angle)*radius},
