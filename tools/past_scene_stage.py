@@ -121,8 +121,10 @@ def main():
         if floors[b]>62:continue
         # A small fallen-stone foothold leaves the crater visible, but gives an
         # ordinary player a one-block step back onto the surrounding ground.
+        count_before=len(edits)
         for y in range(floors[a]+1,floors[b]):set_block(a[0],y,a[1],'minecraft:cobbled_deepslate')
-        repaired.append({'cells':len(comp),'step':[a[0],floors[b]-1,a[1]],'rim':[b[0],floors[b],b[1]]})
+        if len(edits)>count_before:
+            repaired.append({'cells':len(comp),'step':[a[0],floors[b]-1,a[1]],'rim':[b[0],floors[b],b[1]],'addedBlocks':len(edits)-count_before,'escapeVerified':False})
     # Clear the exact archway already cleared by the approved render source.
     for y in range(63,71):
         for z in range(-786,-777):
@@ -139,10 +141,10 @@ def main():
     after=dict(db.items());db.close()
     assert all(v==after[k] for k,v in before.items() if k not in pending)
     assert all(v==after[k] for k,v in pending.items())
-    report={'backup':str(backup),'stageHeight':256,'stageRecords':len(pending),'unchangedRecords':len(before)-len(set(before)&set(pending)),'exactUnrelatedRecords':True,'smallDryPitsRepaired':repaired,'blockEdits':edits,'inventoriesCopied':False,'officialTouched':False}
+    report={'backup':str(backup),'stageHeight':256,'stageRecords':len(pending),'unchangedRecords':len(before)-len(set(before)&set(pending)),'exactUnrelatedRecords':True,'pitsWithAddedFootholds':repaired,'blockEdits':edits,'inventoriesCopied':False,'officialTouched':False}
     team.write(OUT/'receipt.json',report)
     # This exact delta can later be reviewed by an installer; no whole lab DB.
     with zipfile.ZipFile(OUT/'delta.zip','w',zipfile.ZIP_DEFLATED) as z:
         for k,v in pending.items():z.writestr(k.hex(),v)
-    print(json.dumps({k:v for k,v in report.items() if k not in ('blockEdits','smallDryPitsRepaired')}),len(edits),'edits;',len(repaired),'small pits')
+    print(json.dumps({k:v for k,v in report.items() if k not in ('blockEdits','pitsWithAddedFootholds')}),len(edits),'edits;',len(repaired),'pits with added footholds (escape requires review)')
 if __name__=='__main__':main()

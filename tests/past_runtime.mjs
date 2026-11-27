@@ -20,7 +20,7 @@ assert.equal(policy.shotAt(44.566666667).index,3);
 assert.equal(policy.SHOTS.at(-1).t+policy.SHOTS.at(-1).d,policy.PAST.duration);
 const makeEvents=()=>new Proxy({}, {get(o,k){return o[k]??=( {callbacks:[],subscribe(f){this.callbacks.push(f)}} )}});
 const before=makeEvents(),after=makeEvents(),startup=makeEvents(),timeouts=[],intervals=[],commands=[],players=[],actors=[];
-const props=new Map(),effects=[],logs=[];
+const props=new Map(),effects=[],logs=[];let runtimeClock=100000;
 const dims=new Map();
 for(const id of [policy.PAST.dimension,'minecraft:overworld'])dims.set(id,{id,runCommand(c){commands.push(c);return {successCount:1}},getBlock(){return {isAir:false,isLiquid:false,typeId:'minecraft:stone'}},getEntities(){return actors.filter(e=>e.isValid)},spawnParticle(...a){effects.push(a)},spawnEntity(typeId,location){const e={typeId,location,isValid:true,setRotation(){},setProperty(){},remove(){this.isValid=false}};actors.push(e);return e;}});
 const world={beforeEvents:before,afterEvents:after,getAllPlayers:()=>players,getDynamicProperty:k=>props.get(k),getDimension:id=>dims.get(id)};
@@ -28,16 +28,17 @@ const system={currentTick:100,beforeEvents:startup,run:f=>timeouts.push(f),runTi
 class Player{
  constructor(name){Object.assign(this,{name,id:name,isValid:true,typeId:'minecraft:player',dimension:dims.get('minecraft:overworld'),location:{x:10,y:65,z:20},mode:'creative',properties:new Map(),tags:new Set(),enabled:new Map([['camera',true],['movement',true]]),messages:[]});
  this.inputPermissions={isPermissionCategoryEnabled:c=>this.enabled.get(c),setPermissionCategory:(c,v)=>this.enabled.set(c,v)};
- this.camera={fade(){},clear(){},resetFov(){},setCamera(){},setFov(){}};
+ this.views=[];this.sounds=[];
+ this.camera={fade(){},clear(){},resetFov(){},setCamera:(preset,options)=>this.views.push({preset,...options}),setFov(){}};
  this.onScreenDisplay={setTitle(){},getHiddenHudElements:()=>[],setHudVisibility(){}};
  }
  getDynamicProperty(k){return this.properties.get(k)} setDynamicProperty(k,v){this.properties.set(k,v)}
  hasTag(t){return this.tags.has(t)} addTag(t){this.tags.add(t)} removeTag(t){this.tags.delete(t)}
  getComponent(){return {currentValue:20}} getGameMode(){return this.mode} setGameMode(v){this.mode=v}
- getRotation(){return {x:0,y:20}} sendMessage(t){this.messages.push(t)} runCommand(c){commands.push(c)} playSound(){}
+ getRotation(){return {x:0,y:20}} sendMessage(t){this.messages.push(t)} runCommand(c){commands.push(c)} playSound(id,options){this.sounds.push({id,...options})}
  teleport(l,o={}){this.location={...l};if(o.dimension)this.dimension=o.dimension}
 }
-const ctx=vm.createContext({...policy,world,system,Player,GameMode:{Creative:'creative',Adventure:'adventure',Survival:'survival',Spectator:'spectator'},HudVisibility:{Hide:0,Reset:1},InputPermissionCategory:{Camera:'camera',Movement:'movement'},CommandPermissionLevel:{Any:0},CustomCommandStatus:{Success:0,Failure:1},ActionFormData:class{},console:{warn:x=>logs.push(x)}});
+const ctx=vm.createContext({...policy,Date:{now:()=>runtimeClock},world,system,Player,GameMode:{Creative:'creative',Adventure:'adventure',Survival:'survival',Spectator:'spectator'},HudVisibility:{Hide:0,Reset:1},InputPermissionCategory:{Camera:'camera',Movement:'movement'},EasingType:{Linear:'Linear'},CommandPermissionLevel:{Any:0},CustomCommandStatus:{Success:0,Failure:1},ActionFormData:class{},console:{warn:x=>logs.push(x)}});
 for(const name of ['past-music.js','past-travel.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
 const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe})',ctx);
 async function pump(promise){let done=false,error,result;promise.then(v=>{done=true;result=v},e=>{done=true;error=e});for(let i=0;i<500&&!done;i++){for(const f of timeouts.splice(0))f();await Promise.resolve();}assert(done,'async operation failed to settle');if(error)throw error;return result;}
@@ -56,6 +57,7 @@ assert.equal(await pump(api.exitPast(a)),true);assert.equal(a.mode,'creative');a
 assert.equal(api.pastDebug().regions.length,1,'remaining visitor lost loaded region');
 assert.equal(await pump(api.exitPast(b)),true);assert.equal(api.pastDebug().regions.length,0);
 a.enabled.set('camera',false);assert.equal(await pump(api.enterPast(a)),false);a.enabled.set('camera',true);
+a.addTag('warland_lobby_cinematic');assert.equal(await pump(api.enterPast(a)),false);a.removeTag('warland_lobby_cinematic');
 assert.equal(await pump(api.startPastFilm(a)),true);assert.equal(a.mode,'spectator');assert(!a.enabled.get('movement'));
 api.stopPastFilm(a);assert.equal(a.mode,'adventure');assert(a.enabled.get('movement'));assert(!a.hasTag(policy.PAST.filmTag));assert.equal(actors.filter(e=>e.isValid).length,0);
 await pump(api.startPastFilm(a));props.set('warland:heart_overlay_v1',true);api.stopPastFilm(a,'heart');
@@ -79,3 +81,27 @@ assert.equal(api.escapeProbe(steps,{x:0,y:60,z:0}).trapped,false,'ordinary steps
 assert.equal(api.escapeProbe({getBlock:()=>undefined},{x:0,y:60,z:0}).trapped,false,'unloaded terrain is not proof of entrapment');
 assert.equal(api.escapeProbe(flat,{x:0,y:64,z:0},1).trapped,false,'exhausted budget is not proof of entrapment');
 console.log('PASS: persistent ambient, individual exit, invalid entities, flash timing, enclosed pits, steps and bounded search.');
+// Drive the real film controller across cuts and flashes, not only its policy.
+runtimeClock=200000;await pump(api.startPastFilm(a));
+const filmTick=intervals.find(x=>x.t===1).f,filmStart=runtimeClock;
+const soundtrackCount=a.sounds.filter(s=>s.id==='warland.past.ambient').length;
+for(const time of [0,9.25,9.55,13.71,17.6,17.9,27.44,30.6,30.9,44.57,59.08]){
+ runtimeClock=filmStart+time*1000;system.currentTick+=4;filmTick();
+ const view=a.views.at(-1);assert.equal(view.preset,'warland:past_film');
+ assert.equal(view.location.y>300,policy.memoryAt(time),'flash camera at '+time);
+ assert.equal(actors.filter(e=>e.isValid).length,1,'actor vanished early at '+time);
+}
+runtimeClock=filmStart+59100;filmTick();assert.equal(actors.filter(e=>e.isValid).length,0,'TP must disappear at the sound endpoint');
+assert(effects.some(e=>e[0]==='warland:past_departure'),'missing departure cloud');
+runtimeClock=filmStart+63500;filmTick();
+assert.equal(a.mode,'adventure');assert(a.enabled.get('movement'));
+assert(!a.hasTag(policy.PAST.filmTag));assert.equal(api.pastDebug().film,null);
+assert.equal(a.sounds.filter(s=>s.id==='warland.past.ambient').length,soundtrackCount,'film completion restarted ambient');
+assert(a.getDynamicProperty('warland:past_music_v1'),'film completion stopped exploring soundtrack');
+await pump(api.exitPast(a));assert(!a.getDynamicProperty('warland:past_music_v1'),'ambient survived leaving dimension');
+// Recovery never records the trapped location again after teleporting.
+await pump(api.enterPast(a));const safe={...a.location};a.location={x:0.5,y:60,z:0.5};
+// This assertion uses the recovery action directly so outside-bounds protection
+// does not mask it. The stored last-safe location belongs to this visit only.
+assert(api.unstuckPast(a));assert.deepEqual(a.location,safe);
+console.log('PASS: native controller timeline, three flashes, instant TP, continued music, exit cleanup and last-safe recovery.');

@@ -17,7 +17,7 @@ $('#nav').innerHTML=sections.map(([id,name,icon])=>`${id==='commands'?'<div clas
 const topicDescriptions={combat:'Recarga, críticos, barrido y escudos',creepers:'Térmico y seis variantes con modelo 3D',lobby:'La Cuna, protección, luz y regalos',calendar:'Siete etapas del lobby, misiones y pendientes',security:'Cofres, explosiones, permisos y auditoría'};
 $('#shortcuts').innerHTML=Object.entries(topics).map(([id,name])=>`<button data-section="${id}"><strong>${esc(name)}</strong><span>${esc(topicDescriptions[id])}</span><b aria-hidden="true">→</b></button>`).join('');
 $('#pack').innerHTML+=[...new Set(D.files.map(f=>f.pack))].sort().map(p=>`<option value="${esc(p)}">${esc(p.replace('WARLAND_',''))}</option>`).join('');
-$('#edition').textContent='Base instalada · '+humanDate(D.snapshot);
+$('#edition').textContent='Captura de referencia · '+humanDate(D.snapshot);
 $('#coverage').textContent=`${D.coverage.indexed} de ${D.coverage.total} archivos incluidos`;
 $('#world-link').href=`https://github.com/${D.toolchain.repository}/releases/tag/${D.world.tag}`;
 $('#metrics').innerHTML=[['mobs',D.entries.filter(e=>e.category==='mobs'&&!e.auxiliary).length,'CRIATURAS Y PERSONAJES'],['items',D.entries.filter(e=>e.category==='items'&&!e.variants).length,'OBJETOS PRINCIPALES'],['biomes',D.counts.biomes,'HÁBITATS'],['files',D.files.length,'ARCHIVOS INVENTARIADOS']].map(([id,n,l])=>`<button data-section="${id}"><strong>${n}</strong><span>${l}</span></button>`).join('');

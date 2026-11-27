@@ -1,5 +1,8 @@
 # Decisiones compartidas
 
+- 2026-11-27, El Pasado: sustituir la película pixelada por una cinemática nativa sobre una copia acotada de WARLAND I. Ruinas recorribles ahora; intacto como vista administrativa para una futura apertura. Conservar perspectiva/cortes, tres destellos de 0,3 s, ceniza solo en ruinas y TP a 59,1 s. Música de fondo hasta salir, con sonoridad similar al Umbral; luz guía pendiente. Añadir recuperación conservadora de atascos sin modificar partidas originales.
+- 2026-11-27, revisión de esta rama: «los dos mundos» se refiere al servidor vigente y al oficial Movil 3–4 GB, no a las variantes intacta/destruida. Verificar ambos y el Impostor. La entrega vigente exige un addon completo BP/RP y paridad por hashes; no volver a instalar módulos independientes. El código preparado en esta rama no acredita instalación ni revisión visual en esos destinos.
+
 - 2026-11-27: por orden de instalar del propietario, incorporar El Impostor 0.3.2 en el oficial de 3-4 GB. Conservar los 25 paquetes previos, UUID, orden, datos e inventarios; agregar BP/RP independientes (27 paquetes). No incluir propuestas del lobby ni la fusion experimental de paquetes de otras ramas. Pasivo y sin aparicion natural; Steve/Alex como alternativa autorizada a las skins personales. Publicar la fuente y ficha del atlas con las limitaciones reales.
 - 2026-11-08: preparar colaboracion con otra persona/cuenta. Cada tarea se prueba aparte. El propietario decide que pasa a oficial.
 - Version oficial: WARLAND - Movil 3-4 GB - COPIA. Partida y progreso publicados como snapshots separados del codigo. Nunca sincronizar carpetas LevelDB en uso ni fusionar dos partidas.

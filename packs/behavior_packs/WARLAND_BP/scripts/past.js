@@ -1,4 +1,4 @@
-import {world,system,Player,GameMode,HudVisibility,InputPermissionCategory,CommandPermissionLevel,CustomCommandStatus} from '@minecraft/server';
+import {world,system,Player,GameMode,HudVisibility,InputPermissionCategory,EasingType,CommandPermissionLevel,CustomCommandStatus} from '@minecraft/server';
 import {ActionFormData} from '@minecraft/server-ui';
 import {PAST,SHOTS,pastAdmin,inPast,normalPast,offsetPoint,inPastBounds,shotAt,cameraAt,cameraAnchor,validReturn} from './past-policy.js';
 import {createPastMusic,PAST_MUSIC} from './past-music.js';
@@ -48,7 +48,7 @@ function releaseRegions(){
   regions.delete(name);
  }
 }
-function canStart(p){return alive(p)&&!heart(p)&&!p.hasTag('warland_lobby_arrival')&&permissions.every(c=>p.inputPermissions.isPermissionCategoryEnabled(c));}
+function canStart(p){return alive(p)&&!heart(p)&&!p.hasTag('warland_lobby_arrival')&&!p.hasTag('warland_lobby_cinematic')&&permissions.every(c=>p.inputPermissions.isPermissionCategoryEnabled(c));}
 function saveOrigin(p){
  if(inPast(p))return;
  const s={dimension:p.dimension.id,location:{...p.location},rotation:p.getRotation(),mode:p.getGameMode()};
@@ -169,7 +169,7 @@ system.runInterval(()=>{
    // rail, close enough to stream terrain, the actor and the world particles.
    if(cut||flash||system.currentTick%4===0)p.teleport(cameraAnchor(c));
    const next=cameraAt(Math.min(t+.05,PAST.duration)),smooth=!cut&&!flash&&next.memory===c.memory;
-   p.camera.setCamera('warland:past_film',{location:v(smooth?next.position:c.position),facingLocation:v(smooth?next.target:c.target),...(smooth?{easeOptions:{easeTime:.05,easeType:'Linear'}}:{})});
+   p.camera.setCamera('warland:past_film',{location:v(smooth?next.position:c.position),facingLocation:v(smooth?next.target:c.target),...(smooth?{easeOptions:{easeTime:.05,easeType:EasingType.Linear}}:{})});
    if(t>=59.1&&actor?.isValid){const at=actor.location;actor.remove();actor=null;try{dimension().spawnParticle('warland:past_departure',{...at,y:at.y+4})}catch{}}
    if(t>=PAST.duration-1&&!s.fading){s.fading=true;p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:1,holdTime:.1,fadeOutTime:.6}})}
   }
@@ -195,8 +195,8 @@ system.runInterval(()=>{
     if(moved||!prev.checked){
      const check=escapeProbe(p.dimension,at,160);
      if(check.known&&!check.trapped)lastSafe.set(p.id,{...at});
-     if(check.trapped&&!moved&&prev.since+40<=system.currentTick)unstuckPast(p,true);
-     travel.set(p.id,{...at,since:moved?system.currentTick:prev.since,checked:check.known&&!check.trapped});
+     const recovered=check.trapped&&!moved&&prev.since+40<=system.currentTick&&unstuckPast(p,true);
+     if(!recovered)travel.set(p.id,{...at,since:moved?system.currentTick:prev.since,checked:check.known&&!check.trapped});
     }
    }
   }

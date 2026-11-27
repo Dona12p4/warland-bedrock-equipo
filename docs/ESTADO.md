@@ -1,5 +1,11 @@
 # Estado de partida de la colaboracion
 
+## Candidato El Pasado, 27/11/2026 (no instalado)
+
+Rama independiente con cinemática 3D nativa, ruinas recorribles protegidas, recuerdos intactos breves, ceniza en el mundo, música continua hasta salir y recuperación de atascos. Base candidata 0.6.21 / HUD 1.1.19; la corrección Impostor 0.3.3 se incorporó a esta rama para evitar volver a la animación anterior. El mundo oficial descrito debajo conserva su estado de captura: no inferir instalación por la presencia del código.
+
+Ver [EL-PASADO.md](EL-PASADO.md) para comandos, recursos, límites y pruebas. El BDS aislado carga sin errores; falta la aprobación visual final y la entrega como addon completo idéntico en servidor y mundo 3–4 GB. El servidor vivo de otra tarea y la partida oficial no se modificaron desde esta rama.
+
 ## Incorporacion oficial 27/11/2026: El Impostor 0.3.2
 
 Instalado en WARLAND - Movil 3-4 GB - COPIA (Importado) con respaldo completo verificado. Los 27 paquetes / 1138 archivos de esta fuente coinciden por SHA-256 con el oficial. Los 25 anteriores quedan intactos; solo se agregan BP/RP del Impostor y sus referencias. DB, terreno e inventarios sin cambios. Snapshot de noviembre 8 y copia offline conservados, no reimportarlos sobre progreso reciente.

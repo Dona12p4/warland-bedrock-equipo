@@ -5,20 +5,23 @@ Only repo packs are written. No client database, movie frame or global time.
 from pathlib import Path
 import copy, hashlib, json, math, subprocess
 from PIL import Image
+from numeric_animation import compact_clip
 
 R=Path(__file__).resolve().parents[1];P=R.parents[1]
 RP=R/'packs/resource_packs/WARLAND_UmbralLoading_RP';BP=R/'packs/behavior_packs/WARLAND_BP'
 O=P/'outputs/WARLAND1-Memoria-IV/Mundo-reconstruido';B=O/'Cortes-al-bajo'
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
-def write(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+def write(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes((json.dumps(d,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
 assert read(B/'delivery.json')['revision']=='bass-cuts-tp-18'
 def encode(src,dst,filters=None):
     args=['ffmpeg','-v','error','-nostdin','-y','-i',str(src)]
     if filters:args+=['-af',filters]
     subprocess.run(args+['-ac','2','-ar','32000','-c:a','libvorbis','-q:a','3',str(dst)],check=True)
-encode(B/'combinado-efecto.wav',RP/'sounds/warland/past_cinema.ogg')
-# Same gain and intro as approved film; extend its MUSIC beyond the final shot.
-encode(O/'Ceniza-integrada/fondo-void.webm',RP/'sounds/warland/past_ambient.ogg','volume=-13.82dB,afade=t=in:d=1.2,afade=t=out:st=299.461:d=2.4')
+# Both stems get the same gain: preserve the quiet hand effect and matched TP.
+# Measured source: Past -24.3 LUFS versus Umbral -15.2 LUFS at equal play volume.
+MATCH_UMBRAL_GAIN_DB=9.1
+encode(B/'combinado-efecto.wav',RP/'sounds/warland/past_cinema.ogg',f'volume={MATCH_UMBRAL_GAIN_DB}dB')
+encode(O/'Ceniza-integrada/fondo-void.webm',RP/'sounds/warland/past_ambient.ogg',f'volume={-13.82+MATCH_UMBRAL_GAIN_DB}dB,afade=t=in:d=1.2,afade=t=out:st=299.461:d=2.4')
 sounds=read(RP/'sounds/sound_definitions.json')
 for event,file in [('cinema','past_cinema'),('ambient','past_ambient')]:
     sounds['sound_definitions']['warland.past.'+event]={'category':'ambient','sounds':[{'name':'sounds/warland/'+file,'stream':True,'is3D':False,'volume':1}]}
@@ -60,6 +63,7 @@ clip['animation_length']=568/30;clip.pop('sound_effects',None)
 scale=clip['bones']['r4_orb']['scale']
 active=[t for t,s in scale.items() if s[0]>.02 and float(t)<14.4]
 clip['particle_effects']={str(round(t,3)):{'effect':'power','locator':'r4_palm','bind_to_actor':True} for t in [i/10 for i in range(144)] if active and float(active[0])<=t<=14.3}
+compression=compact_clip(clip)
 anims=read(RP/'animations/pasado_coloso.animation.json');anims['animations']['animation.warland.pasado.performance']=clip;write(RP/'animations/pasado_coloso.animation.json',anims)
 halo=read(RP/'particles/past_power.json');c=halo['particle_effect']['components'];c['minecraft:particle_lifetime_expression']['max_lifetime']=.16
 c.pop('minecraft:particle_motion_parametric',None)
@@ -82,5 +86,5 @@ for name in ['past_ash','past_ash_near']:
     c=d['particle_effect']['components'];c['minecraft:particle_initial_speed']=[.12,-.24,.055]
     c['minecraft:particle_appearance_tinting']['color']=[.73,.72,.69,'0.82 * math.min(1, variable.particle_age / 0.4) * math.min(1, (variable.particle_lifetime - variable.particle_age) / 0.8)']
     write(RP/f'particles/{name}.json',d)
-receipt={'sourceRevision':'bass-cuts-tp-18','musicDuration':301.861,'playbackVolume':.5,'musicContinuesAfterFilm':True,'effectsSeparate':True,'barsFraction':132/1080,'snapFrames':[432,433,434,435],'teleport':59.1,'worldSpaceAsh':True,'maxDepartureParticles':240}
+receipt={'sourceRevision':'bass-cuts-tp-18','musicDuration':301.861,'playbackVolume':.5,'umbralLoudnessTargetLUFS':-15.2,'bothStemsGainAdjustmentDb':MATCH_UMBRAL_GAIN_DB,'musicContinuesAfterFilm':True,'effectsSeparate':True,'barsFraction':132/1080,'snapFrames':[432,433,434,435],'teleport':59.1,'worldSpaceAsh':True,'maxDepartureParticles':240,'animationCompression':compression}
 write(R/'.local/past-film-assets.json',receipt);print(json.dumps(receipt))
