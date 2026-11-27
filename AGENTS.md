@@ -1,3 +1,7 @@
+## Vigente instalado: completo0.7.7 (27/11/2026)
+
+Un BP/RP actualizado con respaldo en oficial Movil3-4GB y servidor19152:1281 archivos iguales, DB/progreso intactos. Administración > El Pasado y llegadas, llegada diagonal, guía privada fuera de la película, cruce hacia lobby con animación y cámara del Coloso alineada detrás. Informes outputs/past-arrival/installation.json y final-parity-0.7.7.json. Servidor reabierto y debe seguir encendido; no repetir instalación/importación ni detener por rutina. Sin revisión visual por orden del usuario. Antecedentes de candidatos0.7.5/0.7.6 quedan sustituidos por este despliegue.
+
 ## Revision visual suspendida por el usuario (27/11/2026)
 
 No controlar Minecraft ni realizar confirmaciones visuales en esta ronda: el usuario quiere seguir jugando. Continuar con pruebas automaticas y preparar el completo; no editar ni copiar su DB abierta. No reactivar revisiones de cliente por instrucciones anteriores.

@@ -70,3 +70,5 @@ Candidato completo 0.7.7, Base0.6.24. Administración muestra «El Pasado y lleg
 El Coloso ya usaba yaw180, pero el plano anterior estaba a unos 51 grados del eje trasero. Se alinea la cámara a menos de 8 grados detrás de la capa, más apartada para encuadrar el cuerpo. No se gira el modelo, no se cambia el gesto ni su luz en la mano. La prueba nativa revisa el espacio de cámara y la visibilidad del torso entre los bloques; no equivale a una revisión visual del cliente.
 
 El usuario ordenó instalar el conjunto. La interrupción de instalación y reapertura de19152 quedan autorizadas para esta entrega; no cambia la orden de mantenerlo encendido después. No controlar Minecraft para una revisión estética.
+
+- Instalación0.7.7 completada con respaldo cerrado y paridad en ambos destinos. Servidor19152 reabierto; no reactivar revisión visual ni detener los estudios19160/19178.

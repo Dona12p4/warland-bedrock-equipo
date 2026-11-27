@@ -57,3 +57,14 @@ Informe local outputs/past-official-installation.json; paridad outputs/past-offi
 ## Preparado 0.7.6: salida con llegada al lobby
 
 El candidato vigente incorpora lo instalado en 0.7.4, llegada diagonal de El Pasado, luces privadas excluidas de la película y salida hacia el lobby con su animación existente. Fuente Base0.6.23/LobbyBP1.2.1. Un solo BP/RP, mismas UUID completas. No instalado: el usuario sigue jugando y el servidor19152 debe permanecer encendido. No detener ni reiniciar servidores, tomar el cliente o copiar una DB abierta. Actualizador de packs con respaldo cerrado cuando exista una nueva ventana autorizada; no reimportar terreno. Informe outputs/past-arrival/preparation.json.
+
+## Instalado 0.7.7: Administración, llegada al lobby y Coloso (27/11/2026)
+
+Por orden expresa «INSTALA TODO ESO», se cerró de forma segura únicamente el servidor19152, con Minecraft ya cerrado. Respaldo completo verificado y actualización de packs en oficial Movil3-4GB y servidor de proyecto: un BP/RP, 1.281 archivos iguales, mismas UUID/versiones y registro Shared. DB y todos los datos ajenos a packs intactos. Se reabrió19152 con el supervisor persistente; los dos servidores de estudio anteriores no se detuvieron. No volver a ejecutar una importación de dimensión.
+
+Incluye Administración > El Pasado y llegadas (también Pruebas de la beta): entrar con llegada diagonal o sin ella, película del Coloso, recuerdo intacto, volver a entrada/origen y salida al lobby con animación. La luz sigue excluida de la película. Cámara final alineada detrás de la capa a menos de8grados del eje trasero; yaw180 y gesto conservados.
+
+Validación:56 pruebas del proyecto; BDS1.26.60.6 con184 registros y218 comprobaciones de menú/llegada/cámara/retorno, cero errores y Quit correctly. En el destino se verificó la paridad de archivos y la carga del servidor. Sin revisión visual por orden del usuario: la prueba del plano comprueba posición trasera y ausencia de bloques tapándolo, no el aspecto renderizado en cliente.
+
+Informes locales outputs/past-arrival/installation.json y final-parity-0.7.7.json; respaldo backups/past-menu-0.7.7-preinstall. Artefacto completo outputs/past-arrival/WARLAND.mcaddon y exports/WARLAND.mcaddon, SHA2565662467b02ced20f7d7d10ab147b1ae0368d585ae279d8ffc0f89115b851064f. Mantener19152 encendido; esta ventana de instalación no autoriza futuros reinicios rutinarios.
+
