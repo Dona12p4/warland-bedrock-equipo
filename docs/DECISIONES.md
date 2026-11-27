@@ -46,3 +46,10 @@ El constructor completo 0.7.1 conserva las fuentes de la rama actual, incluido L
 ## 27/11/2026: luz fuerte, ceniza y viento en El Pasado
 
 El usuario pide una luz muy potente en la entrada de WARLAND que guíe el regreso, ceniza como tormenta de arena y sonido de viento. Se conserva intacto y limpio el primer acto de la cinemática. El retorno usa el origen individual guardado y no se activa durante cámaras ni sobre la llegada. Orden adicional: no hacer confirmaciones visuales ni tomar el cliente; el usuario sigue jugando. Preparar y probar automáticamente sin modificar la DB abierta. Instalación oficial y paridad quedan pendientes del cierre.
+
+
+## 27/11/2026: llegada por las esquinas, sin luces guia en la pelicula
+
+- La luz de llegada recorre El Pasado de esquina a esquina y termina en la entrada. Plano lateral distante a mitad del descenso. No modifica la ruta de la pelicula del Coloso.
+- La luz de llegada y la columna de regreso no se muestran durante la cinematica. Emision individual para preservar esa exclusion en multijugador.
+- El propietario pide continuar sin confirmaciones visuales ni tomar el control de Minecraft. No cerrar partidas o servidores; dejar la instalacion preparada si estan abiertos.

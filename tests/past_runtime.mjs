@@ -138,6 +138,7 @@ for(let t=0;t<=arrival.PAST_ARRIVAL.ticks;t++){
  const f=arrival.pastArrivalFrame(t);
  assert(f.light.y<=previousLight+.00001,'arrival ascended instead of falling');previousLight=f.light.y;
  assert(Object.values(f.camera).every(Number.isFinite));
+ for(const at of [f.camera,f.light]){const x=Math.floor(at.x),z=Math.floor(at.z);assert((x>=208&&x<=415&&z>=-848&&z<=-737)||(x>=224&&x<=351&&z>=-736&&z<=-673),'route outside reserved chunks at '+t)}
  assert(f.light.x>=208&&f.light.x<=431&&f.light.z>=-896&&f.light.z<=-657,'light left the map');
  if(t){const p=arrival.pastArrivalFrame(t-1).camera;maxStep=Math.max(maxStep,Math.hypot(f.camera.x-p.x,f.camera.y-p.y,f.camera.z-p.z));}
 }
@@ -151,7 +152,7 @@ const beforeParticles=a.particles.length;
 assert(await pump(defaultEntry(a)),'default arrival did not start');
 assert(arrival.pastArrivalActive(a));assert.equal(a.mode,'spectator');
 const startTick=system.currentTick;
-for(let t=2;t<=322;t+=2){system.currentTick=startTick+t;for(const h of arrivalIntervals)if(t%h.t===0)h.f();if(t%20===0)intervals.find(x=>x.t===20).f();}
+for(let t=2;t<=322;t+=2){system.currentTick=startTick+t;for(const h of arrivalIntervals)if(t%h.t===0)h.f();if(t%20===0)intervals.find(x=>x.t===20).f();if(t<320)assert.equal(a.mode,'spectator','visitor update interrupted flight');}
 assert(a.particles.length>beforeParticles);assert.equal(a.mode,'adventure');assert(!arrival.pastArrivalActive(a));
 assert.equal(a.location.x,policy.PAST.spawn.x);assert.equal(a.location.z,policy.PAST.spawn.z);
 assert(a.enabled.get('movement')&&a.enabled.get('camera'));assert(!a.getDynamicProperty(arrival.PAST_ARRIVAL.key));

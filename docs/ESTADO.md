@@ -111,3 +111,8 @@ Algunas auroras son pequenas/lejanas. Aparicion natural de auroras, variantes
 shorter, lluvia y todas las demas variantes no comprobadas siguen pendientes;
 no inferir 85/85 ni rendimiento Android. Detalle y restauracion de jugador/hora
 en PARTICULAS-BIOMAS.md. Esta ampliacion no modifica el artefacto 0.7.3.
+
+
+## 27/11/2026: candidato 0.7.5, llegada de El Pasado y aislamiento de luces
+
+Integra 0.7.4 (tormenta, viento y retorno por la entrada) y la nueva llegada diagonal con plano abierto. La luz movil y la guia fija son individuales: quedan excluidas de la pelicula incluso con otros visitantes. Conserva las tomas y luces propias del Coloso. Rama codex/pasado-llegada-esquinas. Instalacion oficial y servidor pendiente mientras Minecraft siga abierto; no se detuvieron servidores ni se tomo control del cliente. No confundir este candidato con la llegada del lobby, que conserva su comportamiento anterior.

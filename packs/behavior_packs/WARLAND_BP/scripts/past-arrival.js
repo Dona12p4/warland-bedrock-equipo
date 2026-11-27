@@ -35,8 +35,8 @@ export function startPastArrival(p){
  p.setDynamicProperty(PAST_ARRIVAL.key,JSON.stringify(state));p.addTag(PAST_ARRIVAL.tag);
  const s={p,start:system.currentTick+40,emissions:0};jobs.set(p.id,s);
  try{
-  // The existing central region plus 21 northern chunks cover the arrival.
-  if(jobs.size===1)p.dimension.runCommand('tickingarea add 224 40 -736 335 220 -689 wl_past_arrival_north true');
+  // The existing central region plus 32 northern chunks cover the arrival.
+  if(jobs.size===1)p.dimension.runCommand('tickingarea add 224 40 -736 351 220 -673 wl_past_arrival_north true');
   for(const c of permissions)p.inputPermissions.setPermissionCategory(c,false);
   p.setGameMode(GameMode.Spectator);p.onScreenDisplay.setHudVisibility(HudVisibility.Hide);
   p.runCommand('fog @s push warland:past_cinema wl_past_arrival');
@@ -71,3 +71,5 @@ system.runInterval(()=>{
  for(const p of world.getAllPlayers())if(!jobs.has(p.id)&&p.getDynamicProperty(PAST_ARRIVAL.key))try{recoverPastArrival(p)}catch(e){audit('recovery_error',p,{error:String(e)})}
 },20);
 world.afterEvents.playerLeave.subscribe(({playerId})=>{jobs.delete(playerId);releaseArea()});
+// An interrupted server session must not keep the temporary northern chunks.
+world.afterEvents.worldLoad.subscribe(releaseArea);

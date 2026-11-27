@@ -46,7 +46,7 @@ Además de los apoyos anteriores, esta revisión añade 62 salidas físicas entr
 
 La recuperación automática examina una persona por segundo, con hasta 160 nodos de búsqueda. Solo devuelve al último punto seguro cuando puede demostrar un recinto cerrado y la persona sigue detenida. Chunks no cargados o presupuesto agotado no se consideran pruebas de atasco. El comando manual vuelve siempre a la entrada: así también permite salir de recintos grandes que superen el alcance de la búsqueda local. No se escanea ni modifica continuamente todo el mapa.
 
-La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamente 2,69 MB a 0,71 MB. Se compararon todos los puntos de la curva original con error máximo de 0,00001. Ceniza en tormenta: hasta cuatro focos compartidos, 72+28 partículas nuevas por segundo y vidas de 2,8/2,5 segundos. Ráfagas laterales de 2,7–4,1 bloques/s y polvo bajo, siempre en el espacio del mundo y con colisión. Presupuesto máximo de 1.276 partículas de ambiente incluyendo las dos guías, considerando cohortes superpuestas; desaparición del Coloso: 240 adicionales y transitorias. La música se transmite como Ogg, sin cargar un vídeo. No hay una medición real en Android de 3–4 GB.
+La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamente 2,69 MB a 0,71 MB. Se compararon todos los puntos de la curva original con error máximo de 0,00001. Ceniza en tormenta: hasta cuatro focos compartidos, 72+28 partículas nuevas por segundo y vidas de 2,8/2,5 segundos. Ráfagas laterales de 2,7–4,1 bloques/s y polvo bajo, siempre en el espacio del mundo y con colisión. Presupuesto de tormenta compartida de 1.232 partículas; la guía individual añade hasta 22 por cliente, considerando cohortes superpuestas; desaparición del Coloso: 240 adicionales y transitorias. La música se transmite como Ogg, sin cargar un vídeo. No hay una medición real en Android de 3–4 GB.
 
 ## Verificación y transferencia
 
@@ -58,3 +58,14 @@ La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamen
 - La transferencia excluye jugadores, actores, inventarios, reglas y ticking areas. El id numérico de dimensión del laboratorio se elimina del artefacto. El instalador debe resolver el id del destino y rechazar cualquier colisión con terreno existente.
 
 Las pruebas y artefactos locales están bajo `.local/`; no se publica una DB de laboratorio. Se construyó WARLAND completo 0.7.4 (un BP y un RP), incluyendo las partículas de biomas de 0.7.3. La revisión visual se hará en el oficial por orden posterior. Falta el cierre del cliente para respaldar e instalar la actualización autorizada en ambos destinos.
+
+
+## Llegada y luces fuera de la pelicula (27/11/2026)
+
+Completo candidato 0.7.5, Base 0.6.22 y recursos HUD 1.1.20. Al entrar a las ruinas desde otra dimension, una luz desciende desde la esquina sureste, cruza hasta la esquina noroeste y gira hacia la entrada. El recorrido dura 14 segundos, precedido de dos segundos de carga bajo negro. A mitad de camino la camara se aparta unos 44 bloques lateralmente para mostrar el descenso. El destino sigue siendo la entrada original, sin cambiar camas ni inventarios. El recuerdo intacto y la orden directa de cinematica omiten esta llegada.
+
+La luz movil y la columna fija de salida se emiten por jugador. Ninguna se emite al espectador de la pelicula, aunque haya otra persona recorriendo el mapa o entrando a la vez. Al iniciar la pelicula se cancela una llegada activa; las particulas anteriores terminan en menos de dos segundos, antes de levantar su fundido de precarga de nueve segundos. La guia vuelve al acabar o cancelar la pelicula. Las luces propias de la actuacion del Coloso se conservan.
+
+La llegada usa 32 chunks temporales adicionales al norte y los libera al terminar la ultima llegada activa. Maximo cuatro llegadas simultaneas; los visitantes adicionales entran directamente. Hasta 16 particulas vivas de llegada por cliente, con emision a 10 Hz. La guia individual mantiene 22 particulas vivas por cliente; no se transmiten al resto. Los puntos de camara no cambian terreno, construcciones ni iluminacion de bloques.
+
+El controlador persiste los permisos y el modo anterior, restaura el control y cede ante la muerte global. El jugador que salga o se desconecte conserva su retorno. No se ha controlado el cliente ni realizado una revision visual, por peticion expresa. Preparado fuera de las partidas abiertas; consultar el informe local de instalacion antes de atribuir esta version al oficial.
