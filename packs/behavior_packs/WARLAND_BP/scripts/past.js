@@ -211,19 +211,21 @@ system.runInterval(()=>{
 },20);
 export function unstuckPast(p,automatic=false){
  if(!inPast(p)||p.hasTag(PAST.filmTag)||busy.has(p.id)||heart(p)||!alive(p))return false;
- const previous=lastSafe.get(p.id),fallback=offsetPoint(PAST.spawn,normalPast(p)),target=previous&&safeLanding(p.dimension,previous)?previous:fallback;
- p.teleport(target);travel.delete(p.id);notice(p,'Has vuelto al último paso seguro.');audit('unstuck',p,{automatic,target});return true;
+ const previous=lastSafe.get(p.id),fallback=offsetPoint(PAST.spawn,normalPast(p)),target=automatic&&previous&&safeLanding(p.dimension,previous)?previous:fallback;
+ // Manual recovery always reaches the entrance: a large sealed room may exceed
+ // the bounded local search, so its last walking point is not a reliable exit.
+ p.teleport(target);travel.delete(p.id);lastSafe.set(p.id,{...target});notice(p,automatic?'Has vuelto al último paso seguro.':'Has vuelto a la entrada del recuerdo.');audit('unstuck',p,{automatic,target});return true;
 }
 async function menu(p){
  const f=new ActionFormData().title('El Pasado').body('Un lugar que permanece en la memoria.').button('Recorrer las cenizas');
  const actions=[()=>enterPast(p,false)];
  if(pastAdmin(p.name)){f.button('Ver cinemática');actions.push(()=>startPastFilm(p));f.button('Antes de la ceniza · vista previa');actions.push(()=>enterPast(p,true))}
  if(read(p,PAST.returnKey)){f.button('Volver');actions.push(()=>exitPast(p))}
- if(inPast(p)){f.button('Volver al último paso seguro');actions.push(()=>unstuckPast(p))}
+ if(inPast(p)){f.button('Volver a la entrada');actions.push(()=>unstuckPast(p))}
  const r=await f.show(p);if(!r.canceled)await actions[r.selection]?.();
 }
 system.beforeEvents.startup.subscribe(({customCommandRegistry:r})=>{
- for(const [name,description,action] of [['pasado','Entrar al recuerdo de WARLAND I',p=>menu(p)],['pasado_cenizas','Recorrer las ruinas de WARLAND I',p=>enterPast(p,false)],['pasado_intacto','Vista previa administrativa de WARLAND I',p=>enterPast(p,true)],['pasado_salir','Volver desde El Pasado',p=>exitPast(p)],['pasado_desatascar','Volver al último paso seguro de El Pasado',p=>unstuckPast(p)],['cinematica','Ver la cinemática nativa de WARLAND I',p=>startPastFilm(p)],['cinematica_salir','Salir de la cinemática',p=>stopPastFilm(p)]]){
+ for(const [name,description,action] of [['pasado','Entrar al recuerdo de WARLAND I',p=>menu(p)],['pasado_cenizas','Recorrer las ruinas de WARLAND I',p=>enterPast(p,false)],['pasado_intacto','Vista previa administrativa de WARLAND I',p=>enterPast(p,true)],['pasado_salir','Volver desde El Pasado',p=>exitPast(p)],['pasado_desatascar','Volver a la entrada de El Pasado',p=>unstuckPast(p)],['cinematica','Ver la cinemática nativa de WARLAND I',p=>startPastFilm(p)],['cinematica_salir','Salir de la cinemática',p=>stopPastFilm(p)]]){
   r.registerCommand({name:'warland:'+name,description,permissionLevel:CommandPermissionLevel.Any,cheatsRequired:false},origin=>{
    const p=origin.sourceEntity;if(!(p instanceof Player))return {status:CustomCommandStatus.Failure,message:'Requiere un jugador.'};
    system.run(()=>Promise.resolve(action(p)).catch(e=>audit('command_error',p,{error:String(e)})));return {status:CustomCommandStatus.Success};

@@ -14,7 +14,7 @@ Comandos del candidato:
 - `/warland:pasado_cenizas`: entrar a las ruinas.
 - `/warland:pasado_intacto`: vista previa intacta; solo DanielGamerSC y Hatsudemiku.
 - `/warland:pasado_salir`: regresar.
-- `/warland:pasado_desatascar`: volver al último punto seguro de la visita.
+- `/warland:pasado_desatascar`: volver a la entrada del recuerdo sin salir de la dimensión.
 - `/warland:cinematica`: reproducción nativa, restringida a administradores durante la revisión.
 - `/warland:cinematica_salir`: cancelar y recuperar el control.
 
@@ -34,7 +34,7 @@ La iluminación clásica de Bedrock no reproduce literalmente las luces de color
 
 El candidato contiene 53 bloques de apoyo añadidos en 19 depresiones del laboratorio. El informe inicial contó 76 candidatos aunque no todos cambiaron; la auditoría corregida separa ambos números. No se afirma que las 19 depresiones tengan recorrido manual comprobado.
 
-La recuperación automática examina una persona por segundo, con hasta 160 nodos de búsqueda. Solo devuelve al último punto seguro cuando puede demostrar un recinto cerrado y la persona sigue detenida. Chunks no cargados o presupuesto agotado no se consideran pruebas de atasco. El comando de recuperación queda disponible para los demás casos. No se escanea ni modifica continuamente todo el mapa.
+La recuperación automática examina una persona por segundo, con hasta 160 nodos de búsqueda. Solo devuelve al último punto seguro cuando puede demostrar un recinto cerrado y la persona sigue detenida. Chunks no cargados o presupuesto agotado no se consideran pruebas de atasco. El comando manual vuelve siempre a la entrada: así también permite salir de recintos grandes que superen el alcance de la búsqueda local. No se escanea ni modifica continuamente todo el mapa.
 
 La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamente 2,69 MB a 0,71 MB. Se compararon todos los puntos de la curva original con error máximo de 0,00001. Ceniza: hasta cuatro focos compartidos, 48+12 partículas por emisión; desaparición: 240 partículas. La música se transmite como Ogg, sin cargar un vídeo. No hay una medición real en Android de 3–4 GB.
 
