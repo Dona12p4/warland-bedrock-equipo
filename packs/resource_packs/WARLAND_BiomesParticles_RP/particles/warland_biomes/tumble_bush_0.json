@@ -1,0 +1,62 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "warland_biomes:tumble_bush_0",
+      "basic_render_parameters": {
+        "material": "particles_alpha",
+        "texture": "textures/warland/biomes_particles/particle/biomes/desert/tumble_bush_0"
+      }
+    },
+    "components": {
+      "minecraft:emitter_rate_instant": {
+        "num_particles": 1
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 0.5
+      },
+      "minecraft:emitter_shape_box": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "half_dimensions": [
+          10,
+          0.5,
+          10
+        ]
+      },
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": 3
+      },
+      "minecraft:particle_initial_speed": 4,
+      "minecraft:particle_motion_dynamic": {
+        "linear_acceleration": [
+          4,
+          -1,
+          0
+        ],
+        "linear_drag_coefficient": 0
+      },
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          0.4,
+          0.4
+        ],
+        "facing_camera_mode": "lookat_xyz"
+      },
+      "minecraft:particle_appearance_tinting": {
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "minecraft:particle_initial_spin": {
+        "rotation": "v.particle_age * 360"
+      }
+    }
+  }
+}

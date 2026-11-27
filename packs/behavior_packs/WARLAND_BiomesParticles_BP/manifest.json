@@ -1,0 +1,60 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "WARLAND Biomes Particles · fuente",
+    "description": "Particulas de MrsTrader adaptadas al pack completo WARLAND. No instalar separado.",
+    "uuid": "799a8bfa-5ff9-5cac-bff0-f5859f64e58e",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      60
+    ]
+  },
+  "metadata": {
+    "authors": [
+      "MrsTrader",
+      "WARLAND (adaptacion y optimizacion)"
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "ed97554b-eacf-5b1a-a65a-b9a370b0828b",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "version": [
+        1,
+        0,
+        0
+      ],
+      "uuid": "a514953c-e34c-5ad9-9284-67eae2d1ed9a"
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "dbf8ed41-ce18-5d22-9283-a8336da0d120",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    }
+  ]
+}

@@ -63,3 +63,30 @@ Atlas publico generado: https://dona12p4.github.io/warland-bedrock-equipo/. Incl
 Validacion del atlas: 22 pruebas de catalogo y colaboracion en Windows; navegador de desarrollo con las 19 secciones, 14 modelos principales, metadatos de los 16 eventos de sonido y disposicion a 390 px sin desbordamiento. Revisadas capturas reales de portada y ficha 3D. No es una nueva prueba del cliente Minecraft ni de la logica del juego.
 
 Atlas de mecanicas, 08/11/2026: acceso directo a Combate tipo Java, Creepers, Lobby, Dias y semanas y Seguridad. Las 15 fichas de sistemas tienen explicaciones, limites y referencias; siete creepers cuentan con ficha/modelo. La cronologia se lee de la politica instalada: siete estados manuales del lobby y dias 8â€“30 pendientes. Las misiones instaladas siguen siendo tiempo/hostiles/chunks; no confundirlas con la propuesta posterior de objetivos diarios mas dificiles. Los regalos del lobby siguen sin catalogo de recompensas. Ningun pack ni partida se modifica al ampliar este HTML.
+
+## 27/11/2026: partículas ambientales integradas — completo 0.7.3
+
+Instalado por orden del propietario en el oficial Movil 3-4 GB y en el servidor
+de proyecto 19152, ambos previamente cerrados. Un unico WARLAND.mcaddon con
+un BP/RP, 1242 archivos identicos por hashes y referencias. Se preservan UUID,
+DB, inventarios y todo el contenido 0.7.2. Los servidores de otros laboratorios
+quedaron abiertos; no se envio stop a ninguno de ellos.
+
+85 efectos de MrsTrader, prioridad en optimizar particulas: emisores finitos,
+maximo seis recientes por jugador y 24 particulas por emisor, emision individual,
+cache y trabajo escalonado. Sin cambios al Umbral, al terreno ni a los mobs.
+Dos fragmentos sin textura y una cascada a un efecto ausente del original quedan
+fuera. RP adicional de 321907 bytes. Detalles en PARTICULAS-BIOMAS.md.
+
+Pruebas: 47 del proyecto, 183 registros nativos y ocho verificaciones de
+particulas con jugador simulado; cero errores, Quit correctly. La primera
+sonda esperaba el cambio de lluvia demasiado pronto y se corrigio su espera;
+la segunda encontro otro laboratorio reiniciado por un proceso ajeno durante
+la prueba. La corrida final paso tambien la conservacion de todos los PID.
+Revision visual pendiente: Minecraft no expuso una ventana al intentar abrirlo.
+No afirmar rendimiento medido en Android ni validacion visual completa.
+
+Artefacto SHA256: 6fc887a93b423778a1d020a4f574aaffb7528fcc9f9ff82ff15d92093c13bc3c.
+Informe privado outputs/biomes-particles/installation.json; respaldo verificado
+backups/biomes-complete-20261127-1240. No repetir el instalador sobre la nueva base.
+Fuente en codex/biomes-particulas; main/Pages sujetos a la revision del propietario.

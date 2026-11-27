@@ -37,3 +37,7 @@ El usuario ordeno no cerrar el servidor local en esta ronda. No detenerlo ni rei
 ## Estado inicial de esta regla
 
 La inspeccion del 27/11 encontro la fuente compartida con 27 modulos, una llegada de luz pendiente de instalacion oficial, y un candidato unificado anterior que no incorporaba esa llegada. Por tanto, ese candidato antiguo no acredita que los destinos sean iguales. El unico BDS abierto observado estaba en el puerto 19142 (beta antigua); la configuracion del proyecto vigente usa 19152. Confirmar de nuevo en cada despliegue, sin asumir que el estado sigue igual.
+
+## Actualizacion 27/11: completo 0.7.3
+
+Particulas de biomas optimizadas instaladas con paridad en oficial Movil 3-4 GB y servidor de proyecto19152. Misma identidad BP/RP, 1242 archivos por destino; DB y progreso intactos. 85 efectos, seis emisores recientes por jugador, 24 particulas/emisor. Informe outputs/biomes-particles/installation.json; candidato .runtime/biomes-particles-worktree/.local/complete-0.7.3-r2. No reinstalar 0.7.2 ni modulos separados. Servidores abiertos de otros laboratorios no se detuvieron. Fuente codex/biomes-particulas; revision visual pendiente por fallo del iniciador de Minecraft; main/Pages pendientes de revision.
