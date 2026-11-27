@@ -2,7 +2,7 @@ import './main.js';
 import {world,system,GameMode,ItemStack,InputPermissionCategory} from '@minecraft/server';
 import * as GameTest from '@minecraft/server-gametest';
 import {lobbyConfig as cfg} from './lobby-config.js';
-import {ARRIVED} from './lobby-policy.js';
+import {ARRIVED,firstArrivalDecision,safeArrival} from './lobby-policy.js';
 import {arrive} from './main.js';
 import {startArrival,arrivalDebug,observeArrivalSpawn,recoverArrival} from './arrival-runtime.js';
 import {ARRIVAL,HEART_TAG,CINEMATIC_TAG,RECOVERY,arrivalFrame} from './arrival-policy.js';
@@ -17,8 +17,10 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   d.runCommand(`tickingarea add circle ${cfg.spawn.x} ${cfg.spawn.y} ${cfg.spawn.z} 2 wl_arrival_probe true`);await wait(40);
   for(let t=0;t<ARRIVAL.returnView;t+=4){const f=arrivalFrame(t,cfg.spawn),b=d.getBlock(f.location);const alternatives=[];if(!b?.isAir)for(const radius of [2,3,4,5,6])for(const h of [2.6,4,6]){const a=-36*Math.PI/180,at={x:cfg.spawn.x+Math.sin(a)*radius,y:cfg.spawn.y+h,z:cfg.spawn.z-Math.cos(a)*radius};alternatives.push({radius,h,type:d.getBlock(at)?.typeId});}check('Camera clear at tick '+t,b?.isAir,{type:b?.typeId,at:f.location,alternatives});}
   check('World spawn is lobby',Math.hypot(world.getDefaultSpawnLocation().x-cfg.spawn.x,world.getDefaultSpawnLocation().y-cfg.spawn.y,world.getDefaultSpawnLocation().z-cfg.spawn.z)<2);
-  p=GameTest.spawnSimulatedPlayer({dimension:d,...cfg.spawn},'ArrivalFirst',GameMode.Survival);
-  check('First entry begins',await until(()=>!!active(p),50),arrivalDebug());
+  p=GameTest.spawnSimulatedPlayer({dimension:d,...cfg.spawn},'Arrival'+String(Date.now()).slice(-6),GameMode.Survival);
+  console.warn('[ARRIVAL_PROBE_IDENTITY] '+JSON.stringify({id:p.id,arrived:p.getDynamicProperty(ARRIVED),choice:firstArrivalDecision(p,true,cfg),safe:safeArrival(d,cfg.spawn),at:p.location,blocks:[-1,0,1].map(y=>d.getBlock({x:Math.floor(cfg.spawn.x),y:cfg.spawn.y+y,z:Math.floor(cfg.spawn.z)})?.typeId)}));
+  arrive(p,true); // GameTest players do not emit the client's initial-join event.
+  check('First entry begins',await until(()=>!!active(p),120),{...arrivalDebug(),id:p.id,arrived:p.getDynamicProperty(ARRIVED),choice:firstArrivalDecision(p,true,cfg),safe:safeArrival(d,cfg.spawn),at:p.location});
   check('First entry reason',active(p).reason==='first');
   check('Arrival marker persisted',p.getDynamicProperty(ARRIVED)===true);
   check('Camera and movement locked',!p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Camera)&&!p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));
