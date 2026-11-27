@@ -49,9 +49,9 @@ world.afterEvents.worldLoad.subscribe(()=>system.runTimeout(async()=>{
   check('Heart spectator ended before camera',!p.hasTag(HEART_TAG)&&p.getGameMode()===GameMode.Survival);
   await wait(ARRIVAL.ticks+4);check('Respawn scene completes',!active(p)&&p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));
   q=GameTest.spawnSimulatedPlayer({dimension:d,...remote},'Personal'+String(Date.now()).slice(-6),GameMode.Survival);q.setDynamicProperty(ARRIVED,true);await wait(12);
-  q.setSpawnPoint({dimension:d,...remote});await die(q);await wait(250);
+  q.setSpawnPoint({dimension:d,...remote});const qSpawn=q.getSpawnPoint();await die(q);await wait(250);
   check('Personal spawn skips cinematic',!active(q)&&Math.hypot(q.location.x-remote.x,q.location.z-remote.z)<4,{at:q.location,debug:arrivalDebug()});
-  check('Personal spawn retained',q.getSpawnPoint()?.x===remote.x);
+  const afterSpawn=q.getSpawnPoint();check('Personal spawn retained',afterSpawn&&['x','y','z'].every(k=>afterSpawn[k]===qSpawn[k])&&afterSpawn.dimension.id===qSpawn.dimension.id,{before:qSpawn,after:afterSpawn});
   p.teleport(cfg.spawn);await wait(3);check('Admin-preview entry starts',startArrival(p,'preview'));p.teleport(remote);await wait(4);
   check('Travel interruption restores controls',!active(p)&&p.inputPermissions.isPermissionCategoryEnabled(InputPermissionCategory.Movement));
   check('Interruption does not pull player back',Math.abs(p.location.x-remote.x)<1);

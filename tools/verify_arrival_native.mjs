@@ -22,8 +22,8 @@ const consume=b=>{output+=String(b);const hit=output.match(/\[ARRIVAL_NATIVE_RES
 child.stdout.on('data',consume);child.stderr.on('data',consume);
 child.on('close',code=>{
  clearTimeout(timer);writeFileSync(manifest,original);writeFileSync(config,originalConfig);unlinkSync(probe);
- const errors=output.split(/\r?\n/).filter(x=>/\[ERROR\]|\[.*?error\]/i.test(x));
+ const errors=output.split(/\r?\n/).filter(x=>/\[ERROR\]|\[.*?error\]|"action":"(?:particle_error|start_error|sequence_error|request_error|spawn_error|recovery_deferred)"/i.test(x));
  const report={passed:!!result?.passed&&code===0&&output.includes('Quit correctly')&&!errors.length,result,errors,quitCorrectly:output.includes('Quit correctly'),exitCode:code,serverVersion:output.match(/Version: ([\d.]+)/)?.[1],productionApi:'2.10.0',probeOnlyGameTest:true,probeRemoved:true};
  writeFileSync(join(O,'native.json'),JSON.stringify(report,null,2));writeFileSync(join(O,'native.log'),output);
- console.log(JSON.stringify(report));process.exitCode=report.passed?0:1;
+ console.log(JSON.stringify({passed:report.passed,checks:result?.checks?.length,failed:result?.checks?.filter(c=>!c.passed),error:result?.error,errors,quitCorrectly:report.quitCorrectly,report:join(O,'native.json')}));process.exitCode=report.passed?0:1;
 });
