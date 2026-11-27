@@ -20,6 +20,7 @@ export function installCompass({getVisit,canJoin=()=>true}){
   p.setDynamicProperty(DELIVERED,visit.serial);fullNotice.delete(p.id);return true;
  }
  function update(p,visit){
+  if(p.hasTag('warland_past_film'))return;
   const c=inventory(p);if(!c)return;
   const slot=p.selectedSlotIndex,item=c.getItem(slot);if(!isCompass(item?.typeId))return;
   const here=inRiftDimension(p)&&canJoin(p),active=here&&visit.phase==='active';

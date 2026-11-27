@@ -1329,7 +1329,7 @@
                 "100%",
                 "100%"
               ],
-              "layer": 120,
+              "layer": 250,
               "bindings": [
                 {
                   "binding_name": "#hud_title_text_string"
@@ -1351,7 +1351,8 @@
                     ],
                     "anchor_from": "top_middle",
                     "anchor_to": "top_middle",
-                    "layer": 120
+                    "layer": 250,
+                    "keep_ratio": false
                   }
                 },
                 {
@@ -1364,7 +1365,8 @@
                     ],
                     "anchor_from": "bottom_middle",
                     "anchor_to": "bottom_middle",
-                    "layer": 120
+                    "layer": 250,
+                    "keep_ratio": false
                   }
                 }
               ]
@@ -1875,7 +1877,7 @@
                                         {
                                           "binding_type": "view",
                                           "source_control_name": "warland_personal_data",
-                                          "source_property_name": "('§f' + ((#wl_saved - 'WL_HUD|K0|') - 'WL_HUD|K1|'))",
+                                          "source_property_name": "('\u00a7f' + ((#wl_saved - 'WL_HUD|K0|') - 'WL_HUD|K1|'))",
                                           "target_property_name": "#text"
                                         }
                                       ]
@@ -1915,6 +1917,16 @@
                                 "anchor_from": "left_middle",
                                 "anchor_to": "left_middle"
                               }
+                            }
+                          ],
+                          "bindings": [
+                            {
+                              "binding_name": "#hud_title_text_string"
+                            },
+                            {
+                              "binding_type": "view",
+                              "source_property_name": "(not (#hud_title_text_string = 'WL_PAST|FILM'))",
+                              "target_property_name": "#visible"
                             }
                           ]
                         }
@@ -2651,6 +2663,25 @@
       {
         "binding_type": "view",
         "source_property_name": "(((((#hud_title_text_string - 'WL_HEART|') = #hud_title_text_string) and ((#hud_title_text_string - 'WL_HUD|') = #hud_title_text_string)) and ((#hud_title_text_string - 'WL_ATK|') = #hud_title_text_string)) and ((#hud_title_text_string - 'WL_PAST|') = #hud_title_text_string))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "player_position": {
+    "bindings": [
+      {
+        "binding_name": "#player_position_visible"
+      },
+      {
+        "binding_name": "#hud_title_text_string"
+      },
+      {
+        "binding_name": "#hud_text_background_alpha",
+        "binding_name_override": "#alpha"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#player_position_visible and not (#hud_title_text_string = 'WL_PAST|FILM'))",
         "target_property_name": "#visible"
       }
     ]

@@ -1,13 +1,14 @@
 import {world,system,Player,GameMode,HudVisibility,InputPermissionCategory,EasingType,CommandPermissionLevel,CustomCommandStatus} from '@minecraft/server';
 import {ActionFormData} from '@minecraft/server-ui';
-import {PAST,SHOTS,pastAdmin,inPast,normalPast,offsetPoint,inPastBounds,shotAt,cameraAt,cameraAnchor,validReturn} from './past-policy.js';
+import {PAST,SHOTS,ACTOR_SHOT,ACTOR_START,ACTOR_VANISH,pastAdmin,inPast,normalPast,offsetPoint,inPastBounds,shotAt,cameraAt,cameraAnchor,validReturn} from './past-policy.js';
 import {createPastMusic,PAST_MUSIC} from './past-music.js';
 import {escapeProbe,safeLanding} from './past-travel.js';
+import {createPastLighting} from './past-lighting.js';
 
 const wait=t=>new Promise(r=>system.runTimeout(r,t)),v=a=>({x:a[0],y:a[1],z:a[2]});
 const permissions=[InputPermissionCategory.Camera,InputPermissionCategory.Movement];
 const busy=new Set(),lastSafe=new Map(),regions=new Set(),regionLoads=new Map();let film=null,actor=null,loaded=false;
-const music=createPastMusic(),travel=new Map();let travelCursor=0;
+const music=createPastMusic(),lighting=createPastLighting(),travel=new Map();let travelCursor=0;
 const read=(p,k)=>{try{return JSON.parse(p.getDynamicProperty(k)??'null')}catch{return null}};
 const heart=p=>world.getDynamicProperty('warland:heart_overlay_v1')===true||!!p.getDynamicProperty('warland:heart_death_v1');
 const alive=p=>p.isValid&&(p.getComponent('minecraft:health')?.currentValue??0)>0;
@@ -85,7 +86,7 @@ function restoreFilm(p){
  if(!heart(p))p.setDynamicProperty(PAST.filmKey,undefined);
 }
 export function stopPastFilm(p,reason='cancelled'){
- if(film?.p.id===p.id){film=null;if(actor?.isValid)actor.remove();actor=null;}
+ if(film?.p.id===p.id){film=null;lighting.clear();if(actor?.isValid)actor.remove();actor=null;}
  restoreFilm(p);audit('cinema_stopped',p,{reason});releaseRegions();
 }
 export async function exitPast(p){
@@ -111,24 +112,24 @@ export async function startPastFilm(p){
  const d=await region(false);if(!canStart(p)||film)return false;
  const saved={location:{...p.location},rotation:p.getRotation(),hidden:p.onScreenDisplay.getHiddenHudElements(),permissions:permissions.map(c=>[c,p.inputPermissions.isPermissionCategoryEnabled(c)])};
  p.setDynamicProperty(PAST.filmKey,JSON.stringify(saved));p.addTag(PAST.filmTag);
- const s={p,start:0,playing:false,index:-1,memory:false,fading:false};film=s;
+ const s={p,start:0,playing:false,index:-1,memory:true,fading:false};film=s;
  try{
   permissions.forEach(c=>p.inputPermissions.setPermissionCategory(c,false));p.setGameMode(GameMode.Spectator);p.onScreenDisplay.setHudVisibility(HudVisibility.Hide);
   p.onScreenDisplay.setTitle('WL_PAST|FILM',{fadeInDuration:0,stayDuration:1600,fadeOutDuration:0});
   p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:.15,holdTime:9,fadeOutTime:.6}});
   // The player remains behind the rail while free camera sees real terrain.
-  const first=cameraAt(0);p.teleport(cameraAnchor(first),{dimension:d});fog(p,false,true);
+  const first=cameraAt(0);p.teleport(cameraAnchor(first),{dimension:d});fog(p,true,true);
   p.camera.setCamera('warland:past_film',{location:v(first.position),facingLocation:v(first.target)});p.camera.setFov({fov:first.fov});
-  // Warm both vertical sets under the opening fade. They share X/Z chunks,
-  // unlike the public intact copy 1024 blocks away. Flashes do not wait for
-  // a different distant part of the world to stream during their 0.3 seconds.
-  p.teleport({x:280,y:326,z:-783},{dimension:d});await wait(60);
+  // Both acts share X/Z chunks. Warm the ruined set first; the intact opening
+  // gets six full seconds at its real rail before the fade lifts.
+  p.teleport({x:280,y:70,z:-783},{dimension:d});await wait(60);
   if(film!==s||!alive(p)||heart(p)){if(film===s)stopPastFilm(p,'interrupted');return false}
   p.teleport(cameraAnchor(first),{dimension:d});await wait(120);
   if(film!==s||!alive(p)||heart(p)){if(film===s)stopPastFilm(p,'interrupted');return false}
-  for(const shot of SHOTS)for(const a of [shot.a,shot.b,shot.f])if(!d.getBlock(v(a.map(Math.floor))))throw Error('Falta cargar una toma.');
+  for(const shot of SHOTS)for(const a of [shot.a,shot.b,shot.f])if(!d.getBlock(v(a.map((n,i)=>Math.floor(n+(shot.memory&&i===1?256:0))))))throw Error('Falta cargar una toma.');
   for(const e of d.getEntities({type:PAST.actor}))e.remove();
-  actor=d.spawnEntity(PAST.actor,PAST.actorAt);actor.setRotation({x:0,y:0});actor.setProperty('warland:performance',false);
+  actor=d.spawnEntity(PAST.actor,PAST.actorAt);actor.setRotation({x:0,y:180});actor.setProperty('warland:performance',false);
+  p.onScreenDisplay.setActionBar(' ');
   music.update(p,true);p.playSound(PAST.sound,{volume:PAST_MUSIC.volume,pitch:1});s.start=Date.now();s.playing=true;
   audit('cinema_started',p,{duration:PAST.duration,native:true});return true;
  }catch(e){audit('cinema_error',p,{error:String(e)});stopPastFilm(p,'error');return false}
@@ -155,7 +156,7 @@ world.afterEvents.playerDimensionChange.subscribe(({player:p})=>system.runTimeou
  if(!p.isValid)return;
  if(!inPast(p)){if(film?.p.id===p.id)stopPastFilm(p,'dimension');music.stop(p);fog(p,false);releaseRegions()}
 },4));
-world.afterEvents.playerLeave.subscribe(({playerId})=>{lastSafe.delete(playerId);travel.delete(playerId);music.forget(playerId);busy.delete(playerId);if(film?.p.id===playerId){film=null;if(actor?.isValid)actor.remove();actor=null}releaseRegions()});
+world.afterEvents.playerLeave.subscribe(({playerId})=>{lastSafe.delete(playerId);travel.delete(playerId);music.forget(playerId);busy.delete(playerId);if(film?.p.id===playerId){film=null;lighting.clear();if(actor?.isValid)actor.remove();actor=null}releaseRegions()});
 world.afterEvents.worldLoad.subscribe(()=>{loaded=true;try{dimension();audit('dimension_loaded',null)}catch(e){audit('dimension_error',null,{error:String(e)})}});
 system.runInterval(()=>{
  if(!loaded)return;
@@ -163,14 +164,15 @@ system.runInterval(()=>{
   if(!alive(p)||!inPast(p)||heart(p)){if(p.isValid)stopPastFilm(p,'interrupted');else film=null;return}
   if(s.playing){const t=(Date.now()-s.start)/1000;if(t>=PAST.duration){stopPastFilm(p,'finished');return}
    const c=cameraAt(t),index=shotAt(t).index,cut=index!==s.index,flash=c.memory!==s.memory;
-   if(cut){s.index=index;p.camera.setFov({fov:c.fov});if(index===3&&actor?.isValid)actor.setProperty('warland:performance',true);audit('cut',p,{index,time:t})}
+   lighting.update(dimension(),t-ACTOR_START);
+   if(cut){s.index=index;p.camera.setFov({fov:c.fov});if(index===ACTOR_SHOT&&actor?.isValid)actor.setProperty('warland:performance',true);audit('cut',p,{index,time:t,intact:c.memory})}
    if(flash){s.memory=c.memory;fog(p,c.memory,true);audit('memory',p,{visible:c.memory,time:t})}
    // Camera listener is explicitly the player. Keep the spectator behind the
    // rail, close enough to stream terrain, the actor and the world particles.
    if(cut||flash||system.currentTick%4===0)p.teleport(cameraAnchor(c));
    const next=cameraAt(Math.min(t+.05,PAST.duration)),smooth=!cut&&!flash&&next.memory===c.memory;
    p.camera.setCamera('warland:past_film',{location:v(smooth?next.position:c.position),facingLocation:v(smooth?next.target:c.target),...(smooth?{easeOptions:{easeTime:.05,easeType:EasingType.Linear}}:{})});
-   if(t>=59.1&&actor?.isValid){const at=actor.location;actor.remove();actor=null;try{dimension().spawnParticle('warland:past_departure',{...at,y:at.y+4})}catch{}}
+   if(t>=ACTOR_VANISH&&actor?.isValid){const at=actor.location;actor.remove();actor=null;try{dimension().spawnParticle('warland:past_departure',{...at,y:at.y+4})}catch{}}
    if(t>=PAST.duration-1&&!s.fading){s.fading=true;p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:1,holdTime:.1,fadeOutTime:.6}})}
   }
  }

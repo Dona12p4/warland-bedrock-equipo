@@ -20,9 +20,9 @@ Auditoria de solo lectura: ni el servidor de referencia ni el mundo oficial esta
 
 ## Candidato El Pasado, 27/11/2026 (no instalado)
 
-Rama independiente con cinemática 3D nativa, ruinas recorribles protegidas, recuerdos intactos breves, ceniza en el mundo, música continua hasta salir y recuperación de atascos. Base candidata 0.6.21 / HUD 1.1.19; la corrección Impostor 0.3.3 se incorporó a esta rama para evitar volver a la animación anterior. El mundo oficial tiene el completo 0.7.2 sin El Pasado: no inferir instalación por la presencia del código.
+Rama independiente con cinemática 3D nativa, ruinas recorribles protegidas, primer acto intacto de 27,5 segundos seguido de las ruinas, ceniza en el mundo, música continua hasta salir y recuperación de atascos. Base candidata 0.6.21 / HUD 1.1.19; la corrección Impostor 0.3.3 se incorporó a esta rama para evitar volver a la animación anterior. El mundo oficial tiene el completo 0.7.2 sin El Pasado: no inferir instalación por la presencia del código.
 
-Ver [EL-PASADO.md](EL-PASADO.md) para comandos, recursos, límites y pruebas. El BDS aislado carga sin errores; falta la aprobación visual final y la entrega como addon completo idéntico en servidor y mundo 3–4 GB. El servidor vivo de otra tarea y la partida oficial no se modificaron desde esta rama.
+Ver [EL-PASADO.md](EL-PASADO.md) para comandos, recursos, límites y pruebas. El completo candidato 0.7.3 pasa 49 pruebas Python y 633 comprobaciones nativas, incluidas 62 rutas de salida físicas en ambas copias; falta la aprobación visual final y la entrega como addon completo idéntico en servidor y mundo 3–4 GB. El servidor vivo de otra tarea y la partida oficial no se modificaron desde esta rama.
 
 ## Incorporacion oficial 27/11/2026: El Impostor 0.3.2
 

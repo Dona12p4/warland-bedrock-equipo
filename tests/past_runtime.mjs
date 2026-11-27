@@ -4,9 +4,12 @@ import vm from 'node:vm';
 const root=new URL('../',import.meta.url),file=n=>fs.readFileSync(new URL('packs/behavior_packs/WARLAND_BP/scripts/'+n,root),'utf8');
 const policy=await import('data:text/javascript;base64,'+Buffer.from(file('past-policy.js')).toString('base64'));
 assert.equal(policy.inPast({get dimension(){throw Error('removed')}}),false);
-assert.equal(policy.memoryAt(9.25),true);assert.equal(policy.memoryAt(9.5),false);
+assert.equal(policy.memoryAt(9.25),true);assert.equal(policy.memoryAt(27.5),false);
 assert.equal(policy.cameraAt(9.25).position[1]>300,true);
-assert.equal(policy.cameraAt(10).position[1]<100,true);
+assert.equal(policy.cameraAt(10).position[1]>300,true);
+assert.equal(policy.cameraAt(27.5).position[1]<100,true);
+for(let t=0;t<27.5;t+=.1)assert(policy.memoryAt(t));
+for(let t=27.5;t<policy.PAST.duration;t+=.1)assert(!policy.memoryAt(t));
 assert(policy.inPastBounds({x:250,y:64,z:-783}));
 assert(policy.inPastBounds({x:1274,y:64,z:-783}));
 assert(!policy.inPastBounds({x:800,y:64,z:-783}));
@@ -15,8 +18,8 @@ assert(!policy.validReturn({dimension:policy.PAST.dimension,location:{x:0,y:60,z
 assert(!policy.validReturn({dimension:'minecraft:overworld',location:{x:NaN,y:60,z:0},mode:'survival'}));
 assert(policy.validReturn({dimension:'minecraft:overworld',location:{x:0,y:60,z:0},mode:'creative'}));
 assert(!policy.pastAdmin('DanielGamerSC impostor'));
-assert.equal(policy.shotAt(13.7).index,1);
-assert.equal(policy.shotAt(44.566666667).index,3);
+assert.equal(policy.shotAt(13.77).index,1);
+assert.equal(policy.shotAt(policy.ACTOR_START).index,6);
 assert.equal(policy.SHOTS.at(-1).t+policy.SHOTS.at(-1).d,policy.PAST.duration);
 const makeEvents=()=>new Proxy({}, {get(o,k){return o[k]??=( {callbacks:[],subscribe(f){this.callbacks.push(f)}} )}});
 const before=makeEvents(),after=makeEvents(),startup=makeEvents(),timeouts=[],intervals=[],commands=[],players=[],actors=[];
@@ -30,7 +33,7 @@ class Player{
  this.inputPermissions={isPermissionCategoryEnabled:c=>this.enabled.get(c),setPermissionCategory:(c,v)=>this.enabled.set(c,v)};
  this.views=[];this.sounds=[];
  this.camera={fade(){},clear(){},resetFov(){},setCamera:(preset,options)=>this.views.push({preset,...options}),setFov(){}};
- this.onScreenDisplay={setTitle(){},getHiddenHudElements:()=>[],setHudVisibility(){}};
+ this.onScreenDisplay={setTitle(){},setActionBar(){},getHiddenHudElements:()=>[],setHudVisibility(){}};
  }
  getDynamicProperty(k){return this.properties.get(k)} setDynamicProperty(k,v){this.properties.set(k,v)}
  hasTag(t){return this.tags.has(t)} addTag(t){this.tags.add(t)} removeTag(t){this.tags.delete(t)}
@@ -39,7 +42,7 @@ class Player{
  teleport(l,o={}){this.location={...l};if(o.dimension)this.dimension=o.dimension}
 }
 const ctx=vm.createContext({...policy,Date:{now:()=>runtimeClock},world,system,Player,GameMode:{Creative:'creative',Adventure:'adventure',Survival:'survival',Spectator:'spectator'},HudVisibility:{Hide:0,Reset:1},InputPermissionCategory:{Camera:'camera',Movement:'movement'},EasingType:{Linear:'Linear'},CommandPermissionLevel:{Any:0},CustomCommandStatus:{Success:0,Failure:1},ActionFormData:class{},console:{warn:x=>logs.push(x)}});
-for(const name of ['past-music.js','past-travel.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
+for(const name of ['past-music.js','past-travel.js','past-palm-path.js','past-lighting.js','past.js'])vm.runInContext(file(name).replace(/^import .+;\r?\n/gm,'').replace(/\bexport /g,''),ctx);
 const api=vm.runInContext('({enterPast,exitPast,startPastFilm,stopPastFilm,pastDebug,unstuckPast,createPastMusic,escapeProbe})',ctx);
 async function pump(promise){let done=false,error,result;promise.then(v=>{done=true;result=v},e=>{done=true;error=e});for(let i=0;i<500&&!done;i++){for(const f of timeouts.splice(0))f();await Promise.resolve();}assert(done,'async operation failed to settle');if(error)throw error;return result;}
 for(const f of after.worldLoad.callbacks)f();
@@ -85,15 +88,15 @@ console.log('PASS: persistent ambient, individual exit, invalid entities, flash 
 runtimeClock=200000;await pump(api.startPastFilm(a));
 const filmTick=intervals.find(x=>x.t===1).f,filmStart=runtimeClock;
 const soundtrackCount=a.sounds.filter(s=>s.id==='warland.past.ambient').length;
-for(const time of [0,9.25,9.55,13.71,17.6,17.9,27.44,30.6,30.9,44.57,59.08]){
+for(const time of [0,9.25,13.77,20.64,27.49,27.5,34.57,39.77,44.64,policy.ACTOR_VANISH-.01]){
  runtimeClock=filmStart+time*1000;system.currentTick+=4;filmTick();
  const view=a.views.at(-1);assert.equal(view.preset,'warland:past_film');
  assert.equal(view.location.y>300,policy.memoryAt(time),'flash camera at '+time);
  assert.equal(actors.filter(e=>e.isValid).length,1,'actor vanished early at '+time);
 }
-runtimeClock=filmStart+59100;filmTick();assert.equal(actors.filter(e=>e.isValid).length,0,'TP must disappear at the sound endpoint');
+runtimeClock=filmStart+policy.ACTOR_VANISH*1000+.01;filmTick();assert.equal(actors.filter(e=>e.isValid).length,0,'TP must disappear at the sound endpoint');
 assert(effects.some(e=>e[0]==='warland:past_departure'),'missing departure cloud');
-runtimeClock=filmStart+63500;filmTick();
+runtimeClock=filmStart+policy.PAST.duration*1000+1;filmTick();
 assert.equal(a.mode,'adventure');assert(a.enabled.get('movement'));
 assert(!a.hasTag(policy.PAST.filmTag));assert.equal(api.pastDebug().film,null);
 assert.equal(a.sounds.filter(s=>s.id==='warland.past.ambient').length,soundtrackCount,'film completion restarted ambient');
@@ -110,4 +113,12 @@ assert(api.unstuckPast(a,true));assert.deepEqual(a.location,safe,'automatic reco
 // must reach the entrance even when a different last-safe point was recorded.
 a.location={x:305.5,y:64,z:-780.5};assert(api.unstuckPast(a));assert.deepEqual(a.location,entrance);
 walkDimension.getBlock=oldBlocks;
-console.log('PASS: native controller timeline, three flashes, instant TP, continued music, exit cleanup and two recovery routes.');
+console.log('PASS: two full acts, seven cuts, instant TP, continued music, exit cleanup and two recovery routes.');
+// Light changes restore only their own air cells and never erase later edits.
+ctx.BlockPermutation={resolve:typeId=>({typeId})};
+const lamps=new Map(),lampDimension={getBlock(at){const key=JSON.stringify(at);if(!lamps.has(key))lamps.set(key,{permutation:{typeId:'minecraft:air'},get typeId(){return this.permutation.typeId},get isAir(){return this.typeId==='minecraft:air'},setPermutation(p){this.permutation=p}});return lamps.get(key)}};
+const light=vm.runInContext('createPastLighting()',ctx);light.update(lampDimension,8);
+assert([...lamps.values()].some(b=>b.typeId.startsWith('minecraft:light_block')),'palm produced no native light');
+light.clear();assert([...lamps.values()].every(b=>b.isAir),'temporary palm light remained after cancellation');
+light.update(lampDimension,8);const lit=[...lamps.values()].find(b=>!b.isAir);lit.setPermutation({typeId:'minecraft:stone'});light.clear();assert.equal(lit.typeId,'minecraft:stone','cleanup erased a later block');
+console.log('PASS: palm lighting, cancellation cleanup and occupied-cell preservation.');

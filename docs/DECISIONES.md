@@ -1,5 +1,7 @@
 # Decisiones compartidas
 
+- 2026-11-27, corrección posterior de El Pasado: el usuario elige primero todo intacto y después destruido. Sustituye los destellos breves. Siete tomas, cortes también sobre bajos suaves; actor de espaldas, cuerpo legible y luz en la mano. Añadir salidas físicas del río en las dos copias y comprobarlas en BDS. Completo 0.7.3 candidato, sin instalar en los dos destinos hasta revisión final.
+
 - 2026-11-27, El Pasado: sustituir la película pixelada por una cinemática nativa sobre una copia acotada de WARLAND I. Ruinas recorribles ahora; intacto como vista administrativa para una futura apertura. Conservar perspectiva/cortes, tres destellos de 0,3 s, ceniza solo en ruinas y TP a 59,1 s. Música de fondo hasta salir, con sonoridad similar al Umbral; luz guía pendiente. Añadir recuperación conservadora de atascos sin modificar partidas originales.
 - 2026-11-27, revisión de esta rama: «los dos mundos» se refiere al servidor vigente y al oficial Movil 3–4 GB, no a las variantes intacta/destruida. Verificar ambos y el Impostor. La entrega vigente exige un addon completo BP/RP y paridad por hashes; no volver a instalar módulos independientes. El código preparado en esta rama no acredita instalación ni revisión visual en esos destinos.
 
