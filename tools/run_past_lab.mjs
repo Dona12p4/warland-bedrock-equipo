@@ -1,0 +1,16 @@
+import {spawn} from 'node:child_process';
+import {writeFileSync,appendFileSync,readFileSync,mkdirSync} from 'node:fs';
+import {resolve} from 'node:path';
+const local=resolve(import.meta.dirname,'../.local'),server=resolve(local,'server');
+mkdirSync(resolve(local,'past-review'),{recursive:true});
+const log=resolve(local,'past-review/native.log'),commands=resolve(local,'past-review/commands.txt');
+writeFileSync(log,'');writeFileSync(commands,'');
+const child=spawn(resolve(server,'bedrock_server.exe'),[],{cwd:server,windowsHide:true,stdio:['pipe','pipe','pipe']});
+writeFileSync(resolve(local,'past-review/process.json'),JSON.stringify({wrapper:process.pid,server:child.pid,commands}));
+let consumed=0;
+const timer=setInterval(()=>{const s=readFileSync(commands,'utf8'),n=s.lastIndexOf('\n')+1;if(n>consumed){child.stdin.write(s.slice(consumed,n));consumed=n;}},200);
+const output=d=>{appendFileSync(log,d);for(const line of d.toString().split(/\r?\n/))if(line&&!line.includes('WARLAND_EXPORT')&&!line.includes('WARLAND_ECONOMY'))process.stdout.write(line+'\n');};
+child.stdout.on('data',output);child.stderr.on('data',output);
+process.stdin.on('data',d=>child.stdin.write(d));
+process.on('SIGINT',()=>child.stdin.write('stop\n'));
+child.on('close',code=>{clearInterval(timer);process.exit(code??1);});

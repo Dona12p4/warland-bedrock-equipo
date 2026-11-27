@@ -10,6 +10,16 @@
           "volume": 1
         }
       ]
+    },
+    "warland.past.cinema": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/warland/past_cinema",
+          "stream": true,
+          "volume": 1
+        }
+      ]
     }
   }
 }

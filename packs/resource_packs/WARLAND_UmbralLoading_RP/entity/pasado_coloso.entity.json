@@ -1,0 +1,41 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "warland:pasado_coloso",
+      "materials": {
+        "default": "entity_emissive"
+      },
+      "textures": {
+        "default": "textures/entity/pasado_coloso"
+      },
+      "geometry": {
+        "default": "geometry.warland.pasado_coloso"
+      },
+      "animations": {
+        "idle": "animation.warland.pasado.idle",
+        "performance": "animation.warland.pasado.performance",
+        "orb_hidden": "animation.warland.pasado.orb_hidden"
+      },
+      "scripts": {
+        "animate": [
+          {
+            "idle": "!query.property('warland:performance')"
+          },
+          {
+            "performance": "query.property('warland:performance')"
+          },
+          {
+            "orb_hidden": "!query.property('warland:performance')"
+          }
+        ]
+      },
+      "render_controllers": [
+        "controller.render.warland.pasado_coloso"
+      ],
+      "particle_effects": {
+        "power": "warland:past_power"
+      }
+    }
+  }
+}

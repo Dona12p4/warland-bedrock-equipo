@@ -12,7 +12,7 @@ export function registerPersonalHud(account                              ){
     if(world.scoreboard.getObjectiveAtDisplaySlot(DisplaySlotId.Sidebar)?.objective.id==='warcoins')world.scoreboard.clearObjectiveAtDisplaySlot(DisplaySlotId.Sidebar);
     if(world.getDynamicProperty('warland:heart_overlay_v1')===true)return;
     for(const p of world.getAllPlayers())try{
-      if(combatVisualActive(p.id))continue;
+      if(combatVisualActive(p.id)||p.hasTag('warland_past_film'))continue;
       if(system.currentTick<(blockedUntil.get(p.id)??0))continue;
       const a=account(p);if(!a)continue;
       const packet=hudPacket(a),last=sent.get(p.id),retry=retryAt.get(p.id);

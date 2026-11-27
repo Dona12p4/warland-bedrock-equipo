@@ -12,6 +12,7 @@ export function createCombatVisuals(){
  return {
   update(p,{s,item,weapon},ready){
    let v=views.get(p.id);if(!v){v={last:-1000,visible:false,count:0,cycles:0};views.set(p.id,v);}
+   if(p.hasTag('warland_past_film')){v.visible=false;v.last=s.last;return;}
    const enabled=ready&&[GameMode.Survival,GameMode.Adventure].includes(p.getGameMode())
     &&(p.getComponent('minecraft:health')?.currentValue??0)>0
     &&(!item||!!WEAPONS[item.typeId])&&!p.isUsingItem;

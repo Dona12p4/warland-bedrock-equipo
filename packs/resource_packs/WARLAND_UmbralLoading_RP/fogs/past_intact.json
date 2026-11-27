@@ -1,0 +1,22 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:fog_settings": {
+    "description": {
+      "identifier": "warland:past_intact"
+    },
+    "distance": {
+      "air": {
+        "fog_start": 48,
+        "fog_end": 180,
+        "fog_color": "#A9BBC7",
+        "render_distance_type": "fixed"
+      },
+      "weather": {
+        "fog_start": 48,
+        "fog_end": 180,
+        "fog_color": "#A9BBC7",
+        "render_distance_type": "fixed"
+      }
+    }
+  }
+}

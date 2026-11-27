@@ -1346,7 +1346,7 @@
                 },
                 {
                   "binding_type": "view",
-                  "source_property_name": "(not (#hud_title_text_string = #wl_saved) and not ((#hud_title_text_string - 'WL_HUD|') = #hud_title_text_string))",
+                  "source_property_name": "((not (#hud_title_text_string = #wl_saved) and not ((#hud_title_text_string - 'WL_HUD|') = #hud_title_text_string)) and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                   "target_property_name": "#visible"
                 }
               ]
@@ -1733,7 +1733,7 @@
                             {
                               "binding_type": "view",
                               "source_control_name": "warland_personal_data",
-                              "source_property_name": "(not ((#wl_saved - 'WL_HUD|K1|') = #wl_saved))",
+                              "source_property_name": "((not ((#wl_saved - 'WL_HUD|K1|') = #wl_saved)) and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                               "target_property_name": "#visible"
                             }
                           ]
@@ -1750,7 +1750,7 @@
                             {
                               "binding_type": "view",
                               "source_control_name": "warland_personal_data",
-                              "source_property_name": "(not ((#wl_saved - 'WL_HUD|K1|') = #wl_saved))",
+                              "source_property_name": "((not ((#wl_saved - 'WL_HUD|K1|') = #wl_saved)) and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                               "target_property_name": "#visible"
                             }
                           ],
@@ -1895,7 +1895,7 @@
                 },
                 {
                   "binding_type": "view",
-                  "source_property_name": "(not ((#hud_title_text_string - 'WL_ATK|') = #hud_title_text_string) and not (#hud_title_text_string = 'WL_ATK|OFF'))",
+                  "source_property_name": "((not ((#hud_title_text_string - 'WL_ATK|') = #hud_title_text_string) and not (#hud_title_text_string = 'WL_ATK|OFF')) and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                   "target_property_name": "#visible"
                 }
               ],
@@ -1932,7 +1932,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|0')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|0') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -1957,7 +1957,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|5')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|5') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -1982,7 +1982,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|10')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|10') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2007,7 +2007,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|15')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|15') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2032,7 +2032,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|20')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|20') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2057,7 +2057,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|25')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|25') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2082,7 +2082,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|30')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|30') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2107,7 +2107,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|35')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|35') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2132,7 +2132,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|40')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|40') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2157,7 +2157,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|45')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|45') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2182,7 +2182,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|50')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|50') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2207,7 +2207,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|55')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|55') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2232,7 +2232,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|60')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|60') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2257,7 +2257,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|65')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|65') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2282,7 +2282,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|70')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|70') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2307,7 +2307,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|75')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|75') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2332,7 +2332,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|80')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|80') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2357,7 +2357,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|85')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|85') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2382,7 +2382,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|90')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|90') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2407,7 +2407,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|95')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|95') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2432,7 +2432,7 @@
                       },
                       {
                         "binding_type": "view",
-                        "source_property_name": "(#hud_title_text_string = 'WL_ATK|100')",
+                        "source_property_name": "((#hud_title_text_string = 'WL_ATK|100') and (not (#hud_title_text_string = 'WL_PAST|FILM')))",
                         "target_property_name": "#visible"
                       }
                     ]
@@ -2602,7 +2602,7 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "((((#hud_title_text_string - 'WL_HEART|') = #hud_title_text_string) and ((#hud_title_text_string - 'WL_HUD|') = #hud_title_text_string)) and ((#hud_title_text_string - 'WL_ATK|') = #hud_title_text_string))",
+        "source_property_name": "(((((#hud_title_text_string - 'WL_HEART|') = #hud_title_text_string) and ((#hud_title_text_string - 'WL_HUD|') = #hud_title_text_string)) and ((#hud_title_text_string - 'WL_ATK|') = #hud_title_text_string)) and ((#hud_title_text_string - 'WL_PAST|') = #hud_title_text_string))",
         "target_property_name": "#visible"
       }
     ]

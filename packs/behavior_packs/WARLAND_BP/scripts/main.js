@@ -1,3 +1,4 @@
+import './past.js';
 import {registerPersonalHud} from './personal-hud.js';
 import {createCajeroBank} from './cajero-bank.js';
 import './mob-hit-guard.js';

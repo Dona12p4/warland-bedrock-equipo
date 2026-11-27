@@ -1,0 +1,22 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:fog_settings": {
+    "description": {
+      "identifier": "warland:past_ruins"
+    },
+    "distance": {
+      "air": {
+        "fog_start": 0,
+        "fog_end": 58,
+        "fog_color": "#05070C",
+        "render_distance_type": "fixed"
+      },
+      "weather": {
+        "fog_start": 0,
+        "fog_end": 58,
+        "fog_color": "#05070C",
+        "render_distance_type": "fixed"
+      }
+    }
+  }
+}
