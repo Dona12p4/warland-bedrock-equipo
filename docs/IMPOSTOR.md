@@ -1,4 +1,4 @@
-# El Impostor · prototipo 0.3.2
+# El Impostor Â· prototipo 0.3.2
 
 Al aparecer, `warland:impostor` consulta los jugadores conectados y elige uno.
 Muestra su nombre exacto encima de la cabeza. Prefiere participantes de su misma
@@ -53,7 +53,7 @@ No se incorporo GameTest al complemento entregable ni se cambio el servidor.
 
 ## Estado
 
-Instalacion oficial autorizada el 27/11/2026, preparada en `codex/impostor-official-install`. Pendiente de cerrar Minecraft antes del respaldo y la copia. La version entregable es 0.3.2.
+Instalado el 27/11/2026 en el oficial WARLAND - Movil 3-4 GB - COPIA (Importado), con respaldo completo verificado. BP/RP 0.3.2 registrados en el mundo y Shared de Bedrock. Se conservan los otros 25 paquetes, datos de mundo e inventarios. No se agregan experimentos. Las revisiones siguientes son antecedentes historicos; manda este estado actual.
 Las pruebas GameTest son exclusivas del laboratorio y no se empaquetan en el addon.
 Los resultados nativos se guardan en `.local/impostor-native.json`; la revision
 visual en Minecraft y en Android se informa por separado, nunca se infiere de BDS.
@@ -86,3 +86,5 @@ Validacion final local 0.3.2: 35 comprobaciones nativas (incluido reinicio), 33 
 Los 25 paquetes anteriores del oficial coinciden byte por byte con la base publicada. Prueba nueva con esos 25 mas BP/RP del Impostor: 35 comprobaciones nativas en BDS 1.26.60.6 (30 iniciales y cinco tras reinicio), cero errores y Quit correctly en ambas pasadas. Los 19 archivos nuevos coinciden con los probados, excluyendo exclusivamente la sonda/dependencia de GameTest del laboratorio. API estable 2.10.0; no se agregan experimentos al oficial. Cliente instalado comprobado: 1.26.6501.0.
 
 Validacion adicional: 37 pruebas Python, seis JavaScript, inventario de 27 paquetes y 1138 archivos. Ficha, comandos y modelo Steve revisados en el navegador del catalogo. Esta revision del atlas no sustituye la comprobacion visual en Minecraft; cliente y Android pendientes. Las cifras de las secciones anteriores corresponden a sus revisiones historicas.
+
+Instalacion final: 1135 archivos respaldados; 1133 originales intactos. Solo cambian las dos listas de activacion y se agregan los 19 archivos del Impostor. Verificacion posterior: los 27 paquetes del oficial coinciden por SHA-256 con esta fuente. Copia offline y snapshot de noviembre 8 sin sobrescribir; el laboratorio integra el snapshot con los paquetes actuales.
