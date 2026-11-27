@@ -1,6 +1,6 @@
-# El Pasado: candidato de cinemática nativa y recuerdo jugable
+# El Pasado: cinemática nativa y recuerdo jugable
 
-Estado del 27/11/2026: el propietario autoriza instalar y revisar directamente en el **mundo oficial Movil 3-4 GB**; ya no exige otra aprobación visual en laboratorio. Completo 0.7.4 preparado con El Pasado y las partículas de biomas vigentes. La instalación todavía espera el cierre de Minecraft para respaldar. Ver `outputs/past-official-preparation.json` en el proyecto local; no afirmar instalado hasta el recibo final y la paridad de ambos destinos. Se conserva el original WARLAND I.
+Estado del 27/11/2026: **completo 0.7.4 instalado en el oficial Movil 3–4 GB y en el servidor de proyecto19152**, con respaldo y paridad de los 1.275 archivos. Conserva las partículas de biomas e inventarios/progreso. Informe local `outputs/past-official-installation.json`. El WARLAND I original no se modifica. La revisión visual no se hace por petición del usuario.
 
 ## Recorrido
 
@@ -8,7 +8,7 @@ Estado del 27/11/2026: el propietario autoriza instalar y revisar directamente e
 
 Las ruinas son la visita inicial. La versión intacta queda como vista previa administrativa, separada 1.024 bloques; su apertura al público sigue pendiente. Una columna blanca intensa marca la entrada principal de la muralla (245,5 / 63 / -782,5; desplazada +1024 X en la vista intacta). Al permanecer un segundo junto a su base, se regresa al punto y modo previos. El comando y el menú siguen disponibles. La llegada aparece fuera del activador y las cámaras no pueden activarlo.
 
-Comandos del candidato:
+Comandos disponibles:
 
 - `/warland:pasado`: menú del recuerdo.
 - `/warland:pasado_cenizas`: entrar a las ruinas.
@@ -18,7 +18,7 @@ Comandos del candidato:
 - `/warland:cinematica`: reproducción nativa, restringida a administradores durante la revisión.
 - `/warland:cinematica_salir`: cancelar y recuperar el control.
 
-No son todavía comandos del mundo oficial. La animación impide temporalmente el movimiento, conserva la configuración previa y cede ante la animación global de muerte. La recuperación pendiente se completa al reaparecer/reconectar.
+La animación impide temporalmente el movimiento, conserva la configuración previa y cede ante la animación global de muerte. La recuperación pendiente se completa al reaparecer/reconectar.
 
 ## Presentación
 
@@ -38,7 +38,7 @@ La columna de luz sube hasta Y101, con núcleo blanco y halo cálido ancho, por 
 
 El viento es un Ogg original de 24 segundos y 88 KB, con ráfagas y fundidos suaves, transmitido en mono. Se reproduce individualmente solo en las ruinas, por debajo de la música (-20,51 LUFS en el archivo; volumen 0,38). Se detiene durante el primer acto intacto, al salir o al morir; reconectar no duplica la pista. La música continúa con su comportamiento anterior.
 
-Por petición expresa, no se harán comprobaciones visuales ni se tomará el control del cliente mientras el usuario juega. Validación automática y nativa separada; revisión estética y FPS móviles pendientes. Minecraft abierto impide respaldar e instalar la nueva dimensión con seguridad.
+Por petición expresa, no se harán comprobaciones visuales ni se tomará el control del cliente mientras el usuario juega. Validación automática y nativa separada; revisión estética y FPS móviles pendientes. La instalación se completó con Minecraft cerrado; posteriormente el usuario reabrió el cliente.
 
 ## Salidas de atascos y coste
 
@@ -57,4 +57,4 @@ La pista del Coloso se redujo de 22.191 a 3.248 claves numéricas: aproximadamen
 - La exportación acotada contiene 15.680 registros de terreno y 1.147 chunks, con los 544 chunks exigidos de zona jugable y margen completos. Cinco chunks periféricos de la fuente intacta nunca se generaron; se conservan como ausencia de origen, fuera del recorrido protegido.
 - La transferencia excluye jugadores, actores, inventarios, reglas y ticking areas. El id numérico de dimensión del laboratorio se elimina del artefacto. El instalador debe resolver el id del destino y rechazar cualquier colisión con terreno existente.
 
-Las pruebas y artefactos locales están bajo `.local/`; no se publica una DB de laboratorio. Se construyó WARLAND completo 0.7.4 (un BP y un RP), incluyendo las partículas de biomas de 0.7.3. La revisión visual se hará en el oficial por orden posterior. Falta el cierre del cliente para respaldar e instalar la actualización autorizada en ambos destinos.
+Las pruebas y artefactos locales están bajo `.local/`; no se publica una DB de laboratorio. WARLAND completo 0.7.4 está instalado (un BP y un RP) en ambos destinos. No repetir la migración de dimensión nueva sobre esos mundos. La entrada guardada del servidor vigente es «WARLAND - Luz - LAB», 127.0.0.1:19152; al terminar quedó detenido. Los servidores19160/19178 son pruebas anteriores.

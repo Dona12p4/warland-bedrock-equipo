@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "capturedUtc": "2026-11-27T17:34:57Z",
+  "capturedUtc": "2026-11-27T21:55:34Z",
   "packs": [
     {
       "folder": "packs/behavior_packs/WARLAND_Apagavelas_BP",
@@ -54,7 +54,7 @@
       "version": [
         0,
         6,
-        20
+        21
       ],
       "dependencies": [
         {
@@ -470,7 +470,7 @@
       "version": [
         1,
         1,
-        18
+        19
       ],
       "dependencies": []
     }
@@ -493,6 +493,9 @@
     "behavior_packs/WARLAND_BiomesParticles_BP/scripts/ambient.js": "36ce65e119bea0e67df5eb5b4bd3ff247acd5fd205f553dce690be0a67d7e6a8",
     "behavior_packs/WARLAND_BiomesParticles_BP/scripts/main.js": "95602c71b959112e7f17947c117014b8455e1fe55a8f98cd168d31ba86074e63",
     "behavior_packs/WARLAND_BiomesParticles_BP/scripts/selection.js": "55eb17d298a1317e6f35360c1b7ed365e24e805ba3d6fc242b20598726fe7d68",
+    "behavior_packs/WARLAND_BP/cameras/presets/past_film.json": "1d8c812315d714da21880ab65ee72936916cb8eda6405eb8a6ce73a99ee14f12",
+    "behavior_packs/WARLAND_BP/dimensions/el_pasado.json": "263b76a4fdec2e394b02b013bbe8cfaa8e620c68d1415339a9830db424e0fbd7",
+    "behavior_packs/WARLAND_BP/entities/pasado_coloso.json": "3400cb855d090a4fd0b0ea27ec75b030aac894290b52bf91e70c660df1a8fb52",
     "behavior_packs/WARLAND_BP/entities/player.json": "2cb388fcdf5b5d8bb5b56567e3c0011ba9c54f1e9dc89c779b092144977ec7c2",
     "behavior_packs/WARLAND_BP/items/administracion.json": "fbc63d5afa88c7f4f40156791847244bb4b068cb0abfe552bcfe0c35e8f20797",
     "behavior_packs/WARLAND_BP/items/corazones.json": "9b47f1024c164e629b7eb3cf3962e63dd3b29009063ed798aebb41e994babfe7",
@@ -501,7 +504,7 @@
     "behavior_packs/WARLAND_BP/items/selector_terreno.json": "23cc50a11d96fff7405dab22a6ba18e47e2854408750c3e2a016196586824819",
     "behavior_packs/WARLAND_BP/items/territorios.json": "0197facafd7a04bde839f218e1473950baf6ee645bf0ac09e15e97e981502fb3",
     "behavior_packs/WARLAND_BP/LICENSE-Mojang.txt": "ca18c0dede68ce24ea1cd6f9df0813579b6f9f979787983a50baec99345f975d",
-    "behavior_packs/WARLAND_BP/manifest.json": "81ac2501cf71ffbc50d54ec513e81707d17ea359c19c2a70fa71eaf69740cc00",
+    "behavior_packs/WARLAND_BP/manifest.json": "93e097f63e46461d5ade56fddb3565df652c2666be49eeae408f5b80f09d07dd",
     "behavior_packs/WARLAND_BP/scripts/actions.js": "bfdeb7da9a5a31de95434b2999162203efc7248a32411e6013a3f73b0340988d",
     "behavior_packs/WARLAND_BP/scripts/actions.js.map": "8289caa63c54d78563a0070aca7a299fffccb7683ab155a0f8c0c3831406aed9",
     "behavior_packs/WARLAND_BP/scripts/apagavelas-safety-bridge.js": "7a53cffd5948cc33973a6e0d2d01cfc230a05d6f68163b31265bd725ab8a4cd5",
@@ -522,13 +525,20 @@
     "behavior_packs/WARLAND_BP/scripts/inventory-menu.js": "43141992cf91958b0863eb0a64b9275515622134582338678529b5c9e52ae300",
     "behavior_packs/WARLAND_BP/scripts/inventory-menu.js.map": "dbe9f821d7a89507fbed77f155583b22b19f384f071e20df4ed9c042863d98d4",
     "behavior_packs/WARLAND_BP/scripts/java-combat-rules.js": "8f7ae19799b57b81bdd90be582ead08f7acf29f6703648bd571a71456423066e",
-    "behavior_packs/WARLAND_BP/scripts/java-combat-visuals.js": "d4015b147156694fefacb32f2377d64a4e2382cc579f164561edabd2ef7f7a1b",
+    "behavior_packs/WARLAND_BP/scripts/java-combat-visuals.js": "06f21a0bb9f49623c5740994e65852a060827113f37cc19465bd1bc46a869bf3",
     "behavior_packs/WARLAND_BP/scripts/java-combat.js": "757c3f5e52d83b6e7c4910d590b0725d63c5329823ea118b47a587d9eb434c74",
     "behavior_packs/WARLAND_BP/scripts/lobby-protection.js": "3a1d85c22e848977bce8b9960dac339a300374f631143067fbc71b5fe8de82b7",
-    "behavior_packs/WARLAND_BP/scripts/main.js": "f79a0e6559196f61eb7b949ada3ceea8a586740cc7b78d0c6902b037c2bf0721",
+    "behavior_packs/WARLAND_BP/scripts/main.js": "4e2814e590263bb3ffebe305cb2d5f9fd5405b9f0ec11dccdd0cb5c5c174307f",
     "behavior_packs/WARLAND_BP/scripts/main.js.map": "52637228e66958e60769140ec8348aadad6af141197aa8ff98e99a9a1211c80b",
     "behavior_packs/WARLAND_BP/scripts/mob-hit-guard.js": "72fa7ceed75f27a449c1288add3f34436729e60f14aaf9568a6460033d146f1a",
-    "behavior_packs/WARLAND_BP/scripts/personal-hud.js": "3743175e13083a28ab4261505ec87d0e1f2d0113efe1d9c18955a97b12bd49e0",
+    "behavior_packs/WARLAND_BP/scripts/past-environment.js": "af9be0dd85ba583c47955a86e3f92f727d57d458a7eb4643701186b7a4da723b",
+    "behavior_packs/WARLAND_BP/scripts/past-lighting.js": "15e45f49669304f3ead0cac43b39602aeac6002d806a8dc7bd7d08fe9ada7978",
+    "behavior_packs/WARLAND_BP/scripts/past-music.js": "36e198cdbc50cd79bdf5d26168427076a84eb0df637a8e47ee8f9f8e532e00da",
+    "behavior_packs/WARLAND_BP/scripts/past-palm-path.js": "0b42a04153be1bbb0bb77d9f3d6ec70c5e9f74aa2309bbf6a8299dcf55af9c10",
+    "behavior_packs/WARLAND_BP/scripts/past-policy.js": "a38c057628060e90a382680d5466ddf41a8ad40659ce64d0225c297d77ec56f5",
+    "behavior_packs/WARLAND_BP/scripts/past-travel.js": "8193f694c1d4670f8fd7008a3227848cab57af71593872d78a78c478f7bd1b43",
+    "behavior_packs/WARLAND_BP/scripts/past.js": "8361b45202c98281abd40602846a9bde5b82e2b2162fbc601d421f10da491dd4",
+    "behavior_packs/WARLAND_BP/scripts/personal-hud.js": "e7ea4f5898fc2a514459a33cb73bab5a7fbaa081fff636160d23b0c566b1add0",
     "behavior_packs/WARLAND_BP/scripts/player-presentation.js": "1d51c7fcc7e708e48192acbea56f4e15ceebe04621d233d567671e04e5e40002",
     "behavior_packs/WARLAND_BP/scripts/polish-items.js": "ddc4a663791fd86a5d8afd857106af96656c48c8f9d4fef8bb3c5fa49bda8542",
     "behavior_packs/WARLAND_BP/scripts/sanctuary.js": "ab4d053edb7c88e380614c19f5690c5ffa06686ab6965567a5326c6dcd720bd3",
@@ -661,7 +671,7 @@
     "behavior_packs/WARLAND_Dark_BP/scripts/umbral-chunk-integrity.js": "5091246e54d8370945df50f4f934d66ea9edde13508a79480f61c39e0f84cfa3",
     "behavior_packs/WARLAND_Dark_BP/scripts/umbral-clear-sight.js": "e076eb025827f4d4955c1a104957a394a3bfd76bf812737dd63738ea7e285e99",
     "behavior_packs/WARLAND_Dark_BP/scripts/umbral-compass-policy.js": "2708382c4bde3422aa92433ab55b8586835b362c0dd6acc1dc19543dcbdcecf5",
-    "behavior_packs/WARLAND_Dark_BP/scripts/umbral-compass.js": "5d1ca025084ef889bd01cf950c947615255febb7b2dcc060fe32b73cf437388e",
+    "behavior_packs/WARLAND_Dark_BP/scripts/umbral-compass.js": "293bc20dbba8fa903347d5d66040acf5412fd682a5781c13c6d00df80b53bbd8",
     "behavior_packs/WARLAND_Dark_BP/scripts/umbral-decay.js": "da17001b2f3929aa0a2c31764e1e9fb2d00690a9024277ad32f1285ce4338906",
     "behavior_packs/WARLAND_Dark_BP/scripts/umbral-echo-wave.js": "c932cbfd4afa2190c309a274d37fdf7018ab49ddcf1cbc368a6ddafcbbfc57e7",
     "behavior_packs/WARLAND_Dark_BP/scripts/umbral-generation-visibility.js": "d8391c671b93a867cfb97ebd1ac2b6845f0ccc9d1b4b8dc3fccc840e733aa9b6",
@@ -1715,11 +1725,34 @@
     "resource_packs/WARLAND_Thermal_RP/textures/entity/thermal_creeper_emissive_mer.png": "6405b7812887b8eaced21ec8bd620169fe4489fc719d4717aa89e25626bcbe47",
     "resource_packs/WARLAND_Thermal_RP/textures/entity/thermal_creeper_mer.png": "449c56497fec01b080d2c8c79a590c3daf28dc5e323227dc36c66d4e5dcca06b",
     "resource_packs/WARLAND_Thermal_RP/textures/particle/thermal_black.png": "895354ff088c3f754b800a476a1344080805ededf5b1155367120696107a4628",
-    "resource_packs/WARLAND_UmbralLoading_RP/manifest.json": "985a69aedef5a043242e73e6f2c81384f833417e06146394dbe1d889faee7ee2",
+    "resource_packs/WARLAND_UmbralLoading_RP/animations/pasado_coloso.animation.json": "492b95a67fe66c530301ce6ac6a90c84ab7cabe041175d7db487e415696869b2",
+    "resource_packs/WARLAND_UmbralLoading_RP/entity/pasado_coloso.entity.json": "257c390c4ec0c1bd231cf8c162bf96e7471a3138c61e576adc7fa667bea16523",
+    "resource_packs/WARLAND_UmbralLoading_RP/fogs/past_cinema.json": "9de189f68e5dcfc3b4bf64b918a9a78bfa23e7ac942a7f7deefcacdc3f11eba5",
+    "resource_packs/WARLAND_UmbralLoading_RP/fogs/past_intact.json": "1068084791b892799f5e451302d12d6c85f489dc60c56f91d90a4dda0a1d7271",
+    "resource_packs/WARLAND_UmbralLoading_RP/fogs/past_ruins.json": "3b7ada99f2d6e558ee39a295c1bf72498dafdf8143c7e56d2a4d8084d7a37bc6",
+    "resource_packs/WARLAND_UmbralLoading_RP/manifest.json": "2f4413e0f770cfe9cc499feee6fa2fe6b20a0e172009e403894b386bf39355b9",
+    "resource_packs/WARLAND_UmbralLoading_RP/models/entity/pasado_coloso.geo.json": "324ffc99b035d3b0f28572ee9c9ff86d53ff8353553c69ce13dc7bee31535a67",
     "resource_packs/WARLAND_UmbralLoading_RP/particles/java_sweep.json": "27b1bb9a2cd0ffe355ed5b1399bccd3a84ae45a98d7d799c6d873c5fbdbdbd5b",
-    "resource_packs/WARLAND_UmbralLoading_RP/sounds/sound_definitions.json": "ef087a0861dace5b7e43c597e46eb5ed6b6cbd4a3cae3342d1199c38f9dada38",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_ash.json": "21e1965cf0b0e181d0b0ed48ce730435b3b4c1cb05efc8938491c4922f5e61fe",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_ash_near.json": "52f98c63edab613c33decb7d75711e4839e80cb2a54072a7e13aa0249d636272",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_departure.json": "d3655e6c1906e1c582425ff58dbf844712da82bb3acebc07d554fc9d028ddd72",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_drift.json": "3c15d383900750ac6c26d12c53f8802d58c2e28cdd11820d52c1f4ad29b1ef00",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_guide_beam.json": "8093a642adfd7025f36faa7cd40254374f4f7d34a5e33fda6bb30f497b7ff6e4",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_guide_core.json": "00d05b8051733fd40611d4211e61b772f55d385f65fcfd59fe11f8dbddc07cc5",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_guide_halo.json": "08f8a1cb4def37a5a81c7cc96924bc1b086d5f18f4270f29a8a154674d510421",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_guide_sparks.json": "f1516e18aa281547b6d5f1404c6630826b2212fb3fe77dc6a8c43756b35f2324",
+    "resource_packs/WARLAND_UmbralLoading_RP/particles/past_power.json": "27506ddf699557f4b04af87c2549b42f538de4e30b1d4b3c6577a4aa79cbe81e",
+    "resource_packs/WARLAND_UmbralLoading_RP/render_controllers/pasado_coloso.json": "c7fd3bf16fc1a4880e06fa79a56d71acc5e6698c9266316d7b301ba353ecb3d8",
+    "resource_packs/WARLAND_UmbralLoading_RP/sounds/sound_definitions.json": "a3ec05c03a1c63406de4c7025d502f2b59d8e7da64f4128e032a349311519584",
     "resource_packs/WARLAND_UmbralLoading_RP/sounds/warland/heart_break.ogg": "1e3eb34ec20f5a1b12755baa9a331069fc05f1ba1eab4c3cc6859a2eb0d7f2d1",
+    "resource_packs/WARLAND_UmbralLoading_RP/sounds/warland/past_ambient.ogg": "c2b28ff961a5a5d0c1d20c7f50b4b0b5c391399c2c3569a15d07d87a55bdbc0a",
+    "resource_packs/WARLAND_UmbralLoading_RP/sounds/warland/past_cinema.ogg": "3e837b802eaf5b748860a53f7ddc123468674ec96441570d6e3c3edd7490a6ae",
+    "resource_packs/WARLAND_UmbralLoading_RP/sounds/warland/past_wind.ogg": "ad6b7830afb10056bb2f8768ae04dc6df228aa1641e2e6fc8d1257f5dab13f60",
+    "resource_packs/WARLAND_UmbralLoading_RP/textures/entity/pasado_coloso.tga": "34b78dbb3a6cd2521f5a9b3cc034d532ba648b79b106662b516e04407662a3ee",
+    "resource_packs/WARLAND_UmbralLoading_RP/textures/particle/past_ash.png": "fbb9048948f62babe707a41636245aa821879cb0ee7dc6c6848f11c0eb05335b",
+    "resource_packs/WARLAND_UmbralLoading_RP/textures/particle/past_halo.png": "252e0bf0dfacf459db0475356d1065cc7016f0e9cd43880e039d0cd1f4121716",
     "resource_packs/WARLAND_UmbralLoading_RP/textures/particle/warland_java_sweep.png": "1396a6497d729c4d8b21aefcdbe74210c73d119d6b62b0beab8438436949b493",
+    "resource_packs/WARLAND_UmbralLoading_RP/textures/ui/past_black.png": "abc58d5127d7cdf313beb9ec8ee839860a9c6bfbc48c8b8eb6a3f7d8bb63de6f",
     "resource_packs/WARLAND_UmbralLoading_RP/textures/ui/warland/umbral-background.png": "66873ca84acde782dc4ef86e39bbef4b3a9943104fe561ce0bd4ff6cd297663d",
     "resource_packs/WARLAND_UmbralLoading_RP/textures/ui/warland/umbral-minecraft-v2.png": "9598f7e7cfa871ba47a7d6b99e3c9d64033bffc80d42e822f240700e25c1b1ae",
     "resource_packs/WARLAND_UmbralLoading_RP/textures/ui/warland/warland3-initial.png": "fc5f41fe0328aab97ddf38e081dd12452f0e3d3c397940fdd43f238a9f554699",
@@ -1791,7 +1824,7 @@
     "resource_packs/WARLAND_UmbralLoading_RP/textures/ui/warland_personal/keep.png": "60217c398515ef8caab2229459e57adc920f5d4a0fd5821fadacd0112742179a",
     "resource_packs/WARLAND_UmbralLoading_RP/textures/ui/warland_personal/panel.png": "603be441a93c64a51d20093e9ced776086f463b161ff092682cab0fc8181c97f",
     "resource_packs/WARLAND_UmbralLoading_RP/textures/ui/warland_personal/pixel.png": "d5a51b6aed15684ec8c123e30fe5703155359d6543b6d7b47cb5766ef44939de",
-    "resource_packs/WARLAND_UmbralLoading_RP/ui/hud_screen.json": "a3fa82aff514597506c01b7f8207a24ccff472cb623d9966fcf2b8dbb37aa7d4",
+    "resource_packs/WARLAND_UmbralLoading_RP/ui/hud_screen.json": "8add198399789da5b99fc6fff853cd499ab614e0ee2dd02467b303293ef55d46",
     "resource_packs/WARLAND_UmbralLoading_RP/ui/progress_screen.json": "a943d88155d00271249cec7a4dfdaf061962e4bc65f6faaa158bfeffb86f232c"
   },
   "note": "Base instalada capturada. Comparar cambios con Git; no regenerar sobre trabajo ajeno."
