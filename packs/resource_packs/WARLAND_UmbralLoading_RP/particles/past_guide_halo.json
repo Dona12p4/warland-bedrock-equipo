@@ -5,7 +5,7 @@
       "identifier": "warland:past_guide_halo",
       "basic_render_parameters": {
         "material": "particles_add",
-        "texture": "textures/particle/past_halo"
+        "texture": "textures/particle/past_white"
       }
     },
     "components": {
@@ -32,23 +32,23 @@
         ],
         "facing_camera_mode": "lookat_y",
         "uv": {
-          "texture_width": 64,
-          "texture_height": 64,
+          "texture_width": 32,
+          "texture_height": 32,
           "uv": [
             0,
             0
           ],
           "uv_size": [
-            64,
-            64
+            32,
+            32
           ]
         }
       },
       "minecraft:particle_appearance_tinting": {
         "color": [
           1,
-          0.92,
-          0.68,
+          1,
+          1,
           "0.5 * math.min(1, variable.particle_age / 0.1) * math.min(1, (variable.particle_lifetime - variable.particle_age) / 0.1)"
         ]
       }

@@ -87,7 +87,7 @@ system.runTimeout(()=>{
     write(server/'allowlist.json',[]);write(server/'permissions.json',[])
     proc=subprocess.Popen([str(server/'bedrock_server.exe')],cwd=server,stdin=subprocess.PIPE,stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,text=True,encoding='utf-8',errors='replace',creationflags=subprocess.CREATE_NO_WINDOW)
-    q=queue.Queue();lines=[];result=None;biomes_result=None;past_result=None;stopping=False;deadline=time.monotonic()+140
+    q=queue.Queue();lines=[];result=None;biomes_result=None;past_result=None;stopping=False;deadline=time.monotonic()+200
     def reader():
         for line in proc.stdout:q.put(line)
     threading.Thread(target=reader,daemon=True).start()

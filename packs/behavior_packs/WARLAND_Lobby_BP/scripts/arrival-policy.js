@@ -31,11 +31,14 @@ export function arrivalFrame(t,spawn){
  const lowering=smooth((t-ARRIVAL.impact)/(ARRIVAL.underRoof-ARRIVAL.impact));
  const opening=smooth((t-ARRIVAL.underRoof)/(ARRIVAL.reveal-ARRIVAL.underRoof));
  const orbit=smooth((t-ARRIVAL.reveal)/(ARRIVAL.returnView-ARRIVAL.reveal));
- // Follow ABOVE the descending light, through the opening. Widen only below
- // the roof, so neither the camera nor its light sightline crosses solid blocks.
- const angle=(-36+orbit*16)*Math.PI/180,radius=.25+3.35*opening-orbit*.8;
+ // Follow above the descending light through the roof opening. The late
+ // reveal widens below the roof; the distant shot below happens above it.
+ // Keep the original approach through the vortex center, then briefly pull
+ // away halfway down. Rejoin the center before the roof so the opening stays safe.
+ const wide=smooth((t-68)/20)*(1-smooth((t-120)/20));
+ const angle=(-36+orbit*16)*Math.PI/180,radius=.25+3.35*opening-orbit*.8+32*wide;
  return {
-  lightY,
+  lightY,wide,
   location:{x:spawn.x+Math.sin(angle)*radius,y:spawn.y+lightY+7-5.5*lowering+Math.sin(orbit*Math.PI)*.7,z:spawn.z-Math.cos(angle)*radius},
   facingLocation:{x:spawn.x,y:spawn.y+Math.max(1.1,lightY),z:spawn.z},
   phase:t<ARRIVAL.impact?'descent':t<ARRIVAL.reveal?'formation':t<ARRIVAL.returnView?'reveal':'return'

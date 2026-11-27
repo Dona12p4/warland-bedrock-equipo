@@ -1,10 +1,11 @@
-export const PAST={dimension:'warland:el_pasado',returnKey:'warland:past_return_v1',filmKey:'warland:past_film_v1',filmTag:'warland_past_film',normalOffset:1024,sound:'warland.past.cinema',duration:63.5,actor:'warland:pasado_coloso',actorAt:{x:361,y:63,z:-770},spawn:{x:250.5,y:64,z:-782.5},bounds:{x0:208,x1:431,z0:-896,z1:-657}};
+export const PAST={dimension:'warland:el_pasado',returnKey:'warland:past_return_v1',filmKey:'warland:past_film_v1',filmTag:'warland_past_film',normalOffset:1024,sound:'warland.past.cinema',duration:63.5,actor:'warland:pasado_coloso',actorAt:{x:361,y:63,z:-770},spawn:{x:380.5,y:63,z:-800.5},entrance:{x:250.5,y:64,z:-782.5},bounds:{x0:208,x1:431,z0:-896,z1:-657}};
 // Frame-aligned musical onsets. The first act stays intact for 27.5 seconds;
 // the second revisits the same places in ruins, then reveals the actor's back.
 const entrance={a:[229,65.6,-782.5],b:[266,67,-782.5],f:[284,67,-783],fov:64};
 const fountain={a:[268,70.5,-795],b:[276,70,-800],f:[284,67,-783],fov:64};
 const skyline={a:[302,79,-766],b:[294,76,-760],f:[284,67,-783],fov:64};
-const actorView={a:[362.1,68.8,-761.5],b:[361.9,68.7,-761.9],f:[361.2,67.1,-770.6],fov:55};
+// Three-quarter rear view: the cape, profile and right-hand gesture all read.
+const actorView={a:[367.7,69.5,-764.5],b:[367.4,69.4,-764.7],f:[361.7,67.5,-770.6],fov:58};
 export const ACTOR_SHOT=6,ACTOR_START=44+19/30,ACTOR_VANISH=ACTOR_START+14.4+4/30;
 export const SHOTS=[
  {t:0,...entrance,memory:true},

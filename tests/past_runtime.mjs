@@ -25,7 +25,7 @@ const makeEvents=()=>new Proxy({}, {get(o,k){return o[k]??=( {callbacks:[],subsc
 const before=makeEvents(),after=makeEvents(),startup=makeEvents(),timeouts=[],intervals=[],commands=[],players=[],actors=[];
 const props=new Map(),effects=[],logs=[];let runtimeClock=100000;
 const dims=new Map();
-for(const id of [policy.PAST.dimension,'minecraft:overworld'])dims.set(id,{id,runCommand(c){commands.push(c);return {successCount:1}},getBlock(){return {isAir:false,isLiquid:false,typeId:'minecraft:stone'}},getEntities(){return actors.filter(e=>e.isValid)},spawnParticle(...a){effects.push(a)},spawnEntity(typeId,location){const e={typeId,location,isValid:true,setRotation(){},setProperty(){},remove(){this.isValid=false}};actors.push(e);return e;}});
+for(const id of [policy.PAST.dimension,'minecraft:overworld'])dims.set(id,{id,runCommand(c){commands.push(c);return {successCount:1}},getBlock(){return {isAir:false,isLiquid:false,typeId:'minecraft:stone'}},getEntities(){return actors.filter(e=>e.isValid)},spawnParticle(...a){effects.push(a)},spawnEntity(typeId,location){const e={typeId,location,isValid:true,setRotation(){},props:new Map(),setProperty(k,v){this.props.set(k,v)},getProperty(k){return this.props.get(k)},remove(){this.isValid=false}};actors.push(e);return e;}});
 const world={beforeEvents:before,afterEvents:after,getAllPlayers:()=>players,getDynamicProperty:k=>props.get(k),getDimension:id=>dims.get(id)};
 const system={currentTick:100,beforeEvents:startup,run:f=>timeouts.push(f),runTimeout:f=>timeouts.push(f),runInterval:(f,t)=>intervals.push({f,t})};
 class Player{
@@ -121,7 +121,7 @@ const safe={...a.location};a.location={x:303.5,y:60,z:-780.5};
 assert(api.unstuckPast(a,true));assert.deepEqual(a.location,safe,'automatic recovery lost the walked safe point');
 // A broad sealed room can exceed the local search radius. Manual recovery
 // must reach the entrance even when a different last-safe point was recorded.
-a.location={x:305.5,y:64,z:-780.5};assert(api.unstuckPast(a));assert.deepEqual(a.location,entrance);
+a.location={x:305.5,y:64,z:-780.5};assert(api.unstuckPast(a));assert.deepEqual(a.location,policy.PAST.entrance);
 walkDimension.getBlock=oldBlocks;
 console.log('PASS: two full acts, seven cuts, instant TP, continued music, exit cleanup and two recovery routes.');
 // Light changes restore only their own air cells and never erase later edits.
@@ -133,38 +133,30 @@ light.clear();assert([...lamps.values()].every(b=>b.isAir),'temporary palm light
 light.update(lampDimension,8);const lit=[...lamps.values()].find(b=>!b.isAir);lit.setPermutation({typeId:'minecraft:stone'});light.clear();assert.equal(lit.typeId,'minecraft:stone','cleanup erased a later block');
 console.log('PASS: palm lighting, cancellation cleanup and occupied-cell preservation.');
 
-let previousLight=Infinity,maxStep=0;
-for(let t=0;t<=arrival.PAST_ARRIVAL.ticks;t++){
- const f=arrival.pastArrivalFrame(t);
- assert(f.light.y<=previousLight+.00001,'arrival ascended instead of falling');previousLight=f.light.y;
- assert(Object.values(f.camera).every(Number.isFinite));
- for(const at of [f.camera,f.light]){const x=Math.floor(at.x),z=Math.floor(at.z);assert((x>=208&&x<=415&&z>=-848&&z<=-737)||(x>=224&&x<=351&&z>=-736&&z<=-673),'route outside reserved chunks at '+t)}
- assert(f.light.x>=208&&f.light.x<=431&&f.light.z>=-896&&f.light.z<=-657,'light left the map');
- if(t){const p=arrival.pastArrivalFrame(t-1).camera;maxStep=Math.max(maxStep,Math.hypot(f.camera.x-p.x,f.camera.y-p.y,f.camera.z-p.z));}
-}
-assert(maxStep<4,'camera jumped '+maxStep);
-const start=arrival.pastArrivalLight(0),opposite=arrival.pastArrivalLight(arrival.PAST_ARRIVAL.turn),last=arrival.pastArrivalLight(280),mid=arrival.pastArrivalFrame(140);
-assert(start.x-opposite.x>160&&opposite.z-start.z>130,'route did not cross opposite town corners');
-assert.equal(last.x,policy.PAST.spawn.x);assert.equal(last.z,policy.PAST.spawn.z);
-assert(Math.hypot(mid.camera.x-mid.light.x,mid.camera.z-mid.light.z)>40,'missing distant mid-flight view');
+// El Pasado is explored on foot; entering never owns the camera or becomes light.
 await pump(api.exitPast(a));
 const beforeParticles=a.particles.length;
-assert(await pump(defaultEntry(a)),'default arrival did not start');
-assert(arrival.pastArrivalActive(a));assert.equal(a.mode,'spectator');
-const startTick=system.currentTick;
-for(let t=2;t<=322;t+=2){system.currentTick=startTick+t;for(const h of arrivalIntervals)if(t%h.t===0)h.f();if(t%20===0)intervals.find(x=>x.t===20).f();if(t<320)assert.equal(a.mode,'spectator','visitor update interrupted flight');}
-assert(a.particles.length>beforeParticles);assert.equal(a.mode,'adventure');assert(!arrival.pastArrivalActive(a));
-assert.equal(a.location.x,policy.PAST.spawn.x);assert.equal(a.location.z,policy.PAST.spawn.z);
-assert(a.enabled.get('movement')&&a.enabled.get('camera'));assert(!a.getDynamicProperty(arrival.PAST_ARRIVAL.key));
-assert(!effects.some(e=>String(e[0]).startsWith('warland:past_arrival')),'arrival light broadcast to film viewers');
-assert(arrival.startPastArrival(a));system.currentTick+=42;arrivalIntervals.find(x=>x.t===2).f();
-const count=a.particles.length;assert(await pump(api.startPastFilm(a)));assert(!arrival.pastArrivalActive(a));
-system.currentTick+=40;arrivalIntervals.find(x=>x.t===2).f();assert.equal(a.particles.length,count,'light emitted during Colossus film');
-assert.equal(arrival.startPastArrival(a),false,'film accepted overlapping arrival');api.stopPastFilm(a);
-await pump(api.exitPast(a));assert(await pump(api.startPastFilm(a)),'direct film entry failed');assert(!arrival.pastArrivalActive(a),'direct film played arrival');api.stopPastFilm(a);
-assert(arrival.startPastArrival(a));a.setDynamicProperty('warland:heart_death_v1','active');system.currentTick+=2;arrivalIntervals.find(x=>x.t===2).f();
-assert(a.getDynamicProperty(arrival.PAST_ARRIVAL.key),'death recovery record lost');a.setDynamicProperty('warland:heart_death_v1',undefined);arrivalIntervals.find(x=>x.t===20).f();assert(!a.getDynamicProperty(arrival.PAST_ARRIVAL.key));assert.equal(a.mode,'adventure');
-console.log('PASS: corner-to-corner arrival, wide view, entrance landing, private light, film exclusion and death recovery.');
+assert(await pump(defaultEntry(a)));
+assert(!arrival.pastArrivalActive(a));assert.equal(a.mode,'adventure');
+assert(a.enabled.get('movement')&&a.enabled.get('camera'));
+assert(Math.hypot(a.location.x-api.PAST_GUIDE.at.x,a.location.z-api.PAST_GUIDE.at.z)>100);
+assert(!a.particles.slice(beforeParticles).some(e=>e[0].startsWith('warland:past_arrival')));
+const visitAgain=intervals.find(x=>x.t===20).f;
+for(let i=0;i<5;i++){system.currentTick+=20;visitAgain()}
+assert.equal(a.dimension.id,policy.PAST.dimension,'No automatic portal exit at entry');
+// The authoring reference waits >44 seconds before acting. Its clock must stay
+// at zero throughout this wait, then follow the scene rather than entity age.
+await pump(api.startPastFilm(a));
+let liveActor=actors.find(e=>e.isValid);
+assert.equal(liveActor.getProperty('warland:performance_time'),0);
+runtimeClock+=30000;filmTick();assert.equal(liveActor.getProperty('warland:performance_time'),0);
+runtimeClock+=(policy.ACTOR_START-30+8)*1000;filmTick();
+assert.equal(liveActor.getProperty('warland:performance'),true);
+assert(Math.abs(liveActor.getProperty('warland:performance_time')-8)<.001);
+const c=policy.cameraAt(policy.ACTOR_START+8),dx=c.position[0]-policy.PAST.actorAt.x,dz=c.position[2]-policy.PAST.actorAt.z;
+assert(dx>4&&dz>3&&dz/Math.hypot(dx,dz)<.8,'Reference needs cape AND hand in a side/rear shot');
+api.stopPastFilm(a);await pump(api.exitPast(a));
+console.log('PASS: free exploration, distant white exit, no forced flight and delayed actor clock.');
 
 // A visitor spawns inside the city, outside the gate trigger. Returning through
 // the light takes a one-second dwell and must preserve the original location.
@@ -188,7 +180,7 @@ wl.getComponent=()=>({currentValue:20});wl.setDynamicProperty(api.PAST_WIND.key,
 assert(commands.slice(beforeStops).includes('stopsound @s warland.past.wind'),'reconnect duplicated wind');
 wl.dimension=dims.get('minecraft:overworld');freshWind.update(wl,true);assert(!wl.getDynamicProperty(api.PAST_WIND.key));
 
-const visit=intervals.find(x=>x.t===20).f;
+const visit=()=>{intervals.find(x=>x.t===20).f();intervals.find(x=>x.t===5).f()};
 await pump(api.exitPast(a));const gateOrigin={...a.location};await pump(api.enterPast(a));
 assert.equal(await pump(api.exitPast(a,true)),false,'missing Lobby component lost the return record');
 assert(a.getDynamicProperty(policy.PAST.returnKey));

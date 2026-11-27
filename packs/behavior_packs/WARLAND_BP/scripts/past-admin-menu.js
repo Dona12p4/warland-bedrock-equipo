@@ -1,7 +1,6 @@
 import {ADMIN_NAMES} from './core.js';
 import {inPast} from './past-policy.js';
 import {enterPast,exitPast,startPastFilm,stopPastFilm,unstuckPast} from './past.js';
-import {pastArrivalActive,startPastArrival} from './past-arrival.js';
 
 export function pastAdminPage(p){
  const allowed=()=>ADMIN_NAMES.includes(p.name.toLowerCase());
@@ -11,10 +10,7 @@ export function pastAdminPage(p){
   return await fn();
  }});
  return {title:'El Pasado y llegadas',body:'Pruebas de viaje y cinemáticas. Conservan tu inventario y cama.\nLa luz de salida de El Pasado te lleva al lobby con su animación.',rows:[
-  action('past-arrival','Probar llegada a El Pasado',async()=>{
-   if(!await enterPast(p,false))return false;
-   return pastArrivalActive(p)||startPastArrival(p);
-  }),
+  action('past-arrival','Entrar a El Pasado · buscar la luz',()=>enterPast(p,false,true)),
   action('past-ruins','Recorrer ruinas · sin llegada',()=>enterPast(p,false,true)),
   action('past-film','Ver cinemática del Coloso',()=>startPastFilm(p)),
   action('past-intact','Antes de la ceniza · vista previa',()=>enterPast(p,true)),

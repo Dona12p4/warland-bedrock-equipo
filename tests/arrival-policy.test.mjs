@@ -31,6 +31,10 @@ assert.equal(arrivalFrame(ARRIVAL.reveal,cfg.spawn).phase,'reveal');
 assert.ok(Math.hypot(arrivalFrame(0,cfg.spawn).location.x-cfg.spawn.x,arrivalFrame(0,cfg.spawn).location.z-cfg.spawn.z)>=24,'Opening shows the whole sanctuary from a distance');
 assert.equal(arrivalFrame(0,cfg.spawn).phase,'vortex');
 assert.equal(arrivalFrame(ARRIVAL.descent,cfg.spawn).phase,'descent');
+const center=arrivalFrame(ARRIVAL.descent,cfg.spawn),wide=arrivalFrame(110,cfg.spawn),roof=arrivalFrame(140,cfg.spawn);
+assert(Math.hypot(center.location.x-cfg.spawn.x,center.location.z-cfg.spawn.z)<.3,'Descent still starts in the eye of the spiral');
+assert(Math.hypot(wide.location.x-cfg.spawn.x,wide.location.z-cfg.spawn.z)>30,'Mid-descent needs a distant view');
+assert(Math.hypot(roof.location.x-cfg.spawn.x,roof.location.z-cfg.spawn.z)<.3,'Return to the opening before approaching the roof');
 for(const storm of ARRIVAL_STORM)assert.ok(storm.tick<storm.soundTick&&storm.soundTick<ARRIVAL.descent,'Bolt then thunder before descent');
 for(const groundY of [64,72,96]){
  const origin={...cfg.spawn,y:groundY};

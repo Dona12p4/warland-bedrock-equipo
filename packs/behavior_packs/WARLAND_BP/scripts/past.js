@@ -4,7 +4,7 @@ import {PAST,SHOTS,ACTOR_SHOT,ACTOR_START,ACTOR_VANISH,pastAdmin,inPast,normalPa
 import {createPastMusic,PAST_MUSIC} from './past-music.js';
 import {escapeProbe,safeLanding} from './past-travel.js';
 import {createPastLighting} from './past-lighting.js';
-import {pastArrivalActive,startPastArrival,stopPastArrival} from './past-arrival.js';
+import {pastArrivalActive,stopPastArrival} from './past-arrival.js';
 import {createPastWind,createPastGuide,stormActive} from './past-environment.js';
 
 const wait=t=>new Promise(r=>system.runTimeout(r,t)),v=a=>({x:a[0],y:a[1],z:a[2]});
@@ -64,17 +64,16 @@ export async function enterPast(p,normal=false,skipArrival=false){
  if(busy.has(p.id)||!canStart(p))return false;
  if(normal&&!pastAdmin(p.name)){notice(p,'Ese recuerdo todavía no está disponible.');return false;}
  busy.add(p.id);
- const showArrival=!normal&&!skipArrival&&!inPast(p);
+ // The spiral descent belongs to the lobby. Past visitors explore on foot.
  try{
   const d=await region(normal);if(!alive(p)||heart(p))return false;
   saveOrigin(p);p.camera.fade({fadeColor:{red:0,green:0,blue:0},fadeTime:{fadeInTime:.15,holdTime:.4,fadeOutTime:.6}});
   await wait(4);if(!alive(p)||heart(p))return false;
-  p.teleport(offsetPoint(PAST.spawn,normal),{dimension:d,rotation:{x:0,y:-90}});p.setGameMode(GameMode.Adventure);
+  p.teleport(offsetPoint(normal?PAST.entrance:PAST.spawn,normal),{dimension:d,rotation:{x:0,y:-90}});p.setGameMode(GameMode.Adventure);
   lastSafe.set(p.id,{...p.location});travel.delete(p.id);fog(p,normal);music.update(p);
   p.onScreenDisplay.setTitle(normal?'El Pasado · Antes de la ceniza':'El Pasado',{subtitle:normal?'Un recuerdo que aún permanece.':'WARLAND I · Lo que quedó.',fadeInDuration:10,stayDuration:40,fadeOutDuration:20});
   wind.update(p,stormActive(p));guide.forget(p.id);
-  if(showArrival)startPastArrival(p);
-  notice(p,'Cruza la luz de la entrada para llegar al lobby.');audit('entered',p,{normal});return true;
+  notice(p,'Busca la luz blanca entre las ruinas. Al alcanzarla podrás volver al lobby.');audit('entered',p,{normal});return true;
  }catch(e){notice(p,String(e.message??e));audit('entry_error',p,{error:String(e)});return false}
  finally{busy.delete(p.id);releaseRegions()}
 }
@@ -143,7 +142,7 @@ export async function startPastFilm(p){
   if(film!==s||!alive(p)||heart(p)){if(film===s)stopPastFilm(p,'interrupted');return false}
   for(const shot of SHOTS)for(const a of [shot.a,shot.b,shot.f])if(!d.getBlock(v(a.map((n,i)=>Math.floor(n+(shot.memory&&i===1?256:0))))))throw Error('Falta cargar una toma.');
   for(const e of d.getEntities({type:PAST.actor}))e.remove();
-  actor=d.spawnEntity(PAST.actor,PAST.actorAt);actor.setRotation({x:0,y:180});actor.setProperty('warland:performance',false);
+  actor=d.spawnEntity(PAST.actor,PAST.actorAt);actor.setRotation({x:0,y:180});actor.setProperty('warland:performance',false);actor.setProperty('warland:performance_time',0);
   p.onScreenDisplay.setActionBar(' ');
   music.update(p,true);p.playSound(PAST.sound,{volume:PAST_MUSIC.volume,pitch:1});s.start=Date.now();s.playing=true;
   audit('cinema_started',p,{duration:PAST.duration,native:true});return true;
@@ -180,6 +179,9 @@ system.runInterval(()=>{
   if(s.playing){const t=(Date.now()-s.start)/1000;if(t>=PAST.duration){stopPastFilm(p,'finished');return}
    const c=cameraAt(t),index=shotAt(t).index,cut=index!==s.index,flash=c.memory!==s.memory;
    lighting.update(dimension(),t-ACTOR_START);
+   // A blend weight alone does not reset a one-shot animation's clock. Keep
+   // the client clip on the film timeline, including late entity streaming.
+   if(actor?.isValid)actor.setProperty('warland:performance_time',Math.max(0,Math.min(18.933333,t-ACTOR_START)));
    if(cut){s.index=index;p.camera.setFov({fov:c.fov});if(index===ACTOR_SHOT&&actor?.isValid)actor.setProperty('warland:performance',true);audit('cut',p,{index,time:t,intact:c.memory})}
    if(flash){s.memory=c.memory;fog(p,c.memory,true);wind.update(p,stormActive(p,s));audit('memory',p,{visible:c.memory,time:t})}
    // Camera listener is explicitly the player. Keep the spectator behind the
@@ -195,7 +197,7 @@ system.runInterval(()=>{
 system.runInterval(()=>{
  if(!loaded)return;
  const players=world.getAllPlayers(),probePlayer=players.length?players[travelCursor++%players.length]?.id:null;
- const cells=new Set();for(const p of players)try{
+ for(const p of players)try{
   music.update(p);
   const storm=stormActive(p,film?.p.id===p.id?film:null);wind.update(p,storm);
   if(guide.ready(p,system.currentTick,alive(p)&&!heart(p)&&!pastArrivalActive(p)&&!busy.has(p.id)&&validReturn(read(p,PAST.returnKey)))){
@@ -210,7 +212,7 @@ system.runInterval(()=>{
   if(!p.hasTag(PAST.filmTag)&&!pastArrivalActive(p)&&!heart(p)){
    if(p.getDynamicProperty(PAST.filmKey))restoreFilm(p);
    if(p.getGameMode()!==GameMode.Adventure)p.setGameMode(GameMode.Adventure);
-   if(!inPastBounds(p.location))p.teleport(lastSafe.get(p.id)??offsetPoint(PAST.spawn,normalPast(p)));
+   if(!inPastBounds(p.location))p.teleport(lastSafe.get(p.id)??offsetPoint(normalPast(p)?PAST.entrance:PAST.spawn,normalPast(p)));
    else if(p.id===probePlayer&&!busy.has(p.id)){
     const at=p.location,prev=travel.get(p.id),moved=!prev||Math.hypot(at.x-prev.x,at.z-prev.z)>1.5||Math.abs(at.y-prev.y)>.8;
     if(moved||!prev.checked){
@@ -221,20 +223,29 @@ system.runInterval(()=>{
     }
    }
   }
-  const normal=normalPast(p);
   if(!pastArrivalActive(p))guide.emit(p);
-  if(!storm)continue;
-  let at={...p.location,y:p.location.y+2};if(film?.p.id===p.id&&film.playing){const c=cameraAt((Date.now()-film.start)/1000);if(c.memory)continue;at=v(c.position)}
-  const key=Math.floor(at.x/12)+':'+Math.floor(at.z/12);if(cells.has(key)||cells.size>=4)continue;cells.add(key);
-  // Emission cells stay fixed in world coordinates, never attached to the view.
-  p.dimension.spawnParticle('warland:past_ash',{x:Math.floor(at.x/12)*12+6,y:Math.floor(at.y/6)*6+3,z:Math.floor(at.z/12)*12+6});
-  p.dimension.spawnParticle('warland:past_ash_near',at);
-  if(system.currentTick%60<20)p.dimension.spawnParticle('warland:past_drift',{...at,y:Math.max(62.4,at.y-1.5)});
  }catch(e){audit('visitor_error',p,{error:String(e)})}
 },20);
+// Four spatially shared cells, four bursts/second. Short world-space streaks
+// give a dense ash squall without a dimension-wide emitter or screen overlay.
+system.runInterval(()=>{
+ if(!loaded)return;
+ const cells=new Set();
+ for(const p of world.getAllPlayers())try{
+  const scene=film?.p.id===p.id?film:null;
+  if(!alive(p)||pastArrivalActive(p)||!stormActive(p,scene))continue;
+  let at={...p.location,y:p.location.y+2};
+  if(scene?.playing){const c=cameraAt((Date.now()-scene.start)/1000);if(c.memory)continue;at=v(c.position)}
+  const key=Math.floor(at.x/12)+':'+Math.floor(at.y/8)+':'+Math.floor(at.z/12);
+  if(cells.has(key)||cells.size>=4)continue;cells.add(key);
+  p.dimension.spawnParticle('warland:past_ash',{x:Math.floor(at.x/12)*12+6,y:at.y+3,z:Math.floor(at.z/12)*12+6});
+  p.dimension.spawnParticle('warland:past_ash_near',at);
+  if(system.currentTick%60<5)p.dimension.spawnParticle('warland:past_drift',{...at,y:Math.max(62.4,at.y-1.5)});
+ }catch(e){audit('storm_error',p,{error:String(e)})}
+},5);
 export function unstuckPast(p,automatic=false){
  if(!inPast(p)||pastArrivalActive(p)||p.hasTag(PAST.filmTag)||busy.has(p.id)||heart(p)||!alive(p))return false;
- const previous=lastSafe.get(p.id),fallback=offsetPoint(PAST.spawn,normalPast(p)),target=automatic&&previous&&safeLanding(p.dimension,previous)?previous:fallback;
+ const previous=lastSafe.get(p.id),fallback=offsetPoint(PAST.entrance,normalPast(p)),target=automatic&&previous&&safeLanding(p.dimension,previous)?previous:fallback;
  // Manual recovery always reaches the entrance: a large sealed room may exceed
  // the bounded local search, so its last walking point is not a reliable exit.
  p.teleport(target);travel.delete(p.id);lastSafe.set(p.id,{...target});notice(p,automatic?'Has vuelto al último paso seguro.':'Has vuelto a la entrada del recuerdo.');audit('unstuck',p,{automatic,target});return true;

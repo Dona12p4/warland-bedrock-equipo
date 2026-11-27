@@ -10,6 +10,15 @@
           "type": "bool",
           "default": false,
           "client_sync": true
+        },
+        "warland:performance_time": {
+          "type": "float",
+          "range": [
+            0.0,
+            20.0
+          ],
+          "default": 0.0,
+          "client_sync": true
         }
       }
     },

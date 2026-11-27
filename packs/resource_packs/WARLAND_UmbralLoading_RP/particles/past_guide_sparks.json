@@ -5,7 +5,7 @@
       "identifier": "warland:past_guide_sparks",
       "basic_render_parameters": {
         "material": "particles_add",
-        "texture": "textures/particle/past_ash"
+        "texture": "textures/particle/past_white"
       }
     },
     "components": {
@@ -47,23 +47,23 @@
         ],
         "facing_camera_mode": "lookat_xyz",
         "uv": {
-          "texture_width": 8,
-          "texture_height": 8,
+          "texture_width": 32,
+          "texture_height": 32,
           "uv": [
             0,
             0
           ],
           "uv_size": [
-            8,
-            8
+            32,
+            32
           ]
         }
       },
       "minecraft:particle_appearance_tinting": {
         "color": [
           1,
-          0.94,
-          0.72,
+          1,
+          1,
           "math.min(1, variable.particle_age / 0.2) * math.min(1, (variable.particle_lifetime - variable.particle_age) / 0.4)"
         ]
       },

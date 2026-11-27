@@ -14,7 +14,7 @@ assert.throws(()=>page({...player,name:'visitante'}),/administradores/);
 let data=page(player);assert(!data.rows.some(r=>r.id==='past-lobby'));assert(data.rows.some(r=>r.id==='lobby-visit'));
 entering=false;await data.rows.find(r=>r.id==='past-arrival').run();assert(!calls.some(c=>c[0]==='flight'));
 calls.length=0;entering=true;flight=true;await data.rows.find(r=>r.id==='past-arrival').run();assert.equal(calls.length,1,'Do not start a second flight');
-calls.length=0;flight=false;await data.rows.find(r=>r.id==='past-arrival').run();assert.deepEqual(calls,[['enter',false],['flight']]);
+calls.length=0;flight=false;await data.rows.find(r=>r.id==='past-arrival').run();assert.deepEqual(calls,[['enter',false,true]]);
 player.past=true;data=page(player);await data.rows.find(r=>r.id==='past-lobby').run();assert.deepEqual(calls.at(-1),['exit',true]);
 await data.rows.find(r=>r.id==='past-origin').run();assert.deepEqual(calls.at(-1),['exit']);
 player.name='visitante';await assert.rejects(()=>data.rows.find(r=>r.id==='past-film').run(),/administradores/);player.name='DanielGamerSC';

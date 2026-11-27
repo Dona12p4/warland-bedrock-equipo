@@ -16747,7 +16747,8 @@
           "locator": "r4_palm",
           "bind_to_actor": true
         }
-      }
+      },
+      "anim_time_update": "query.property('warland:performance_time')"
     },
     "animation.warland.pasado.idle": {
       "loop": true,

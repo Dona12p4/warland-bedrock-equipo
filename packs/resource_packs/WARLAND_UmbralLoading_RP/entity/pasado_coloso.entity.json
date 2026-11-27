@@ -15,19 +15,12 @@
       "animations": {
         "idle": "animation.warland.pasado.idle",
         "performance": "animation.warland.pasado.performance",
-        "orb_hidden": "animation.warland.pasado.orb_hidden"
+        "orb_hidden": "animation.warland.pasado.orb_hidden",
+        "scene": "controller.animation.warland.pasado.scene"
       },
       "scripts": {
         "animate": [
-          {
-            "idle": "!query.property('warland:performance')"
-          },
-          {
-            "performance": "query.property('warland:performance')"
-          },
-          {
-            "orb_hidden": "!query.property('warland:performance')"
-          }
+          "scene"
         ]
       },
       "render_controllers": [

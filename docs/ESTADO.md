@@ -1,3 +1,15 @@
+## Instalado 0.7.8: espiral del lobby, Coloso y tormenta (27/11/2026)
+
+Nueva autorización expresa del usuario: «Sí, ya guardé y cerré; instala y reinicia». Se detuvo solo el servidor 19152 con stop y Quit correctly, se respaldaron los dos mundos cerrados y Shared, y se instaló el completo 0.7.8. Un BP/RP, mismas UUID, 1.283 archivos iguales en oficial Movil 3-4 GB y servidor; DB, inventarios y progreso intactos. Servidor reabierto en 127.0.0.1:19152; los laboratorios anteriores no se tocaron. La autorización no habilita futuros reinicios por rutina.
+
+La llegada original del lobby conserva la entrada por el centro de la espiral y añade un plano distante a mitad del descenso. El Pasado entra a pie en 380.5/63/-800.5, a 136 bloques de la salida: el jugador busca una guía blanca independiente, excluida de la película. El recuerdo intacto conserva su entrada anterior. Cruzar la guía devuelve al lobby con la llegada existente.
+
+Coloso: reloj sincronizado warland:performance_time y controlador de espera/actuación; conserva las poses de la referencia, gesto de la mano y desaparición. Cámara lateral de tres cuartos para mostrar capa y mano. Tormenta: 104 trazos y 20 copos cercanos por ráfaga, cuatro ráfagas/s, caída de 6.5–9.5 bloques/s más viento lateral, vida corta y colisión. Máximo cuatro zonas compartidas y 2.768 partículas de tormenta vivas. No es una medición de FPS Android.
+
+Validación: 58 pruebas de proyecto y BDS 1.26.60.6 con 184 comprobaciones de registros y 294 de recorrido/cámara/reloj/retorno; cero errores y Quit correctly. Cámara libre de bloques, línea de visión permite el vidrio de la abertura original. Sin revisión visual del cliente por orden del usuario: se comprobó el reloj y los recursos, no la imagen renderizada en Minecraft.
+
+Informes locales outputs/past-feedback/preparation.json, installation.json y final-parity-0.7.8.json; respaldo backups/past-feedback-0.7.8-preinstall. Completo en outputs/past-feedback/WARLAND.mcaddon y exports/WARLAND.mcaddon, SHA256 01049a3a26c71a261dff424ca0806a59b2aee3282081aeeb7a4d0ee8ab81c54a. Fuente Base 0.6.25 / Lobby BP 1.2.2 / recursos 1.1.21. Publicación en rama/PR8; integración de main/Pages pendiente de revisión.
+
 # Estado de partida de la colaboracion
 
 ## Instalado 0.7.7: Administración, llegada al lobby y Coloso (27/11/2026)
